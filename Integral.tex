@@ -1,0 +1,281 @@
+\documentclass[10pt,a4paper,openright]{book}
+
+\title{Cálculo integral}
+\author{Mario Calvarro Marines}
+\date{\today}
+\pagestyle{plain}
+\setlength{\parskip}{0.35cm} %edicion de espaciado
+\setlength{\parindent}{0cm} %edicion de sangría
+\clubpenalty=10000 %líneas viudas NO
+\widowpenalty=10000 %líneas viudas NO
+
+\usepackage[spanish]{babel} %Para que el idioma por defecto sea español
+\usepackage{amsmath} %Paquetes para mates
+\usepackage{amsfonts} %Paquetes para mates
+\usepackage{amssymb} %Paquetes para mates
+\usepackage{stmaryrd} % paquete para mates
+\usepackage{latexsym} %Paquetes para mates
+\usepackage{multicol} %Paquetes columnas
+\usepackage{cancel} %Paquete tachar cosas
+\usepackage[top=2.5cm, bottom=2.5cm, left=3cm, right=3cm]{geometry}
+
+\usepackage{centernot}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{float}
+
+\usepackage{titlesec} %Formato de capitulos y secciones
+    \titleformat{\chapter}[display]{\normalfont\huge\bfseries\color{capitulos}}{\thechapter}{20pt}{\Huge}[\titlerule{}]
+    \titleformat{\section}{\normalfont\Large\bfseries\color{secciones}}{\thesection}{1em}{}
+    \titleformat{\subsection}{\normalfont\large\bfseries\color{subsecciones}}{\thesubsection}{1em}{}
+    \titleformat{\subsubsection}{\normalfont\normalsize\bfseries\color{subsubsecciones}}{\thesubsubsection}{1em}{}
+
+\usepackage[dvipsnames,usenames]{xcolor} %activar e incluir colores
+    \definecolor{capitulos}{RGB}{60,0,0}%gama de colores de los capitulos
+    \definecolor{secciones}{RGB}{95,8,5}%gama de colores de las secciones
+    \definecolor{subsecciones}{RGB}{140,36,31}%gama de colores de las subsections
+    \definecolor{subsubsecciones}{RGB}{188,109,79}%gama de colores de las subsubsections
+    \definecolor{teoremas}{RGB}{164,56,32}
+    
+\usepackage{graphicx} %Para incluir fotos
+\graphicspath{{./fotos/}}
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.17}
+\usepackage{tkz-fct}
+
+\usepackage{ntheorem}[thmmarks]	% paquete de formateo de entornos matemáticos
+
+\theoremstyle{break}
+\theoremheaderfont{\normalfont\bfseries\color{teoremas}}
+\theorembodyfont{\itshape}
+\theoremseparator{\vspace{0.2cm}}
+\theorempreskip{\topsep}
+\theorempostskip{\topsep}
+\theoremindent0cm
+\theoremnumbering{arabic}
+\theoremsymbol{}
+\theoremprework{\vspace{0.2cm} \hrule}
+\theorempostwork{\vspace{0.2cm}\hrule}
+    \newtheorem*{defi}{Definición}
+
+\theoremprework{\vspace{0.25cm}}
+    \newtheorem*{theo}{Teorema}
+
+\theoremprework{\vspace{0.25cm}}
+    \newtheorem*{coro}{Corolario}
+
+\theoremprework{\vspace{0.25cm}}
+    \newtheorem*{lema}{Lema}
+
+\theoremprework{\vspace{0.25cm}}
+    \newtheorem*{prop}{Proposición}
+
+\theoremheaderfont{\normalfont}
+\theorembodyfont{\normalfont}
+\theoremsymbol{\hfill\square}
+    \newtheorem*{demo}{\underline{Demostración}:}
+
+
+\begin{document}
+\maketitle
+\chapter*{Medidas}%
+\label{sec:medidas}
+\section*{Definición de medida exterior}%
+\label{sub:definicion_de_medida_exterior}
+Sea $Q = \left[ a_1, b_1 \right] \times \ldots \times \left[ a_n, b_n \right] \subset \mathbb{R}^{n}$ rectángulo. 
+Definimos como \underline{volumen} de $Q$ a $v\left( Q \right) = \left( b_n - a_n \right) \cdots \left( b_1 - a_1 \right)$ 
+\begin{defi}[Medida exterior]
+   Sea $A \subset \mathbb{R}^{n}$. Definimos como \underline{medida exterior} de $A$ a: \[
+   \mu^{*} = \mathrm{inf}\sum_{k=1}^{\infty} v\left( Q_k \right); \text{ donde } \{Q_k\}_{k=1}^{\infty} \text{ y } A \subset \bigcup_{k = 1}^{\infty} Q_k
+   .\]  
+Podemos restringir el ínfimo a $\delta > 0: \ \mathrm{diam}\ Q_k < \delta$. Cambiaríamos los $Q_k \ge  \delta$ por divisiones que si lo cumplan.
+.\end{defi}
+
+\underline{Observación:}\\
+Decimos que $A$ tiene medida $0$: $\mu^{*}\left( A \right) = 0 \iff \forall \varepsilon > 0 \ \exists \{Q_k\} \text{ rec. de } A: \sum_{k=1}^{\infty} v\left( Q_k \right) < \varepsilon$     
+    \underline{Ejemplo:}
+    \begin{enumerate}
+       \item $x_0 \in \mathbb{R}^{n}: \forall \varepsilon > 0, \ v\left( Q\left( x_0 \right)  \right) < \frac{\varepsilon}{2^{k}}$
+       \item $N$ numerable: $N = \{x_k\}, \ x_k \in Q_k\left( x_k \right): v\left( Q_k\left( x_k \right)  \right) < \frac{\varepsilon}{2^{k}}$
+    \end{enumerate}
+    
+\begin{prop}
+   Sea $A \subset \mathbb{R}^{n}$ y $c \in \mathbb{R}^{n} \implies \mu^{*}\left( c + A \right) = \mu^{*}\left( A \right) $   
+.\end{prop}
+\begin{prop}
+   Sea $A \subset B \subset \mathbb{R}^{n} \implies \mu^{*}\left( A \right) \le \mu^{*}\left( B \right) $.
+   \begin{demo}
+       Si $\mu^{*}\left( B \right) = +\infty$ ya está.\\
+       Por tanto, sea $\{Q_k\}$ rec. de $B$. Como $A \subset B \implies \{Q_k\}$ rec. de A $\implies \mu^{*}\left( A \right)
+       \sum_{k=1}^{\infty} v\left( Q_k \right) \implies \mu^{*}\left( A \right) \le \mu^{*}\left( B \right) $
+   .\end{demo}
+\end{prop}
+
+\begin{prop}
+   Sean $A, B \in \mathbb{R}^{n} \implies \mu^{*}\left( A \cup B \right) \le \mu^{*}\left( A \right) + \mu^{*}\left( B \right)  $.
+   \begin{demo}
+       Si $\mu^{*}\left( A \right) = +\infty$ o $\mu^{*}\left( B \right) = +\infty$ ya está. \\ 
+       Sean ambos finitos $ \implies$ 
+       \begin{align*}
+       \text{Tomando } \varepsilon > 0 \implies
+           \begin{cases}
+               \exists \{Q_k\} \text{ rec. de A: } \sum_{k=1}^{\infty} v\left( Q_k \right) < \mu^{*}\left( A \right) + \frac{\varepsilon}{2}  \\
+               \exists \{R_k\} \text{ rec. de B: } \sum_{k=1}^{\infty} v\left( R_k \right) < \mu^{*}\left( A \right) + \frac{\varepsilon}{2}  
+           \end{cases}
+       \end{align*}
+       Consideremos $ \{Q_k, R_k\} = \{S_j\}$ donde $S_j = \begin{cases}
+           Q_{\frac{j}{2}},\ j \text{ par} \\
+           Q_{\frac{j+1}{2}},\ j \text{ impar} 
+       \end{cases} \implies$\\
+       $\{S_j\}$ rec. de $A\cup B \implies \mu^{*}\left( A\cup B \right) \le \sum_{j=1}^{\infty} v\left( B_j \right) = \sum_{k=1}^{\infty} v\left( Q_k \right) + \sum_{k=1}^{\infty} v\left( R_k \right) < \mu^{*}\left( A \right) + \mu^{*}\left( B \right) + \varepsilon  \implies$
+       $\mu^{*}\left( A\cup B \right) \le \mu^{*}\left( A \right) + \mu^{*}\left( B \right)$
+   .\end{demo}
+\end{prop}
+
+\begin{prop}
+    Sea $Q \subset \mathbb{R}^{n}$ rectángulo $\implies v\left( Q \right) = \mu^{*}\left( Q \right)$
+    \begin{demo}
+    \begin{itemize}
+        \item $ \mu^*\left( Q \right) \le v\left( Q \right) $: Tomamos $\varepsilon > 0$ y consideramos $ \{Q_k\}$ recubrimiento de $Q: Q_1 = Q$ y para $k\ge 2$, $Q_k$ será un rectángulo $< \varepsilon/2^{k}$. Con esto $\{Q_k\} $ es rec. de $Q$ y:  \[
+        \sum_{k=1}^{\infty} v\left( Q_k \right) = v\left( Q \right) + \sum_{k=2}^{\infty} v\left( Q_k \right) < v\left( Q \right) + \sum_{k=2}^{\infty} \frac{\varepsilon}{2^{k}} < v\left( Q \right) + \varepsilon 
+        .\] 
+        Por tanto, tomando ínfimos: \[
+        \mu^*\left( Q \right) \le v\left( Q \right) + \varepsilon \implies \mu^*\left( Q \right) \le v\left( Q \right) 
+        .\] 
+        \item $v\left( Q \right) \le \mu^*\left( Q \right)$: Observamos que $ \overline{Q}$ es la unión de las caras de $Q$ ($C_i$). Por tanto, 
+        \begin{gather*}
+            v\left( Q \right) = v\left( \overline{Q} \right) \\
+            \mu^{*}\left( Q \right) \le \mu^{*}\left( \overline{Q} \right)\\
+            \mu^{*}\left( \overline{Q} \right) = \mu^{*}\left( Q \cup \left( C_1, \ldots, C_m \right)  \right) \le \mu^{*}\left( Q \right) + \mu^{*}\left( C_1 \right) + \ldots + \mu^{*}\left( C_m \right) = \mu^{*}\left( Q \right)\footnote{La caras del cubo tienen medida $0$} \\
+        \end{gather*}
+        Podemos suponer que $Q$ es cerrado ($\implies Q$ es compacto).\\
+        Basta probar que $v\left( Q \right) \le \sum_{k=1}^{\infty} v\left( Q_k \right), \ \forall \{Q_k\}.\footnote{Abiertos}\ Q \subset \bigcup_{k \in \mathbb{N}} Q_k $. \\
+        Como $Q$ es compacto $\implies$ 
+        \begin{gather*}
+            Q \subset Q_1 \cup \ldots \cup Q_N \implies
+            v\left( Q \right) \le v\left( Q_1 \right) +\ldots+v\left( Q_N \right) \le \sum_{k=1}^{\infty} v\left( Q_k \right) 
+        .\end{gather*}
+        Por último, tomamos ínfimos.
+    \end{itemize}
+    \end{demo}
+\end{prop}
+
+\section*{Distancias}%
+\label{sec:distancias}
+Recordemos que $ \mathrm{diam}\ A = \mathrm{Sup}\{\vert \vert x - t \vert  \vert: \ x \in A, \ t \in B \} $
+
+\begin{prop}
+    Si $\mathrm{d}\left( A, B \right) > 0 \implies \mu^*\left( A \cup B \right) = \mu^*\left( A \right) + \mu^*\left( B \right)$
+    \begin{demo}
+        Si $ \mu^*\left( A\cup B \right) = +\infty \implies \mu^*\left( A \right) + \mu^*\left( B \right) \le  \mu^*\left( A\cup B \right)$. Podemos suponer, pues, que es finito.\\
+        Tenemos \[
+            \mu^*\left( A\cup B \right) \le  \mu^*\left( A \right) + \mu^*\left( B \right)
+        .\] 
+        Tomamos $\delta > 0: \ \delta < \frac{1}{2}\mathrm{d}\left( A, B \right)$ y 
+        $\varepsilon > 0: \ \exists \{Q_k\} \text{ rectángulos }: \ \mathrm{diam}\ Q_k < \delta$ y 
+        $A\cup B \subset \bigcup_{k \in \mathbb{N}} Q_k, \ \sum_{k=1}^{\infty} v\left( Q_k \right) < \mu^*\left( A\cup B \right) + \varepsilon $. Además cumplen: 
+        \begin{gather*}
+            \begin{cases}
+                Q_k \cap A = \emptyset \text{ ó }\\
+                Q_k \cap B = \emptyset
+            \end{cases}
+        .\end{gather*}
+        Si no fuese así $\exists a, b \in Q_k: a \in A,\ a \in B: \delta < d\left( A, B \right) \le \vert \vert a - b \vert  \vert < \delta $ ¡!\\
+        Consideremos pues \[
+        \begin{cases}
+            \{Q_k : Q_k \cap A \neq \emptyset\} \text{ recubrimiento de } A \\
+            \{Q_k : Q_k \cap B \neq \emptyset\} \text{ recubrimiento de } B
+        \end{cases}
+        .\] 
+        Con esto:
+        \begin{gather*}
+            \sum_{k=1}^{\infty} v\left( Q_k \right) \ge \sum_{Q_k\cap A \neq \emptyset}^{\infty} v\left( Q_k \right) + \sum_{Q_k\cap B \neq \emptyset}^{\infty} v\left( Q_k \right) \ge \mu^*\left( A \right) + \mu^*\left( B \right) \implies\\
+            \mu^*\left( A \right) + \mu^*\left( B \right) < \mu^*\left( A\cup B \right) + \varepsilon \implies \\
+            \mu^*\left( A \right) + \mu^*\left( B \right) \le \mu^*\left( A\cup B \right)
+        .\end{gather*}
+    \end{demo}
+\end{prop}
+
+\begin{theo}
+    La medida exterior de Lebesgue cumple: 
+    \begin{enumerate}
+        \item $ \mu^*\left( \phi \right) = 0 $ 
+        \item $A \subset B \implies \mu^*\left( A \right) \le \mu^*\left( B \right)$
+        \item $ \mu^*\left( \bigcup_{k\in \mathbb{N}} A_k \right) \le \sum_{k=1}^{\infty} \mu^*\left( A_k \right)$
+    \end{enumerate}
+    \begin{demo}
+        3. Si $\exists k: \mu^*\left( A_k \right) = +\infty$, ya está.\\
+        Suponemos que $ \mu^*\left( A_k \right) < +\infty, \ \forall k$. Tomamos $ \varepsilon>0$
+        \begin{gather*}
+            \forall k, \ \exists \{Q_k\}: A_k \subset \bigcup_{j \in \mathbb{N}} Q_j^{k} : \\
+            \sum_{j=1}^{\infty} v\left( Q_j^k \right) < \mu^*\left( A_k \right) + \frac{\varepsilon}{2^k}\\
+            \text{Como: } \bigcup_{k \in \mathbb{N}} A_k \subset \bigcup_{k \in \mathbb{N}} \bigcup_{j \in \mathbb{N}} Q_j^k 
+            \text{ y } \{Q_j^k\} \text{ es numerable.} \implies \\
+            \bigcup_{j, k = 1} ^{\infty} Q_j^k = \bigcup_{k \in \mathbb{N}}\left( \bigcup_{j \in \mathbb{N}}Q_j^k  \right) = \bigcup_{k \in \mathbb{N}} A_k \implies\\
+            \mu^*\left( \bigcup_{k\in \mathbb{N}} A_k \right) \le \sum_{j, k} v\left( Q_j^k \right) = \sum_{k=1}^{\infty} \sum_{j=1}^{\infty} v\left( Q_j^k \right) < 
+            \sum_{k=1}^{\infty} \left( \mu^*\left( A_k \right) + \frac{\varepsilon}{2^k} \right) = \\
+            = \left( \sum_{k=1}^{\infty} \mu^*\left( A_k \right) \right) + \varepsilon \implies 
+            \mu^*\left( \bigcup_{k \in \mathbb{N}}A_k   \right) \le \sum_{k=1}^{\infty} \mu^*\left( A_k \right)
+        .\end{gather*}
+    \end{demo}
+\end{theo}
+
+\begin{prop}
+    $\exists A, B: A\cap B = \emptyset\; \land \;\mu^*\left( A\cup B \right) < \mu^*\left( A \right) + \mu^*\left( B \right)$
+\end{prop}
+
+\begin{defi}
+    Sea $A \subset \mathbb{R}^n$. Es medible $\iff$\[
+    \mu^*\left( S \right) = \mu^*\left( S\cap A \right) + \mu^*\left( S \cap A^c \right),\ \forall S \subset \mathbb{R}^n
+    .\] 
+\end{defi}
+
+\begin{theo}[De Caratheodory]
+   Los conjuntos medibles forman una $\sigma$-algebra y la medida exterior de Lebesgue, 
+   $\mu^*$, es $ \sigma$-aditiva cuando la restringimos a los conjuntos medibles.
+   \begin{demo}
+       En las notas.
+   \end{demo}
+\end{theo}
+
+\begin{defi}
+    Decimos que la medida exterior es $ \sigma$-aditiva $ \iff$\[
+    \text{Si } \{A_k\}\subset \mathcal{A} \text{ disjuntos dos a dos} \implies \mu^*\left( \bigcup_{k \in \mathbb{N}} A_k  \right) = \sum_{k=1}^{\infty} \mu^*\left( A_k \right)
+    .\] 
+\end{defi}
+Una vez restringimos a la $ \sigma$-algebra podemos escribir $\mu^*$ como $\mu$ y la
+medida exterior de Lebesgue será la medida de Lebesgue simplemente
+
+\begin{prop}
+    Todo conjunto $A$ de medida $0$ es medible
+    \begin{demo}
+        $ \mu^*\left( S \right) \le \mu^*\left( S\cap A \right) + \mu^*\left( S\cap A^c \right)$ siempre es cierta.\\
+        $ \mu^*\left( S\cap A \right) + \mu^*\left( S\cap A^c \right) \le \mu^*\left( S \right) $ porque el primer sumando vale cero ($S\cap A \subset A$) y $S \cap A^c \subset S$.
+    \end{demo}
+\end{prop}
+
+\begin{prop}
+   Todo rectángulo $Q$ es medible. 
+   \begin{demo}
+        Siempre se cumple que $ \mu^*\left( S \right) \le \mu^*\left( S\cap Q \right) + \mu^*\left( S\cap Q^c \right)$.\\
+        Veamos la otra, ¿$ \mu^*\left( S\cap Q \right) + \mu^*\left( S\cap Q^c \right) \le \mu^*\left( S \right)$?\\
+        Tomemos un recubrimiento de $S$: \[
+            \{Q_j\}: S \subset \bigcup_{j \in \mathbb{N}} Q_j 
+        .\] 
+        Observamos que $ \{Q_j \cap Q\} $ siempre son rectángulos que recubren a $S\cap Q\implies$ \[
+        \mu^*\left( S\cap Q \right) \le \sum_{j=1}^{\infty} v\left( Q_j \cap Q \right) 
+        .\] 
+        A su vez, $ \{Q_j \cap Q^c\}$ (no son rectángulos pero sí una unión finita de estos: $Q_j \cap Q^c = R_1 \cup \ldots \cup R_m: R_1 \cup \ldots \cup R_m \cup \left( Q_j \cap Q \right) = Q_j \implies v\left( Q_j \right) = V\left( R_1 \right) +\ldots + v\left( R_m \right) + v\left( Q_j\cap Q \right) $) recubren $S \cap Q^c \subset \{R_i^j\}  \implies$ \[
+            \mu^*\left( S\cap Q^c \right) \le \sum_{i=1}^{\infty} v\left( R^j_i \right) 
+        .\] 
+        Así?, 
+        \begin{gather*}
+            \mu^*\left( S\cap Q \right) + \mu^*\left( S \cap Q^c \right) \le \sum_{j=1}^{\infty} v\left( Q_j \cap Q \right) +\\
+            + \sum_{j=1}^{\infty} \left( v\left( Q_j\cap Q \right) + v\left( R_1^j \right) +\ldots + v\left( R_m^j \right) \right) = \sum_{j=1}^{\infty} v\left( Q_j \right) 
+        .\end{gather*}
+   \end{demo}
+\end{prop}
+
+\end{document}
