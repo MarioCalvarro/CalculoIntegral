@@ -330,5 +330,48 @@ $$\mu\left(\bigcap_{k=1}^\infty A_k\right) = \lim_{k\rightarrow \infty} \mu(A_k)
 Completamente análoga a su homóloga anterior.
 \end{demo}
 
+\begin{theo}
+Sea $A \subset \mathbb{R}^n$ son equivalentes:  
+\begin{enumerate}
+\item $A$ es medible.
+\item $\forall \varepsilon > 0,\ \exists G \supset A$ abierto $: \mu\left( G - A  \right) < \varepsilon$  
+\item $A = D \setminus N: D$ es $G_{\delta},\ \mu\left( N \right) = 0$  
+\item $A = C \cup N: C$ es $F_{\sigma},\ \mu\left( N \right) = 0$  
+\item $\forall \varepsilon > 0,\ \exists F \subset A$ cerrado $: \mu\left( A - F \right) < \varepsilon$  
+\end{enumerate}
+\end{theo}
+\begin{demo}
+\begin{itemize}
+\item $1 \implies 2$: Si $A$ es acotado. Dado $\varepsilon > 0$, como $\mu\left( A \right) < +\infty$:
+$$\exists \{Q_k\}_{k=1}^{\infty} : A \subset \bigcup_{k=1}^\infty Q_k :$$  
+$$\sum_{k=1}^{\infty} v\left( Q_k \right) < \mu\left( A \right) + \varepsilon \implies G = \bigcup_{k=1}^{\infty} Q_k\; \land \; G\supset A$$ 
+$$\mu\left( G \setminus A \right) = \mu\left( G \right) - \mu\left( A \right) \le \sum_{k=1}^{\infty} \mu\left( Q_k \right) - \mu\left( A \right) < \varepsilon $$ 
+Si $A$ no es acotado, definimos: 
+$$A_k = \{x \in A: k - 1 \le \vert \vert x \vert  \vert < k \} \text{, } A = \bigsqcup_{k=1}^{\infty}A_k$$ 
+Si fijamos $\varepsilon > 0$ y como $\mu\left( A \right) < +\infty \implies$
+$$\exists G_k \supset A_k \text{ abierto} : \mu\left( G_k \setminus A_k \right) < \frac{\varepsilon}{2^k}\; \land$$ 
+$$\land \;G = \bigcup_{k=1}^{\infty}G_k \text{ abierto, } G \supset A$$ 
+$$\mu\left( G \setminus A \right) = \mu\left( \left( \bigcup_{k \in \mathbb{N}}G_k  \right) \setminus A   \right) \le \mu\left( \left( \bigcup_{k \in \mathbb{N}} G_k \setminus A_k  \right)  \right) \le \sum_{k=1}^{\infty} \mu\left( G_k - A_k \right) < \sum_{k=1}^{\infty} \frac{\varepsilon}{2^k} = \varepsilon $$ 
+
+\item $2 \implies 3$: $\forall k \in \mathbb{N},\ \exists A \subset G_k$ abierto: 
+$$\mu\left( G_k - A \right) < \frac{1}{k},\ D = \bigcap_{k=1}^{\infty}G_k \text{ es } G_{\delta}:$$ 
+$$D \supset A,\ N = D \setminus A: \mu\left( D \setminus A \right) \le \mu\left( G_k \setminus A \right) < \frac{1}{k} \implies \mu\left( N \right) = 0\ //\ A = D \setminus N$$ 
+
+\item $3 \implies 1$: Tenemos $A = D - N$ medible por ser diferencia de medibles.
+
+\item $1 \implies 5$: Sea $\varepsilon > 0$. Como:
+    $$A \text{ medible} \implies A^c \text{ medible} \implies \exists G \supset A^c \text{ abierto y } \mu\left( G - A^c \right) < \varepsilon$$ 
+Sea $F = G^c \text{ cerrado}$:
+$$\text{Como } A^c \subset G \implies F = G^c \subset \left( A^c \right)^c = A$$
+$$A \setminus F = \left( A^c \right)^c \cap F^c = G \cap \left( A^c \right)^c = G \setminus A^c$$
+$$\mu\left( A \setminus F \right) = \mu\left( G \setminus A^c \right) < \varepsilon$$
+
+\item $5 \implies 4$: (Similar a $2 \implies 3$)\\
+$\forall k,\ \exists F_k \subset A : \mu\left( A \setminus F_k \right) < \frac{1}{k}$:
+$$C = \bigcup_{k = 1}^{\infty}F_k = F_{\sigma},\ C \subset A$$ 
+
+\item $4 \implies 1$: $A = C \cup N$ medible, ya que es diferencia de medibles.
+\end{itemize}
+\end{demo}
 
 \end{document}
