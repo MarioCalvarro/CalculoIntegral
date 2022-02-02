@@ -479,6 +479,94 @@ que es continua.
 \end{enumerate}
 \end{demo}
 
+\begin{theo}
+Sea $A \subset  \mathbb{R}^m$ medible y $f: A \to \mathbb{R}$. Son equivalentes:
+\begin{enumerate}
+    \item $f$ medible.
+    \item $\{x \in \forall : f\left( x \right) < \alpha\} = f^{-1}\left( -\infty, \alpha \right),\ \forall \alpha \in \mathbb{R}$
+    \item $\{x \in \forall : f\left( x \right) \le \alpha\} = f^{-1}\left( -\infty, \alpha \right],\ \forall \alpha \in \mathbb{R}$
+    \item $\{x \in \forall : f\left( x \right) > \alpha\} = f^{-1}\left( \alpha, +\infty \right),\ \forall \alpha \in \mathbb{R}$
+    \item $\{x \in \forall : f\left( x \right) \ge \alpha\} = f^{-1}\left[ \alpha, +\infty \right),\ \forall \alpha \in \mathbb{R}$
+\end{enumerate}
+\end{theo}
+\begin{demo}
+$2 \iff 3 \iff 4 \iff 5$: 
+\begin{itemize}
+    \item $2 \implies 3$:
+    $$f^{-1}\left( -\infty, \alpha \right] = \bigcap_{m \in \mathbb{N}}f^{-1}\left( -\infty, \alpha + \frac{1}{m} \right) \text{ medibles}$$
+    El resto son similares.
+\end{itemize}
+$1 \implies 2$:
+$$f^{-1}\left( -\infty, \alpha \right) \text{abierto, por tanto, medible.}$$
+$2 \implies 4$:
+$$f^{-1}\left( \alpha, \beta \right) = f^{-1}\left( \alpha, \infty \right) \cap f^{-1}\left( -\infty, \beta \right)$$
+\end{demo}
+
+\underline{Ejemplo}:
+Sea la función de Dirichlet:
+$$\chi_{\mathbb{Q} \cap \left[0, 1\right]} = \sum_{n=1}^{\infty} \ldots$$
+No sé que ejemplo quería poner.
+
+Consideremos funciones del estilo:
+$$f: A \to \left[-\infty, \infty\right] = \mathbb{R} \cup \{+\infty\} \cup \{-\infty\}$$
+Donde $\mathrm{dom}f = \{x \in A: f\left(x\right) \in \mathbb{R}\}$
+
+\begin{defi}
+Sea $f: A \to \left[-\infty, \infty\right]$ es medible si:
+$$f^{-1}\left(+\infty\right),\ f^{-1}\left(-\infty\right) \text{ medibles},$$
+y
+$$f\left(\mathrm{dom}f\right) \to \mathbb{R} \text{ medible}.$$
+\end{defi}
+
+\begin{prop}
+Sea $A \subset \mathbb{R}^m$ medible y $f_k: A \to \left[-\infty, \infty\right]$ medible. Entonces:
+$$f = \sup_k f_k \text{ es medible}$$
+\end{prop}
+\begin{demo}
+Como $f^{-1}\left(-\infty\right) = \bigcap_{k \in \mathbb{N}}f^{-1}_k\left(-\infty\right)$ y es intersección de medibles $\implies f$ es medible. 
+
+Sea ahora $f^{-1}\left(\infty\right) = \bigcap_{m \in \mathbb{N}}\bigcup_{k \in \mathbb{N}}\{x : f_k \left(x\right) > m\}$. 
+
+Tenemos que $y \in \bigcup_{k \in \mathbb{N}}\{x: f_k\left(x\right) > m\} \implies \forall m,\ \exists K_m: f_{k_m}\left(y\right) > m \implies \sup f_k\left(y\right) = \infty$
+
+Tenemos que $\{x \in \mathrm{dom}f: f\left(x\right) \le \alpha\} = \bigcap_{k \in \mathbb{N}}\{x \in \mathrm{dom} f_k: f_k\left(x\right) \le \alpha\}$ porque:
+$$f\left(x\right) \in \mathbb{R}: f\left(x\right) \le \alpha \implies \mathbb{R} \ni \sup f_k\left(x\right) \le \alpha \iff f_k\left(x\right) \le \alpha,\ \forall k \in \mathbb{N}$$
+\end{demo}
+
+\begin{coro}
+Si $f_k$ medibles $\implies$ $f = \inf_k f_k$ es medible.
+\end{coro}
+\begin{demo}
+Ya que $f = \inf f_k = -\sup_k \left(-f_k\right)$
+\end{demo}
+
+\begin{prop}
+Sea $A \subset \mathbb{R}^m$ medible y $f_k: A \to \left[-\infty, \infty\right]$ medibles. Entonces:
+$$\limsup_{k \to \infty}f_k\; \land \;\liminf_{k \to \infty}f_k \text{ son medibles}$$
+\end{prop}
+\begin{demo}
+Observamos que:
+$$\limsup_{k \to \infty}f_k = \inf_m \sup_{k\ge m} f_k$$
+$$\liminf_{k \to \infty}f_k = \sup_m \inf_{k\ge m}f_k$$
+\end{demo}
+
+\underline{Ejemplo}: 
+
+\begin{prop}
+Sea $A$ medible y $f_k: A \to \left[-\infty, \infty\right]$ medibles. Entonces: $$A_0 = \{x : \exists \lim_{k \to \infty}f_k\left(x\right)\}\text{ es medible.}$$ 
+y 
+$$f: A_0 \to \left[-\infty, \infty\right] \text{ es medible}$$
+\end{prop}
+\begin{demo}
+Tenemos que $A_0 = A_{\infty} \cup D_0 \cup A^{\infty}$ donde $A_{\infty} = \{x: \liminf_{k \to \infty}f_k\left(x\right) = \limsup_{k \to \infty}f_k\left(x\right) = -\infty\}$, $A^{\infty} = \{x: \lim_{k \to \infty}f_k\left(x\right) = \infty\}$ y $D_0 = \{x: \lim_{k \to \infty}f_k\left(x\right) \in \mathbb{R}\}$. Es decir,
+$$A_{\infty} = \left(\liminf_{k \to \infty}f_k \right)^{-1}\left(-\infty\right) \text{ es medible.}$$
+$$A^{\infty} = \left(\liminf_{k \to \infty}f_k \right)^{-1}\left(\infty\right) \text{ es medible.}$$
+$$D_0 \subset \dom\left(\limsup_{k \to \infty}f_k\right) \cap \dom\left(\liminf_{k \to \infty}f_k\right) = D \text{ medible.}$$
+$$D_0 = \{x \in D: \limsup_{k \to \infty}f_k\left(x\right) = \liminf_{k \to \infty}f_k\left(x\right)\} = \{x \in D: g\left(x\right) = 0\} = g^{-1}\left(\{0\}\right) \text{ medible} \implies$$
+$A_0$ es medible.
+
+Tenemos que $f = \lim_{k \to \infty}f_k= \limsup_{k \to \infty}f_k = \liminf_{k \to \infty}f_k$
+\end{demo}
 
 
 \end{document}
