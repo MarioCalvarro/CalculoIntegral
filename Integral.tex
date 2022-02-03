@@ -529,5 +529,64 @@ $A_0$ es medible.
 Tenemos que $f = \lim_{k \to \infty}f_k= \limsup_{k \to \infty}f_k = \liminf_{k \to \infty}f_k$
 \end{demo}
 
+\begin{defi}
+Decimos que $P$ se cumple en \textbf{casi todo punto} $\iff$
+$$\exists N \subset \mathbb{R}^m: \mu\left(N\right) = 0\; \land \;P \text{ se cumple } \forall x \not\in N$$
+\end{defi}
+
+\underline{Ejemplo}:
+$f = g$ ctp. si $\exists N: \mu\left(N\right) = 0: f\left(x\right) = g\left(x\right),\ \forall x \not\in N \left(x \in A\right)$
+
+\underline{Obs}:
+$$\begin{cases}
+    f = g \text{ctp}\\
+    f \text{ medible}
+\end{cases} \implies g \text{ medible}$$
+Sea $G$ abierto ¿$g^{-1}\left(G\right)$ abierto?
+$$g^{-1}\left(G\right) = \left(f^{-1}\left(G\right) \setminus N_1\right) \cup N_2 \text{ medible}$$
+Donde $N_1, N_2$ de medida $0$ ($N_1, N_2 \subset N$)
+
+\underline{Obs}:
+$f = lim f_k$  ctp con $f_k$ medibles. Entonces $f$ es medible:
+\begin{demo}
+$$\exists N: \mu\left(N\right) : f\left(x\right) = \lim f_k\left(x\right),\ \forall x \in \forall \setminus N$$
+$$\tilde{f}\left(x\right) = \limsup f_k\left(x\right): \tilde{f}: A \to \overline{\mathbb{R}} \text{ medible} \implies \tilde{f} = f \text{ ctp } \implies f \text{ medible}$$
+\end{demo}
+
+\begin{enumerate}
+\item Sea 
+$$\chi_E \left(x\right) : \begin{cases}
+    1 \text{ si } x \in E\\
+    0 \text{ si } x \not\in E
+\end{cases}$$
+$$\chi_E: \mathbb{R}^{n} \to \mathbb{R},\ E \subset \mathbb{R}^n \implies$$
+$\chi_E$ es medible $\iff E$ es medible.
+
+Observamos que $\chi_{\mathbb{Q} \cap \left[0, 1\right] = 0}$ ctp. ($\mu\left(\mathbb{Q}\right) = 0$).
+\item Sea 
+$$\varphi = \sum_{k=1}^{n} \alpha_k \chi_{E_k} \text{ es medible}$$
+Que se denomina función simple.
+\item 
+\begin{prop}
+Sea $f: \mathbb{R}^n \to \mathbb{R}$ continua ctp. Entonces es medible.
+\end{prop}
+\begin{demo}
+Observamos que: 
+$$f\cdot \chi_{\left[-N, N\right]^{n}} \to_{N \to \infty} f$$
+``Trabajamos'' con ese cubo $Q$ y lo dividimos en $\forall k: \{Q_j^k\}_{j=1}^{\infty}$ de lado $\frac{1}{2^k}: Q = \bigcup_{j \in \mathbb{N}} Q_j^k$. $Q = \left[-N, N\right)^{m}$
+
+A su vez, definimos $C_j^k = \inf \{f\left(x\right): x \in Q_j^k\}$ y 
+$$\varphi_k = \sum_{j = 1}^{\infty} c_j^k \chi_{Q_j^k} \text{ medible}$$
+¿$\varphi_k \to^k f\cdot \chi_{\left[-N, N\right]}$ ctp?
+
+Si $f$ es continua en $x  \in \left[-N, N\right]^n\implies$
+$$\{\varphi_k\left(x\right)\}_k \to f\left(x\right) \implies f\left(x\right) = \lim_{k \to \infty}\varphi_k\left(x\right)$$
+$$\forall \varepsilon > 0,\ \exists \delta > 0: \text{ si } \vert\vert y - x \vert\vert < \delta \implies \vert f\left(y\right) - f\left(x\right)\vert < \varepsilon.$$
+Sea $k_0: Q_j^{k_0}$ que contiene a $x$, verifica $Q_j^{k_0} \subset B\left(x, \delta\right) \implies$
+$$\forall k \ge k_0,\ Q_j^k \subset B\left(x, \delta\right) \implies$$
+$$\forall y \in Q_j^k,\ \vert\vert y - x\vert\vert < \delta \implies \vert f\left(y\right) - f\left(x\right) \vert < \varepsilon \implies \vert c_j^k - f\left(x\right) \vert \le \varepsilon \text{ donde } c_j^k = \varphi_k\left(x\right) \implies$$
+$$\forall \varepsilon > 0,\ \exists k_0: \text{ si } k \ge k_0 \implies \vert \varphi_k\left(x\right) - f\left(x\right) \vert \le \varepsilon \implies \lim \varphi_k\left(x\right) = f\left(x\right)$$
+\end{demo}
+\end{enumerate}
 
 \end{document}
