@@ -630,4 +630,56 @@ $$\forall \varepsilon > 0,\ \exists k_0: \text{ si } k \ge k_0 \implies \vert \v
 \end{demo}
 \end{enumerate}
 
+\begin{defi}
+Definimos como \textbf{oscilación} a: 
+
+Sea $f: \left[a, b\right] \to \mathbb{R}$ y $x_0 \in \left[a, b\right]$:
+$$o\left(f, x_0\right) = \lim_{\delta \to o^+} \left(\sup \{ \vert f\left(y\right) - f\left(x\right) \vert : x, y \in \left(x_0 -\delta, x_0 + \delta \right) \} \right)$$
+\end{defi}
+
+\begin{prop}
+$f$ es cont en $x_0 \iff o\left(f, x_0\right) = 0$
+\end{prop}
+
+\begin{theo}[de Lebesgue]
+Sea $f: \left[a, b\right] \to \mathbb{R}$ acotada, es integrable Riemann $\iff$ el conjunto de puntos de discontinuidad de $f$ tiene medida $0$.
+\end{theo}
+\begin{demo}
+Sea $\vert f\left(x\right)\vert \le M,\ \forall x \in \left[a, b\right]$ y $D = \{x: f \text{ discontinua en } x\}$
+Supongamos que $\mu\left(D\right) = 0$. Tomamos $\varepsilon > 0$, $D_{\varepsilon} = \{x: o\left(f, x\right) < \varepsilon\}$ que es cerrado:
+
+Tenemos que si $x \not\in D_{\varepsilon} \implies o\left(f, x\right) > \varepsilon \implies \exists \delta:$
+$$\sup \{ \vert f\left(y\right) - f\left(x\right) \vert: x, y \in \left(x_0 - \delta, x_0 + \delta \right) \}$$
+
+Sea $x_1 \in \left(x_0 - \delta, x_0 + \delta \right) \implies$
+$$\sup \{ \vert f\left(y\right) - f\left(x\right) \vert : x, y \in \left(x_1 - \delta, x_1 + \delta \right) \} < \varepsilon \implies o\left(f, x_1\right) < \varepsilon \implies x_1 \not\in D_{\varepsilon}$$
+Por lo que es cerrado y, por tanto, compacto con medida $0$ (hipótesis).
+Como $D_{\varepsilon} \subset D \implies \mu\left( D_{\varepsilon} \right) = 0$
+
+Por tanto, $\exists \{I_n\}_{n=1}^{\infty}: D_{\varepsilon} \subset \bigcup_{n \in \mathbb{N}} I_n$ y $\sum_{n=1}^{\infty} \mu\left(I_n\right) < \varepsilon \implies$. Como es compacto:
+$$D_{\varepsilon} \subset I_1 \cup \ldots \cup I_N,\ \left( \mu\left(I_1\right) + \ldots + \mu\left(I_N\right) < \varepsilon \right)$$
+\textit{(Dibujo partición)}. 
+
+Con este recubrimiento generamos una partición formada por $P_1$ y $P_2: P = P_1 \cup P_2$. ($P_1 = I_1 \cup \ldots \cup I_N$?). Entonces:
+$$\forall I \in P_2 \text{, si } x \in I: o\left(f, x\right) < \varepsilon \implies \exists I_x \subset I: \vert f\left(y\right) - f\left(z\right) \vert < \varepsilon,\ \forall y, z \in I_x$$
+
+Recubrimos $I$ (que es compacto) con una cantidad finita de $I_x \implies P_2^*$. Definimos 
+$$P^* = P_2 \cup P_2^*$$
+
+Tenemos:
+$$U\left(f, P^* \right) - L\left(f, P^*\right) :$$
+$$\sum_{I\in P^*} \left(\sup_{x \in I} f \left(x\right) - \inf_{x \in I} f\left(x\right) \right) \mu\left(I\right) = \sum_{I \in P_1} \left( \right) + \sum_{I \in P_2^*} \left( \right) \le 2M\varepsilon + \varepsilon\left(b - a\right) = \left(b - a + 2M\right) \varepsilon$$
+Por Cauchy, $f$ es integrable Rienmann.
+
+Veamos que $\mu\left(D\right) = 0$. Como $D = \bigcup_{n \in \mathbb{N}} D_{\frac{1}{n}}$. Basta ver que $\mu\left(D_{\frac{1}{n}}\right) = 0,\ \forall n \in \mathbb{N}$.
+
+Tomamos $\varepsilon > 0$, $P$ de $\left[a, b\right]$:
+$$U\left(f, P\right) - L\left(l, P\right) < \frac{\varepsilon}{n}$$
+$P_1$ los intervalos de $P$ que corta a $D_{\frac{1}{n}}$. (No sé si es $n$ o $m$).
+$$\frac{\varepsilon}{n} > \sum_{I \in P_1} \left(\sup_{x \in I} f\left(x\right) - \inf_{x \in I} f\left(x\right) \right) \mu\left(I\right) \ge \frac{1}{n} \sum_{I \in P_1} \mu\left(I\right)$$
+(\textit{Dibujo}) 
+$$\sum_{I \in P_1} \mu\left(I\right) < \varepsilon \; \land \; D_{\frac{1}{n}} \subset \bigcup_{I \in P_1} I \implies$$
+$$\mu\left(D_{\frac{1}{m}}\right) = 0$$.
+\end{demo}
+
 \end{document}
