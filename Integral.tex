@@ -679,7 +679,98 @@ $P_1$ los intervalos de $P$ que corta a $D_{\frac{1}{n}}$. (No sé si es $n$ o $
 $$\frac{\varepsilon}{n} > \sum_{I \in P_1} \left(\sup_{x \in I} f\left(x\right) - \inf_{x \in I} f\left(x\right) \right) \mu\left(I\right) \ge \frac{1}{n} \sum_{I \in P_1} \mu\left(I\right)$$
 (\textit{Dibujo}) 
 $$\sum_{I \in P_1} \mu\left(I\right) < \varepsilon \; \land \; D_{\frac{1}{n}} \subset \bigcup_{I \in P_1} I \implies$$
-$$\mu\left(D_{\frac{1}{m}}\right) = 0$$.
+$$\mu\left(D_{\frac{1}{m}}\right) = 0.$$
 \end{demo}
+
+Recordemos que llamamos función simple a:
+$$\varphi = \sum_{k=1}^{m} \alpha_k\aleph{E_k}$$
+que cumple:
+\begin{itemize}
+    \item Es medible.
+    \item Solo toma un nº finito de valores
+    \item Si $\varphi$ es medible y solo toma un nº finito de valores $(\beta_1, \ldots, \beta_r)$:
+    $$E_j = \varphi^{-1}\left(\{\beta_j\}\right) \text{, medible}$$
+    $$\varphi = \sum_{k=1}^{r} \beta_j \aleph{E_j} \implies \varphi \text{ es simple.}$$
+\end{itemize}
+
+\begin{defi}
+Sea $\varphi$ función simple no negativa:
+$$\varphi = \sum_{k=1}^{m} \alpha_k \aleph{E_k},\ \left(\alpha_k > 0\right)$$
+Definimos:
+$$I\left(\varphi\right) = \sum_{k=1}^{m} \alpha_k \mu\left(E_k\right)$$
+\end{defi}
+(\textit{Dibujo $\aleph$ no negativa como dos $\aleph$ que pueden ser negativas}). 
+
+\underline{Obs}:
+Asumimos que $0 \cdot \left(+ \infty\right) = 0 \implies I\left(\varphi\right) \in \left[0, +\infty\right]$
+
+\begin{prop}
+Sea $\varphi$ función simple es posible escribirla de distintas formas:
+$$\varphi = \sum_{i=1}^{m} \alpha_i \aleph_{E_i} = \sum_{i=1}^{p} \beta_i \aleph_{D_i}$$
+Entonces:
+$$\sum_{i=1}^{m} \alpha_i \mu\left(E_i\right) = \sum_{i=1}^{p} \beta_i \mu\left(D_i\right)$$
+\end{prop}
+\begin{demo}
+Problema II hoja 3.
+Utilizamos que una de las formas es la canónica.
+\end{demo}
+\textbf{¡¡Cambiar $\chi$ por función indicatriz!!}
+
+\underline{Obs}:
+Este resultado prueba que la definición de $I\left(\varphi\right)$ es consistente.
+
+\begin{prop}
+\begin{enumerate}
+    \item $c > 0$, $\varphi$ simple no negativo $I\left(c\varphi\right) = cI\left(\varphi\right)$.
+    \item $\varphi, \psi$ simples no negativas $\implies I\left(\varphi + \psi\right) = I\left(\varphi\right) + I\left(\psi\right)$
+    \item $\varphi \le \psi$ c.t.p $\implies I\left(\varphi\right) \le I\left(\psi\right)$
+    \item $\varphi = \psi$ c.t.p $\implies I\left(\varphi\right) = I\left(\psi\right)$
+\end{enumerate}
+\end{prop}
+\begin{demo}
+(\textit{Dibujo punto 3}). 
+\end{demo}
+\underline{Obs}:
+Los conjuntos no tienen porque ser intervalos, si fuese este el caso sería, en el fondo, integrabilidad Rienmann.
+
+\begin{defi}
+Sea $f: \mathbb{R}^n \to \left[0, +\infty\right]$ medible. Definimos como \textbf{integral (Lebesgue) de $f$} a:
+$$\int_{\mathbb{R}^n}f d\mu = \sup_{\substack{\varphi \le f \text{ c.t.p} \\ \varphi \text{ simple}}} I\left(\varphi\right) \in \left[0, +\infty\right]$$
+\end{defi}
+
+\begin{prop}
+Sea $\varphi$ simple no negativa $\implies$
+$$\int_{\mathbb{R}^n}\varphi d \mu = I\left(\varphi\right)$$
+\end{prop}
+\begin{demo}
+$$\varphi \le \varphi \implies I\left(\varphi\right) \le \int_{\mathbb{R}^n} \varphi d \mu$$
+Si $\int_{\mathbb{R}^n} \varphi d \mu = +\infty \implies$
+$$\forall M > 0,\ \exists \psi \le \varphi: I\left(\psi\right) \ge M \implies$$
+$$M \le I\left(\psi\right) \le I\left(\varphi\right) \implies I\left(\varphi\right) \ge M,\ \forall M \implies I\left(\varphi\right) = +\infty$$
+Si $\int_{\mathbb{R}^m}\varphi d \mu < +\infty \implies$
+$$\forall \varepsilon > 0,\ \exists \psi \le \varphi: I\left(\psi\right) \ge \int_{\mathbb{R}^n}\varphi d \mu - \varepsilon \implies$$
+$$I\left(\varphi\right) \ge \int_{\mathbb{R}^n}\varphi d \mu - \varepsilon \implies I\left(\varphi\right) \ge \int_{\mathbb{R}^n}\varphi d \mu$$
+\end{demo}
+
+\begin{prop}
+Sea $f, g: \mathbb{R}^n \to \left[0, +\infty\right]$ medibles tal que $f \le g$ c.t.p. Entonces:
+$$\int_{\mathbb{R}^n}f d \mu \le \int_{R^n}g d \mu.$$
+\end{prop}
+\begin{demo}
+Ejercicio.
+\end{demo}
+
+\begin{coro}
+Si $f = g$ c.t.p $\implies$
+$$\int_{\mathbb{R}^n}f d \mu = \int_{\mathbb{R}^n}g d \mu$$
+\end{coro}
+
+\begin{defi}
+Sean $A \subset \mathbb{R}^n$ medible, $f: A \to \left[0, +\infty\right]$ medible:
+$$\int_A f d \mu = \int_{\mathbb{R}^n}f \aleph_{A} d \mu.$$
+\end{defi}
+\underline{Obs}:
+En general se trabajará con funciones no infinitas para evitar que la integral sea infinita trivialmente.
+
 
 \end{document}
