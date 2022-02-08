@@ -108,7 +108,7 @@ Podemos restringir las familias $\{Q_k\}$ a aquellas que tengan $\mathrm{diam}\ 
 
 \begin{defi}[Medida nula]
 Decimos que $A$ tiene medida nula si podemos encontrar recubrimientos de $A$ con sumatorio de volúmenes tan pequeños como queramos, es decir:
-$$\mu^{*}\left( A \right) = 0 \iff \forall \varepsilon > 0 \ \exists \{Q_k\} \text{ rec. de } A: \sum_{k=1}^{\infty} v\left( Q_k \right) < \varepsilon $$  
+$$\mu^{*}\left( A \right) = 0 \Leftrightarrow \forall \varepsilon > 0 \ \exists \{Q_k\} \text{ rec. de } A: \sum_{k=1}^{\infty} v\left( Q_k \right) < \varepsilon $$  
 \end{defi}
 
 \underline{Ejemplos}
@@ -185,7 +185,7 @@ $$Q \subset Q_1 \cup \ldots \cup Q_N \Rightarrow v\left( Q \right) \le v\left( Q
 Definimos el \textbf{diámetro de un conjunto} como:
 $$\mathrm{diam}\ A = \sup \{\vert \vert x - t \vert  \vert: \ x \in A, \ t \in B \}$$
 Y definimos la \textbf{distancia entre dos conjuntos} como:
-$$d(A,B) = \inf \{||x-y||: x\in A \ y \in B\}$$
+$$d(A,B) = \inf \{||x-y||: x\in A, \ y \in B\}$$
 \end{defi}
 
 \begin{prop}
@@ -212,7 +212,7 @@ Y como es para todo epsilon, se tiene la desigualdad que nos faltaba.
 \begin{theo}
     La medida exterior de Lebesgue cumple las siguientes propiedades: 
     \begin{enumerate}
-        \item $ \mu^*\left( \phi \right) = 0 $ 
+        \item $ \mu^*\left( \emptyset \right) = 0 $ 
         \item $A \subset B \Rightarrow \mu^*\left( A \right) \le \mu^*\left( B \right)$
         \item $ \mu^*\left( \bigcup_{k\in \mathbb{N}} A_k \right) \le \sum_{k=1}^{\infty} \mu^*\left( A_k \right)$
     \end{enumerate}
@@ -329,6 +329,158 @@ $$\mu\left(\bigcap_{k=1}^\infty A_k\right) = \lim_{k\rightarrow \infty} \mu(A_k)
 \begin{demo}
 Completamente análoga a su homóloga anterior.
 \end{demo}
+
+\begin{theo}
+Sea $A \subset \mathbb{R}^n$. Son equivalentes:  
+\begin{enumerate}
+\item $A$ es medible.
+\item $\forall \varepsilon > 0,\ \exists G \supset A$ abierto $: \mu\left( G\setminus A  \right) < \varepsilon$  
+\item $A = D \setminus N: D$ es $G_{\delta},\ \mu\left( N \right) = 0$  
+\item $A = C \cup N: C$ es $F_{\sigma},\ \mu\left( N \right) = 0$  
+\item $\forall \varepsilon > 0,\ \exists F \subset A$ cerrado $: \mu\left( A \setminus F \right) < \varepsilon$  
+\end{enumerate}
+\end{theo}
+\begin{demo}
+\begin{itemize}
+\item $1 \Rightarrow 2$:
+
+Supongamos primero que $A$ es acotado. Dado $\varepsilon > 0$, como $\mu\left( A \right) < +\infty$ por ser acotado, entonces $\exists \{Q_k\}_{k=1}^{\infty} : A \subset \displaystyle \bigcup_{k=1}^\infty Q_k$ de forma que $\sum_{k=1}^{\infty} v\left( Q_k \right) < \mu\left( A \right) + \varepsilon$. 
+
+Como el volumen no depende de que los rectángulos sean abiertos o cerrados, consideramos los $Q_k$ rectángulos abiertos de modo que:
+$$G = \bigcup_{k=1}^{\infty} Q_k \mbox{ abierto} : A\subset G$$
+Como $\mu (A) < + \infty$, entonces podemos ver que:
+$$\mu\left( G \setminus A \right) = \mu\left( G \right) - \mu\left( A \right) \le \sum_{k=1}^{\infty} \mu\left( Q_k \right) - \mu\left( A \right) < \varepsilon $$ 
+En general, si $A$ no es acotado, definimos: 
+$$A_k := \{x \in A: k - 1 \le \vert \vert x \vert  \vert < k \}$$
+[DIBUJO]
+
+Los conjuntos $A_k$ son la intersección de $A$ con coronas disjuntas 2 a 2 concéntricas que descomponen $A$ como:
+$$ A = \bigsqcup_{k=1}^{\infty}A_k$$ 
+Si fijamos $\varepsilon > 0$ y como $\mu\left( A \right) < +\infty$, podemos aplicar el razonamiento anterior para acotados en cada $A_k$, luego:
+$$\exists G_k \supset A_k \text{ abierto} : \mu\left( G_k \setminus A_k \right) < \frac{\varepsilon}{2^k}$$
+Por tanto, si consideramos $G$ como la unión de los $G_k$, tenemos:
+$$G = \bigcup_{k=1}^{\infty}G_k \text{ es un abierto : } G \supset A$$ 
+Y se cumple que:
+$$\mu\left( G \setminus A \right) = \mu\left( \left( \bigcup_{k \in \mathbb{N}}G_k  \right) \setminus A   \right) \le \mu\left(  \bigcup_{k \in \mathbb{N}} \left(G_k \setminus A_k  \right)  \right) \le \sum_{k=1}^{\infty} \mu\left( G_k - A_k \right) < \sum_{k=1}^{\infty} \frac{\varepsilon}{2^k} = \varepsilon $$ 
+
+\item $2 \Rightarrow 3$:
+
+$\forall k \in \mathbb{N}$, consideramos $G_k \subset A$ abierto tal que $\mu\left( G_k \setminus A \right) < \frac{1}{k}$, después definimos el conjunto:
+$$D := \bigcap_{k=1}^{\infty}G_k \text{ que es } G_{\delta}:D \supset A$$ 
+Como $A = D \setminus (D \setminus A)$, definimos entonces $N = D \setminus A$ y ocurre que:
+$$\forall k \in \mathbb{N}: \mu\left( D \setminus A \right) \le \mu\left( G_k \setminus A \right) < \frac{1}{k} \Rightarrow \mu\left( N \right) = 0$$
+
+\item $3 \Rightarrow 1$:
+
+Tenemos $A = D \setminus N$, o lo que es lo mismo, que $A = D \cap N^c$. $D$ es medible por hipótesis, y $N^c$ es el complementario de un medible, que es medible\footnote{Por el teorema de Caratheodory}. Como las intersecciones de medibles son medibles, $A$ es medible.
+
+\item $1 \Rightarrow 5$:
+
+Sea $\varepsilon > 0$, como $A$ es medible, entonces $A^c$ también lo es y, por el apartado 2, tenemos que:
+$$\exists G \supset A^c \text{ abierto : } \mu\left( G \setminus A^c \right) < \varepsilon$$ 
+Sea $F := G^c \text{ cerrado}$, como  $A^c \subset G \Rightarrow F = G^c \subset \left( A^c \right)^c = A$, por tanto:
+$$A \setminus F = \left( A^c \right)^c \setminus F  =\left( A^c \right)^c \cap F^c = G \cap \left( A^c \right)^c = G \setminus A^c$$
+Luego, se tiene que:
+$$\mu\left( A \setminus F \right) = \mu\left( G \setminus A^c \right) < \varepsilon$$
+
+\item $5 \Rightarrow 4$: (Similar a $2 \Rightarrow 3$)\\
+$\forall k \in \mathbb{N}$, consideramos $F_k \subset A : \mu\left( A \setminus F_k \right) < \frac{1}{k}$, después definimos el conjunto:
+$$C := \bigcup_{k = 1}^{\infty}F_k  \text{ es } F_{\sigma} : \ C \subset A$$ 
+Y la demostración es análoga a la implicación $2 \Rightarrow 3$.
+
+\item $4 \Rightarrow 1$
+
+De nuevo y por similitud con $3\Rightarrow 1$, $A = C \cup N$ es medible por ser unión de medibles.
+\end{itemize}
+\end{demo}
+
+\chapter*{FUNCIONES MEDIBLES}%
+\label{cha:funciones_medibles}
+Comprobadas las propiedades que tiene la medida sobre conjuntos medibles, nos interesa saber qué funciones nos permiten conservar propiedades de medida interesantes. Es aquí donde juegan un papel fundamental las funciones medibles que permiten asegurar que las preimágenes de abiertos son medibles y, por ello, al trabajar sobre abiertos no debemos preocuparnos sobre las propiedades de medibilidad ya que se conservan también en el conjunto de partida.
+ 
+\section*{FUNCIONES MEDIBLES}%
+\label{sec:funciones_medibles}
+
+
+\begin{defi}
+Sea $A \subset \mathbb{R}^m$ medible y $f: A \rightarrow \mathbb{R}^m$, definimos una función \textbf{medible} como aquella que verifica:
+$$\forall G \subset \mathbb{R}^m \text{ abierto, } f^{-1}(G) \text{ es medible}.$$ 
+\end{defi}
+
+\begin{prop}
+\begin{enumerate}
+\item Sea una función $f: \mathbb{R}^m \to \mathbb{R}^m$, si es continua, entonces es medible.
+
+\item Sea $f: A \to \mathbb{R}^m$ una función medible y $\varphi: \mathbb{R}^m \to \mathbb{R}^k$ una función continua\footnote{En general, la composición de medibles no tiene porqué ser medible}, entonces $\varphi \circ f$ es medible.
+\end{enumerate}
+\end{prop}
+
+\underline{Observación}:
+
+Como podemos expresar un abierto como recubrimiento de bolas (que con la norma infinito serían cubos) tenemos que $G = \bigcup_{k \in \mathbb{N}} Q_k$, de este modo, se tiene que $f^{-1}\left( G \right) = \bigcup_{k \in \mathbb{N}}f^{-1}\left( Q_k \right)$ y, en consecuencia, podemos redefinir el concepto de función medible de la siguiente forma:
+$$f \text{ medible} \Leftrightarrow f^{-1}\left( Q \right) \text{ medible, } \forall Q \subset \mathbb{R}^m \text{ cubo abierto.}$$
+
+
+\begin{prop}
+Sea $f: A \to \mathbb{R}^m$ una función, es medible si y sólo si cada una de sus componentes es medible.
+\end{prop}
+\begin{demo}
+\begin{itemize}
+\item $\Rightarrow$
+
+Cada componente se puede expresar como:
+$$f_i = \pi_i \circ f$$
+Donde $f$ es medible por hipótesis y $\pi_i\left( x_1, \ldots, x_m \right) = x_i$ es continua.
+
+\item $\Leftarrow$
+
+Dado $Q = \left( a_1, b_1 \right) \times \ldots \times \left( a_m, b_m \right)$ cubo abierto, tenemos que $f^{-1}\left( Q \right) = \bigcap_{i = 1}^{m} f_i^{-1}\left( a_i, b_i \right)$. Esto es así porque:
+$$x \in f^{-1}\left( Q \right) \Leftrightarrow f\left( x \right) \in Q \Leftrightarrow \forall i \in \mathbb{N} : f_i\left( x \right) \in \left( a_i, b_i \right)$$
+\end{itemize}
+\end{demo}
+
+\begin{prop}
+Sean $f, g: A\subset \mathbb{R}^n \rightarrow \mathbb{R}^m$ medibles, se cumplen las siguientes propiedades:
+\begin{enumerate}
+\item $f+g$ medible.
+\item $\forall a \in \mathbb{R}: a\cdot f$ medible.
+\item $\left<f, g\right>$ medible.
+\item $\vert \vert f \vert \vert$ medible.
+\end{enumerate}
+\end{prop}
+\begin{demo}
+\begin{enumerate}
+\item Definimos la función $F: A \to \mathbb{R}^{2m}$ de la forma:
+$$F\left( x \right) = \left( f_1\left( x \right), \ldots, f_m\left( x \right), g_1\left( x \right), \ldots, g_m\left( x \right) \right)$$
+Y por hipótesis, como las funciones son medibles y cada componente es medible, entonces $F$ es medible. Del mismo modo, definimos: 
+\begin{align*}
++: \mathbb{R}^m \times \mathbb{R}^m & \rightarrow \mathbb{R} \\
+\left( u, v \right) &\mapsto u+v
+\end{align*}
+que trivialmente es continua, por tanto:
+$$\left( f + g \right)\left( x \right) = \left( + \circ F \right)\left( x \right)$$
+Es medible por composición de medibles con continuas.
+
+\item Trivial
+
+\item Utilizando la misma función $F$ definida en el primer apartado, tenemos que la función:
+\begin{align*}
+\left<,\right>: \mathbb{R}^m \times \mathbb{R}^m & \rightarrow \mathbb{R} \\
+\left( u, v \right) &\mapsto \left<u, v\right>
+\end{align*}
+es continua, luego por composición de nuevo se tiene:
+$$\left<f, g\right> \left( x \right) = \left( \left<, \right> \circ F \right)\left( x \right)$$
+que es medible.
+
+\item Completamente análogo a antes, se trata de ver la siguiente igualdad $\vert \vert f \vert \vert = \left<f, f\right>^{\frac{1}{2}}$ y demostrar que es la composición con:
+\begin{align*}
+\sqrt{•}: \mathbb{R}^+ &\rightarrow \mathbb{R}^+ \\
+u &\mapsto \sqrt{u}
+\end{align*}
+que es continua.
+\end{enumerate}
+\end{demo}
+
 
 
 \end{document}
