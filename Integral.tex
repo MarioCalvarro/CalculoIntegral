@@ -770,5 +770,73 @@ $$\int_A f d \mu = \int_{\mathbb{R}^n}f \aleph_{A} d \mu.$$
 \underline{Obs}:
 En general se trabajará con funciones no infinitas para evitar que la integral sea infinita trivialmente.
 
+\textbf{Inciso:}\\ 
+\underline{Obs}:
+Si $f$ medible $\Rightarrow$ gráfica $f$ tiene medida $0$.
+
+\underline{Ej}:
+\begin{itemize}
+    \item Sea $\varphi$ curva de Peano:
+    $$\varphi: \left[0, 1\right] \rightarrow \left[0, 1\right]^2 \text{ continua}$$
+    $$\mu\left(\varphi\left(\left[0, 1\right]\right)\right) = 1$$
+    \item La gráfica de la función de Weierstrass tiene longitud infinita.
+\end{itemize}
+\textbf{Fin inciso.}
+
+\begin{lema}
+Sea $\varphi$ función simple $\{A_k\}_{k=1}^{\infty}\uparrow A$ con $A_k$ medibles $\left(A_k \subset A_{k+1} : \bigcup_{k \in \mathbb{N}} A_k = A\right)$. Entonces:
+$$\int_A \varphi d \mu = \lim_k \int_A \varphi d \mu.$$
+\end{lema}
+\begin{demo}
+Tenemos que $\varphi = \sum_{j=1}^{m} \alpha_j \chi_{E_j},\ \alpha_j \ge 0,\ \forall 0 < j < m + 1$. Entonces:
+$$\lim_k \int_A \varphi d \mu = \lim_k \int_{\mathbb{R}^m}\varphi \chi_{A_k} d \mu = \\$$
+$$\lim_k \int_{\mathbb{R}^n} \sum_{j=1}^{m} \alpha_j \chi_{E_j} \chi_{A_k} = \lim_k \int_{\mathbb{R}^n} \left(\sum_{j=1}^{m} \alpha_j \chi_{E_j \cap A_k}\right) d \mu = $$
+$$= \lim_k \sum_{j=1}^{m} \alpha_j \int_{\mathbb{R}^n} \chi_{E_j \cap A_k} d \mu = \lim_k \sum_{j=1}^{m} \alpha_j \mu\left(E_j \cap A_k\right) = \sum_{j=1}^{m} \alpha_j \lim_k \mu\left(E_j \cap A_k\right) = $$
+$$= \sum_{j=1}^{m} \alpha_j \mu\left(E_j \cap A\right) = \sum_{j=1}^{m} \alpha_j \int_{\mathbb{R}^n} \chi_{E_j \cap A} d \mu = \int_{\mathbb{R}^n}\sum_{j=1}^{m} \alpha_j \chi_{E_j} \chi_{A} = $$
+$$= \int_{\mathbb{R}^n} \varphi \chi_A d \mu = \int_A \varphi d \mu$$
+\end{demo}
+
+\begin{theo}[Convergencia Monótona]
+Sea $f_k: \mathbb{R}^n \rightarrow \left[0, +\infty\right]$ medible. Consideremos que $\{f_k\}_{k=1}^{\infty} \uparrow f$ c.t.p. Entonces:
+$$\int_{\mathbb{R}^n}f d \mu = \lim_k \int_{\mathbb{R}^n} f_k d \mu.$$
+\end{theo}
+\begin{demo}
+Observemos que:
+$$f_k \le f \Rightarrow \int_{\mathbb{R}^n} f_k d \mu \le \int_{\mathbb{R}^n} f d \mu$$
+Además:
+$$\{\int_{\mathbb{R}^n} f_k d \mu\}_{k=1}^{\infty}\uparrow \Rightarrow \exists \lim_k \int_{\mathbb{R}^n} f_k d \mu \le \int_{\mathbb{R}^n}f d \mu$$
+Por otro lado:
+
+Fijamos $\varphi \le f$ simple no negativa. Fijamos $C < 1:$
+$$A_k = \{x \in \mathbb{R}^n: c\varphi\left(x\right) < f_k\left(x\right)\}\text{, que es medible.}$$
+Como $f_k \le f_{k+1} \Rightarrow$
+$$A_k \subset A_{k+1} \Rightarrow \{A_k\}_{k=1}^{\infty} \uparrow \mathbb{R}^n.$$
+Ya que dado $x \in \mathbb{R}^n$, como $\lim_k f_k\left(x\right) = f\left(x\right)\ \left(\forall x : f\left(x\right) \neq 0\right),\ f\left(x\right) > 0$.
+Si?
+$$f\left(x\right) = +\infty \Rightarrow \lim_k f_k \left(x\right) = +\infty \Rightarrow$$
+$$c\varphi\left(x\right) \in \mathbb{R},\ \exists k : f\varphi\left(x\right) < f_k\left(x\right) \Rightarrow x \in A_k$$
+y si:
+$$0 < f\left(x\right) < \infty \ \varphi\left(x\right) \le f\left(x\right) \Rightarrow c\varphi\left(x\right) < f\left(x\right) \ \lim_k f_k\left(x\right) = f\left(x\right) \Rightarrow \exists k : c\varphi\left(x\right) < f_k\left(x\right)$$
+
+Entonces:
+$$c\int_{\mathbb{R}^n}\varphi d \mu = c\int_{\mathbb{R}^n \setminus \{x : f\left(x\right) = 0\}}\varphi d \mu = \int_{\mathbb{R}^n \setminus \{x : f\left(x\right) = 0\}} c \varphi d \mu =$$
+$$= \lim_k \int_{A_k} c \varphi d \mu \le \lim_k \int_{A_k} f_k d \mu \le \lim_k \int_{\mathbb{R}^n} f_k d \mu.$$
+A su vez:
+$$c \rightarrow 1^- \Rightarrow \int_{\mathbb{R}^n} \varphi d \mu \le \lim_k \int_{\mathbb{R}^n} f_k d \mu \Rightarrow$$
+$$\int_{\mathbb{R}^n}f d \mu = \sup_{\varphi \le f} \int_{\mathbb{R}^n}\varphi d \mu \le \lim_k \int_{\mathbb{R}^n}f_k d \mu$$
+\end{demo}
+
+\begin{theo}
+Sea $f: \left[a, b\right] \rightarrow \mathbb{R}^+$ acotada integrable Rienmann. Entonces $f$ es integrable Lebesgue y 
+$$\int_{\left[a, b\right]}f d \mu = \int_a^b f\left(x\right)dx$$
+\end{theo}
+\begin{demo}
+Sabemos que $\exists M > 0:$
+$$f \le M\chi_{\left[a, b\right]}$$
+A su vez,
+$$\int_a^b f\left(x\right)dx = \sup_{P}L\left(f, P\right) \Rightarrow \exists \{P_k\}_{k=1}^{\infty} : P_n \le? P_{n+1} : \int_a^b f\left(x\right)dx = \lim_k L\left(f, P_n\right) = $$
+$$= \lim_k \sum_{S \in P_k} \inf \{f\left(x\right) : x \in S\}\mu\left(S\right) = \lim_k \int_{\left[a, b\right]}\left(\sum m_S \left(f\right) \cdot \chi_S\right) d \mu = \int_{\left[a, b\right]}\lim_k f_k d \mu = \int_{\left[a, b\right]}f d \mu.$$
+Donde $f_k = \sum m_S\left(f\right) \chi_S.$
+\end{demo}
 
 \end{document}
