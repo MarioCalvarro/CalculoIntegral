@@ -395,87 +395,93 @@ Y la demostración es análoga a la implicación $2 \Rightarrow 3$.
 De nuevo y por similitud con $3\Rightarrow 1$, $A = C \cup N$ es medible por ser unión de medibles.
 \end{itemize}
 \end{demo}
- 
+\newpage 
 \section*{FUNCIONES MEDIBLES}%
 \label{sec:funciones_medibles}
 Comprobadas las propiedades que tiene la medida sobre conjuntos medibles, nos interesa saber qué funciones nos permiten conservar propiedades de medida interesantes. Es aquí donde juegan un papel fundamental las funciones medibles que permiten asegurar que las preimágenes de abiertos son medibles y, por ello, al trabajar sobre abiertos no debemos preocuparnos sobre las propiedades de medibilidad ya que se conservan también en el conjunto de partida.
 
 \begin{defi}
-Sea $A \subset \mathbb{R}^m$ medible y $f: A \rightarrow \mathbb{R}^m$, definimos una función \textbf{medible} como aquella que verifica:
-$$\forall G \subset \mathbb{R}^m \text{ abierto, } f^{-1}(G) \text{ es medible}.$$ 
+Sea $A \subset \mathbb{R}^n$ medible y $f: A \rightarrow \mathbb{R}^n$, definimos una función \textbf{medible} como aquella que verifica:
+$$\forall G \subset \mathbb{R}^n \text{ abierto, } f^{-1}(G) \text{ es medible}.$$ 
 \end{defi}
 
-\begin{prop}
+\underline{Observación}
 \begin{enumerate}
-\item Sea una función $f: \mathbb{R}^m \to \mathbb{R}^m$, si es continua, entonces es medible.
+\item Sea una función $f: \mathbb{R}^n \to \mathbb{R}^n$ continua. Entonces es medible, ya la las preimagenes de abiertos son abiertos por ser $f$ continua.
 
-\item Sea $f: A \to \mathbb{R}^m$ una función medible y $\varphi: \mathbb{R}^m \to \mathbb{R}^k$ una función continua\footnote{En general, la composición de medibles no tiene porqué ser medible}, entonces $\varphi \circ f$ es medible.
-\end{enumerate}
-\end{prop}
-
-\underline{Observación}:
-
-Como podemos expresar un abierto como recubrimiento de bolas (que con la norma infinito serían cubos) tenemos que $G = \bigcup_{k \in \mathbb{N}} Q_k$, de este modo, se tiene que $f^{-1}\left( G \right) = \bigcup_{k \in \mathbb{N}}f^{-1}\left( Q_k \right)$ y, en consecuencia, podemos redefinir el concepto de función medible de la siguiente forma:
+\item Como podemos expresar un abierto como recubrimiento de bolas (que con la norma infinito serían cubos) tenemos que $G = \bigcup_{k \in \mathbb{N}} Q_k$, de este modo, se tiene que $f^{-1}\left( G \right) = \bigcup_{k \in \mathbb{N}}f^{-1}\left( Q_k \right)$ y, en consecuencia, podemos redefinir el concepto de función medible de la siguiente forma:
 $$f \text{ medible} \Leftrightarrow f^{-1}\left( Q \right) \text{ medible, } \forall Q \subset \mathbb{R}^m \text{ cubo abierto.}$$
 
+\item Sea $f: A \to \mathbb{R}^m$ una función medible y $\varphi: \mathbb{R}^m \to \mathbb{R}^k$ una función continua\footnote{En general, la composición de medibles no tiene porqué ser medible}, entonces $\varphi \circ f$ es medible. Para verlo, basta con observar que 
+$$\left( \varphi \circ f \right)^{-1} = f^{-1} \left( \varphi^{-1} (G) \right)$$
+Como $\varphi$ es continua, $\varphi^{-1} (G)$ es abierto, y como $f$ es medible por la observación anterior también lo es $f^{-1}$
+\end{enumerate}
+
 
 \begin{prop}
-Sea $f: A \to \mathbb{R}^m$ una función, es medible si y sólo si cada una de sus componentes es medible.
+Sea $f: A \to \mathbb{R}^m$ una función, es medible si y sólo si cada una de sus componentes $f_i$ es medible.
 \end{prop}
 \begin{demo}
 \begin{itemize}
-\item $\Rightarrow$
+\item $\implies$
 
-Cada componente se puede expresar como:
+Cada componente de $f$ se puede expresar como la composición:
 $$f_i = \pi_i \circ f$$
-Donde $f$ es medible por hipótesis y $\pi_i\left( x_1, \ldots, x_m \right) = x_i$ es continua.
+Donde $f$ es medible por hipótesis y $\pi_i\left( x_1, \ldots, x_m \right) = x_i$ es la proyección, que es una función continua.
 
-\item $\Leftarrow$
+\item $\impliedby$
 
-Dado $Q = \left( a_1, b_1 \right) \times \ldots \times \left( a_m, b_m \right)$ cubo abierto, tenemos que $f^{-1}\left( Q \right) = \bigcap_{i = 1}^{m} f_i^{-1}\left( a_i, b_i \right)$. Esto es así porque:
-$$x \in f^{-1}\left( Q \right) \Leftrightarrow f\left( x \right) \in Q \Leftrightarrow \forall i \in \mathbb{N} : f_i\left( x \right) \in \left( a_i, b_i \right)$$
+Sea el cubo abierto $Q = \left( a_1, b_1 \right) \times \ldots \times \left( a_m, b_m \right)$. Entonces se cumple que 
+$$f^{-1}\left( Q \right) = \bigcap_{i = 1}^{m} f_i^{-1}\left( a_i, b_i \right)$$
+Esto se debe a que:
+$$x \in f^{-1}\left( Q \right) \Rightarrow f\left( x \right) \in Q \Rightarrow f_i\left( x \right) \in \left( a_i, b_i \right) \Rightarrow  f_i^{-1} \left( x \right) \in \left( a_i, b_i \right) : \forall i \in \mathbb{N}$$
+Recíprocamente;
+$$x \in f_i^{-1} \in \left( a_i, b_i \right) : \forall i = 1, \ldots, m \Rightarrow f_i \left( x \right) \in \left( a_i, b_i \right) : \forall i = 1, \ldots, m \Rightarrow f(x) \in Q$$
+Así, como los $f_i$ son medibles, los conjuntos $f_i^{-1} \in \left( a_i, b_i \right)$ también lo son, y como los conjuntos medibles forman una $\sigma -$ álgebra por el Lema de Caratheodory, la intersección finita es medible; es decir, $f^{-1}(Q)$ es medible.
 \end{itemize}
 \end{demo}
 
 \begin{prop}
-Sean $f, g: A\subset \mathbb{R}^n \rightarrow \mathbb{R}^m$ medibles, se cumplen las siguientes propiedades:
+Sean $f, g: A\subset \mathbb{R}^n \rightarrow \mathbb{R}^m$ medibles. Entonces se cumplen las siguientes propiedades:
 \begin{enumerate}
-\item $f+g$ medible.
-\item $\forall a \in \mathbb{R}: a\cdot f$ medible.
-\item $\left<f, g\right>$ medible.
-\item $\vert \vert f \vert \vert$ medible.
+\item $f+g$ es medible.
+\item $a\cdot f : \forall a \in \mathbb{R} $ es medible.
+\item $\left<f, g\right>$ es medible.
+\item $\vert \vert f \vert \vert$ es medible.
 \end{enumerate}
 \end{prop}
 \begin{demo}
 \begin{enumerate}
 \item Definimos la función $F: A \to \mathbb{R}^{2m}$ de la forma:
 $$F\left( x \right) = \left( f_1\left( x \right), \ldots, f_m\left( x \right), g_1\left( x \right), \ldots, g_m\left( x \right) \right)$$
-Y por hipótesis, como las funciones son medibles y cada componente es medible, entonces $F$ es medible. Del mismo modo, definimos: 
+Por hipótesis, como las funciones $f,g$ son medibles, cada componente es medible. Así, $F$ es medible. Del mismo modo, definimos la función suma: 
 \begin{align*}
 +: \mathbb{R}^m \times \mathbb{R}^m & \rightarrow \mathbb{R} \\
 \left( u, v \right) &\mapsto u+v
 \end{align*}
-que trivialmente es continua, por tanto:
+Esta función es trivialmente continua. Por tanto, observamos que podemos definir la suma de funciones medibles como composición:
 $$\left( f + g \right)\left( x \right) = \left( + \circ F \right)\left( x \right)$$
-Es medible por composición de medibles con continuas.
+Como la función suma es continua, y la función $F$ es medible, la composición es medible.
 
 \item Trivial
 
-\item Utilizando la misma función $F$ definida en el primer apartado, tenemos que la función:
+\item Utilizando la misma función $F$ definida en el primer apartado, definimos la función producto escalar:
 \begin{align*}
-\left<,\right>: \mathbb{R}^m \times \mathbb{R}^m & \rightarrow \mathbb{R} \\
+\left< \cdot , \cdot \right>: \mathbb{R}^m \times \mathbb{R}^m & \rightarrow \mathbb{R} \\
 \left( u, v \right) &\mapsto \left<u, v\right>
 \end{align*}
-es continua, luego por composición de nuevo se tiene:
-$$\left<f, g\right> \left( x \right) = \left( \left<, \right> \circ F \right)\left( x \right)$$
-que es medible.
+Esta función es continua. Por tanto, observamos que podemos definir la producto escalar de funciones medibles como composición:
+$$\left<f, g\right> \left( x \right) = \left( \left< \cdot, \cdot\right> \circ F \right)\left( x \right)$$
+Como la función producto escalar es continua, y la función $F$ es medible, la composición es medible.
 
-\item Completamente análogo a antes, se trata de ver la siguiente igualdad $\vert \vert f \vert \vert = \left<f, f\right>^{\frac{1}{2}}$ y demostrar que es la composición con:
+\item Observando la igualdad $\vert \vert f \vert \vert = \left<f, f\right>^{\frac{1}{2}}$, definimos la función raíz cuadrada:
 \begin{align*}
 \sqrt{•}: \mathbb{R}^+ &\rightarrow \mathbb{R}^+ \\
 u &\mapsto \sqrt{u}
 \end{align*}
-que es continua.
+Esta función es continua. Por tanto, observamos que podemos definir la norma de funciones medibles como composición:
+$$\vert \vert f \vert \vert \left( x \right) = \left( \vert \vert \cdot \vert \vert \circ F \right)\left( x \right)$$
+Como la función producto escalar es continua, y la función $F$ es medible, la composición es medible.
 \end{enumerate}
 \end{demo}
 
@@ -483,54 +489,75 @@ que es continua.
 Sea $A \subset  \mathbb{R}^m$ medible y $f: A \to \mathbb{R}$. Son equivalentes:
 \begin{enumerate}
     \item $f$ medible.
-    \item $\{x \in \forall : f\left( x \right) < \alpha\} = f^{-1}\left( -\infty, \alpha \right),\ \forall \alpha \in \mathbb{R}$
-    \item $\{x \in \forall : f\left( x \right) \le \alpha\} = f^{-1}\left( -\infty, \alpha \right],\ \forall \alpha \in \mathbb{R}$
-    \item $\{x \in \forall : f\left( x \right) > \alpha\} = f^{-1}\left( \alpha, +\infty \right),\ \forall \alpha \in \mathbb{R}$
-    \item $\{x \in \forall : f\left( x \right) \ge \alpha\} = f^{-1}\left[ \alpha, +\infty \right),\ \forall \alpha \in \mathbb{R}$
+    \item $\{x \in A : f\left( x \right) < \alpha\} = f^{-1}\left( -\infty, \alpha \right),\ \mbox{ es medible }\forall \alpha \in \mathbb{R}$
+    \item $\{x \in A : f\left( x \right) \le \alpha\} = f^{-1}\left( -\infty, \alpha \right],\ \mbox{ es medible }\forall \alpha \in \mathbb{R}$
+    \item $\{x \in A : f\left( x \right) > \alpha\} = f^{-1}\left( \alpha, +\infty \right),\ \mbox{ es medible }\forall \alpha \in \mathbb{R}$
+    \item $\{x \in A : f\left( x \right) \ge \alpha\} = f^{-1}\left[ \alpha, +\infty \right),\ \mbox{ es medible }\forall \alpha \in \mathbb{R}$
 \end{enumerate}
 \end{theo}
 \begin{demo}
-$2 \iff 3 \iff 4 \iff 5$: 
+Veamos primero que $2 \iff 3 \iff 4 \iff 5$: 
 \begin{itemize}
-    \item $2 \implies 3$:
-    $$f^{-1}\left( -\infty, \alpha \right] = \bigcap_{m \in \mathbb{N}}f^{-1}\left( -\infty, \alpha + \frac{1}{m} \right) \text{ medibles}$$
-    El resto son similares.
+    \item $2 \implies 3$. Basta con observar que:
+    $$f^{-1}\left( -\infty, \alpha \right] = \bigcap_{k=1}^\infty f^{-1}\left( -\infty, \alpha + \frac{1}{k} \right)$$
+    Por hipótesis, $f^{-1}\left( -\infty, \alpha + \frac{1}{k} \right)$ son medibles $\forall k \in \mathbb{N}$, y como la intersección numerable de medibles es medibles por formar una $\sigma-$álgebra, $f^{-1}\left( -\infty, \alpha \right]$ es medible. 
+    \item $3 \implies 4$. Basta con observar que:
+    $$f^{-1}\left( \alpha,  \infty \right) = A \cap \left(f^{-1}\left( -\infty, \alpha \right] \right)^c$$
+    Por hipótesis, $f^{-1}\left( -\infty, \alpha \right] $ es medible, y como los conjuntos medibles forman una $\sigma -$ álgebra por el Lema de Caratheodory, su complementario también es medible. Como $A$ es medible, la intersección también es medible.
+    \item $4 \implies 5$. Basta con observar que:
+    $$f^{-1}\left[ \alpha, +\infty \right) = \bigcap_{k=1}^\infty f^{-1}\left( \alpha - \frac{1}{k}, +\infty \right)$$
+    Por hipótesis, $f^{-1}\left( \alpha - \frac{1}{k}, \infty \right)$ son medibles $\forall k \in \mathbb{N}$, y como la intersección numerable de medibles es medibles por formar una $\sigma-$álgebra, $f^{-1}\left[ \alpha, +\infty \right)$ es medible.
+    \item $5 \implies 2$. Basta con observar que:
+    $$f^{-1}\left( -\infty,  \alpha \right) = A \cap \left(f^{-1}\left[ \alpha, +\infty \right) \right)^c$$
+    Por hipótesis, $f^{-1}\left[ \alpha, +\infty \right) $ es medible, y como los conjuntos medibles forman una $\sigma -$ álgebra por el Lema de Caratheodory, su complementario también es medible. Como $A$ es medible, la intersección también es medible.
 \end{itemize}
-$1 \implies 2$:
-$$f^{-1}\left( -\infty, \alpha \right) \text{abierto, por tanto, medible.}$$
-$2 \implies 4$:
+Veamos que $1 \implies 2$. Como $\left( -\infty, \alpha \right)$ es un abierto y $f$ es medible, $f^{-1}\left( -\infty, \alpha \right)$ es medible.
+
+Finalmente, veamos que $2 \& 4 \implies 1$. Sea $\left( \alpha, \beta \right)$ intervalo abierto tal que $\alpha < \beta$. Entonces
 $$f^{-1}\left( \alpha, \beta \right) = f^{-1}\left( \alpha, \infty \right) \cap f^{-1}\left( -\infty, \beta \right)$$
+Como $f^{-1}\left( \alpha, \infty \right)$ y $f^{-1}\left( -\infty, \beta \right)$ son medibles por hipótesis y la intersección de medibles es medible, $f^{-1}\left( \alpha, \beta \right)$ es medible.
+$\hfill \square$
 \end{demo}
 
-\underline{Ejemplo}:
-Sea la función de Dirichlet:
-$$\chi_{\mathbb{Q} \cap \left[0, 1\right]} = \sum_{n=1}^{\infty} \ldots$$
-No sé que ejemplo quería poner.
 
-Consideremos funciones del estilo:
-$$f: A \to \left[-\infty, \infty\right] = \mathbb{R} \cup \{+\infty\} \cup \{-\infty\}$$
+Vamos a ver que la propiedad de ser medible se conserva por sucesiones. Ello nos va a permitir ver que hay muchas funciones medibles
+más allá de las funciones continuas que ya sabemos que son medibles.
+Como vamos a tomar límites, nos van a aparecer valores infinitos. Por
+ello va a ser útil admitir funciones que tomen valores infinitos.Consideraremos funciones del estilo:
+$$f: A \to \left[-\infty, \infty\right] = \bar{\mathbb{R}} = \mathbb{R} \cup \{+\infty\} \cup \{-\infty\}$$
 Donde $\mathrm{dom}f = \{x \in A: f\left(x\right) \in \mathbb{R}\}$
 
 \begin{defi}
-Sea $f: A \to \left[-\infty, \infty\right]$ es medible si:
-$$f^{-1}\left(+\infty\right),\ f^{-1}\left(-\infty\right) \text{ medibles},$$
-y
-$$f\left(\mathrm{dom}f\right) \to \mathbb{R} \text{ medible}.$$
+Sea $A \subset \mathbb{R}^n$ un conjunto medible. Decimos que $f: A \rightarrow \left[-\infty, \infty\right]$ es medible si $f^{-1}\left(+\infty\right),\ f^{-1}\left(-\infty\right) \text{ son conjuntos medibles}$ y además
+$f : \mathrm{dom}f  \rightarrow \mathbb{R} \text{ es una función medible}.$
 \end{defi}
 
+\underline{Observación}
+
+Podemos descomponer $A$ de forma disjunta:
+$$A = \left( \mathrm{dom}f \right) \sqcup \left( f^{-1}\left(+\infty\right)\right) \sqcup \left( f^{-1}\left(-\infty\right)\right) $$
+De lo que se sigue que
+$$\mathrm{dom}f = A \setminus \left(  f^{-1}\left(+\infty\right) \sqcup  f^{-1}\left(-\infty \right) \right)$$
+Es decir, que si $A, f^{-1}\left(+\infty\right),\ f^{-1}\left(-\infty\right)$ son conjuntos medibles, $\mathrm{dom}f$ también lo es.
+
 \begin{prop}
-Sea $A \subset \mathbb{R}^m$ medible y $f_k: A \to \left[-\infty, \infty\right]$ medible. Entonces:
+Sea $A \subset \mathbb{R}^n$ medible y sea $f_k: A \to \left[-\infty, \infty\right]$ una sucesión de funciones medibles. Entonces:
 $$f = \sup_k f_k \text{ es medible}$$
 \end{prop}
 \begin{demo}
-Como $f^{-1}\left(-\infty\right) = \bigcap_{k \in \mathbb{N}}f^{-1}_k\left(-\infty\right)$ y es intersección de medibles $\implies f$ es medible. 
+$f^{-1}\left(-\infty\right)$ es un conjunto medible ya que $$f^{-1}\left(-\infty\right) = \bigcap_{k \in \mathbb{N}}f^{-1}_k\left(-\infty\right)$$
+Por hipótesis, las $f_k$ son medibles, y por tanto $f^{-1}_k$. Además, como la intersección numerable de medibles es medibles, $f^{-1}\left(-\infty\right)$ es medible.
 
-Sea ahora $f^{-1}\left(\infty\right) = \bigcap_{m \in \mathbb{N}}\bigcup_{k \in \mathbb{N}}\{x : f_k \left(x\right) > m\}$. 
+$f^{-1}\left(+\infty\right)$ también es un conjunto medible ya que$$f^{-1}\left(+\infty\right) = \bigcap_{m \in \mathbb{N}}\bigcup_{k \in \mathbb{N}}\{x : f_k \left(x\right) > m\}$$
+Como se trata de la intersección numerable de la unión numerable de conjuntos medibles, $f^{-1}\left(+\infty\right)$ es medible. Probemos dicha fórmula:
+$$y \in f^{-1}\left(+\infty\right) \iff \sup_k f_k(y) = + \infty$$
+Recíprocamente
+$$y \in \bigcap_{m \in \mathbb{N}}\bigcup_{k \in \mathbb{N}}\{x : f_k \left(x\right) > m\} \iff y \in \bigcup_{k \in \mathbb{N}}\{x: f_k\left(x\right) > m\} : \forall m$$ 
+$$\iff \forall m,\ \exists k_m: f_{k_m}\left(y\right) > m \iff \sup_k f_k\left(y\right) = +\infty$$
 
-Tenemos que $y \in \bigcup_{k \in \mathbb{N}}\{x: f_k\left(x\right) > m\} \implies \forall m,\ \exists K_m: f_{k_m}\left(y\right) > m \implies \sup f_k\left(y\right) = \infty$
-
-Tenemos que $\{x \in \mathrm{dom}f: f\left(x\right) \le \alpha\} = \bigcap_{k \in \mathbb{N}}\{x \in \mathrm{dom} f_k: f_k\left(x\right) \le \alpha\}$ porque:
-$$f\left(x\right) \in \mathbb{R}: f\left(x\right) \le \alpha \implies \mathbb{R} \ni \sup f_k\left(x\right) \le \alpha \iff f_k\left(x\right) \le \alpha,\ \forall k \in \mathbb{N}$$
+Por último, vamos que $f(\mathrm{dom}f)$ es medible. Observamos que  
+$$\{x \in \mathrm{dom}f: f\left(x\right) \le \alpha\} = \bigcap_{k \in \mathbb{N}}\{x \in \mathrm{dom} f_k: f_k\left(x\right) \le \alpha\}$$ Como las $f_k$ son medibles, se trata de una intersección numerable de conjuntos medibles, que es medible. Veamos la igualdad:
+$$\{x \in \mathrm{dom}f: f\left(x\right) \le \alpha\} \iff f\left(x\right) \in \mathbb{R} \& f\left(x\right) \le \alpha \iff \mathbb{R} \ni \sup f_k\left(x\right) \le \alpha \iff f_k\left(x\right) \le \alpha : \forall k \in \mathbb{N}$$
 \end{demo}
 
 \begin{coro}
@@ -782,7 +809,7 @@ Si $f$ medible $\Rightarrow$ gráfica $f$ tiene medida $0$.
     \item La gráfica de la función de Weierstrass tiene longitud infinita.
 \end{itemize}
 \textbf{Fin inciso.}
-
+\newpage
 \begin{lema}
 Sea $\varphi$ función simple $\{A_k\}_{k=1}^{\infty}\uparrow A$ con $A_k$ medibles $\left(A_k \subset A_{k+1} : \bigcup_{k \in \mathbb{N}} A_k = A\right)$. Entonces:
 $$\int_A \varphi d \mu = \lim_k \int_A \varphi d \mu.$$
