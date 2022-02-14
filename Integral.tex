@@ -900,4 +900,63 @@ $$= \lim_{k\rightarrow\infty} \sum_{S \in P_k} \inf \{f\left(x\right) : x \in S\
 Donde $f_k = \sum m_S\left(f\right) \chi_S$ y vemos que por ser crecientes las particiones que hemos tomado, dicha sucesión también lo es y por ello podemos aplicar el teorema.
 \end{demo}
 
+\begin{prop}
+Sea $f: \mathbb{R}^n \rightarrow \mathbb{R}$ no negativa. Entonces,
+$\exists \{\varphi_k\}_{k=1}^{\infty} \text{, simples} :$
+$$\varphi_k \le \varphi_{k+1} : f = \lim_{k \rightarrow \infty}\varphi_k \quad \left(\{\varphi_k\}_{k=1}^{\infty}\uparrow f\right)$$
+\end{prop}
+(\textit{Dibujo}) 
+\begin{demo}
+Definimos:
+$$\varphi := \sum_{j=1}^{k\cdot 2^k} \frac{j-1}{2^k} \chi_{E_j^k} \Rightarrow$$
+$$\varphi_k \le \varphi_{k+1}$$
+Dado $x \in \mathbb{R}^n,\ \exists k : \forall k \ge k_0: k > f\left(x\right) \Rightarrow x \in E_j^k$ para algún $j $.
+$$0 < f\left(x \right) - \varphi_k \left(x\right) < \frac{1}{2^k},\ \lim_{k \rightarrow \infty} \varphi_k\left(x\right) = f\left(x\right) $$
+Si $f$ es acotada, la convergencia es uniforme.
+\end{demo}
+
+\begin{prop}
+Si $f, g: \mathbb{R}^n \rightarrow \mathbb{R}$ medibles no negativas. Entonces:
+$$\int_{\mathbb{R}^n} \left(f + g\right)d \mu = \int_{\mathbb{R}^n} f d \mu = \int_{\mathbb{R}^n} g d \mu.$$
+\end{prop}
+\begin{demo}
+Tenemos que:
+$$\int_{\mathbb{R}^n} \left(f + g\right) d \mu = \lim_{k \rightarrow \infty} \int_{\mathbb{R}^n} \left(\varphi_k + \psi_k\right) d \mu = \lim_{k \rightarrow \infty} \left( \int_{\mathbb{R}^n} \varphi_k d \mu + \int_{\mathbb{R}^n} \psi d \mu \right) = $$
+$$= \int_{\mathbb{R}^n} f d \mu + \int_{\mathbb{R}^n} g d \mu$$
+\end{demo}
+
+\begin{prop}
+Sea $f: \mathbb{R}^n \rightarrow \mathbb{R}$ medible no negativa. Entonces, si $c \ge 0$: 
+$$\int_{\mathbb{R}^n} \left(c f\right) d \mu = c \int_{\mathbb{R}^n}f d \mu.$$
+\end{prop}
+
+\begin{theo}[Convergencia monótona para series]
+Sea $\{f_k\}_{n=1}^{\infty}$ medibles no negativas. Entonces: 
+$$\int_{\mathbb{R}^n} \left(\sum_{k=1}^{\infty} f_k \right) d \mu = \sum_{k=1}^{\infty} \int_{\mathbb{R}^n} f_k d \mu$$
+\end{theo}
+\begin{demo}
+Tenemos que:
+$$\int_{\mathbb{R}^n} \left(\sum_{k=1}^{\infty} f_k\right) d \mu = \int_{\mathbb{R}^n} \lim_{m \rightarrow \infty} \left(\sum_{k=1}^{m} f_k \right)d \mu = $$
+$$= \lim_{m \rightarrow \infty}\int_{\mathbb{R}^n} \left(\sum_{k=1}^{m} f_k\right) d \mu = \lim_{m \rightarrow \infty} \sum_{k=1}^{m} \int_{\mathbb{R}^n} f_k d \mu = \sum_{k=1}^{\infty} \int_{\mathbb{R}^n} f_k d \mu. $$
+\end{demo}
+
+\begin{lema}[De Fatou]
+Sea $\{f_k\}_{k=1}^{\infty}$ medibles no negativas. Entonces: 
+$$\int_{\mathbb{R}^n} \left( \liminf_{k \rightarrow \infty}f_k \right) d \mu \le \liminf_{k \rightarrow \infty} \int_{\mathbb{R}^n} f_k d \mu $$
+\end{lema}
+\begin{demo}
+Sea $g_k = \inf_{m \ge k} f_m \ge 0$ medibles: $g_k \le g_{k + 1}$.
+$$\int_{\mathbb{R}^n} \left(\liminf_{k \rightarrow \infty}f_k \right) d \mu = \int_{\mathbb{R}^n} \left(\lim_{k \rightarrow \infty}g_k \right) d \mu = $$
+$$= \lim_{k \rightarrow \infty} \int_{\mathbb{R}^n} g_k d \mu = \liminf_{k \rightarrow \infty}\int_{\mathbb{R}^n} g_k d \mu \le \liminf_{k \rightarrow \infty} \int_{\mathbb{R}^n} f_k d \mu$$
+\end{demo}
+
+Si tenemos, $f$ no negativa, acotada: 
+$$\int_a^{\infty} f \left(x\right) dx = \lim_{M \rightarrow \infty} \int_a^M f \left(x\right) dx =$$
+$$\lim_{M \rightarrow \infty} = \lim_{m \rightarrow \infty} \int_a^{\infty} f \left(x\right) \chi_{\left[a, M\right]}dx = \lim_{m \rightarrow \infty} \int_{\left[a, +\infty\right]} f \chi_{\left[a, M\right]} d \mu = \int_{\left[a, +\infty\right]} f \chi_{\left[a, +\infty\right]} d \mu = \int_{\left[a, +\infty\right]} f d \mu. $$
+(\textit{Dibujo})
+
+Sea:
+$$\int_a^b f \left(x\right) dx = \lim_{k \rightarrow \infty}\int_a^{b - \frac{1}{k}} f \left(x\right) dx = \lim_{k \rightarrow \infty} \int_{\left[a, b - \frac{1}{k}\right]} f d \mu =$$
+$$= \lim_{k \rightarrow \infty} \int_{\mathbb{R}} f \chi_{\left[a, b - \frac{1}{k}\right]} d \mu = \int_{\mathbb{R}} f \chi_{\left[a, b\right]} d \mu = \int_{\left[a, b\right]} f d \mu.$$
+
 \end{document}
