@@ -959,4 +959,39 @@ Sea:
 $$\int_a^b f \left(x\right) dx = \lim_{k \rightarrow \infty}\int_a^{b - \frac{1}{k}} f \left(x\right) dx = \lim_{k \rightarrow \infty} \int_{\left[a, b - \frac{1}{k}\right]} f d \mu =$$
 $$= \lim_{k \rightarrow \infty} \int_{\mathbb{R}} f \chi_{\left[a, b - \frac{1}{k}\right]} d \mu = \int_{\mathbb{R}} f \chi_{\left[a, b\right]} d \mu = \int_{\left[a, b\right]} f d \mu.$$
 
+\chapter*{Funciones integrables}%
+\label{cha:funciones_integrables}
+\begin{defi}
+Sea $f: \mathbb{R}^{n} \rightarrow \mathbb{R}$ diremos que es integrables si: 
+$$\int_{\mathbb{R}^n} \vert f \vert d \mu < +\infty$$
+\end{defi}
+
+\begin{prop}
+Sea $f: \mathbb{R}^{n} \rightarrow \mathbb{R}$ y $f^+ = \max \{f, 0 \}$ y $f^- = -\min \{f, 0\}$
+(\textit{Dibujo})
+
+Entonces:
+\begin{enumerate}
+\item $f^+ \; \land \; f^-$ son medibles y no negativas.
+\item $f^+ - f^- = f$. 
+\item $f^+ + f^- = \vert f \vert$
+\item $f^+ \le \vert f \vert\; \land \;f^- \le \vert f \vert$ 
+\end{enumerate}    
+\end{prop}
+
+\begin{prop}
+Si $f$ es integrable: 
+$$\int_{\mathbb{R}^n} f^+ d \mu \le \int_{\mathbb{R}^n} \vert f \vert d \mu < +\infty$$
+Análogamente: 
+$$\int_{\mathbb{R}^n} f^- d \mu < +\infty$$
+\end{prop}
+
+Por tanto, podemos definir: 
+\begin{defi}
+Si $f: \mathbb{R}^{n} \rightarrow \mathbb{R}$ es integrable definimos: 
+$$\int_{\mathbb{R}^n} f d \mu = \int_{\mathbb{R}^n} f^+ d \mu - \int_{\mathbb{R}^n} f^- d \mu $$
+\end{defi}
+Si tenemos $f: \left[a, b\right] \rightarrow \mathbb{R}$ integrable Riemann: $f = f^+ - f^-$ y 
+$$\int_a^b f dx = \int_a^b f^+ dx - \int_a^b f^- dx = \int_{\left[a, b\right]}f^+ d \mu - \int_{\left[a, b\right]} f^- d \mu = \int_{\left[a, b\right]}f d \mu$$
+
 \end{document}
