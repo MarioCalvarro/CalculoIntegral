@@ -395,90 +395,91 @@ Y la demostración es análoga a la implicación $2 \Rightarrow 3$.
 De nuevo y por similitud con $3\Rightarrow 1$, $A = C \cup N$ es medible por ser unión de medibles.
 \end{itemize}
 \end{demo}
-\newpage 
+\chapter*{FUNCIONES MEDIBLES}%
+\label{cha:funciones_medibles}
+Comprobadas las propiedades que tiene la medida sobre conjuntos medibles, nos interesa saber qué funciones nos permiten conservar propiedades de medida interesantes. Es aquí donde juegan un papel fundamental las funciones medibles que permiten asegurar que las preimágenes de abiertos son medibles y, por ello, al trabajar sobre abiertos no debemos preocuparnos sobre las propiedades de medibilidad ya que se conservan también en el conjunto de partida.
+ 
 \section*{FUNCIONES MEDIBLES}%
 \label{sec:funciones_medibles}
-Comprobadas las propiedades que tiene la medida sobre conjuntos medibles, nos interesa saber qué funciones nos permiten conservar propiedades de medida interesantes. Es aquí donde juegan un papel fundamental las funciones medibles que permiten asegurar que las preimágenes de abiertos son medibles y, por ello, al trabajar sobre abiertos no debemos preocuparnos sobre las propiedades de medibilidad ya que se conservan también en el conjunto de partida.
+
 
 \begin{defi}
-Sea $A \subset \mathbb{R}^n$ medible y $f: A \rightarrow \mathbb{R}^n$, definimos una función \textbf{medible} como aquella que verifica:
-$$\forall G \subset \mathbb{R}^n \text{ abierto, } f^{-1}(G) \text{ es medible}.$$ 
+Sea $A \subset \mathbb{R}^m$ medible y $f: A \rightarrow \mathbb{R}^m$, definimos una función \textbf{medible} como aquella que verifica:
+$$\forall G \subset \mathbb{R}^m \text{ abierto, } f^{-1}(G) \text{ es medible}.$$ 
 \end{defi}
 
-\underline{Observación}
+\begin{prop}
 \begin{enumerate}
-\item Sea una función $f: \mathbb{R}^n \to \mathbb{R}^n$ continua. Entonces es medible, ya la las preimagenes de abiertos son abiertos por ser $f$ continua.
+\item Sea una función $f: \mathbb{R}^m \rightarrow \mathbb{R}^m$, si es continua, entonces es medible.
 
-\item Como podemos expresar un abierto como recubrimiento de bolas (que con la norma infinito serían cubos) tenemos que $G = \bigcup_{k \in \mathbb{N}} Q_k$, de este modo, se tiene que $f^{-1}\left( G \right) = \bigcup_{k \in \mathbb{N}}f^{-1}\left( Q_k \right)$ y, en consecuencia, podemos redefinir el concepto de función medible de la siguiente forma:
-$$f \text{ medible} \Leftrightarrow f^{-1}\left( Q \right) \text{ medible, } \forall Q \subset \mathbb{R}^m \text{ cubo abierto.}$$
-
-\item Sea $f: A \to \mathbb{R}^m$ una función medible y $\varphi: \mathbb{R}^m \to \mathbb{R}^k$ una función continua\footnote{En general, la composición de medibles no tiene porqué ser medible}, entonces $\varphi \circ f$ es medible. Para verlo, basta con observar que 
-$$\left( \varphi \circ f \right)^{-1} = f^{-1} \left( \varphi^{-1} (G) \right)$$
-Como $\varphi$ es continua, $\varphi^{-1} (G)$ es abierto, y como $f$ es medible por la observación anterior también lo es $f^{-1}$
+\item Sea $f: A \rightarrow \mathbb{R}^m$ una función medible y $\varphi: \mathbb{R}^m \rightarrow \mathbb{R}^k$ una función continua\footnote{En general, la composición de medibles no tiene porqué ser medible}, entonces $\varphi \circ f$ es medible.
 \end{enumerate}
+\end{prop}
+
+\underline{Observación}:
+
+Como podemos expresar un abierto como recubrimiento de bolas (que con la norma infinito serían cubos) tenemos que $G = \bigcup_{k \in \mathbb{N}} Q_k$, de este modo, se tiene que $f^{-1}\left( G \right) = \bigcup_{k \in \mathbb{N}}f^{-1}\left( Q_k \right)$ y, en consecuencia, podemos redefinir el concepto de función medible de la siguiente forma:
+$$f \text{ medible} \Leftrightarrow f^{-1}\left( Q \right) \text{ medible, } \forall Q \subset \mathbb{R}^m \text{ cubo abierto.}$$
 
 
 \begin{prop}
-Sea $f: A \to \mathbb{R}^m$ una función, es medible si y sólo si cada una de sus componentes $f_i$ es medible.
+Sea $f: A \rightarrow \mathbb{R}^m$ una función, es medible si y sólo si cada una de sus componentes es medible.
 \end{prop}
 \begin{demo}
 \begin{itemize}
-\item $\implies$
+\item $\Rightarrow$
 
-Cada componente de $f$ se puede expresar como la composición:
+Cada componente se puede expresar como:
 $$f_i = \pi_i \circ f$$
-Donde $f$ es medible por hipótesis y $\pi_i\left( x_1, \ldots, x_m \right) = x_i$ es la proyección, que es una función continua.
+Donde $f$ es medible por hipótesis y $\pi_i\left( x_1, \ldots, x_m \right) = x_i$ es continua.
 
-\item $\impliedby$
+\item $\Leftarrow$
 
-Sea el cubo abierto $Q = \left( a_1, b_1 \right) \times \ldots \times \left( a_m, b_m \right)$. Entonces se cumple que 
-$$f^{-1}\left( Q \right) = \bigcap_{i = 1}^{m} f_i^{-1}\left( a_i, b_i \right)$$
-Esto se debe a que:
-$$x \in f^{-1}\left( Q \right) \Rightarrow f\left( x \right) \in Q \Rightarrow f_i\left( x \right) \in \left( a_i, b_i \right) \Rightarrow  f_i^{-1} \left( x \right) \in \left( a_i, b_i \right) : \forall i \in \mathbb{N}$$
-Recíprocamente;
-$$x \in f_i^{-1} \in \left( a_i, b_i \right) : \forall i = 1, \ldots, m \Rightarrow f_i \left( x \right) \in \left( a_i, b_i \right) : \forall i = 1, \ldots, m \Rightarrow f(x) \in Q$$
-Así, como los $f_i$ son medibles, los conjuntos $f_i^{-1} \in \left( a_i, b_i \right)$ también lo son, y como los conjuntos medibles forman una $\sigma -$ álgebra por el Lema de Caratheodory, la intersección finita es medible; es decir, $f^{-1}(Q)$ es medible.
+Dado $Q = \left( a_1, b_1 \right) \times \ldots \times \left( a_m, b_m \right)$ cubo abierto, tenemos que $f^{-1}\left( Q \right) = \bigcap_{i = 1}^{m} f_i^{-1}\left( a_i, b_i \right)$. Esto es así porque:
+$$x \in f^{-1}\left( Q \right) \Leftrightarrow f\left( x \right) \in Q \Leftrightarrow \forall i \in \mathbb{N} : f_i\left( x \right) \in \left( a_i, b_i \right)$$
 \end{itemize}
 \end{demo}
 
 \begin{prop}
-Sean $f, g: A\subset \mathbb{R}^n \rightarrow \mathbb{R}^m$ medibles. Entonces se cumplen las siguientes propiedades:
+Sean $f, g: A\subset \mathbb{R}^n \rightarrow \mathbb{R}^m$ medibles, se cumplen las siguientes propiedades:
 \begin{enumerate}
-\item $f+g$ es medible.
-\item $a\cdot f : \forall a \in \mathbb{R} $ es medible.
-\item $\left<f, g\right>$ es medible.
-\item $\vert \vert f \vert \vert$ es medible.
+\item $f+g$ medible.
+\item $\forall a \in \mathbb{R}: a\cdot f$ medible.
+\item $\left<f, g\right>$ medible.
+\item $\vert \vert f \vert \vert$ medible.
 \end{enumerate}
 \end{prop}
 \begin{demo}
 \begin{enumerate}
-\item Definimos la función $F: A \to \mathbb{R}^{2m}$ de la forma:
+\item Definimos la función $F: A \rightarrow \mathbb{R}^{2m}$ de la forma:
 $$F\left( x \right) = \left( f_1\left( x \right), \ldots, f_m\left( x \right), g_1\left( x \right), \ldots, g_m\left( x \right) \right)$$
-Por hipótesis, como las funciones $f,g$ son medibles, cada componente es medible. Así, $F$ es medible. Del mismo modo, definimos la función suma: 
+Y por hipótesis, como las funciones son medibles y cada componente es medible, entonces $F$ es medible. Del mismo modo, definimos: 
 \begin{align*}
 +: \mathbb{R}^m \times \mathbb{R}^m & \rightarrow \mathbb{R} \\
 \left( u, v \right) &\mapsto u+v
 \end{align*}
-Esta función es trivialmente continua. Por tanto, observamos que podemos definir la suma de funciones medibles como composición:
+que trivialmente es continua, por tanto:
 $$\left( f + g \right)\left( x \right) = \left( + \circ F \right)\left( x \right)$$
-Como la función suma es continua, y la función $F$ es medible, la composición es medible.
+Es medible por composición de medibles con continuas.
 
 \item Trivial
 
-\item Utilizando la misma función $F$ definida en el primer apartado, definimos la función producto escalar:
+\item Utilizando la misma función $F$ definida en el primer apartado, tenemos que la función:
 \begin{align*}
-\left< \cdot , \cdot \right>: \mathbb{R}^m \times \mathbb{R}^m & \rightarrow \mathbb{R} \\
+\left<,\right>: \mathbb{R}^m \times \mathbb{R}^m & \rightarrow \mathbb{R} \\
 \left( u, v \right) &\mapsto \left<u, v\right>
 \end{align*}
-Esta función es continua. Por tanto, observamos que podemos definir la producto escalar de funciones medibles como composición:
-$$\left<f, g\right> \left( x \right) = \left( \left< \cdot, \cdot\right> \circ F \right)\left( x \right)$$
-Como la función producto escalar es continua, y la función $F$ es medible, la composición es medible.
+es continua, luego por composición de nuevo se tiene:
+$$\left<f, g\right> \left( x \right) = \left( \left<, \right> \circ F \right)\left( x \right)$$
+que es medible.
 
-\item Observando la igualdad $\vert \vert f \vert \vert = \left<f, f\right>^{\frac{1}{2}}$, definimos la función raíz cuadrada:
+\item Completamente análogo a antes, se trata de ver la siguiente igualdad $\vert \vert f \vert \vert = \left<f, f\right>^{\frac{1}{2}}$ y demostrar que es la composición con:
 \begin{align*}
 \sqrt{•}: \mathbb{R}^+ &\rightarrow \mathbb{R}^+ \\
 u &\mapsto \sqrt{u}
 \end{align*}
+que es continua.
+
 Esta función es continua. Por tanto, observamos que podemos definir la norma de funciones medibles como composición:
 $$\vert \vert f \vert \vert \left( x \right) = \left( \vert \vert \cdot \vert \vert \circ F \right)\left( x \right)$$
 Como la función producto escalar es continua, y la función $F$ es medible, la composición es medible.
@@ -486,37 +487,48 @@ Como la función producto escalar es continua, y la función $F$ es medible, la 
 \end{demo}
 
 \begin{theo}
-Sea $A \subset  \mathbb{R}^m$ medible y $f: A \to \mathbb{R}$. Son equivalentes:
+Sea $A \subset  \mathbb{R}^m$ medible y $f: A \rightarrow \mathbb{R}$, son equivalentes:
 \begin{enumerate}
     \item $f$ medible.
-    \item $\{x \in A : f\left( x \right) < \alpha\} = f^{-1}\left( -\infty, \alpha \right),\ \mbox{ es medible }\forall \alpha \in \mathbb{R}$
-    \item $\{x \in A : f\left( x \right) \le \alpha\} = f^{-1}\left( -\infty, \alpha \right],\ \mbox{ es medible }\forall \alpha \in \mathbb{R}$
-    \item $\{x \in A : f\left( x \right) > \alpha\} = f^{-1}\left( \alpha, +\infty \right),\ \mbox{ es medible }\forall \alpha \in \mathbb{R}$
-    \item $\{x \in A : f\left( x \right) \ge \alpha\} = f^{-1}\left[ \alpha, +\infty \right),\ \mbox{ es medible }\forall \alpha \in \mathbb{R}$
+    \item $\{x \in A : f\left( x \right) < \alpha\} = f^{-1}\left( -\infty, \alpha \right), \mbox{ es medible }\forall \alpha \in \mathbb{R}$
+    \item $\{x \in A : f\left( x \right) \le \alpha\} = f^{-1}\left( -\infty, \alpha \right], \mbox{ es medible }\forall \alpha \in \mathbb{R}$
+    \item $\{x \in A : f\left( x \right) > \alpha\} = f^{-1}\left( \alpha, +\infty \right), \mbox{ es medible }\forall \alpha \in \mathbb{R}$
+    \item $\{x \in A : f\left( x \right) \ge \alpha\} = f^{-1}\left[ \alpha, +\infty \right), \mbox{ es medible }\forall \alpha \in \mathbb{R}$
 \end{enumerate}
 \end{theo}
 \begin{demo}
-Veamos primero que $2 \iff 3 \iff 4 \iff 5$: 
+Veamos primero que $2 \Leftrightarrow 3 \Leftrightarrow 4 \Leftrightarrow 5$: 
 \begin{itemize}
-    \item $2 \implies 3$. Basta con observar que:
+    \item $2 \Rightarrow 3$
+    
+    Basta con observar que:
     $$f^{-1}\left( -\infty, \alpha \right] = \bigcap_{k=1}^\infty f^{-1}\left( -\infty, \alpha + \frac{1}{k} \right)$$
-    Por hipótesis, $f^{-1}\left( -\infty, \alpha + \frac{1}{k} \right)$ son medibles $\forall k \in \mathbb{N}$, y como la intersección numerable de medibles es medibles por formar una $\sigma-$álgebra, $f^{-1}\left( -\infty, \alpha \right]$ es medible. 
-    \item $3 \implies 4$. Basta con observar que:
+    Por hipótesis, $\forall k \in \mathbb{N}: f^{-1}\left( -\infty, \alpha + \frac{1}{k} \right)$ son medibles y, como la intersección numerable de medibles es medible por formar una $\sigma-$álgebra, $f^{-1}\left( -\infty, \alpha \right]$ es medible. 
+    \item $3 \Rightarrow 4$
+    
+    Basta con observar que:
     $$f^{-1}\left( \alpha,  \infty \right) = A \cap \left(f^{-1}\left( -\infty, \alpha \right] \right)^c$$
     Por hipótesis, $f^{-1}\left( -\infty, \alpha \right] $ es medible, y como los conjuntos medibles forman una $\sigma -$ álgebra por el Lema de Caratheodory, su complementario también es medible. Como $A$ es medible, la intersección también es medible.
-    \item $4 \implies 5$. Basta con observar que:
+    \item $4 \Rightarrow 5$
+    
+    Basta con observar que:
     $$f^{-1}\left[ \alpha, +\infty \right) = \bigcap_{k=1}^\infty f^{-1}\left( \alpha - \frac{1}{k}, +\infty \right)$$
-    Por hipótesis, $f^{-1}\left( \alpha - \frac{1}{k}, \infty \right)$ son medibles $\forall k \in \mathbb{N}$, y como la intersección numerable de medibles es medibles por formar una $\sigma-$álgebra, $f^{-1}\left[ \alpha, +\infty \right)$ es medible.
-    \item $5 \implies 2$. Basta con observar que:
+    Por hipótesis, $\forall k \in \mathbb{N} : f^{-1}\left( \alpha - \frac{1}{k}, \infty \right)$ son medibles y, como la intersección numerable de medibles es medible por formar una $\sigma-$álgebra, $f^{-1}\left[ \alpha, +\infty \right)$ es medible.
+    \item $5 \Rightarrow 2$
+    
+    Basta con observar que:
     $$f^{-1}\left( -\infty,  \alpha \right) = A \cap \left(f^{-1}\left[ \alpha, +\infty \right) \right)^c$$
-    Por hipótesis, $f^{-1}\left[ \alpha, +\infty \right) $ es medible, y como los conjuntos medibles forman una $\sigma -$ álgebra por el Lema de Caratheodory, su complementario también es medible. Como $A$ es medible, la intersección también es medible.
+    Por hipótesis, $f^{-1}\left[ \alpha, +\infty \right) $ es medible y, como los conjuntos medibles forman una $\sigma -$ álgebra, por el Lema de Caratheodory, su complementario también es medible. Como $A$ es medible, la intersección también es medible.
 \end{itemize}
-Veamos que $1 \implies 2$. Como $\left( -\infty, \alpha \right)$ es un abierto y $f$ es medible, $f^{-1}\left( -\infty, \alpha \right)$ es medible.
+Veamos que $1 \Rightarrow 2$:
 
-Finalmente, veamos que $2 \& 4 \implies 1$. Sea $\left( \alpha, \beta \right)$ intervalo abierto tal que $\alpha < \beta$. Entonces
+Como $\left( -\infty, \alpha \right)$ es un abierto y $f$ es medible, $f^{-1}\left( -\infty, \alpha \right)$ es medible.
+
+Veamos que $2$ y $4 \Rightarrow 1$:
+
+Sea $\left( \alpha, \beta \right)$ intervalo abierto tal que $\alpha < \beta$, entonces:
 $$f^{-1}\left( \alpha, \beta \right) = f^{-1}\left( \alpha, \infty \right) \cap f^{-1}\left( -\infty, \beta \right)$$
 Como $f^{-1}\left( \alpha, \infty \right)$ y $f^{-1}\left( -\infty, \beta \right)$ son medibles por hipótesis y la intersección de medibles es medible, $f^{-1}\left( \alpha, \beta \right)$ es medible.
-$\hfill \square$
 \end{demo}
 
 
@@ -524,172 +536,192 @@ Vamos a ver que la propiedad de ser medible se conserva por sucesiones. Ello nos
 más allá de las funciones continuas que ya sabemos que son medibles.
 Como vamos a tomar límites, nos van a aparecer valores infinitos. Por
 ello va a ser útil admitir funciones que tomen valores infinitos.Consideraremos funciones del estilo:
-$$f: A \to \left[-\infty, \infty\right] = \bar{\mathbb{R}} = \mathbb{R} \cup \{+\infty\} \cup \{-\infty\}$$
+$$f: A \rightarrow \left[-\infty, \infty\right] = \bar{\mathbb{R}} = \mathbb{R} \cup \{+\infty\} \cup \{-\infty\}$$
 Donde $\mathrm{dom}f = \{x \in A: f\left(x\right) \in \mathbb{R}\}$
 
-\begin{defi}
-Sea $A \subset \mathbb{R}^n$ un conjunto medible. Decimos que $f: A \rightarrow \left[-\infty, \infty\right]$ es medible si $f^{-1}\left(+\infty\right),\ f^{-1}\left(-\infty\right) \text{ son conjuntos medibles}$ y además
-$f : \mathrm{dom}f  \rightarrow \mathbb{R} \text{ es una función medible}.$
+\begin{defi}[Función Medible en $\bar{\mathbb{R}}$]
+Sea $A \subset \mathbb{R}^n$ un conjunto medible y $f: A \rightarrow \left[-\infty, \infty\right]$ una función que toma valores en $\bar{\mathbb{R}}$, decimos que ésta es medible si y sólo si:
+\begin{itemize}
+\item $f^{-1}\left(+\infty\right)$ es medible
+\item $\ f^{-1}\left(-\infty\right)$ es medible
+\item $f : \dom f  \rightarrow \mathbb{R}$ es una función medible.
+\end{itemize}
+Donde $\dom f = \{x\in A: f(x)\in \mathbb{R}\}$
 \end{defi}
 
 \underline{Observación}
 
-Podemos descomponer $A$ de forma disjunta:
+Podemos descomponer $A$ en forma disjunta como:
 $$A = \left( \mathrm{dom}f \right) \sqcup \left( f^{-1}\left(+\infty\right)\right) \sqcup \left( f^{-1}\left(-\infty\right)\right) $$
-De lo que se sigue que
+De lo que se sigue que:
 $$\mathrm{dom}f = A \setminus \left(  f^{-1}\left(+\infty\right) \sqcup  f^{-1}\left(-\infty \right) \right)$$
-Es decir, que si $A, f^{-1}\left(+\infty\right),\ f^{-1}\left(-\infty\right)$ son conjuntos medibles, $\mathrm{dom}f$ también lo es.
+Por tanto, que si $A$, $f^{-1}\left(+\infty\right)$ y $f^{-1}\left(-\infty\right)$ son conjuntos medibles, $\mathrm{dom}f$ también lo es.
 
 \begin{prop}
-Sea $A \subset \mathbb{R}^n$ medible y sea $f_k: A \to \left[-\infty, \infty\right]$ una sucesión de funciones medibles. Entonces:
-$$f = \sup_k f_k \text{ es medible}$$
+Sea $A \subset \mathbb{R}^n$ medible y sea $\{f_k\}_{k=1}^\infty$ una sucesión de funciones donde $\forall k \in \mathbb{N}: f_k: A \rightarrow \left[-\infty, \infty\right]$ es medible, entonces:
+$$f = \sup_{k\in \mathbb{N}} \{f_k\} \text{ es medible}$$
 \end{prop}
 \begin{demo}
-$f^{-1}\left(-\infty\right)$ es un conjunto medible ya que $$f^{-1}\left(-\infty\right) = \bigcap_{k \in \mathbb{N}}f^{-1}_k\left(-\infty\right)$$
-Por hipótesis, las $f_k$ son medibles, y por tanto $f^{-1}_k$. Además, como la intersección numerable de medibles es medibles, $f^{-1}\left(-\infty\right)$ es medible.
+\begin{itemize}
+\item Podemos expresar $f^{-1}\left(-\infty\right)$ como:
+$$f^{-1}\left(-\infty\right) = \bigcap_{k \in \mathbb{N}}f^{-1}_k\left(-\infty\right)$$
+Por hipótesis, las $f_k$ son medibles, y por tanto $f^{-1}_k(-\infty)$ es medible, como la intersección numerable de medibles es medible, $f^{-1}\left(-\infty\right)$ es medible.
 
-$f^{-1}\left(+\infty\right)$ también es un conjunto medible ya que$$f^{-1}\left(+\infty\right) = \bigcap_{m \in \mathbb{N}}\bigcup_{k \in \mathbb{N}}\{x : f_k \left(x\right) > m\}$$
-Como se trata de la intersección numerable de la unión numerable de conjuntos medibles, $f^{-1}\left(+\infty\right)$ es medible. Probemos dicha fórmula:
-$$y \in f^{-1}\left(+\infty\right) \iff \sup_k f_k(y) = + \infty$$
-Recíprocamente
-$$y \in \bigcap_{m \in \mathbb{N}}\bigcup_{k \in \mathbb{N}}\{x : f_k \left(x\right) > m\} \iff y \in \bigcup_{k \in \mathbb{N}}\{x: f_k\left(x\right) > m\} : \forall m$$ 
-$$\iff \forall m,\ \exists k_m: f_{k_m}\left(y\right) > m \iff \sup_k f_k\left(y\right) = +\infty$$
+\item Del mismo modo, $f^{-1}\left(+\infty\right)$ se puede expresar como:
+$$f^{-1}\left(+\infty\right) = \bigcap_{m \in \mathbb{N}}\bigcup_{k \in \mathbb{N}}\{x : f_k \left(x\right) > m\}$$
+puesto que tenemos las siguientes equivalencias:
+$$y \in \bigcap_{m \in \mathbb{N}}\bigcup_{k \in \mathbb{N}}\{x : f_k \left(x\right) > m\} \Leftrightarrow \forall m\in \mathbb{N}: y \in \bigcup_{k \in \mathbb{N}}\{x: f_k\left(x\right) > m\} \Leftrightarrow$$ 
+$$\Leftrightarrow \forall m \in \mathbb{N}:\exists k_m\in \mathbb{N}: f_{k_m}\left(y\right) > m \Leftrightarrow \sup_{k\in \mathbb{N}} f_k\left(y\right) = +\infty \Leftrightarrow y \in f^{-1}\left(+\infty\right)$$
+Como se trata de la intersección numerable de una unión numerable de conjuntos medibles, $f^{-1}\left(+\infty\right)$ es medible. 
 
-Por último, vamos que $f(\mathrm{dom}f)$ es medible. Observamos que  
-$$\{x \in \mathrm{dom}f: f\left(x\right) \le \alpha\} = \bigcap_{k \in \mathbb{N}}\{x \in \mathrm{dom} f_k: f_k\left(x\right) \le \alpha\}$$ Como las $f_k$ son medibles, se trata de una intersección numerable de conjuntos medibles, que es medible. Veamos la igualdad:
-$$\{x \in \mathrm{dom}f: f\left(x\right) \le \alpha\} \iff f\left(x\right) \in \mathbb{R} \& f\left(x\right) \le \alpha \iff \mathbb{R} \ni \sup f_k\left(x\right) \le \alpha \iff f_k\left(x\right) \le \alpha : \forall k \in \mathbb{N}$$
+\item Por último, para ver que la función $f$ es medible, hay que ver que para cualquier $\alpha$ el conjunto $f^{-1}(-\infty, \alpha]$ es medible. Para ello, expresamos dicho conjunto como:   
+$$\{x \in \mathrm{dom}f: f\left(x\right) \le \alpha\} = \bigcap_{k \in \mathbb{N}}\{x \in \mathrm{dom} f_k: f_k\left(x\right) \le \alpha\} = \bigcap_{k\in \mathbb{N}}f_k^{-1}(-\infty, \alpha]$$ Como las $f_k$ son medibles, se trata de una intersección numerable de conjuntos medibles, que es medible. Veamos que dicha igualdad es cierta:
+$$\{x \in \mathrm{dom}f: f\left(x\right) \le \alpha\} \Leftrightarrow f\left(x\right) \in \mathbb{R} \wedge f\left(x\right) \le \alpha \Leftrightarrow \mathbb{R} \ni \sup f_k\left(x\right) \le \alpha \Leftrightarrow f_k\left(x\right) \le \alpha : \forall k \in \mathbb{N}$$
+\end{itemize}
 \end{demo}
 
 \begin{coro}
-Si $f_k$ medibles $\implies$ $f = \inf_k f_k$ es medible.
+Sea $A \subset \mathbb{R}^n$ medible y sea $\{f_k\}_{k=1}^\infty$ una sucesión de funciones donde $\forall k \in \mathbb{N}: f_k: A \rightarrow \left[-\infty, \infty\right]$ es medible, entonces:
+$$f = \inf_{k\in \mathbb{N}} \{f_k\} \text{ es medible}$$
 \end{coro}
 \begin{demo}
-Ya que $f = \inf f_k = -\sup_k \left(-f_k\right)$
+Basta ver que $f = \inf f_k = -\sup_k \left(-f_k\right)$
 \end{demo}
 
 \begin{prop}
-Sea $A \subset \mathbb{R}^m$ medible y $f_k: A \to \left[-\infty, \infty\right]$ medibles. Entonces:
-$$\limsup_{k \to \infty}f_k\; \land \;\liminf_{k \to \infty}f_k \text{ son medibles}$$
+Sea $A \subset \mathbb{R}^m$ medible y $\{f_k\}_{k=1}^\infty$ una sucesión de funciones donde $\forall k \in \mathbb{N}: f_k: A \rightarrow \left[-\infty, \infty\right]$ son medibles, entonces:
+$$\limsup_{k \rightarrow \infty}f_k\; \land \;\liminf_{k \rightarrow \infty}f_k \text{ son medibles}$$
 \end{prop}
 \begin{demo}
 Observamos que:
-$$\limsup_{k \to \infty}f_k = \inf_m \sup_{k\ge m} f_k$$
-$$\liminf_{k \to \infty}f_k = \sup_m \inf_{k\ge m}f_k$$
+$$\limsup_{k \rightarrow \infty}f_k = \inf_{m\in \mathbb{N}} \left(\sup_{k\ge m} f_k\right)$$
+$$\liminf_{k \rightarrow \infty}f_k = \sup_{m\in \mathbb{N}} \left(\inf_{k\ge m}f_k\right)$$
+Como hemos visto que los supremos de funciones medibles son funciones medibles y los ínfimos también, queda demostrado.
 \end{demo}
 
 \underline{Ejemplo}: 
 
 \begin{prop}
-Sea $A$ medible y $f_k: A \to \left[-\infty, \infty\right]$ medibles. Entonces: $$A_0 = \{x : \exists \lim_{k \to \infty}f_k\left(x\right)\}\text{ es medible.}$$ 
-y 
-$$f: A_0 \to \left[-\infty, \infty\right] \text{ es medible}$$
+Sea $A \subset \mathbb{R}^m$ medible y $\{f_k\}_{k=1}^\infty$ una sucesión de funciones donde $\forall k \in \mathbb{N}: f_k: A \rightarrow \left[-\infty, \infty\right]$ son medibles, entonces si definimos el conjunto:
+$$A_0 = \left\lbrace x : \exists \lim_{k \rightarrow \infty}f_k\left(x\right)\right\rbrace\text{ es medible.}$$ 
+la restricción de $f$ a ese conjunto es medible:
+$$f: A_0 \rightarrow \left[-\infty, \infty\right] \text{ es medible}$$
 \end{prop}
 \begin{demo}
-Tenemos que $A_0 = A_{\infty} \cup D_0 \cup A^{\infty}$ donde $A_{\infty} = \{x: \liminf_{k \to \infty}f_k\left(x\right) = \limsup_{k \to \infty}f_k\left(x\right) = -\infty\}$, $A^{\infty} = \{x: \lim_{k \to \infty}f_k\left(x\right) = \infty\}$ y $D_0 = \{x: \lim_{k \to \infty}f_k\left(x\right) \in \mathbb{R}\}$. Es decir,
-$$A_{\infty} = \left(\liminf_{k \to \infty}f_k \right)^{-1}\left(-\infty\right) \text{ es medible.}$$
-$$A^{\infty} = \left(\liminf_{k \to \infty}f_k \right)^{-1}\left(\infty\right) \text{ es medible.}$$
-$$D_0 \subset \dom\left(\limsup_{k \to \infty}f_k\right) \cap \dom\left(\liminf_{k \to \infty}f_k\right) = D \text{ medible.}$$
-$$D_0 = \{x \in D: \limsup_{k \to \infty}f_k\left(x\right) = \liminf_{k \to \infty}f_k\left(x\right)\} = \{x \in D: g\left(x\right) = 0\} = g^{-1}\left(\{0\}\right) \text{ medible} \implies$$
-$A_0$ es medible.
-
-Tenemos que $f = \lim_{k \to \infty}f_k= \limsup_{k \to \infty}f_k = \liminf_{k \to \infty}f_k$
+Podemos expresar $A$ como la siguiente descomposición:
+$$A_0 = A_{\infty} \cup D_0 \cup A^{\infty}: \begin{cases}
+A_{\infty} = \{x\in A: \lim_{k \rightarrow \infty}f_k\left(x\right) = -\infty\} \\
+A^{\infty} = \{x\in A: \lim_{k \rightarrow \infty}f_k\left(x\right) = \infty\} \\
+D_0 = \{x\in A: \lim_{k \rightarrow \infty}f_k\left(x\right) \in \mathbb{R}\}
+\end{cases}$$
+Por tanto, si expresamos de la forma adecuada:
+\begin{align*}
+A_{\infty} = \left(\liminf_{k \rightarrow \infty}f_k \right)^{-1}\left(-\infty\right) \text{ es medible.} && A^{\infty} = \left(\liminf_{k \rightarrow \infty}f_k \right)^{-1}\left(\infty\right) \text{ es medible.}
+\end{align*}
+$$D_0 \subset \dom\left(\limsup_{k \rightarrow \infty}f_k\right) \cap \dom\left(\liminf_{k \rightarrow \infty}f_k\right) = D \text{ medible.}$$
+$$D_0 = \{x \in D: \limsup_{k \rightarrow \infty}f_k\left(x\right) = \liminf_{k \rightarrow \infty}f_k\left(x\right)\} = \{x \in D: g\left(x\right) = 0\} = g^{-1}\left(\{0\}\right) \text{ medible}$$
+En consecuencia, concluimos que $A_0$ es medible.
 \end{demo}
 
-\begin{defi}
-Decimos que $P$ se cumple en \textbf{casi todo punto} $\iff$
+\begin{defi}[Propiedad en casi todo punto]
+Decimos que una propiedad $P$ se cumple en \textbf{casi todo punto} si y sólo si:
 $$\exists N \subset \mathbb{R}^m: \mu\left(N\right) = 0\; \land \;P \text{ se cumple } \forall x \not\in N$$
+Es decir, solo NO se verifica en un conjunto de medida nula.
 \end{defi}
 
-\underline{Ejemplo}:
-$f = g$ ctp. si $\exists N: \mu\left(N\right) = 0: f\left(x\right) = g\left(x\right),\ \forall x \not\in N \left(x \in A\right)$
-
-\underline{Obs}:
-$$\begin{cases}
-    f = g \text{ctp}\\
-    f \text{ medible}
-\end{cases} \implies g \text{ medible}$$
-Sea $G$ abierto ¿$g^{-1}\left(G\right)$ abierto?
+\begin{prop}
+Si $f$ y $g$ son dos funciones tales que son iguales en casi todo punto y una de las dos es medible, entonces la otra lo es.
+$$f\mbox{ medible y } f=g \mbox{ (c.t.p.)}\Rightarrow g \mbox{ medible}$$
+\end{prop}
+\begin{demo}
+Sea $G$ abierto hay que ver que $g^{-1}\left(G\right)$ es abierto:
 $$g^{-1}\left(G\right) = \left(f^{-1}\left(G\right) \setminus N_1\right) \cup N_2 \text{ medible}$$
 Donde $N_1, N_2$ de medida $0$ ($N_1, N_2 \subset N$)
-
-\underline{Obs}:
-$f = lim f_k$  ctp con $f_k$ medibles. Entonces $f$ es medible:
-\begin{demo}
-$$\exists N: \mu\left(N\right) : f\left(x\right) = \lim f_k\left(x\right),\ \forall x \in \forall \setminus N$$
-$$\tilde{f}\left(x\right) = \limsup f_k\left(x\right): \tilde{f}: A \to \overline{\mathbb{R}} \text{ medible} \implies \tilde{f} = f \text{ ctp } \implies f \text{ medible}$$
 \end{demo}
 
-\begin{enumerate}
-\item Sea 
-$$\chi_E \left(x\right) : \begin{cases}
+\begin{prop}
+Si $f$ es el límites de una sucesión de funciones medibles $\{f_k(x)\}_{k=1}^\infty$ en casi todo punto, entonces $f$ es medible.
+$$\forall k \in \mathbb{N}: f_k \mbox{ medible y }\lim_{k\rightarrow\infty}f_k(x) = f \mbox{ (c.t.p.)}\Rightarrow f \mbox{ medible}$$
+\end{prop}
+\begin{demo}
+Definimos la siguiente función auxiliar:
+$$\tilde{f}\left(x\right) = \limsup f_k\left(x\right)$$
+Por ser las $f_k$ medibles y ser $\tilde{f}$ el límite superior de funciones medibles, entonces $\tilde{f}$ es medible y como $f=\tilde{f}$ (c.t.p.) entonces tenemos que $f$ es medible.
+\end{demo}
+
+\begin{defi}[Función Característica]
+Sea $E\subset \mathbb{R}^n$ un conjunto cualquiera, definimos la \textbf{función característica} de dicho conjunto como:
+$$\chi_E: \mathbb{R}^{n} \rightarrow \mathbb{R}\mbox{ definida como } \chi_E \left(x\right) : \begin{cases}
     1 \text{ si } x \in E\\
     0 \text{ si } x \not\in E
 \end{cases}$$
-$$\chi_E: \mathbb{R}^{n} \to \mathbb{R},\ E \subset \mathbb{R}^n \implies$$
-$\chi_E$ es medible $\iff E$ es medible.
+Trivialmente, tenemos que $\chi_E$ es medible $\Leftrightarrow E$ es medible.
+\end{defi}
 
-Observamos que $\chi_{\mathbb{Q} \cap \left[0, 1\right] = 0}$ ctp. ($\mu\left(\mathbb{Q}\right) = 0$).
-\item Sea 
+\begin{defi}[Función Simple]
+Sea $\chi_{E_k}$ la función característica del conjunto $E_k$ y $\alpha_k\in \mathbb{R}^n$ un número cualquiera, definimos una \textbf{función simple} como:
 $$\varphi = \sum_{k=1}^{n} \alpha_k \chi_{E_k} \text{ es medible}$$
-Que se denomina función simple.
-\item 
+Donde cabe destacar que el sumatorio es \textbf{finito}.
+\end{defi}
+
 \begin{prop}
-Sea $f: \mathbb{R}^n \to \mathbb{R}$ continua ctp. Entonces es medible.
+Sea $f: \mathbb{R}^n \rightarrow \mathbb{R}$ una función continua en c.t.p., entonces es medible.
 \end{prop}
 \begin{demo}
 Observamos que: 
-$$f\cdot \chi_{\left[-N, N\right]^{n}} \to_{N \to \infty} f$$
+$$f\cdot \chi_{\left[-N, N\right]^{n}} \rightarrow_{N \rightarrow \infty} f$$
 ``Trabajamos'' con ese cubo $Q$ y lo dividimos en $\forall k: \{Q_j^k\}_{j=1}^{\infty}$ de lado $\frac{1}{2^k}: Q = \bigcup_{j \in \mathbb{N}} Q_j^k$. $Q = \left[-N, N\right)^{m}$
 
 A su vez, definimos $C_j^k = \inf \{f\left(x\right): x \in Q_j^k\}$ y 
 $$\varphi_k = \sum_{j = 1}^{\infty} c_j^k \chi_{Q_j^k} \text{ medible}$$
-¿$\varphi_k \to^k f\cdot \chi_{\left[-N, N\right]}$ ctp?
+¿$\varphi_k \rightarrow^k f\cdot \chi_{\left[-N, N\right]}$ ctp?
 
-Si $f$ es continua en $x  \in \left[-N, N\right]^n\implies$
-$$\{\varphi_k\left(x\right)\}_k \to f\left(x\right) \implies f\left(x\right) = \lim_{k \to \infty}\varphi_k\left(x\right)$$
-$$\forall \varepsilon > 0,\ \exists \delta > 0: \text{ si } \vert\vert y - x \vert\vert < \delta \implies \vert f\left(y\right) - f\left(x\right)\vert < \varepsilon.$$
-Sea $k_0: Q_j^{k_0}$ que contiene a $x$, verifica $Q_j^{k_0} \subset B\left(x, \delta\right) \implies$
-$$\forall k \ge k_0,\ Q_j^k \subset B\left(x, \delta\right) \implies$$
-$$\forall y \in Q_j^k,\ \vert\vert y - x\vert\vert < \delta \implies \vert f\left(y\right) - f\left(x\right) \vert < \varepsilon \implies \vert c_j^k - f\left(x\right) \vert \le \varepsilon \text{ donde } c_j^k = \varphi_k\left(x\right) \implies$$
-$$\forall \varepsilon > 0,\ \exists k_0: \text{ si } k \ge k_0 \implies \vert \varphi_k\left(x\right) - f\left(x\right) \vert \le \varepsilon \implies \lim \varphi_k\left(x\right) = f\left(x\right)$$
+Si $f$ es continua en $x  \in \left[-N, N\right]^n\Rightarrow$
+$$\{\varphi_k\left(x\right)\}_k \rightarrow f\left(x\right) \Rightarrow f\left(x\right) = \lim_{k \rightarrow \infty}\varphi_k\left(x\right)$$
+$$\forall \varepsilon > 0,\ \exists \delta > 0: \text{ si } \vert\vert y - x \vert\vert < \delta \Rightarrow \vert f\left(y\right) - f\left(x\right)\vert < \varepsilon.$$
+Sea $k_0: Q_j^{k_0}$ que contiene a $x$, verifica $Q_j^{k_0} \subset B\left(x, \delta\right) \Rightarrow$
+$$\forall k \ge k_0,\ Q_j^k \subset B\left(x, \delta\right) \Rightarrow$$
+$$\forall y \in Q_j^k,\ \vert\vert y - x\vert\vert < \delta \Rightarrow \vert f\left(y\right) - f\left(x\right) \vert < \varepsilon \Rightarrow \vert c_j^k - f\left(x\right) \vert \le \varepsilon \text{ donde } c_j^k = \varphi_k\left(x\right) \Rightarrow$$
+$$\forall \varepsilon > 0,\ \exists k_0: \text{ si } k \ge k_0 \Rightarrow \vert \varphi_k\left(x\right) - f\left(x\right) \vert \le \varepsilon \Rightarrow \lim \varphi_k\left(x\right) = f\left(x\right)$$
 \end{demo}
-\end{enumerate}
 
-\begin{defi}
-Definimos como \textbf{oscilación} a: 
-
-Sea $f: \left[a, b\right] \to \mathbb{R}$ y $x_0 \in \left[a, b\right]$:
-$$o\left(f, x_0\right) = \lim_{\delta \to o^+} \left(\sup \{ \vert f\left(y\right) - f\left(x\right) \vert : x, y \in \left(x_0 -\delta, x_0 + \delta \right) \} \right)$$
+\begin{defi}[Oscilación]
+Sea $f: \left[a, b\right] \rightarrow \mathbb{R}$ una función y $x_0 \in \left[a, b\right]$ un punto del dominimio, se define la \textbf{oscilación de la función en ese punto} como:
+$$o\left(f, x_0\right) = \lim_{\delta \rightarrow 0^+} \left(\sup \{ \vert f\left(y\right) - f\left(x\right) \vert : x, y \in \left(x_0 -\delta, x_0 + \delta \right) \} \right)$$
 \end{defi}
 
 \begin{prop}
-$f$ es cont en $x_0 \iff o\left(f, x_0\right) = 0$
+Una función $f$ es continua en un punto $x_0$ si y sólo si $o\left(f, x_0\right) = 0$.
 \end{prop}
 
 \begin{theo}[de Lebesgue]
-Sea $f: \left[a, b\right] \to \mathbb{R}$ acotada, es integrable Riemann $\iff$ el conjunto de puntos de discontinuidad de $f$ tiene medida $0$.
+Sea $f: \left[a, b\right] \rightarrow \mathbb{R}$ acotada, entonces dicha función es integrable Riemann si y sólo si el conjunto de puntos de discontinuidad de $f$ tiene medida nula.
+$$f\in R[a,b]\Leftrightarrow f \mbox{ continua c.t.p.}$$
 \end{theo}
 \begin{demo}
-Sea $\vert f\left(x\right)\vert \le M,\ \forall x \in \left[a, b\right]$ y $D = \{x: f \text{ discontinua en } x\}$
-Supongamos que $\mu\left(D\right) = 0$. Tomamos $\varepsilon > 0$, $D_{\varepsilon} = \{x: o\left(f, x\right) < \varepsilon\}$ que es cerrado:
+Como $f$ es acotada, tenemos que $\forall x \in \left[a, b\right] : \vert f\left(x\right)\vert \le M$ y denotamos por el conjunto de puntos de discontinuidad a $D = \{x\in \mathbb{R} : f \text{ discontinua en } x\}$.
+\begin{itemize}
+\item $\Leftarrow$: supongamos que $\mu\left(D\right) = 0$.
 
-Tenemos que si $x \not\in D_{\varepsilon} \implies o\left(f, x\right) > \varepsilon \implies \exists \delta:$
-$$\sup \{ \vert f\left(y\right) - f\left(x\right) \vert: x, y \in \left(x_0 - \delta, x_0 + \delta \right) \}$$
+Tomamos $\varepsilon > 0$ y denotamos por $D_{\varepsilon} = \{x\in \mathbb{R}: o\left(f, x\right) < \varepsilon\}$, que es cerrado porque si tomamos $x_0 \not\in D_{\varepsilon} \Rightarrow o\left(f, x_0\right) \ge \varepsilon$, entonces:
+$$\exists \delta_0 > 0: \sup \{ \vert f\left(y\right) - f\left(x\right) \vert: x, y \in \left(x_0 - \delta, x_0 + \delta \right) \} < \varepsilon$$
+De este modo, para cualquier $x_1 \in \left(x_0 - \delta_0, x_0 + \delta_0 \right)$, podemos escoger un $\delta_1 = \delta_0 - |x_1-x_0|$ y tenemos que:
+$$\sup \{ \vert f\left(y\right) - f\left(x\right) \vert : x, y \in \left(x_1 - \delta_1, x_1 + \delta_1 \right) \} < \varepsilon \Rightarrow o\left(f, x_1\right) < \varepsilon \Rightarrow x_1 \not\in D_{\varepsilon}$$
+Con lo que su complementario es abierto, luego $D_\varepsilon$ es cerrado y por ser acotado, también tenemos que es compacto con medida $0$ (porque $D_\varepsilon \subset D$).
 
-Sea $x_1 \in \left(x_0 - \delta, x_0 + \delta \right) \implies$
-$$\sup \{ \vert f\left(y\right) - f\left(x\right) \vert : x, y \in \left(x_1 - \delta, x_1 + \delta \right) \} < \varepsilon \implies o\left(f, x_1\right) < \varepsilon \implies x_1 \not\in D_{\varepsilon}$$
-Por lo que es cerrado y, por tanto, compacto con medida $0$ (hipótesis).
-Como $D_{\varepsilon} \subset D \implies \mu\left( D_{\varepsilon} \right) = 0$
+Como tiene medida nula:
+$$\exists \{I_n\}_{n=1}^{\infty}: D_{\varepsilon} \subset \bigcup_{n \in \mathbb{N}} I_n \mbox{ y } \sum_{n=1}^{\infty} \mu\left(I_n\right) < \varepsilon$$
+Pero, al ser compacto, se tiene que:
+$$D_{\varepsilon} \subset I_1 \cup \ldots \cup I_N :  \mu\left(I_1\right) + \ldots + \mu\left(I_N\right) < \varepsilon $$
+$$Dibujo particion$$
 
-Por tanto, $\exists \{I_n\}_{n=1}^{\infty}: D_{\varepsilon} \subset \bigcup_{n \in \mathbb{N}} I_n$ y $\sum_{n=1}^{\infty} \mu\left(I_n\right) < \varepsilon \implies$. Como es compacto:
-$$D_{\varepsilon} \subset I_1 \cup \ldots \cup I_N,\ \left( \mu\left(I_1\right) + \ldots + \mu\left(I_N\right) < \varepsilon \right)$$
-\textit{(Dibujo partición)}. 
+Con este recubrimiento finito, generamos una partición formada por $a$, $b$ y todos los extremos de los intervalos $I_j$ que denotaremos por $P$. Dicha partición, la expresaremos en términos de otras dos: $P_1$ que será la formada por los intervalos de la partición $P$ contenidos en algún $I_j$ y $P_2$ formada por los otros (que en particular no cortan a $D_{\varepsilon}$, luego la oscilación en estos es $<\varepsilon$). De este modo, tenemos $P = P_1 \cup P_2$.
 
-Con este recubrimiento generamos una partición formada por $P_1$ y $P_2: P = P_1 \cup P_2$. ($P_1 = I_1 \cup \ldots \cup I_N$?). Entonces:
-$$\forall I \in P_2 \text{, si } x \in I: o\left(f, x\right) < \varepsilon \implies \exists I_x \subset I: \vert f\left(y\right) - f\left(z\right) \vert < \varepsilon,\ \forall y, z \in I_x$$
+Para cada intervalo $I\in P_2$, realizamos el siguiente procedimiento:
+$$\forall I \in P_2:  \left(x \in I \Rightarrow o\left(f, x\right) < \varepsilon\right) \Rightarrow \exists I_x \subset I: \forall y, z \in I_x: \vert f\left(y\right) - f\left(z\right) \vert < \varepsilon$$
+Y esto puede hacerse porque para cada $x$, podemos encontrar un $\delta$ de forma que en $(x-\delta, x+\delta)$ la oscilación es menor que $\varepsilon$ y precisamente ese sería un posible $I_x$.
 
-Recubrimos $I$ (que es compacto) con una cantidad finita de $I_x \implies P_2^*$. Definimos 
-$$P^* = P_2 \cup P_2^*$$
+Recubrimos $I$ (que es compacto por ser cerrado) por una cantidad finita de estos $I_x$ y, de esta manera, obtenemos en forma de partición (quitando trozos de intervalos si fuese necesario para que sean disjuntos) el intervalo $I$ inicial. Esto, genera otra partición de la parte que correspondía a $P_2$ que denotamos por $P^*_2$ y definimos $P^* := P_2 \cup P_2^*$.
 
 Tenemos:
 $$U\left(f, P^* \right) - L\left(f, P^*\right) :$$
@@ -703,8 +735,9 @@ $$U\left(f, P\right) - L\left(l, P\right) < \frac{\varepsilon}{n}$$
 $P_1$ los intervalos de $P$ que corta a $D_{\frac{1}{n}}$. (No sé si es $n$ o $m$).
 $$\frac{\varepsilon}{n} > \sum_{I \in P_1} \left(\sup_{x \in I} f\left(x\right) - \inf_{x \in I} f\left(x\right) \right) \mu\left(I\right) \ge \frac{1}{n} \sum_{I \in P_1} \mu\left(I\right)$$
 (\textit{Dibujo}) 
-$$\sum_{I \in P_1} \mu\left(I\right) < \varepsilon \; \land \; D_{\frac{1}{n}} \subset \bigcup_{I \in P_1} I \implies$$
+$$\sum_{I \in P_1} \mu\left(I\right) < \varepsilon \; \land \; D_{\frac{1}{n}} \subset \bigcup_{I \in P_1} I \Rightarrow$$
 $$\mu\left(D_{\frac{1}{m}}\right) = 0.$$
+\end{itemize}
 \end{demo}
 
 Recordemos que llamamos función simple a:
@@ -715,19 +748,19 @@ que cumple:
     \item Solo toma un nº finito de valores
     \item Si $\varphi$ es medible y solo toma un nº finito de valores $(\beta_1, \ldots, \beta_r)$:
     $$E_j = \varphi^{-1}\left(\{\beta_j\}\right) \text{, medible}$$
-    $$\varphi = \sum_{k=1}^{r} \beta_j \aleph{E_j} \implies \varphi \text{ es simple.}$$
+    $$\varphi = \sum_{k=1}^{r} \beta_j \aleph{E_j} \Rightarrow \varphi \text{ es simple.}$$
 \end{itemize}
 
-\begin{defi}
+\begin{defi}[Integral]
 Sea $\varphi$ función simple no negativa:
-$$\varphi = \sum_{k=1}^{m} \alpha_k \aleph{E_k},\ \left(\alpha_k > 0\right)$$
-Definimos:
+$$\varphi = \sum_{k=1}^{m} \alpha_k \chi{E_k} \mbox{ donde } \left(\alpha_k > 0\right)$$
+Definimos la \textbf{integral} de dicha función como:
 $$I\left(\varphi\right) = \sum_{k=1}^{m} \alpha_k \mu\left(E_k\right)$$
 \end{defi}
-(\textit{Dibujo $\aleph$ no negativa como dos $\aleph$ que pueden ser negativas}). 
+$$Dibujo \chi no negativa como dos \chi que pueden ser negativa$$ 
 
 \underline{Obs}:
-Asumimos que $0 \cdot \left(+ \infty\right) = 0 \implies I\left(\varphi\right) \in \left[0, +\infty\right]$
+Asumimos que $0 \cdot \left(+ \infty\right) = 0 \Rightarrow I\left(\varphi\right) \in \left[0, +\infty\right]$
 
 \begin{prop}
 Sea $\varphi$ función simple es posible escribirla de distintas formas:
@@ -747,9 +780,9 @@ Este resultado prueba que la definición de $I\left(\varphi\right)$ es consisten
 \begin{prop}
 \begin{enumerate}
     \item $c > 0$, $\varphi$ simple no negativo $I\left(c\varphi\right) = cI\left(\varphi\right)$.
-    \item $\varphi, \psi$ simples no negativas $\implies I\left(\varphi + \psi\right) = I\left(\varphi\right) + I\left(\psi\right)$
-    \item $\varphi \le \psi$ c.t.p $\implies I\left(\varphi\right) \le I\left(\psi\right)$
-    \item $\varphi = \psi$ c.t.p $\implies I\left(\varphi\right) = I\left(\psi\right)$
+    \item $\varphi, \psi$ simples no negativas $\Rightarrow I\left(\varphi + \psi\right) = I\left(\varphi\right) + I\left(\psi\right)$
+    \item $\varphi \le \psi$ c.t.p $\Rightarrow I\left(\varphi\right) \le I\left(\psi\right)$
+    \item $\varphi = \psi$ c.t.p $\Rightarrow I\left(\varphi\right) = I\left(\psi\right)$
 \end{enumerate}
 \end{prop}
 \begin{demo}
@@ -759,26 +792,26 @@ Este resultado prueba que la definición de $I\left(\varphi\right)$ es consisten
 Los conjuntos no tienen porque ser intervalos, si fuese este el caso sería, en el fondo, integrabilidad Rienmann.
 
 \begin{defi}
-Sea $f: \mathbb{R}^n \to \left[0, +\infty\right]$ medible. Definimos como \textbf{integral (Lebesgue) de $f$} a:
+Sea $f: \mathbb{R}^n \rightarrow \left[0, +\infty\right]$ medible. Definimos como \textbf{integral (Lebesgue) de $f$} a:
 $$\int_{\mathbb{R}^n}f d\mu = \sup_{\substack{\varphi \le f \text{ c.t.p} \\ \varphi \text{ simple}}} I\left(\varphi\right) \in \left[0, +\infty\right]$$
 \end{defi}
 
 \begin{prop}
-Sea $\varphi$ simple no negativa $\implies$
+Sea $\varphi$ simple no negativa $\Rightarrow$
 $$\int_{\mathbb{R}^n}\varphi d \mu = I\left(\varphi\right)$$
 \end{prop}
 \begin{demo}
-$$\varphi \le \varphi \implies I\left(\varphi\right) \le \int_{\mathbb{R}^n} \varphi d \mu$$
-Si $\int_{\mathbb{R}^n} \varphi d \mu = +\infty \implies$
-$$\forall M > 0,\ \exists \psi \le \varphi: I\left(\psi\right) \ge M \implies$$
-$$M \le I\left(\psi\right) \le I\left(\varphi\right) \implies I\left(\varphi\right) \ge M,\ \forall M \implies I\left(\varphi\right) = +\infty$$
-Si $\int_{\mathbb{R}^m}\varphi d \mu < +\infty \implies$
-$$\forall \varepsilon > 0,\ \exists \psi \le \varphi: I\left(\psi\right) \ge \int_{\mathbb{R}^n}\varphi d \mu - \varepsilon \implies$$
-$$I\left(\varphi\right) \ge \int_{\mathbb{R}^n}\varphi d \mu - \varepsilon \implies I\left(\varphi\right) \ge \int_{\mathbb{R}^n}\varphi d \mu$$
+$$\varphi \le \varphi \Rightarrow I\left(\varphi\right) \le \int_{\mathbb{R}^n} \varphi d \mu$$
+Si $\int_{\mathbb{R}^n} \varphi d \mu = +\infty \Rightarrow$
+$$\forall M > 0,\ \exists \psi \le \varphi: I\left(\psi\right) \ge M \Rightarrow$$
+$$M \le I\left(\psi\right) \le I\left(\varphi\right) \Rightarrow I\left(\varphi\right) \ge M,\ \forall M \Rightarrow I\left(\varphi\right) = +\infty$$
+Si $\int_{\mathbb{R}^m}\varphi d \mu < +\infty \Rightarrow$
+$$\forall \varepsilon > 0,\ \exists \psi \le \varphi: I\left(\psi\right) \ge \int_{\mathbb{R}^n}\varphi d \mu - \varepsilon \Rightarrow$$
+$$I\left(\varphi\right) \ge \int_{\mathbb{R}^n}\varphi d \mu - \varepsilon \Rightarrow I\left(\varphi\right) \ge \int_{\mathbb{R}^n}\varphi d \mu$$
 \end{demo}
 
 \begin{prop}
-Sea $f, g: \mathbb{R}^n \to \left[0, +\infty\right]$ medibles tal que $f \le g$ c.t.p. Entonces:
+Sea $f, g: \mathbb{R}^n \rightarrow \left[0, +\infty\right]$ medibles tal que $f \le g$ c.t.p. Entonces:
 $$\int_{\mathbb{R}^n}f d \mu \le \int_{R^n}g d \mu.$$
 \end{prop}
 \begin{demo}
@@ -786,12 +819,12 @@ Ejercicio.
 \end{demo}
 
 \begin{coro}
-Si $f = g$ c.t.p $\implies$
+Si $f = g$ c.t.p $\Rightarrow$
 $$\int_{\mathbb{R}^n}f d \mu = \int_{\mathbb{R}^n}g d \mu$$
 \end{coro}
 
 \begin{defi}
-Sean $A \subset \mathbb{R}^n$ medible, $f: A \to \left[0, +\infty\right]$ medible:
+Sean $A \subset \mathbb{R}^n$ medible, $f: A \rightarrow \left[0, +\infty\right]$ medible:
 $$\int_A f d \mu = \int_{\mathbb{R}^n}f \aleph_{A} d \mu.$$
 \end{defi}
 \underline{Obs}:
