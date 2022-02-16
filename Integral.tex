@@ -994,4 +994,70 @@ $$\int_{\mathbb{R}^n} f d \mu = \int_{\mathbb{R}^n} f^+ d \mu - \int_{\mathbb{R}
 Si tenemos $f: \left[a, b\right] \rightarrow \mathbb{R}$ integrable Riemann: $f = f^+ - f^-$ y 
 $$\int_a^b f dx = \int_a^b f^+ dx - \int_a^b f^- dx = \int_{\left[a, b\right]}f^+ d \mu - \int_{\left[a, b\right]} f^- d \mu = \int_{\left[a, b\right]}f d \mu$$
 
+
+\underline{Observación}
+
+Podríamos dar la misma definición que se dió para funciones arbitrarias de integrabilidad para funciones que toman valores en la recta ampliada, pero cabe observar que $A=\{x\in \mathbb{R}: |f(x)|< \infty\}$ tiene que tener medida 0 si es integrable dicha función.
+
+Esto es así puesto que $\mu(A) > 0 \Rightarrow \forall k \in \mathbb{N}: k\cdot \chi_A \leq |f| \Rightarrow \int_{\mathbb{R}^n} |f| \ d\mu \geq I(k\chi_A) = k \cdot \mu(A)$.
+
+\begin{prop}
+Supongamos que tenemos dos funciones $f,g: \mathbb{R}^n \rightarrow [-\infty, \infty]$ y tales que $f=g$ (c.t.p.), entonces tenemos que:
+$$f \mbox{ integrable }\Leftrightarrow g \mbox{ integrable}$$
+$$\int_{\mathbb{R}^n} f = \int_{\mathbb{R}^n} g $$
+\end{prop}
+\begin{demo}
+Lo ha dicho de palabra y no me ha dado tiempo.
+$$f=g \ \mbox{c.t.p.}\Rightarrow \begin{cases}
+f^+ = g^+ \\ f^- = g^- 
+\end{cases} \ \mbox{c.t.p.}\Rightarrow \int f = \int f^+ - \int f^- = \int g^+ - \int g^- = \int g$$
+\end{demo}
+
+\begin{prop}
+Son equivalentes:
+\begin{itemize}
+\item $f$ integrable
+\item $|f|$ integrable
+\item $f^+$ y $f^-$ integrables
+\end{itemize}
+\end{prop}
+\begin{demo}
+\item $f^+ \leq |f|$ y $f^- \leq |f|$
+\item $3)\rightarrow 1)$
+$$\int |f| = \int f^+ - \int f^- < \infty \Rightarrow f \mbox{ integrable}$$
+\end{demo}
+
+\begin{lema}
+Sea $f$ una función integrable, si tenemos que $f = g- h$ con ambas funciones medibles, no negativas e integrables, entonces:
+$$\int f = \int g - \int h$$
+\end{lema}
+\begin{demo}
+Suponemos sin pérdida de generalidad que $f,g: \mathbb{R}^n\rightarrow \mathbb{R}$ por lo explicado en la observación de abajo. De este modo:
+$$f = f^+ - f^- = g-h\Rightarrow f^+ + h = f^- + g \Rightarrow \int f^+ + \int h = \int (f^+ + h) = \int (f^- + g) 0 \int f^- + \int g$$
+$$\int f^+ - \int f^- = \int g - \int h$$
+\end{demo}
+
+\underline{Observación}
+
+Este lema es válido para funciones que toman valores en $\bar{\mathbb{R}}$ porque como el conjunto donde los valores no son reales es de medida nula, entonces es igual en c.t.p. a la función de la hipótesis y se tiene que se cumple por la proposición anterior.
+
+\begin{theo}
+Supongamos que tenemos dos funciones $f,g: \mathbb{R}^n \rightarrow \mathbb{R}$ ambas integrables, entonces tenemos que:
+$$\int (f+g) = \int f + \int g$$
+Del mismo modo, para un $\alpha \in \mathbb{R}$, tenemos que:
+$$\int (\alpha \cdot f) = \alpha \int f$$
+\end{theo}
+\begin{demo}
+Veamos que $|f+g|\leq |f| + |g|$ y como ambas son funciones no negativas, le podemos aplicar el lema:
+$$\int |f+g| \leq \int |f| + \int |g| < \infty $$
+De este modo, ya sabemos que al menos es integrable la suma, ahora veamos que la integral es justo la suma de las integrales.
+$$f+ g = f^+ - f^- + g^+ - g^- = (f^+ + g^+) - (f^- + g^-)$$
+Como dichas funciones son  no negativas y son integrables, tenemos que
+$$\int (f+g) = \int (f^+ + g^+) - \int (f^- + g^- ) = \int f^+ + \int g^+ - \int f^- +\int g^-  = \int f + \int g$$
+Cabe observar que es necesario el lema para probar dicha demostración puesto que no se tiene en general la igualdad:
+$$f^+ + g^+ = (f+g)^+$$
+Ni el análogo con los menos.
+\end{demo}
+
+
 \end{document}
