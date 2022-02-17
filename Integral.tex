@@ -1061,4 +1061,28 @@ $$f^+ + g^+ = (f+g)^+$$
 Ni el análogo con los menos.
 \end{demo}
 
+\begin{theo}[De convergencia dominada]
+Sean $\{f_k\}_{k=1}^{\infty}: f_k: \mathbb{R}^n \rightarrow \mathbb{R}$ medibles, $g: \mathbb{R}^n \rightarrow \left[0, +\infty\right]$ integrable $: \vert f_k \vert \le g$ c.t.p. 
+
+Si $\lim_{k \rightarrow \infty}f_k = f $ c.t.p, entonces: 
+$$\int_{\mathbb{R}^n} f \dif{\mu} = \lim_{k \rightarrow \infty} \int_{\mathbb{R}^n} f_k \dif{\mu}. $$
+\end{theo}
+\begin{demo}
+Sabemos que $\vert f \vert \le g$ c.t.p $\Rightarrow$
+$$\int_{\mathbb{R}^n} \vert f \vert \dif{\mu} \le \int_{\mathbb{R}^n} g \dif{\mu} < +\infty$$
+Por lo que $f$ es integrable (por la misma razón $f_k$ son integrables).
+
+Como $\vert f_k \vert \le g \Rightarrow g + f_k \ge 0 \Rightarrow$
+$\{g + f_k\}_{k=1}^{\infty}$ aplicamos el lema de Fatou(*): 
+$$\int_{\mathbb{R}^n} f \dif{\mu} + \int_{\mathbb{R}^n} g \dif{\mu} = \int_{\mathbb{R}^n} \left(f + g\right) \dif{\mu} = \int_{\mathbb{R}^n} \lim_{k \rightarrow \infty} \left(f_k + g\right)  \dif{\mu} =$$
+$$\int_{\mathbb{R}^n} \liminf_{k \rightarrow \infty} \left(f_k + g\right)  \dif{\mu} \le^* \liminf_{k \rightarrow \infty}\int_{\mathbb{R}^n} \left(f_k + g\right) \dif{\mu} = \liminf_{k \rightarrow \infty} \left( \int_{\mathbb{R}^n} f_k \dif{\mu} + \int_{\mathbb{R}^n} g \dif{\mu} \right) =$$
+$$ = \left(\liminf_{k \rightarrow \infty} \int_{\mathbb{R}^n} f_k \dif{\mu}  \right) + \int_{\mathbb{R}^n} g \dif{\mu} \Rightarrow$$
+$$\int_{\mathbb{R}^n} f \dif{\mu} \le \liminf_{k \rightarrow \infty} \int_{\mathbb{R}^n} f_k \dif{\mu} $$
+
+Tomando ahora: $\{-f_k + g\}_{k=1}^{\infty} \left(\ge 0\right)$:
+$$\int_{\mathbb{R}^n} \left(-f\right) \dif{\mu} \le \liminf_{k \rightarrow \infty} \int_{\mathbb{R}^n} \left(-f_k\right) \dif{\mu} \Rightarrow $$
+$$ - \int_{\mathbb{R}^n} f \dif{\mu} \le \liminf_{k \rightarrow \infty} \left(-\int_{\mathbb{R}^n} f_k \dif{\mu} \right) = -\limsup_{k \rightarrow \infty} \left(\int_{\mathbb{R}^n} f_k \dif{\mu} \right) \Rightarrow$$
+$$\limsup_{k \rightarrow \infty} \int_{\mathbb{R}^n} f_k \dif{\mu} \le \int_{\mathbb{R}^n} f \dif{\mu} $$
+\end{demo}
+
 \end{document}
