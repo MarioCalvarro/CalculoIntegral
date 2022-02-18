@@ -663,20 +663,19 @@ Donde cabe destacar que el sumatorio es \textbf{finito}.
 Sea $f: \mathbb{R}^n \rightarrow \mathbb{R}$ una función continua en c.t.p., entonces es medible.
 \end{prop}
 \begin{demo}
-Observamos que: 
-$$f\cdot \chi_{\left[-N, N\right]^{n}} \rightarrow_{N \rightarrow \infty} f$$
-``Trabajamos'' con ese cubo $Q$ y lo dividimos en $\forall k: \{Q_j^k\}_{j=1}^{\infty}$ de lado $\frac{1}{2^k}: Q = \bigcup_{j \in \mathbb{N}} Q_j^k$. $Q = \left[-N, N\right)^{m}$
+Podemos expresar la función $f$ de la siguiente forma: 
+$$f\cdot \chi_{\left[-N, N\right]^{n}} \xrightarrow{N \rightarrow \infty} f$$
+Nos restringimos a ese cubo $Q$ y, para cada $k$, dividimos $Q$ en cubos semiabiertos de lado $\frac{1}{2^k}$, de forma que para un $k$ fijo, tenemos el conjunto de cubos $\{Q_j^k\}_{j=1}^\infty$ donde cada $Q_j$ tiene lado $\frac{1}{2^k}$, es decir:
+$$\forall k \in \mathbb{N}: \{Q_j^k\}_{j=1}^{\infty}\mbox{ de lado }\frac{1}{2^k}: Q = \bigcup_{j \in \mathbb{N}} Q_j^k $$
+A su vez, definimos $C_j^k := \inf \{f\left(x\right): x \in Q_j^k\}$ y para cada $k$, tomamos la función: 
+$$\varphi_k = \sum_{j = 1}^{\infty} c_j^k \cdot \chi_{Q_j^k} \text{ medible}$$
+Para ver que $f$ es medible, basta ver que aquellos puntos donde la función $f$ sea continua ocurre que $\varphi_k(x_0) \xrightarrow{k\rightarrow \infty} f(x_0)$. Veámoslo:
 
-A su vez, definimos $C_j^k = \inf \{f\left(x\right): x \in Q_j^k\}$ y 
-$$\varphi_k = \sum_{j = 1}^{\infty} c_j^k \chi_{Q_j^k} \text{ medible}$$
-¿$\varphi_k \rightarrow^k f\cdot \chi_{\left[-N, N\right]}$ ctp?
-
-Si $f$ es continua en $x  \in \left[-N, N\right]^n\Rightarrow$
-$$\{\varphi_k\left(x\right)\}_k \rightarrow f\left(x\right) \Rightarrow f\left(x\right) = \lim_{k \rightarrow \infty}\varphi_k\left(x\right)$$
+Si $f$ es continua en $x  \in \left[-N, N\right]^n$, entonces podemos decir que:
 $$\forall \varepsilon > 0,\ \exists \delta > 0: \text{ si } \vert\vert y - x \vert\vert < \delta \Rightarrow \vert f\left(y\right) - f\left(x\right)\vert < \varepsilon.$$
-Sea $k_0: Q_j^{k_0}$ que contiene a $x$, verifica $Q_j^{k_0} \subset B\left(x, \delta\right) \Rightarrow$
+Podemos tomar un $k_0: Q_j^{k_0}$ contiene a $x$ y verifica $Q_j^{k_0} \subset B\left(x, \delta\right)$, luego en este caso tenemos:
 $$\forall k \ge k_0,\ Q_j^k \subset B\left(x, \delta\right) \Rightarrow$$
-$$\forall y \in Q_j^k,\ \vert\vert y - x\vert\vert < \delta \Rightarrow \vert f\left(y\right) - f\left(x\right) \vert < \varepsilon \Rightarrow \vert c_j^k - f\left(x\right) \vert \le \varepsilon \text{ donde } c_j^k = \varphi_k\left(x\right) \Rightarrow$$
+$$\Rightarrow \forall y \in Q_j^k,\ \vert\vert y - x\vert\vert < \delta \Rightarrow \vert f\left(y\right) - f\left(x\right) \vert < \varepsilon \Rightarrow \vert c_j^k - f\left(x\right) \vert \le \varepsilon \text{ donde } c_j^k = \varphi_k\left(x\right) \Rightarrow$$
 $$\forall \varepsilon > 0,\ \exists k_0: \text{ si } k \ge k_0 \Rightarrow \vert \varphi_k\left(x\right) - f\left(x\right) \vert \le \varepsilon \Rightarrow \lim \varphi_k\left(x\right) = f\left(x\right)$$
 \end{demo}
 
@@ -861,27 +860,26 @@ El teorema también es válido si la convergencia es en c.t.p.
 Por la monotonía de la sucesión, tenemos que:
 $$\forall k \in \mathbb{N}: f_k \le f \Rightarrow \int_{\mathbb{R}^n} f_k \ d \mu \le \int_{\mathbb{R}^n} f \ d \mu$$
 Por tanto, tenemos asegurada la convergencia de la sucesión de integrales por ser acotada superiormente y creciente:
-$$\left\lbrace \int_{\mathbb{R}^n} f_k d \mu \right\rbrace_{k=1}^{\infty}\uparrow \ \wedge \ \exists \lim_{k\rightarrow\infty} \int_{\mathbb{R}^n} f_k \ d \mu \le \int_{\mathbb{R}^n}f \ d \mu$$
+$$\left\lbrace \int_{\mathbb{R}^n} f_k \ d \mu \right\rbrace_{k=1}^{\infty}\uparrow \ \wedge \ \exists \lim_{k\rightarrow\infty} \int_{\mathbb{R}^n} f_k \ d \mu \le \int_{\mathbb{R}^n}f \ d \mu$$
 
 Fijamos $\varphi \le f$ simple no negativa y un $c < 1$. De este modo, definimos la siguiente sucesión de conjuntos:
-$$A_k = \{x \in \mathbb{R}^n: c\cdot \varphi\left(x\right) < f_k\left(x\right)\}$$
+$$A_k = \{x \in \mathbb{R}^n: c\cdot \varphi\left(x\right) \leq f_k\left(x\right)\}$$
 Dicho conjunto es medible para cada k por ser el conjunto de puntos donde una función vale más que 0.
 
 Por ser creciente la sucesión de funciones, es decir, $f_k \le f_{k+1}$, entonces tenemos que:
 $$A_k \subset A_{k+1} \Rightarrow \{A_k\}_{k=1}^{\infty} \uparrow \mathbb{R}^n \mbox{ ya que }\bigcup_{n\in \mathbb{N}}A_k = \mathbb{R}^n$$
-Ya que dado $x \in \mathbb{R}^n$, como $\lim_k f_k\left(x\right) = f\left(x\right)\ \left(\forall x : f\left(x\right) \neq 0\right),\ f\left(x\right) > 0$.
-Si?
-$$f\left(x\right) = +\infty \Rightarrow \lim_k f_k \left(x\right) = +\infty \Rightarrow$$
-$$c\varphi\left(x\right) \in \mathbb{R},\ \exists k : f\varphi\left(x\right) < f_k\left(x\right) \Rightarrow x \in A_k$$
-y si:
-$$0 < f\left(x\right) < \infty \ \varphi\left(x\right) \le f\left(x\right) \Rightarrow c\varphi\left(x\right) < f\left(x\right) \ \lim_k f_k\left(x\right) = f\left(x\right) \Rightarrow \exists k : c\varphi\left(x\right) < f_k\left(x\right)$$
 
-Entonces:
+Si $f(x) = \infty$, entonces tenemos que:
+$$\lim_k f_k \left(x\right) = +\infty \Rightarrow c\cdot \varphi\left(x\right) \in \mathbb{R},\ \exists k \in \mathbb{N} : c\cdot \varphi\left(x\right) < f_k\left(x\right) \Rightarrow x \in A_k$$
+Por otro lado, si tenemos que $0 < f\left(x\right) < \infty $, entonces:
+$$\varphi\left(x\right) \le f\left(x\right) \Rightarrow c\cdot \varphi\left(x\right) < f\left(x\right) \Rightarrow \lim_{k\rightarrow\infty} f_k\left(x\right) = f\left(x\right) \Rightarrow \exists k \in \mathbb{N} : c\cdot \varphi\left(x\right) < f_k\left(x\right)\Rightarrow x\in A_k$$
+
+Por tanto, por el lema anterior, al tener la sucesión creciente de los $A_k$, tenemos que:
 $$c \cdot \int_{\mathbb{R}^n}\varphi \ d \mu = c\cdot \int_{\mathbb{R}^n \setminus \{x : f\left(x\right) = 0\}}\varphi \ d \mu = \int_{\mathbb{R}^n \setminus \{x : f\left(x\right) = 0\}} c  \cdot \varphi \ d \mu = $$
 $$=\lim_{k\rightarrow\infty} \int_{A_k} c \cdot \varphi \ d \mu \le \lim_{k\rightarrow\infty} \int_{A_k} f_k \ d \mu \le \lim_{k\rightarrow\infty} \int_{\mathbb{R}^n} f_k \ d \mu$$
-A su vez:
-$$c \rightarrow 1^- \Rightarrow \int_{\mathbb{R}^n} \varphi d \mu \le \lim_k \int_{\mathbb{R}^n} f_k d \mu \Rightarrow$$
-$$\int_{\mathbb{R}^n}f d \mu = \sup_{\varphi \le f} \int_{\mathbb{R}^n}\varphi d \mu \le \lim_k \int_{\mathbb{R}^n}f_k d \mu$$
+De este modo, como el $c$ es arbitrario, si se hace tender a $1$, tenemos que:
+$$\int_{\mathbb{R}^n} \varphi \ d \mu \le \lim_{k\rightarrow\infty} \int_{\mathbb{R}^n} f_k \ d \mu \stackrel{\forall \varphi}{\Rightarrow} \int_{\mathbb{R}^n}f \ d \mu = \sup_{\varphi \le f} \int_{\mathbb{R}^n}\varphi \ d \mu \le \lim_{k\rightarrow\infty} \int_{\mathbb{R}^n}f_k \ d \mu$$
+Y ya tendríamos demostradas las dos desigualdades.
 \end{demo}
 
 \underline{Observación}
@@ -898,8 +896,8 @@ Por ser acotada, $\exists M > 0: f \le M\chi_{\left[a, b\right]}$, lo que implic
 
 Además, por ser integrable Riemann, tenemos que:
 $$\int_a^b f\left(x\right)dx = \sup_{P \in \wp} L\left(f, P\right) \Rightarrow \exists \{P_k\}_{k=1}^{\infty} : P_k \leq P_{k+1} : \int_a^b f\left(x\right) \ dx = \lim_{k\rightarrow \infty} L\left(f, P_k\right) = $$
-$$= \lim_{k\rightarrow\infty} \sum_{S \in P_k} \inf \{f\left(x\right) : x \in S\}\mu\left(S\right) = \lim_k \int_{\left[a, b\right]}\left(\sum m_S \left(f\right) \cdot \chi_S\right) d \mu = \int_{\left[a, b\right]}\lim_k f_k d \mu = \int_{\left[a, b\right]}f d \mu.$$
-Donde $f_k = \sum m_S\left(f\right) \chi_S.$
+$$= \lim_{k\rightarrow\infty} \sum_{S \in P_k} \inf \{f\left(x\right) : x \in S\}\mu\left(S\right) = \lim_{k\rightarrow\infty} \int_{\left[a, b\right]}\left(\underbrace{\sum m_S \left(f\right) \cdot \chi_S}_{\text{funcion simple}}\right) \ d \mu = \int_{\left[a, b\right]}\lim_{k\rightarrow\infty} f_k \ d \mu = \int_{\left[a, b\right]}f \ d \mu$$
+Donde $f_k = \sum m_S\left(f\right) \chi_S$ y vemos que por ser crecientes las particiones que hemos tomado, dicha sucesión también lo es y por ello podemos aplicar el teorema.
 \end{demo}
 
 \end{document}
