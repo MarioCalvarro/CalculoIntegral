@@ -1085,4 +1085,90 @@ $$ - \int_{\mathbb{R}^n} f \dif{\mu} \le \liminf_{k \rightarrow \infty} \left(-\
 $$\limsup_{k \rightarrow \infty} \int_{\mathbb{R}^n} f_k \dif{\mu} \le \int_{\mathbb{R}^n} f \dif{\mu} $$
 \end{demo}
 
+\begin{defi}
+Sea $f: \mathbb{R}^{n} \times \mathbb{R}^n \rightarrow \mathbb{R}$ tal que, $f \left(x, y\right),\ x \in \mathbb{R}^n\; \land \;y \in \mathbb{R}^n$. Llamamos \textbf{secciones} de $f$ a:
+$$\forall x \in \mathbb{R}^n \rightarrow,\ f_x: \mathbb{R}^n \rightarrow \mathbb{R},\ f_x \left(y\right) = f \left(x, y\right)$$
+\end{defi}
+
+\begin{theo}[De Tonelli]
+Sea $f: \mathbb{R}^{n} \times \mathbb{R}^n \rightarrow \left[0, +\infty\right)$ medible. Entonces: 
+\begin{enumerate}
+    \item $f_x$ son medibles c.t.p $x$.
+    \item $F: \mathbb{R}^{n} \rightarrow \left[0, +\infty\right]$ es medible.
+        $$F \left(x\right) = \int_{\mathbb{R}^n} f_x \dif{\mu} $$
+    \item Tenemos que :
+        $$\int_{\mathbb{R}^n \times \mathbb{R}^m} f \dif{\mu_{nm}} = \int_{\mathbb{R}^n} F \dif{\mu_n} $$
+    o lo que es lo mismo: 
+    $$\int_{\mathbb{R}^n \times \mathbb{R}^m} f \left(x, y\right) \dif{x}\dif{y} =     \int_{\mathbb{R}^n}\left(\int_{\mathbb{R}^m} f \left(x, y\right) \dif{y} \right)\dif{x} = \int_{\mathbb{R}^m}\left(\int_{\mathbb{R}^n} f \left(x, y\right) \dif{x} \right)\dif{y}$$
+\end{enumerate}
+\end{theo}
+
+Si tenemos $A \subset \mathbb{R}^n \times \mathbb{R}^m$ tal que, $A_x = \{y \in \mathbb{R}^m: \left(x, y\right) \in A\}$.
+\begin{prop}[Principio de Cavalieri]
+Sea $A \subset \mathbb{R}^n \times \mathbb{R}^m$ medible. Entonces: 
+\begin{enumerate}
+    \item $A_x$ es medible c.t.p $x$.
+    \item $F: \mathbb{R}^n \rightarrow \left[0, +\infty\right]$ es medible. 
+    $$F \left(x\right) = \mu_m \left(A_x\right)$$
+    \item $\mu_{n m} \left(A\right) = \int_{\mathbb{R}^n} \mu_m \left(A_x\right) \dif{\mu_m} $
+\end{enumerate}
+\end{prop}
+
+\underline{Ejemplo}:
+
+Sea $A = \{ \left(x, 0\right) \in \mathbb{R}^2: x \in E\}$
+(\textit{Dibujo})
+
+Si tomamos $E \subset \mathbb{R}$ no medible: 
+$$A_y = \begin{cases}
+    \emptyset \text{ si } y \neq 0\\
+    E \text{ si } y = 0
+\end{cases}$$
+Por lo que c.t.p es necesario.
+
+\begin{coro}
+Si $\mu_{n + m} \left(A\right) = 0 \Rightarrow$ 
+$$\mu_m \left(A_x\right) = 0 \text{ c.t.p } x.$$
+\end{coro}
+
+\begin{lema}
+Si $f, g$ verifican el Tª de Tonelli y $a, b \in \mathbb{R}^+$. Entonces: 
+$af + bg$ cumple el Tª de Tonelli.
+\end{lema}
+\begin{demo}
+Debemos ver que:
+$$\left(af + bg\right)_x = af_x + bg_x$$
+Tras esto, al ser combinación lineal de medibles será medible el resultado.
+
+Por tanto,
+$$F_{af + bg} = aF_f + bF_g$$ 
+\end{demo}
+
+\begin{lema}
+Si $\{f_k\}_{k=1}^{\infty}$ cumple el Tª de Tonelli y $\left(f_k\right)\uparrow f \Rightarrow f$ cumple el Tª Tonelli. 
+\end{lema}
+\begin{demo}
+\begin{enumerate}
+    \item Debemos observar que: 
+    $$f_x = \lim_{k \rightarrow \infty} \left(f_k\right)_x,\ \left(f_k\right)_x \uparrow f_x $$
+    y saber que límite de medibles es medible.
+    \item Como: 
+    $$F = \lim_{k \rightarrow \infty}F_k,\ \{F_k\}_{k=1}^{\infty} \uparrow F$$
+    $$\lim_{k \rightarrow \infty} \int_{\mathbb{R}^m} \left(f_k\right)_x \dif{\mu} = \int_{\mathbb{R}^m} f_x \dif{\mu} $$
+    \item Como: 
+    $$\int_{\mathbb{R}^n} F \dif{\mu} = \int_{\mathbb{R}^n} \lim_{k \rightarrow \infty}F_k  \dif{\mu} = \lim_{k \rightarrow \infty}\int_{\mathbb{R}^n} F_k \dif{\mu} = \lim_{k \rightarrow \infty} \int_{\mathbb{R}^n \times \mathbb{R}^m} f_k  \dif{\mu} = \int_{\mathbb{R}^n} f \dif{\mu}  $$
+\end{enumerate}
+\end{demo}
+
+Como consecuencia de estos lemas el principio de Cavalieri es equivalente al teorema de Tonelli, es decir, basta con probar este principio para probar el teorema de Tonelli.
+
+Cambiando notaciones tenemos pues, 
+$$\int_{\mathbb{R}^n} f \left(x_1, \ldots, x_m\right) \dif{x_1}\ldots\dif{x_m} = $$
+$$\int_{\mathbb{R}} \left(\int_{\mathbb{R}} \ldots \left( \int_{\mathbb{R}} f \left(x_1, \ldots, x_n\right) \dif{x_n}\right)\ldots \dif{x_2}\right) \dif{x_1}.$$
+
+\underline{Ejemplo}: 
+Si $A \subset \mathbb{R}^n \times \mathbb{R}^m$:
+$$\int_A f \left(x, y\right) \dif{x} \dif{y} = \int_{\mathbb{R}^n \times \mathbb{R}^m} f \left(x, y\right) \chi_A \left(x, y\right) \dif{x}\dif{y} = $$
+$$\int_{\mathbb{R}^n} \left(\int_{\mathbb{R}^m} f \left(x, y\right) \chi_A \left(y\right) \dif{y} \right) \dif{x} = \int_{\mathbb{R}^n} \left(\int_{A_x} f \left(x, y\right) \dif{y}\right) \dif{x}.$$
+
 \end{document}
