@@ -1,4 +1,4 @@
-\documentclass[10pt,a4paper,openright]{book}
+-\documentclass[10pt,a4paper,openright]{book}
 
 \title{CÁLCULO INTEGRAL}
 \author{Juan Diego Barrado Daganzo, Mario Calvarro Marines \\ e Iker Muñoz Martínez}
@@ -903,116 +903,134 @@ Donde $f_k = \sum m_S\left(f\right) \chi_S$ y vemos que por ser crecientes las p
 \end{demo}
 
 \begin{prop}
-Sea $f: \mathbb{R}^n \rightarrow \mathbb{R}$ no negativa. Entonces,
-$\exists \{\varphi_k\}_{k=1}^{\infty} \text{, simples} :$
-$$\varphi_k \le \varphi_{k+1} : f = \lim_{k \rightarrow \infty}\varphi_k \quad \left(\{\varphi_k\}_{k=1}^{\infty}\uparrow f\right)$$
+Sea $f: \mathbb{R}^n \rightarrow \mathbb{R}^n$ medible no negativa, entonces $\exists \{\varphi_k\}_{k=1}^{\infty}$ sucesión de funciones simples tal que $\{\varphi_k\}_{k=1}^\infty \uparrow f $ es creciente y converge \textbf{puntualmente}\footnote{Si la función $f$ es acotada, entonces la convergencia es \textbf{uniforme}} a $f$.
 \end{prop}
+\begin{demo}
 (\textit{Dibujo}) 
-\begin{demo}
-Definimos:
-$$\varphi := \sum_{j=1}^{k\cdot 2^k} \frac{j-1}{2^k} \chi_{E_j^k} \Rightarrow$$
-$$\varphi_k \le \varphi_{k+1}$$
-Dado $x \in \mathbb{R}^n,\ \exists k : \forall k \ge k_0: k > f\left(x\right) \Rightarrow x \in E_j^k$ para algún $j $.
+Fijado un entero $k> 0$, definimos los siguientes conjuntos:
+$$E_j^k := f^{-1}\left([(j-1)\cdot 2^{-k}, j\cdot 2^{-k}\right)$$
+Con dicha definición, es sencillo ver que los conjuntos son medibles, disjuntos y su unión queda como
+$$\bigcup_{j=1}^{k\cdot 2^k}E_j^k = \{x\in  \mathbb{R}^n: f(x) < k\}$$
+Definimos la siguiente función simple:
+$$\varphi := \sum_{j=1}^{k\cdot 2^k} \frac{j-1}{2^k} \chi_{E_j^k}$$
+Esto genera una sucesión de funciones creciente que denotamos por $\{\varphi_k\}_{k=1}^\infty \uparrow$.
+
+Luego, por la definición que se ha dado de los $E_j^k$, dado $x \in \mathbb{R}^n,\ \exists k\in \mathbb{N} : \forall k \ge k_0: k > f\left(x\right) \Rightarrow x \in E_j^k$ para algún $j $ y, por tanto:
 $$0 < f\left(x \right) - \varphi_k \left(x\right) < \frac{1}{2^k},\ \lim_{k \rightarrow \infty} \varphi_k\left(x\right) = f\left(x\right) $$
-Si $f$ es acotada, la convergencia es uniforme.
 \end{demo}
 
 \begin{prop}
-Si $f, g: \mathbb{R}^n \rightarrow \mathbb{R}$ medibles no negativas. Entonces:
-$$\int_{\mathbb{R}^n} \left(f + g\right)d \mu = \int_{\mathbb{R}^n} f d \mu = \int_{\mathbb{R}^n} g d \mu.$$
+Si $f, g: \mathbb{R}^n \rightarrow \mathbb{R}$ son funciones medibles no negativas, entonces la integral es aditiva, es decir:
+$$\int_{\mathbb{R}^n} \left(f + g\right) \ \dif{\mu} = \int_{\mathbb{R}^n} f \ \dif{\mu} = \int_{\mathbb{R}^n} g \ \dif{\mu}$$
 \end{prop}
 \begin{demo}
-Tenemos que:
-$$\int_{\mathbb{R}^n} \left(f + g\right) d \mu = \lim_{k \rightarrow \infty} \int_{\mathbb{R}^n} \left(\varphi_k + \psi_k\right) d \mu = \lim_{k \rightarrow \infty} \left( \int_{\mathbb{R}^n} \varphi_k d \mu + \int_{\mathbb{R}^n} \psi d \mu \right) = $$
-$$= \int_{\mathbb{R}^n} f d \mu + \int_{\mathbb{R}^n} g d \mu$$
+Por la proposición anterior, existen dos sucesiones $\{\varphi_k\}_{k=1}^\infty$ y $\{\psi_k\}_{k=1}^\infty$ convergentes a $f$ y a $g$ respectivamente. De este modo, es trivial comprobar que $\{\varphi_k + \psi_k\}_{k=1}^\infty$ converge a $f+g$ y por el Teorema de Convergencia Monótona, tenemos que
+$$\int_{\mathbb{R}^n}(f+g) \ \dif{\mu} = \lim_{k\rightarrow\infty} \int_{\mathbb{R}^n}(\varphi_k + \psi_k) \ \dif{\mu} = \lim_{k \rightarrow \infty} \left( \int_{\mathbb{R}^n} \varphi_k \ \dif{\mu} + \int_{\mathbb{R}^n} \psi \ \dif{\mu} \right) = \int_{\mathbb{R}^n} f \ \dif{\mu} + \int_{\mathbb{R}^n} g \ \dif{\mu}$$
 \end{demo}
 
 \begin{prop}
-Sea $f: \mathbb{R}^n \rightarrow \mathbb{R}$ medible no negativa. Entonces, si $c \ge 0$: 
-$$\int_{\mathbb{R}^n} \left(c f\right) d \mu = c \int_{\mathbb{R}^n}f d \mu.$$
+Sea $f: \mathbb{R}^n \rightarrow \mathbb{R}$ una función medible no negativa y $c\in \mathbb{R}^+$, entonces: 
+$$\int_{\mathbb{R}^n} \left(c f\right) \ \dif{\mu} = c \int_{\mathbb{R}^n}f \ \dif{\mu}$$
 \end{prop}
+\begin{demo}
+Completamente análoga a la anterior y se deja como ejercicio.
+\end{demo}
 
 \begin{theo}[Convergencia monótona para series]
-Sea $\{f_k\}_{n=1}^{\infty}$ medibles no negativas. Entonces: 
-$$\int_{\mathbb{R}^n} \left(\sum_{k=1}^{\infty} f_k \right) d \mu = \sum_{k=1}^{\infty} \int_{\mathbb{R}^n} f_k d \mu$$
+Sea $\{f_k\}_{n=1}^{\infty}$ una sucesión de funciones medibles no negativas, entonces: 
+$$\int_{\mathbb{R}^n} \left(\sum_{k=1}^{\infty} f_k \right) \ \dif{\mu} = \sum_{k=1}^{\infty}\left( \int_{\mathbb{R}^n} f_k \ \dif{\mu}\right)$$
 \end{theo}
 \begin{demo}
-Tenemos que:
-$$\int_{\mathbb{R}^n} \left(\sum_{k=1}^{\infty} f_k\right) d \mu = \int_{\mathbb{R}^n} \lim_{m \rightarrow \infty} \left(\sum_{k=1}^{m} f_k \right)d \mu = $$
-$$= \lim_{m \rightarrow \infty}\int_{\mathbb{R}^n} \left(\sum_{k=1}^{m} f_k\right) d \mu = \lim_{m \rightarrow \infty} \sum_{k=1}^{m} \int_{\mathbb{R}^n} f_k d \mu = \sum_{k=1}^{\infty} \int_{\mathbb{R}^n} f_k d \mu. $$
+La demostración es prácticamente consecuencia de los enunciados anteriores:
+$$\int_{\mathbb{R}^n} \left(\sum_{k=1}^{\infty} f_k\right) \ \dif{\mu} = \int_{\mathbb{R}^n} \lim_{m \rightarrow \infty} \left(\sum_{k=1}^{m} f_k \right)\ \dif{\mu} = \lim_{m \rightarrow \infty}\int_{\mathbb{R}^n} \left(\sum_{k=1}^{m} f_k\right) \ \dif{\mu} = $$
+$$=\lim_{m \rightarrow \infty} \sum_{k=1}^{m} \left(\int_{\mathbb{R}^n} f_k \ \dif{\mu}\right) = \sum_{k=1}^{\infty} \left(\int_{\mathbb{R}^n} f_k \ \dif{\mu}\right) $$
 \end{demo}
 
 \begin{lema}[De Fatou]
-Sea $\{f_k\}_{k=1}^{\infty}$ medibles no negativas. Entonces: 
-$$\int_{\mathbb{R}^n} \left( \liminf_{k \rightarrow \infty}f_k \right) d \mu \le \liminf_{k \rightarrow \infty} \int_{\mathbb{R}^n} f_k d \mu $$
+Sea $\{f_k\}_{k=1}^{\infty}$ una sucesión de funciones medibles no negativas, entonces: 
+$$\int_{\mathbb{R}^n} \left( \liminf_{k \rightarrow \infty}f_k \right) \ \dif{\mu} \le \liminf_{k \rightarrow \infty} \left(\int_{\mathbb{R}^n} f_k \ \dif{\mu}\right) $$
 \end{lema}
 \begin{demo}
-Sea $g_k = \inf_{m \ge k} f_m \ge 0$ medibles: $g_k \le g_{k + 1}$.
-$$\int_{\mathbb{R}^n} \left(\liminf_{k \rightarrow \infty}f_k \right) d \mu = \int_{\mathbb{R}^n} \left(\lim_{k \rightarrow \infty}g_k \right) d \mu = $$
-$$= \lim_{k \rightarrow \infty} \int_{\mathbb{R}^n} g_k d \mu = \liminf_{k \rightarrow \infty}\int_{\mathbb{R}^n} g_k d \mu \le \liminf_{k \rightarrow \infty} \int_{\mathbb{R}^n} f_k d \mu$$
+Definimos las funciones $g_k = \inf_{m \ge k} f_m \ge 0$ medibles de modo que estas forman una sucesión creciente $\{g_k\}_{k=1}^\infty\uparrow$. En consecuencia, basta ver que:
+$$\int_{\mathbb{R}^n} \left(\liminf_{k \rightarrow \infty}f_k \right) \ \dif{\mu} = \int_{\mathbb{R}^n} \left(\lim_{k \rightarrow \infty}g_k \right)\ \dif{\mu} =  \lim_{k \rightarrow \infty} \int_{\mathbb{R}^n} g_k \ \dif{\mu} = \liminf_{k \rightarrow \infty}\int_{\mathbb{R}^n} g_k \ \dif{\mu} \le \liminf_{k \rightarrow \infty} \int_{\mathbb{R}^n} f_k \ \dif{\mu}$$
 \end{demo}
 
-Si tenemos, $f$ no negativa, acotada: 
-$$\int_a^{\infty} f \left(x\right) dx = \lim_{M \rightarrow \infty} \int_a^M f \left(x\right) dx =$$
-$$\lim_{M \rightarrow \infty} = \lim_{m \rightarrow \infty} \int_a^{\infty} f \left(x\right) \chi_{\left[a, M\right]}dx = \lim_{m \rightarrow \infty} \int_{\left[a, +\infty\right]} f \chi_{\left[a, M\right]} d \mu = \int_{\left[a, +\infty\right]} f \chi_{\left[a, +\infty\right]} d \mu = \int_{\left[a, +\infty\right]} f d \mu. $$
-(\textit{Dibujo})
+\begin{prop}
+Las integrales impropias se soportan por la integral de Lebesque:
+\begin{align*}
+\int_a^\infty f(x) \ \dif{x} = \int_{[a, \infty)}f(x)\ \dif{\mu} & &\int_a^b f(x)\ \dif{x} = \int_{[a,b]} f(x) \ \dif{\mu}
+\end{align*}
+\end{prop}
+\begin{demo}
+\begin{itemize}
+\item Primera
+$$\int_a^{\infty} f \left(x\right) dx = \lim_{M \rightarrow \infty} \int_a^M f \left(x\right) dx = \lim_{m \rightarrow \infty} \int_a^{\infty} f \left(x\right) \chi_{\left[a, M\right]}dx = \lim_{m \rightarrow \infty} \int_{\left[a, +\infty\right]} f \chi_{\left[a, M\right]} d \mu =$$
+$$= \int_{\left[a, +\infty\right]} f \chi_{\left[a, +\infty\right]} d \mu = \int_{\left[a, +\infty\right]} f d \mu. $$
+\item Segunda
+$$\int_a^b f \left(x\right) dx = \lim_{k \rightarrow \infty}\int_a^{b - \frac{1}{k}} f \left(x\right) dx = \lim_{k \rightarrow \infty} \int_{\left[a, b - \frac{1}{k}\right]} f d \mu = \lim_{k \rightarrow \infty} \int_{\mathbb{R}} f \chi_{\left[a, b - \frac{1}{k}\right]} d \mu = \int_{\mathbb{R}} f \chi_{\left[a, b\right]} d \mu = \int_{\left[a, b\right]} f d \mu.$$
+\end{itemize}
+\end{demo}
 
-Sea:
-$$\int_a^b f \left(x\right) dx = \lim_{k \rightarrow \infty}\int_a^{b - \frac{1}{k}} f \left(x\right) dx = \lim_{k \rightarrow \infty} \int_{\left[a, b - \frac{1}{k}\right]} f d \mu =$$
-$$= \lim_{k \rightarrow \infty} \int_{\mathbb{R}} f \chi_{\left[a, b - \frac{1}{k}\right]} d \mu = \int_{\mathbb{R}} f \chi_{\left[a, b\right]} d \mu = \int_{\left[a, b\right]} f d \mu.$$
-
-\chapter*{Funciones integrables}%
+\chapter*{FUNCIONES INTEGRABLES}%
 \label{cha:funciones_integrables}
+Hasta ahora no hemos hecho más que definir la integral y las propiedades que tiene y todo ello mayoritariamente para funciones no negativas. En esta sección, el objetivo es ampliar las miras y dar una definición consistente con las propiedades ya vistas para funciones no negativas y así poder sacarle completamente partido al concepto de integral.
+
 \begin{defi}
-Sea $f: \mathbb{R}^{n} \rightarrow \mathbb{R}$ diremos que es integrables si: 
-$$\int_{\mathbb{R}^n} \vert f \vert d \mu < +\infty$$
+Sea $f: \mathbb{R}^{n} \rightarrow \mathbb{R}$ una función medible\footnote{No necesariamente negativa}, entonces diremos que es integrables si y sólo si: 
+$$\int_{\mathbb{R}^n} \vert f \vert \ \dif{\mu} < +\infty$$
 \end{defi}
 
-\begin{prop}
-Sea $f: \mathbb{R}^{n} \rightarrow \mathbb{R}$ y $f^+ = \max \{f, 0 \}$ y $f^- = -\min \{f, 0\}$
+\begin{defi}
+Dada una función medible $f: \mathbb{R}^{n} \rightarrow \mathbb{R}$, definimos:
+\begin{align*}
+f^+ := \max \{f, 0 \} & & f^- := -\min \{f, 0\}
+\end{align*}
+
 (\textit{Dibujo})
 
-Entonces:
+que verifican las siguientes propiedades:
 \begin{enumerate}
 \item $f^+ \; \land \; f^-$ son medibles y no negativas.
 \item $f^+ - f^- = f$. 
 \item $f^+ + f^- = \vert f \vert$
 \item $f^+ \le \vert f \vert\; \land \;f^- \le \vert f \vert$ 
 \end{enumerate}    
-\end{prop}
+\end{defi}
 
 \begin{prop}
-Si $f$ es integrable: 
-$$\int_{\mathbb{R}^n} f^+ d \mu \le \int_{\mathbb{R}^n} \vert f \vert d \mu < +\infty$$
-Análogamente: 
-$$\int_{\mathbb{R}^n} f^- d \mu < +\infty$$
+Si $f: \mathbb{R}^n\rightarrow\mathbb{R}$ es una función integrable, entonces $f^+$ y $f^-$ son integrables, es decir:
+\begin{align*}
+\int_{\mathbb{R}^n} f^+ \ \dif{\mu} < +\infty & & \int_{\mathbb{R}^n} f^- d \mu < +\infty
+\end{align*}
 \end{prop}
+\begin{demo}
+Basta con ver que ambas funciones están acotadas por el módulo de $f$ y, por tanto, si $f$ es integrable, estas también lo son.
+\end{demo}
 
-Por tanto, podemos definir: 
+En consecuencia, podemos dar una definición alternativa de la que se ha dado de función integrable que es completamente compatible e intercambiable con la que se ha dado anteriormente.
+
+\newpage
 \begin{defi}
-Si $f: \mathbb{R}^{n} \rightarrow \mathbb{R}$ es integrable definimos: 
-$$\int_{\mathbb{R}^n} f d \mu = \int_{\mathbb{R}^n} f^+ d \mu - \int_{\mathbb{R}^n} f^- d \mu $$
+Sea $f: \mathbb{R}^{n} \rightarrow \mathbb{R}$ una función integrable, entonces podemos expresar su integral como: 
+$$\int_{\mathbb{R}^n} f \ \dif{\mu} = \int_{\mathbb{R}^n} f^+ \ \dif{\mu} - \int_{\mathbb{R}^n} f^- \ \dif{\mu}$$
 \end{defi}
-Si tenemos $f: \left[a, b\right] \rightarrow \mathbb{R}$ integrable Riemann: $f = f^+ - f^-$ y 
-$$\int_a^b f dx = \int_a^b f^+ dx - \int_a^b f^- dx = \int_{\left[a, b\right]}f^+ d \mu - \int_{\left[a, b\right]} f^- d \mu = \int_{\left[a, b\right]}f d \mu$$
-
 
 \underline{Observación}
 
-Podríamos dar la misma definición que se dió para funciones arbitrarias de integrabilidad para funciones que toman valores en la recta ampliada, pero cabe observar que $A=\{x\in \mathbb{R}: |f(x)|< \infty\}$ tiene que tener medida 0 si es integrable dicha función.
-
-Esto es así puesto que $\mu(A) > 0 \Rightarrow \forall k \in \mathbb{N}: k\cdot \chi_A \leq |f| \Rightarrow \int_{\mathbb{R}^n} |f| \ d\mu \geq I(k\chi_A) = k \cdot \mu(A)$.
+Podríamos dar la misma definición de integrabilidad que se dió para funciones arbitrarias, pero ahora para funciones que toman valores en la recta ampliada. Sin embargo, cabe observar que $A=\{x\in \mathbb{R}: |f(x)|< \infty\}$ tiene que tener medida en caso de que dicha función sea integrable, puesto que:
+$$\mu(A) > 0 \Rightarrow \forall k \in \mathbb{N}: k\cdot \chi_A \leq |f| \Rightarrow \int_{\mathbb{R}^n} |f| \ d\mu \geq I(k\chi_A) = k \cdot \mu(A)$$
 
 \begin{prop}
 Supongamos que tenemos dos funciones $f,g: \mathbb{R}^n \rightarrow [-\infty, \infty]$ y tales que $f=g$ (c.t.p.), entonces tenemos que:
 $$f \mbox{ integrable }\Leftrightarrow g \mbox{ integrable}$$
-$$\int_{\mathbb{R}^n} f = \int_{\mathbb{R}^n} g $$
+Y además las integrales coinciden:
+$$\int_{\mathbb{R}^n} f \ \dif{\mu} = \int_{\mathbb{R}^n} g \ \dif{\mu}$$
 \end{prop}
 \begin{demo}
-Lo ha dicho de palabra y no me ha dado tiempo.
+Como ya lo tenemos demostrado para funciones no negativas, basta con trabajar con las funciones $f^+$ y $f^-$, es decir:
 $$f=g \ \mbox{c.t.p.}\Rightarrow \begin{cases}
 f^+ = g^+ \\ f^- = g^- 
-\end{cases} \ \mbox{c.t.p.}\Rightarrow \int f = \int f^+ - \int f^- = \int g^+ - \int g^- = \int g$$
+\end{cases} \mbox{c.t.p.}\Rightarrow \int f = \int f^+ - \int f^- = \int g^+ - \int g^- = \int g$$
 \end{demo}
 
 \begin{prop}
@@ -1024,52 +1042,52 @@ Son equivalentes:
 \end{itemize}
 \end{prop}
 \begin{demo}
-\item $f^+ \leq |f|$ y $f^- \leq |f|$
+\begin{itemize}
+\item FALTAN LOS OTRO DOS APARTADOS.
 \item $3)\rightarrow 1)$
-$$\int |f| = \int f^+ - \int f^- < \infty \Rightarrow f \mbox{ integrable}$$
+$$\int |f| = \int f^+ + \int f^- < \infty \Rightarrow f \mbox{ integrable}$$
+\end{itemize}
 \end{demo}
 
 \begin{lema}
-Sea $f$ una función integrable, si tenemos que $f = g- h$ con ambas funciones medibles, no negativas e integrables, entonces:
-$$\int f = \int g - \int h$$
+Sea $f$ una función integrable, si $f = g - h$ con ambas funciones medibles, no negativas e integrables, entonces se verifica:
+$$\int f \ \dif{\mu}= \int g \ \dif{\mu} - \int h \ \dif{\mu}$$
 \end{lema}
 \begin{demo}
-Suponemos sin pérdida de generalidad que $f,g: \mathbb{R}^n\rightarrow \mathbb{R}$ por lo explicado en la observación de abajo. De este modo:
-$$f = f^+ - f^- = g-h\Rightarrow f^+ + h = f^- + g \Rightarrow \int f^+ + \int h = \int (f^+ + h) = \int (f^- + g) 0 \int f^- + \int g$$
-$$\int f^+ - \int f^- = \int g - \int h$$
+Suponemos sin pérdida de generalidad que las funciones toman valores en $\bar{\mathbb{R}}$, puesto que más adelante se explica como generalizar dicho lema. De este modo, podemos expresar $f$ como:
+$$f = f^+ - f^- = g-h\Rightarrow f^+ + h = f^- + g$$
+Como todo son funciones no negativas e integrables, la integral de la suma es la suma de las integrales, por tanto:
+$$\int f^+ + \int h = \int (f^+ + h) = \int (f^- + g)  = \int f^- + \int g \Rightarrow \int f^+ - \int f^- = \int g - \int h$$
 \end{demo}
 
 \underline{Observación}
 
-Este lema es válido para funciones que toman valores en $\bar{\mathbb{R}}$ porque como el conjunto donde los valores no son reales es de medida nula, entonces es igual en c.t.p. a la función de la hipótesis y se tiene que se cumple por la proposición anterior.
+Este lema es válido para funciones que toman valores en $\bar{\mathbb{R}}$ porque el conjunto donde los valores no son reales es de medida nula. Por tanto, las funciones son iguales en c.t.p. a las funciones de la hipótesis y para esas la demostración es válida, luego para estas también.
 
-\begin{theo}
-Supongamos que tenemos dos funciones $f,g: \mathbb{R}^n \rightarrow \mathbb{R}$ ambas integrables, entonces tenemos que:
-$$\int (f+g) = \int f + \int g$$
-Del mismo modo, para un $\alpha \in \mathbb{R}$, tenemos que:
-$$\int (\alpha \cdot f) = \alpha \int f$$
+\begin{theo}[Operaciones de Integrabilidad]
+Sean $f,g: \mathbb{R}^n \rightarrow \mathbb{R}$ dos funciones integrables, entonces la integral de la suma es:
+$$\int (f+g) \ \dif{\mu} = \int f \ \dif{\mu} + \int g \ \dif{\mu}$$
+Del mismo modo, para $\alpha \in \mathbb{R}$ la integral del producto por $\alpha$ es:
+$$\int (\alpha \cdot f) \ \dif{\mu} = \alpha \int f \ \dif{\mu}$$
 \end{theo}
 \begin{demo}
-Veamos que $|f+g|\leq |f| + |g|$ y como ambas son funciones no negativas, le podemos aplicar el lema:
+Por la desigualdad triangular, $|f+g|\leq |f| + |g|$ y como ambas son funciones son no negativas, se les puede aplicar el lema:
 $$\int |f+g| \leq \int |f| + \int |g| < \infty $$
-De este modo, ya sabemos que al menos es integrable la suma, ahora veamos que la integral es justo la suma de las integrales.
+De este modo, ya sabemos que al menos la suma es integrable, ahora veamos que la integral es justo la suma de las integrales. Para ello, expresamos la suma de la siguiente forma:
 $$f+ g = f^+ - f^- + g^+ - g^- = (f^+ + g^+) - (f^- + g^-)$$
 Como dichas funciones son  no negativas y son integrables, tenemos que
 $$\int (f+g) = \int (f^+ + g^+) - \int (f^- + g^- ) = \int f^+ + \int g^+ - \int f^- +\int g^-  = \int f + \int g$$
 Cabe observar que es necesario el lema para probar dicha demostración puesto que no se tiene en general la igualdad:
 $$f^+ + g^+ = (f+g)^+$$
-Ni el análogo con los menos.
 \end{demo}
 
 \begin{theo}[De convergencia dominada]
-Sean $\{f_k\}_{k=1}^{\infty}: f_k: \mathbb{R}^n \rightarrow \mathbb{R}$ medibles, $g: \mathbb{R}^n \rightarrow \left[0, +\infty\right]$ integrable $: \vert f_k \vert \le g$ c.t.p. 
-
-Si $\lim_{k \rightarrow \infty}f_k = f $ c.t.p, entonces: 
-$$\int_{\mathbb{R}^n} f \dif{\mu} = \lim_{k \rightarrow \infty} \int_{\mathbb{R}^n} f_k \dif{\mu}. $$
+Sea $\{f_k\}_{k=1}^{\infty}\rightarrow f$ una sucesión convergente c.t.p. a un a función $f$, donde las funciones $f_k: \mathbb{R}^n \rightarrow \mathbb{R}$ son medibles y $g: \mathbb{R}^n \rightarrow \left[0, +\infty\right]$ una función integrable que acota a $f$ c.t.p., es decir, $\vert f_k \vert \le g$ c.t.p., entonces:
+$$\int_{\mathbb{R}^n} f \ \dif{\mu} = \lim_{k \rightarrow \infty} \int_{\mathbb{R}^n} f_k \ \dif{\mu}$$
 \end{theo}
 \begin{demo}
 Sabemos que $\vert f \vert \le g$ c.t.p $\Rightarrow$
-$$\int_{\mathbb{R}^n} \vert f \vert \dif{\mu} \le \int_{\mathbb{R}^n} g \dif{\mu} < +\infty$$
+$$\int_{\mathbb{R}^n} \vert f \vert \ \dif{\mu} \le \int_{\mathbb{R}^n} g \ \dif{\mu} < +\infty$$
 Por lo que $f$ es integrable (por la misma razón $f_k$ son integrables).
 
 Como $\vert f_k \vert \le g \Rightarrow g + f_k \ge 0 \Rightarrow$
