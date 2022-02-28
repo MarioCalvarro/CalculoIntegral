@@ -81,6 +81,8 @@
 \DeclareMathOperator{\dom}{dom}
 \DeclareMathOperator{\img}{img}
 
+\newcommand{\dif}[1]{ d#1}
+
 \begin{document}
 \maketitle
 \chapter*{CONCEPTO DE MEDIDA}%
@@ -899,5 +901,288 @@ $$\int_a^b f\left(x\right)dx = \sup_{P \in \wp} L\left(f, P\right) \Rightarrow \
 $$= \lim_{k\rightarrow\infty} \sum_{S \in P_k} \inf \{f\left(x\right) : x \in S\}\mu\left(S\right) = \lim_{k\rightarrow\infty} \int_{\left[a, b\right]}\left(\underbrace{\sum m_S \left(f\right) \cdot \chi_S}_{\text{funcion simple}}\right) \ d \mu = \int_{\left[a, b\right]}\lim_{k\rightarrow\infty} f_k \ d \mu = \int_{\left[a, b\right]}f \ d \mu$$
 Donde $f_k = \sum m_S\left(f\right) \chi_S$ y vemos que por ser crecientes las particiones que hemos tomado, dicha sucesión también lo es y por ello podemos aplicar el teorema.
 \end{demo}
+
+\begin{prop}
+Sea $f: \mathbb{R}^n \rightarrow \mathbb{R}^n$ medible no negativa, entonces $\exists \{\varphi_k\}_{k=1}^{\infty}$ sucesión de funciones simples tal que $\{\varphi_k\}_{k=1}^\infty \uparrow f $ es creciente y converge \textbf{puntualmente}\footnote{Si la función $f$ es acotada, entonces la convergencia es \textbf{uniforme}} a $f$.
+\end{prop}
+\begin{demo}
+(\textit{Dibujo}) 
+Fijado un entero $k> 0$, definimos los siguientes conjuntos:
+$$E_j^k := f^{-1}\left([(j-1)\cdot 2^{-k}, j\cdot 2^{-k}\right)$$
+Con dicha definición, es sencillo ver que los conjuntos son medibles, disjuntos y su unión queda como
+$$\bigcup_{j=1}^{k\cdot 2^k}E_j^k = \{x\in  \mathbb{R}^n: f(x) < k\}$$
+Definimos la siguiente función simple:
+$$\varphi := \sum_{j=1}^{k\cdot 2^k} \frac{j-1}{2^k} \chi_{E_j^k}$$
+Esto genera una sucesión de funciones creciente que denotamos por $\{\varphi_k\}_{k=1}^\infty \uparrow$.
+
+Luego, por la definición que se ha dado de los $E_j^k$, dado $x \in \mathbb{R}^n,\ \exists k\in \mathbb{N} : \forall k \ge k_0: k > f\left(x\right) \Rightarrow x \in E_j^k$ para algún $j $ y, por tanto:
+$$0 < f\left(x \right) - \varphi_k \left(x\right) < \frac{1}{2^k},\ \lim_{k \rightarrow \infty} \varphi_k\left(x\right) = f\left(x\right) $$
+\end{demo}
+
+\begin{prop}
+Si $f, g: \mathbb{R}^n \rightarrow \mathbb{R}$ son funciones medibles no negativas, entonces la integral es aditiva, es decir:
+$$\int_{\mathbb{R}^n} \left(f + g\right) \ \dif{\mu} = \int_{\mathbb{R}^n} f \ \dif{\mu} = \int_{\mathbb{R}^n} g \ \dif{\mu}$$
+\end{prop}
+\begin{demo}
+Por la proposición anterior, existen dos sucesiones $\{\varphi_k\}_{k=1}^\infty$ y $\{\psi_k\}_{k=1}^\infty$ convergentes a $f$ y a $g$ respectivamente. De este modo, es trivial comprobar que $\{\varphi_k + \psi_k\}_{k=1}^\infty$ converge a $f+g$ y por el Teorema de Convergencia Monótona, tenemos que
+$$\int_{\mathbb{R}^n}(f+g) \ \dif{\mu} = \lim_{k\rightarrow\infty} \int_{\mathbb{R}^n}(\varphi_k + \psi_k) \ \dif{\mu} = \lim_{k \rightarrow \infty} \left( \int_{\mathbb{R}^n} \varphi_k \ \dif{\mu} + \int_{\mathbb{R}^n} \psi \ \dif{\mu} \right) = \int_{\mathbb{R}^n} f \ \dif{\mu} + \int_{\mathbb{R}^n} g \ \dif{\mu}$$
+\end{demo}
+
+\begin{prop}
+Sea $f: \mathbb{R}^n \rightarrow \mathbb{R}$ una función medible no negativa y $c\in \mathbb{R}^+$, entonces: 
+$$\int_{\mathbb{R}^n} \left(c f\right) \ \dif{\mu} = c \int_{\mathbb{R}^n}f \ \dif{\mu}$$
+\end{prop}
+\begin{demo}
+Completamente análoga a la anterior y se deja como ejercicio.
+\end{demo}
+
+\begin{theo}[Convergencia monótona para series]
+Sea $\{f_k\}_{n=1}^{\infty}$ una sucesión de funciones medibles no negativas, entonces: 
+$$\int_{\mathbb{R}^n} \left(\sum_{k=1}^{\infty} f_k \right) \ \dif{\mu} = \sum_{k=1}^{\infty}\left( \int_{\mathbb{R}^n} f_k \ \dif{\mu}\right)$$
+\end{theo}
+\begin{demo}
+La demostración es prácticamente consecuencia de los enunciados anteriores:
+$$\int_{\mathbb{R}^n} \left(\sum_{k=1}^{\infty} f_k\right) \ \dif{\mu} = \int_{\mathbb{R}^n} \lim_{m \rightarrow \infty} \left(\sum_{k=1}^{m} f_k \right)\ \dif{\mu} = \lim_{m \rightarrow \infty}\int_{\mathbb{R}^n} \left(\sum_{k=1}^{m} f_k\right) \ \dif{\mu} = $$
+$$=\lim_{m \rightarrow \infty} \sum_{k=1}^{m} \left(\int_{\mathbb{R}^n} f_k \ \dif{\mu}\right) = \sum_{k=1}^{\infty} \left(\int_{\mathbb{R}^n} f_k \ \dif{\mu}\right) $$
+\end{demo}
+
+\begin{lema}[de Fatou]
+Sea $\{f_k\}_{k=1}^{\infty}$ una sucesión de funciones medibles no negativas, entonces: 
+$$\int_{\mathbb{R}^n} \left( \liminf_{k \rightarrow \infty}f_k \right) \ \dif{\mu} \le \liminf_{k \rightarrow \infty} \left(\int_{\mathbb{R}^n} f_k \ \dif{\mu}\right) $$
+\end{lema}
+\begin{demo}
+Definimos las funciones $g_k = \inf_{m \ge k} f_m \ge 0$ medibles de modo que estas forman una sucesión creciente $\{g_k\}_{k=1}^\infty\uparrow$. En consecuencia, basta ver que:
+$$\int_{\mathbb{R}^n} \left(\liminf_{k \rightarrow \infty}f_k \right) \ \dif{\mu} = \int_{\mathbb{R}^n} \left(\lim_{k \rightarrow \infty}g_k \right)\ \dif{\mu} =  \lim_{k \rightarrow \infty} \int_{\mathbb{R}^n} g_k \ \dif{\mu} = \liminf_{k \rightarrow \infty}\int_{\mathbb{R}^n} g_k \ \dif{\mu} \le \liminf_{k \rightarrow \infty} \int_{\mathbb{R}^n} f_k \ \dif{\mu}$$
+\end{demo}
+
+\begin{prop}
+Las integrales impropias se soportan por la integral de Lebesque:
+\begin{align*}
+\int_a^\infty f(x) \ \dif{x} = \int_{[a, \infty)}f(x)\ \dif{\mu} & &\int_a^b f(x)\ \dif{x} = \int_{[a,b]} f(x) \ \dif{\mu}
+\end{align*}
+\end{prop}
+\begin{demo}
+\begin{itemize}
+\item Primera
+$$\int_a^{\infty} f \left(x\right) dx = \lim_{M \rightarrow \infty} \int_a^M f \left(x\right) dx = \lim_{m \rightarrow \infty} \int_a^{\infty} f \left(x\right) \chi_{\left[a, M\right]}dx = \lim_{m \rightarrow \infty} \int_{\left[a, +\infty\right]} f \chi_{\left[a, M\right]} d \mu =$$
+$$= \int_{\left[a, +\infty\right]} f \chi_{\left[a, +\infty\right]} d \mu = \int_{\left[a, +\infty\right]} f d \mu. $$
+\item Segunda
+$$\int_a^b f \left(x\right) dx = \lim_{k \rightarrow \infty}\int_a^{b - \frac{1}{k}} f \left(x\right) dx = \lim_{k \rightarrow \infty} \int_{\left[a, b - \frac{1}{k}\right]} f d \mu = \lim_{k \rightarrow \infty} \int_{\mathbb{R}} f \chi_{\left[a, b - \frac{1}{k}\right]} d \mu = \int_{\mathbb{R}} f \chi_{\left[a, b\right]} d \mu = \int_{\left[a, b\right]} f d \mu.$$
+\end{itemize}
+\end{demo}
+
+\chapter*{FUNCIONES INTEGRABLES}%
+\label{cha:funciones_integrables}
+Hasta ahora no hemos hecho más que definir la integral y las propiedades que tiene y todo ello mayoritariamente para funciones no negativas. En esta sección, el objetivo es ampliar las miras y dar una definición consistente con las propiedades ya vistas para funciones no negativas y así poder sacarle completamente partido al concepto de integral.
+
+\begin{defi}
+Sea $f: \mathbb{R}^{n} \rightarrow \mathbb{R}$ una función medible\footnote{No necesariamente negativa}, entonces diremos que es integrables si y sólo si: 
+$$\int_{\mathbb{R}^n} \vert f \vert \ \dif{\mu} < +\infty$$
+\end{defi}
+
+\begin{defi}
+Dada una función medible $f: \mathbb{R}^{n} \rightarrow \mathbb{R}$, definimos:
+\begin{align*}
+f^+ := \max \{f, 0 \} & & f^- := -\min \{f, 0\}
+\end{align*}
+
+(\textit{Dibujo})
+
+que verifican las siguientes propiedades:
+\begin{enumerate}
+\item $f^+ \; \land \; f^-$ son medibles y no negativas.
+\item $f^+ - f^- = f$. 
+\item $f^+ + f^- = \vert f \vert$
+\item $f^+ \le \vert f \vert\; \land \;f^- \le \vert f \vert$ 
+\end{enumerate}    
+\end{defi}
+
+\begin{prop}
+Si $f: \mathbb{R}^n\rightarrow\mathbb{R}$ es una función integrable, entonces $f^+$ y $f^-$ son integrables, es decir:
+\begin{align*}
+\int_{\mathbb{R}^n} f^+ \ \dif{\mu} < +\infty & & \int_{\mathbb{R}^n} f^- d \mu < +\infty
+\end{align*}
+\end{prop}
+\begin{demo}
+Basta con ver que ambas funciones están acotadas por el módulo de $f$ y, por tanto, si $f$ es integrable, estas también lo son.
+\end{demo}
+
+En consecuencia, podemos dar una definición alternativa de la que se ha dado de función integrable que es completamente compatible e intercambiable con la que se ha dado anteriormente.
+
+\newpage
+\begin{defi}
+Sea $f: \mathbb{R}^{n} \rightarrow \mathbb{R}$ una función integrable, entonces podemos expresar su integral como: 
+$$\int_{\mathbb{R}^n} f \ \dif{\mu} = \int_{\mathbb{R}^n} f^+ \ \dif{\mu} - \int_{\mathbb{R}^n} f^- \ \dif{\mu}$$
+\end{defi}
+
+\underline{Observación}
+
+Podríamos dar la misma definición de integrabilidad que se dió para funciones arbitrarias, pero ahora para funciones que toman valores en la recta ampliada. Sin embargo, cabe observar que $A=\{x\in \mathbb{R}: |f(x)|< \infty\}$ tiene que tener medida en caso de que dicha función sea integrable, puesto que:
+$$\mu(A) > 0 \Rightarrow \forall k \in \mathbb{N}: k\cdot \chi_A \leq |f| \Rightarrow \int_{\mathbb{R}^n} |f| \ d\mu \geq I(k\chi_A) = k \cdot \mu(A)$$
+
+\begin{prop}
+Supongamos que tenemos dos funciones $f,g: \mathbb{R}^n \rightarrow [-\infty, \infty]$ y tales que $f=g$ (c.t.p.), entonces tenemos que:
+$$f \mbox{ integrable }\Leftrightarrow g \mbox{ integrable}$$
+Y además las integrales coinciden:
+$$\int_{\mathbb{R}^n} f \ \dif{\mu} = \int_{\mathbb{R}^n} g \ \dif{\mu}$$
+\end{prop}
+\begin{demo}
+Como ya lo tenemos demostrado para funciones no negativas, basta con trabajar con las funciones $f^+$ y $f^-$, es decir:
+$$f=g \ \mbox{c.t.p.}\Rightarrow \begin{cases}
+f^+ = g^+ \\ f^- = g^- 
+\end{cases} \mbox{c.t.p.}\Rightarrow \int f = \int f^+ - \int f^- = \int g^+ - \int g^- = \int g$$
+\end{demo}
+
+\begin{prop}
+Son equivalentes:
+\begin{itemize}
+\item $f$ integrable
+\item $|f|$ integrable
+\item $f^+$ y $f^-$ integrables
+\end{itemize}
+\end{prop}
+\begin{demo}
+\begin{itemize}
+\item FALTAN LOS OTRO DOS APARTADOS.
+\item $3)\rightarrow 1)$
+$$\int |f| = \int f^+ + \int f^- < \infty \Rightarrow f \mbox{ integrable}$$
+\end{itemize}
+\end{demo}
+
+\begin{lema}
+Sea $f$ una función integrable, si $f = g - h$ con ambas funciones medibles, no negativas e integrables, entonces se verifica:
+$$\int f \ \dif{\mu}= \int g \ \dif{\mu} - \int h \ \dif{\mu}$$
+\end{lema}
+\begin{demo}
+Suponemos sin pérdida de generalidad que las funciones toman valores en $\bar{\mathbb{R}}$, puesto que más adelante se explica como generalizar dicho lema. De este modo, podemos expresar $f$ como:
+$$f = f^+ - f^- = g-h\Rightarrow f^+ + h = f^- + g$$
+Como todo son funciones no negativas e integrables, la integral de la suma es la suma de las integrales, por tanto:
+$$\int f^+ + \int h = \int (f^+ + h) = \int (f^- + g)  = \int f^- + \int g \Rightarrow \int f^+ - \int f^- = \int g - \int h$$
+\end{demo}
+
+\underline{Observación}
+
+Este lema es válido para funciones que toman valores en $\bar{\mathbb{R}}$ porque el conjunto donde los valores no son reales es de medida nula. Por tanto, las funciones son iguales en c.t.p. a las funciones de la hipótesis y para esas la demostración es válida, luego para estas también.
+
+\begin{theo}[Operaciones de Integrabilidad]
+Sean $f,g: \mathbb{R}^n \rightarrow \mathbb{R}$ dos funciones integrables, entonces la integral de la suma es:
+$$\int (f+g) \ \dif{\mu} = \int f \ \dif{\mu} + \int g \ \dif{\mu}$$
+Del mismo modo, para $\alpha \in \mathbb{R}$ la integral del producto por $\alpha$ es:
+$$\int (\alpha \cdot f) \ \dif{\mu} = \alpha \int f \ \dif{\mu}$$
+\end{theo}
+\begin{demo}
+Por la desigualdad triangular, $|f+g|\leq |f| + |g|$ y como ambas son funciones son no negativas, se les puede aplicar el lema:
+$$\int |f+g| \leq \int |f| + \int |g| < \infty $$
+De este modo, ya sabemos que al menos la suma es integrable, ahora veamos que la integral es justo la suma de las integrales. Para ello, expresamos la suma de la siguiente forma:
+$$f+ g = f^+ - f^- + g^+ - g^- = (f^+ + g^+) - (f^- + g^-)$$
+Como dichas funciones son  no negativas y son integrables, tenemos que
+$$\int (f+g) = \int (f^+ + g^+) - \int (f^- + g^- ) = \int f^+ + \int g^+ - \int f^- +\int g^-  = \int f + \int g$$
+Cabe observar que es necesario el lema para probar dicha demostración puesto que no se tiene en general la igualdad:
+$$f^+ + g^+ = (f+g)^+$$
+\end{demo}
+
+\begin{theo}[De convergencia dominada]
+Sea $\{f_k\}_{k=1}^{\infty}\rightarrow f$ una sucesión convergente c.t.p. a un a función $f$, donde las funciones $f_k: \mathbb{R}^n \rightarrow \mathbb{R}$ son medibles y $g: \mathbb{R}^n \rightarrow \left[0, +\infty\right]$ una función integrable que acota a $f$ c.t.p., es decir, $\vert f_k \vert \le g$ c.t.p., entonces:
+$$\int_{\mathbb{R}^n} f \ \dif{\mu} = \lim_{k \rightarrow \infty} \int_{\mathbb{R}^n} f_k \ \dif{\mu}$$
+\end{theo}
+\begin{demo}
+Sabemos que $\vert f \vert \le g$ c.t.p, luego tenemos que:
+$$\int_{\mathbb{R}^n} \vert f \vert \ \dif{\mu} \le \int_{\mathbb{R}^n} g \ \dif{\mu} < +\infty$$
+Por lo que ya sabemos que al menos $f$ es integrable (y por la misma razón las $f_k$ son integrables).
+
+Como $\vert f_k \vert \le g \Rightarrow g + f_k \ge 0$, de este modo formamos la sucesión de funciones $\{g + f_k\}_{k=1}^{\infty}$ a la que podemos aplicar el lema de Fatou: 
+$$\int_{\mathbb{R}^n} f \ \dif{\mu} + \int_{\mathbb{R}^n} g \ \dif{\mu} = \int_{\mathbb{R}^n} \left(f + g\right) \ \dif{\mu} = \int_{\mathbb{R}^n} \lim_{k \rightarrow \infty} \left(f_k + g\right) \ \dif{\mu} =\int_{\mathbb{R}^n} \liminf_{k \rightarrow \infty} \left(f_k + g\right)  \ \dif{\mu} \leq$$
+$$ \stackrel{Fatou}{\le} \liminf_{k \rightarrow \infty}\int_{\mathbb{R}^n} \left(f_k + g\right) \ \dif{\mu} = \liminf_{k \rightarrow \infty} \left( \int_{\mathbb{R}^n} f_k \ \dif{\mu} + \int_{\mathbb{R}^n} g \ \dif{\mu} \right) = \left(\liminf_{k \rightarrow \infty} \int_{\mathbb{R}^n} f_k \ \dif{\mu}  \right) + \int_{\mathbb{R}^n} g \ \dif{\mu}$$
+Luego ya tenemos la desigualdad
+$$\int_{\mathbb{R}^n} f \ \dif{\mu} \le \liminf_{k \rightarrow \infty}\left( \int_{\mathbb{R}^n} f_k \ \dif{\mu}\right)$$
+De forma análoga, tomamos la sucesión $\{-f_k + g\}_{k=1}^{\infty}$ y entonces:
+$$\int_{\mathbb{R}^n} \left(-f\right) \ \dif{\mu} \le \liminf_{k \rightarrow \infty} \int_{\mathbb{R}^n} \left(-f_k\right) \ \dif{\mu} \Rightarrow - \int_{\mathbb{R}^n} f \dif{\mu} \le \liminf_{k \rightarrow \infty} \left(-\int_{\mathbb{R}^n} f_k \ \dif{\mu} \right) = -\limsup_{k \rightarrow \infty} \left(\int_{\mathbb{R}^n} f_k \ \dif{\mu} \right) \Rightarrow$$
+$$\limsup_{k \rightarrow \infty} \int_{\mathbb{R}^n} f_k \ \dif{\mu} \le \int_{\mathbb{R}^n} f \ \dif{\mu} $$
+Como por la convergencia, se tiene que el límite superior e inferior coinciden con el límite global, se tiene la igualdad.
+\end{demo}
+
+\begin{defi}[Secciones de funciones]
+Sea $f: \mathbb{R}^{n} \times \mathbb{R}^n \rightarrow \mathbb{R}$ una función que expresaremos como $f \left(x, y\right)$ donde $x \in \mathbb{R}^n$ y $y \in \mathbb{R}^n$, llamamos \textbf{secciones} de $f$ a:
+$$\forall x \in \mathbb{R}^n, \ f_x: \mathbb{R}^n \rightarrow \mathbb{R} \mbox{ donde } f_x \left(y\right) = f \left(x, y\right)$$
+\end{defi}
+
+\begin{theo}[De Tonelli]
+Sea $f: \mathbb{R}^{n} \times \mathbb{R}^m \rightarrow \left[0, +\infty\right)$ una función medible, entonces: 
+\begin{enumerate}
+    \item Las $f_x$ son medibles c.t.p de $x\in \mathbb{R}^n$.
+    \item La función $F: \mathbb{R}^{n} \rightarrow \left[0, +\infty\right]$ es medible, donde se define como:
+        $$F \left(x\right) = \int_{\mathbb{R}^m} f_x \ \dif{\mu_m} $$
+    \item Se puede dividir la integral en secciones, es decir:
+        $$\int_{\mathbb{R}^n \times \mathbb{R}^m} f \ \dif{\mu_{nm}} = \int_{\mathbb{R}^n} F \ \dif{\mu_n} $$
+    expresado de forma más intuitiva:
+    $$\int_{\mathbb{R}^n \times \mathbb{R}^m} f \left(x, y\right) \ \dif{x}\ \dif{y} = \int_{\mathbb{R}^n}\left(\int_{\mathbb{R}^m} f \left(x, y\right) \dif{y} \right)\dif{x} = \int_{\mathbb{R}^m}\left(\int_{\mathbb{R}^n} f \left(x, y\right) \dif{x} \right)\dif{y}$$
+\end{enumerate}
+\end{theo}
+
+\begin{defi}[Secciones de conjuntos]
+Si tenemos un conjunto $A \subset \mathbb{R}^n \times \mathbb{R}^m$, podemos definir su \textbf{sección} como:
+$$A_x = \{y \in \mathbb{R}^m: \left(x, y\right) \in A\}$$
+\end{defi}
+\begin{prop}[Principio de Cavalieri]
+Sea $A \subset \mathbb{R}^n \times \mathbb{R}^m$ medible, entonces: 
+\begin{enumerate}
+    \item Los $A_x$ son medibles c.t.p $x\in \mathbb{R}^n$.
+    \item La función $F: \mathbb{R}^n \rightarrow \left[0, +\infty\right]$ es medible y se define como:
+    $$F \left(x\right) = \mu_m \left(A_x\right)$$
+    \item $\mu_{n+m} \left(A\right) = \int_{\mathbb{R}^n} \mu_m \left(A_x\right) \dif{\mu_n} $
+\end{enumerate}
+\end{prop}
+
+$$DIBUJO DE LO QUE SIGNFICAN LAS SECCIONES$$
+
+\underline{Ejemplo}:
+
+Sea $A = \{ \left(x, 0\right) \in \mathbb{R}^2: x \in E\}$
+(\textit{Dibujo})
+
+Si tomamos $E \subset \mathbb{R}$ no medible: 
+$$A_y = \begin{cases}
+    \emptyset \text{ si } y \neq 0\\
+    E \text{ si } y = 0
+\end{cases}$$
+Por lo que c.t.p es necesario.
+
+\begin{coro}
+Si la medida del conjunto es nula, entonces la medida de casi todas las secciones también lo es.
+$$\mu_{n + m} \left(A\right) = 0 \Rightarrow \mu_m \left(A_x\right) = 0 \text{ c.t.p } x$$
+\end{coro}
+
+\begin{lema}
+Si $f$ y $g$ verifican el Tª de Tonelli y $a, b \in \mathbb{R}^+$, entonces la composición lineal de las funciones también, es decir, $af + bg$ cumple el Tª de Tonelli.
+\end{lema}
+\begin{demo}
+Se ha de demostrar que en primer lugar, se tiene que:
+$$\left(af + bg\right)_x = af_x + bg_x$$
+Esta combinación lineal será medible, por serlo de funciones medibles y, por tanto:
+$$F_{af + bg} = aF_f + bF_g$$ 
+\end{demo}
+
+\begin{lema}
+Si una sucesión de funciones $\{f_k\}_{k=1}^{\infty}$ convergente a $f$ cumple el Tª de Tonelli, entonces $f$ cumple el Tª Tonelli. 
+\end{lema}
+\begin{demo}
+\begin{enumerate}
+    \item Primero, vemos que
+    $$f_x = \lim_{k \rightarrow \infty} \left(f_k\right)_x,\ \left(f_k\right)_x \uparrow f_x $$
+    que es medible por ser límite de medibles
+    \item En segundo lugar, como: 
+    $$F = \lim_{k \rightarrow \infty}F_k,\ \{F_k\}_{k=1}^{\infty} \uparrow F \Rightarrow\lim_{k \rightarrow \infty} \int_{\mathbb{R}^m} \left(f_k\right)_x \dif{\mu} = \int_{\mathbb{R}^m} f_x \dif{\mu} $$
+    \item Por último, tenemos que: 
+    $$\int_{\mathbb{R}^n} F \dif{\mu} = \int_{\mathbb{R}^n} \lim_{k \rightarrow \infty}F_k  \dif{\mu} = \lim_{k \rightarrow \infty}\int_{\mathbb{R}^n} F_k \dif{\mu} = \lim_{k \rightarrow \infty} \int_{\mathbb{R}^n \times \mathbb{R}^m} f_k  \dif{\mu} = \int_{\mathbb{R}^n} f \dif{\mu}  $$
+\end{enumerate}
+\end{demo}
+
+Como consecuencia de estos lemas el principio de Cavalieri es equivalente al teorema de Tonelli, es decir, basta con probar este principio para probar el teorema de Tonelli.
+
+\underline{Ejemplo}: 
+
+Si $A \subset \mathbb{R}^n \times \mathbb{R}^m$:
+$$\int_A f \left(x, y\right) \dif{x} \dif{y} = \int_{\mathbb{R}^n \times \mathbb{R}^m} f \left(x, y\right) \chi_A \left(x, y\right) \dif{x}\dif{y} = $$
+$$\int_{\mathbb{R}^n} \left(\int_{\mathbb{R}^m} f \left(x, y\right) \chi_A \left(y\right) \dif{y} \right) \dif{x} = \int_{\mathbb{R}^n} \left(\int_{A_x} f \left(x, y\right) \dif{y}\right) \dif{x}.$$
 
 \end{document}
