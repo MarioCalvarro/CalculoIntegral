@@ -1,4 +1,4 @@
--\documentclass[10pt,a4paper,openright]{book}
+\documentclass[10pt,a4paper,openright]{book}
 
 \title{CÁLCULO INTEGRAL}
 \author{Juan Diego Barrado Daganzo, Mario Calvarro Marines \\ e Iker Muñoz Martínez}
@@ -946,7 +946,7 @@ $$\int_{\mathbb{R}^n} \left(\sum_{k=1}^{\infty} f_k\right) \ \dif{\mu} = \int_{\
 $$=\lim_{m \rightarrow \infty} \sum_{k=1}^{m} \left(\int_{\mathbb{R}^n} f_k \ \dif{\mu}\right) = \sum_{k=1}^{\infty} \left(\int_{\mathbb{R}^n} f_k \ \dif{\mu}\right) $$
 \end{demo}
 
-\begin{lema}[De Fatou]
+\begin{lema}[de Fatou]
 Sea $\{f_k\}_{k=1}^{\infty}$ una sucesión de funciones medibles no negativas, entonces: 
 $$\int_{\mathbb{R}^n} \left( \liminf_{k \rightarrow \infty}f_k \right) \ \dif{\mu} \le \liminf_{k \rightarrow \infty} \left(\int_{\mathbb{R}^n} f_k \ \dif{\mu}\right) $$
 \end{lema}
@@ -1086,51 +1086,54 @@ Sea $\{f_k\}_{k=1}^{\infty}\rightarrow f$ una sucesión convergente c.t.p. a un 
 $$\int_{\mathbb{R}^n} f \ \dif{\mu} = \lim_{k \rightarrow \infty} \int_{\mathbb{R}^n} f_k \ \dif{\mu}$$
 \end{theo}
 \begin{demo}
-Sabemos que $\vert f \vert \le g$ c.t.p $\Rightarrow$
+Sabemos que $\vert f \vert \le g$ c.t.p, luego tenemos que:
 $$\int_{\mathbb{R}^n} \vert f \vert \ \dif{\mu} \le \int_{\mathbb{R}^n} g \ \dif{\mu} < +\infty$$
-Por lo que $f$ es integrable (por la misma razón $f_k$ son integrables).
+Por lo que ya sabemos que al menos $f$ es integrable (y por la misma razón las $f_k$ son integrables).
 
-Como $\vert f_k \vert \le g \Rightarrow g + f_k \ge 0 \Rightarrow$
-$\{g + f_k\}_{k=1}^{\infty}$ aplicamos el lema de Fatou(*): 
-$$\int_{\mathbb{R}^n} f \dif{\mu} + \int_{\mathbb{R}^n} g \dif{\mu} = \int_{\mathbb{R}^n} \left(f + g\right) \dif{\mu} = \int_{\mathbb{R}^n} \lim_{k \rightarrow \infty} \left(f_k + g\right)  \dif{\mu} =$$
-$$\int_{\mathbb{R}^n} \liminf_{k \rightarrow \infty} \left(f_k + g\right)  \dif{\mu} \le^* \liminf_{k \rightarrow \infty}\int_{\mathbb{R}^n} \left(f_k + g\right) \dif{\mu} = \liminf_{k \rightarrow \infty} \left( \int_{\mathbb{R}^n} f_k \dif{\mu} + \int_{\mathbb{R}^n} g \dif{\mu} \right) =$$
-$$ = \left(\liminf_{k \rightarrow \infty} \int_{\mathbb{R}^n} f_k \dif{\mu}  \right) + \int_{\mathbb{R}^n} g \dif{\mu} \Rightarrow$$
-$$\int_{\mathbb{R}^n} f \dif{\mu} \le \liminf_{k \rightarrow \infty} \int_{\mathbb{R}^n} f_k \dif{\mu} $$
-
-Tomando ahora: $\{-f_k + g\}_{k=1}^{\infty} \left(\ge 0\right)$:
-$$\int_{\mathbb{R}^n} \left(-f\right) \dif{\mu} \le \liminf_{k \rightarrow \infty} \int_{\mathbb{R}^n} \left(-f_k\right) \dif{\mu} \Rightarrow $$
-$$ - \int_{\mathbb{R}^n} f \dif{\mu} \le \liminf_{k \rightarrow \infty} \left(-\int_{\mathbb{R}^n} f_k \dif{\mu} \right) = -\limsup_{k \rightarrow \infty} \left(\int_{\mathbb{R}^n} f_k \dif{\mu} \right) \Rightarrow$$
-$$\limsup_{k \rightarrow \infty} \int_{\mathbb{R}^n} f_k \dif{\mu} \le \int_{\mathbb{R}^n} f \dif{\mu} $$
+Como $\vert f_k \vert \le g \Rightarrow g + f_k \ge 0$, de este modo formamos la sucesión de funciones $\{g + f_k\}_{k=1}^{\infty}$ a la que podemos aplicar el lema de Fatou: 
+$$\int_{\mathbb{R}^n} f \ \dif{\mu} + \int_{\mathbb{R}^n} g \ \dif{\mu} = \int_{\mathbb{R}^n} \left(f + g\right) \ \dif{\mu} = \int_{\mathbb{R}^n} \lim_{k \rightarrow \infty} \left(f_k + g\right) \ \dif{\mu} =\int_{\mathbb{R}^n} \liminf_{k \rightarrow \infty} \left(f_k + g\right)  \ \dif{\mu} \leq$$
+$$ \stackrel{Fatou}{\le} \liminf_{k \rightarrow \infty}\int_{\mathbb{R}^n} \left(f_k + g\right) \ \dif{\mu} = \liminf_{k \rightarrow \infty} \left( \int_{\mathbb{R}^n} f_k \ \dif{\mu} + \int_{\mathbb{R}^n} g \ \dif{\mu} \right) = \left(\liminf_{k \rightarrow \infty} \int_{\mathbb{R}^n} f_k \ \dif{\mu}  \right) + \int_{\mathbb{R}^n} g \ \dif{\mu}$$
+Luego ya tenemos la desigualdad
+$$\int_{\mathbb{R}^n} f \ \dif{\mu} \le \liminf_{k \rightarrow \infty}\left( \int_{\mathbb{R}^n} f_k \ \dif{\mu}\right)$$
+De forma análoga, tomamos la sucesión $\{-f_k + g\}_{k=1}^{\infty}$ y entonces:
+$$\int_{\mathbb{R}^n} \left(-f\right) \ \dif{\mu} \le \liminf_{k \rightarrow \infty} \int_{\mathbb{R}^n} \left(-f_k\right) \ \dif{\mu} \Rightarrow - \int_{\mathbb{R}^n} f \dif{\mu} \le \liminf_{k \rightarrow \infty} \left(-\int_{\mathbb{R}^n} f_k \ \dif{\mu} \right) = -\limsup_{k \rightarrow \infty} \left(\int_{\mathbb{R}^n} f_k \ \dif{\mu} \right) \Rightarrow$$
+$$\limsup_{k \rightarrow \infty} \int_{\mathbb{R}^n} f_k \ \dif{\mu} \le \int_{\mathbb{R}^n} f \ \dif{\mu} $$
+Como por la convergencia, se tiene que el límite superior e inferior coinciden con el límite global, se tiene la igualdad.
 \end{demo}
 
-\begin{defi}
-Sea $f: \mathbb{R}^{n} \times \mathbb{R}^n \rightarrow \mathbb{R}$ tal que, $f \left(x, y\right),\ x \in \mathbb{R}^n\; \land \;y \in \mathbb{R}^n$. Llamamos \textbf{secciones} de $f$ a:
-$$\forall x \in \mathbb{R}^n \rightarrow,\ f_x: \mathbb{R}^n \rightarrow \mathbb{R},\ f_x \left(y\right) = f \left(x, y\right)$$
+\begin{defi}[Secciones de funciones]
+Sea $f: \mathbb{R}^{n} \times \mathbb{R}^n \rightarrow \mathbb{R}$ una función que expresaremos como $f \left(x, y\right)$ donde $x \in \mathbb{R}^n$ y $y \in \mathbb{R}^n$, llamamos \textbf{secciones} de $f$ a:
+$$\forall x \in \mathbb{R}^n, \ f_x: \mathbb{R}^n \rightarrow \mathbb{R} \mbox{ donde } f_x \left(y\right) = f \left(x, y\right)$$
 \end{defi}
 
 \begin{theo}[De Tonelli]
-Sea $f: \mathbb{R}^{n} \times \mathbb{R}^n \rightarrow \left[0, +\infty\right)$ medible. Entonces: 
+Sea $f: \mathbb{R}^{n} \times \mathbb{R}^m \rightarrow \left[0, +\infty\right)$ una función medible, entonces: 
 \begin{enumerate}
-    \item $f_x$ son medibles c.t.p $x$.
-    \item $F: \mathbb{R}^{n} \rightarrow \left[0, +\infty\right]$ es medible.
-        $$F \left(x\right) = \int_{\mathbb{R}^n} f_x \dif{\mu} $$
-    \item Tenemos que :
-        $$\int_{\mathbb{R}^n \times \mathbb{R}^m} f \dif{\mu_{nm}} = \int_{\mathbb{R}^n} F \dif{\mu_n} $$
-    o lo que es lo mismo: 
-    $$\int_{\mathbb{R}^n \times \mathbb{R}^m} f \left(x, y\right) \dif{x}\dif{y} =     \int_{\mathbb{R}^n}\left(\int_{\mathbb{R}^m} f \left(x, y\right) \dif{y} \right)\dif{x} = \int_{\mathbb{R}^m}\left(\int_{\mathbb{R}^n} f \left(x, y\right) \dif{x} \right)\dif{y}$$
+    \item Las $f_x$ son medibles c.t.p de $x\in \mathbb{R}^n$.
+    \item La función $F: \mathbb{R}^{n} \rightarrow \left[0, +\infty\right]$ es medible, donde se define como:
+        $$F \left(x\right) = \int_{\mathbb{R}^m} f_x \ \dif{\mu_m} $$
+    \item Se puede dividir la integral en secciones, es decir:
+        $$\int_{\mathbb{R}^n \times \mathbb{R}^m} f \ \dif{\mu_{nm}} = \int_{\mathbb{R}^n} F \ \dif{\mu_n} $$
+    expresado de forma más intuitiva:
+    $$\int_{\mathbb{R}^n \times \mathbb{R}^m} f \left(x, y\right) \ \dif{x}\ \dif{y} = \int_{\mathbb{R}^n}\left(\int_{\mathbb{R}^m} f \left(x, y\right) \dif{y} \right)\dif{x} = \int_{\mathbb{R}^m}\left(\int_{\mathbb{R}^n} f \left(x, y\right) \dif{x} \right)\dif{y}$$
 \end{enumerate}
 \end{theo}
 
-Si tenemos $A \subset \mathbb{R}^n \times \mathbb{R}^m$ tal que, $A_x = \{y \in \mathbb{R}^m: \left(x, y\right) \in A\}$.
+\begin{defi}[Secciones de conjuntos]
+Si tenemos un conjunto $A \subset \mathbb{R}^n \times \mathbb{R}^m$, podemos definir su \textbf{sección} como:
+$$A_x = \{y \in \mathbb{R}^m: \left(x, y\right) \in A\}$$
+\end{defi}
 \begin{prop}[Principio de Cavalieri]
-Sea $A \subset \mathbb{R}^n \times \mathbb{R}^m$ medible. Entonces: 
+Sea $A \subset \mathbb{R}^n \times \mathbb{R}^m$ medible, entonces: 
 \begin{enumerate}
-    \item $A_x$ es medible c.t.p $x$.
-    \item $F: \mathbb{R}^n \rightarrow \left[0, +\infty\right]$ es medible. 
+    \item Los $A_x$ son medibles c.t.p $x\in \mathbb{R}^n$.
+    \item La función $F: \mathbb{R}^n \rightarrow \left[0, +\infty\right]$ es medible y se define como:
     $$F \left(x\right) = \mu_m \left(A_x\right)$$
-    \item $\mu_{n m} \left(A\right) = \int_{\mathbb{R}^n} \mu_m \left(A_x\right) \dif{\mu_m} $
+    \item $\mu_{n+m} \left(A\right) = \int_{\mathbb{R}^n} \mu_m \left(A_x\right) \dif{\mu_n} $
 \end{enumerate}
 \end{prop}
+
+$$DIBUJO DE LO QUE SIGNFICAN LAS SECCIONES$$
 
 \underline{Ejemplo}:
 
@@ -1145,46 +1148,39 @@ $$A_y = \begin{cases}
 Por lo que c.t.p es necesario.
 
 \begin{coro}
-Si $\mu_{n + m} \left(A\right) = 0 \Rightarrow$ 
-$$\mu_m \left(A_x\right) = 0 \text{ c.t.p } x.$$
+Si la medida del conjunto es nula, entonces la medida de casi todas las secciones también lo es.
+$$\mu_{n + m} \left(A\right) = 0 \Rightarrow \mu_m \left(A_x\right) = 0 \text{ c.t.p } x$$
 \end{coro}
 
 \begin{lema}
-Si $f, g$ verifican el Tª de Tonelli y $a, b \in \mathbb{R}^+$. Entonces: 
-$af + bg$ cumple el Tª de Tonelli.
+Si $f$ y $g$ verifican el Tª de Tonelli y $a, b \in \mathbb{R}^+$, entonces la composición lineal de las funciones también, es decir, $af + bg$ cumple el Tª de Tonelli.
 \end{lema}
 \begin{demo}
-Debemos ver que:
+Se ha de demostrar que en primer lugar, se tiene que:
 $$\left(af + bg\right)_x = af_x + bg_x$$
-Tras esto, al ser combinación lineal de medibles será medible el resultado.
-
-Por tanto,
+Esta combinación lineal será medible, por serlo de funciones medibles y, por tanto:
 $$F_{af + bg} = aF_f + bF_g$$ 
 \end{demo}
 
 \begin{lema}
-Si $\{f_k\}_{k=1}^{\infty}$ cumple el Tª de Tonelli y $\left(f_k\right)\uparrow f \Rightarrow f$ cumple el Tª Tonelli. 
+Si una sucesión de funciones $\{f_k\}_{k=1}^{\infty}$ convergente a $f$ cumple el Tª de Tonelli, entonces $f$ cumple el Tª Tonelli. 
 \end{lema}
 \begin{demo}
 \begin{enumerate}
-    \item Debemos observar que: 
+    \item Primero, vemos que
     $$f_x = \lim_{k \rightarrow \infty} \left(f_k\right)_x,\ \left(f_k\right)_x \uparrow f_x $$
-    y saber que límite de medibles es medible.
-    \item Como: 
-    $$F = \lim_{k \rightarrow \infty}F_k,\ \{F_k\}_{k=1}^{\infty} \uparrow F$$
-    $$\lim_{k \rightarrow \infty} \int_{\mathbb{R}^m} \left(f_k\right)_x \dif{\mu} = \int_{\mathbb{R}^m} f_x \dif{\mu} $$
-    \item Como: 
+    que es medible por ser límite de medibles
+    \item En segundo lugar, como: 
+    $$F = \lim_{k \rightarrow \infty}F_k,\ \{F_k\}_{k=1}^{\infty} \uparrow F \Rightarrow\lim_{k \rightarrow \infty} \int_{\mathbb{R}^m} \left(f_k\right)_x \dif{\mu} = \int_{\mathbb{R}^m} f_x \dif{\mu} $$
+    \item Por último, tenemos que: 
     $$\int_{\mathbb{R}^n} F \dif{\mu} = \int_{\mathbb{R}^n} \lim_{k \rightarrow \infty}F_k  \dif{\mu} = \lim_{k \rightarrow \infty}\int_{\mathbb{R}^n} F_k \dif{\mu} = \lim_{k \rightarrow \infty} \int_{\mathbb{R}^n \times \mathbb{R}^m} f_k  \dif{\mu} = \int_{\mathbb{R}^n} f \dif{\mu}  $$
 \end{enumerate}
 \end{demo}
 
 Como consecuencia de estos lemas el principio de Cavalieri es equivalente al teorema de Tonelli, es decir, basta con probar este principio para probar el teorema de Tonelli.
 
-Cambiando notaciones tenemos pues, 
-$$\int_{\mathbb{R}^n} f \left(x_1, \ldots, x_m\right) \dif{x_1}\ldots\dif{x_m} = $$
-$$\int_{\mathbb{R}} \left(\int_{\mathbb{R}} \ldots \left( \int_{\mathbb{R}} f \left(x_1, \ldots, x_n\right) \dif{x_n}\right)\ldots \dif{x_2}\right) \dif{x_1}.$$
-
 \underline{Ejemplo}: 
+
 Si $A \subset \mathbb{R}^n \times \mathbb{R}^m$:
 $$\int_A f \left(x, y\right) \dif{x} \dif{y} = \int_{\mathbb{R}^n \times \mathbb{R}^m} f \left(x, y\right) \chi_A \left(x, y\right) \dif{x}\dif{y} = $$
 $$\int_{\mathbb{R}^n} \left(\int_{\mathbb{R}^m} f \left(x, y\right) \chi_A \left(y\right) \dif{y} \right) \dif{x} = \int_{\mathbb{R}^n} \left(\int_{A_x} f \left(x, y\right) \dif{y}\right) \dif{x}.$$
