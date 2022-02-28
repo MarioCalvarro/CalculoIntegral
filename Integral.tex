@@ -1185,4 +1185,86 @@ Si $A \subset \mathbb{R}^n \times \mathbb{R}^m$:
 $$\int_A f \left(x, y\right) \dif{x} \dif{y} = \int_{\mathbb{R}^n \times \mathbb{R}^m} f \left(x, y\right) \chi_A \left(x, y\right) \dif{x}\dif{y} = $$
 $$\int_{\mathbb{R}^n} \left(\int_{\mathbb{R}^m} f \left(x, y\right) \chi_A \left(y\right) \dif{y} \right) \dif{x} = \int_{\mathbb{R}^n} \left(\int_{A_x} f \left(x, y\right) \dif{y}\right) \dif{x}.$$
 
+\textbf{NOTACIÓN:} (Creo que esto lo podemos quitar)
+
+En el espacio $\mathbb{R}^n \times \mathbb{R}^n = \mathbb{R}^{n+m}$ y una función $f: \mathbb{R}^n \times \mathbb{R}^m \rightarrow \left[-\infty, \infty\right]$
+$$\forall x \in \mathbb{R}^n, f_x : \mathbb{R}^m \rightarrow \left[-\infty, \infty\right]\; \land \;f_x \left(y\right) = f\left(x, y\right)$$
+Dado $E \subset \mathbb{R}^n \times \mathbb{R}^m,\ \forall x \in \mathbb{R}^n: E_x = \{y \in \mathbb{R}^m : \left(x, y\right) \in E\}$ será la sección vertical.
+
+(\textit{Dibujo}) 
+
+Si $f = \chi_E \Rightarrow$
+$$\left(\chi_E\right)_x \left(y\right) = \chi_E \left(x, y\right) = \begin{cases}
+    1 \text{, si} \left(x, y\right) \in E \Leftrightarrow y \in E_x\\
+    0 \text{, si} \left(x, y\right) \not\in e \Leftrightarrow y \not\in E_x
+\end{cases} = \chi_{E_x}$$
+Denotamos $\mu_k$ como la medida de Lebesque en $\mathbb{R}^k$
+
+--------------------------------------------------
+
+\begin{theo}[de Tonelli]
+Sea $f: \mathbb{R}^n \times \mathbb{R}^m \rightarrow \left[0, \infty\right)$. Entonces:
+\begin{enumerate}
+\item Para casi todo $x \in \mathbb{R}^n$, $f_x$ es medible en $\mathbb{R}^n$ (y no negativa).
+\item La función $F: \mathbb{R}^n \rightarrow \left[0, \infty\right]$ definida por:
+$$F \left(x\right) = \int_{\mathbb{R}^n} f_x \dif{\mu}$$
+es medible en $\mathbb{R}^n$.
+\item Además,
+$$\int_{\mathbb{R}^n \times \mathbb{R}^m} f \dif{\mu} = \int_{\mathbb{R}^n} F \dif{\mu},$$
+es decir, 
+$$\int_{\mathbb{R}^n \times \mathbb{R}^m} f \left(x, y\right) \dif{x}\dif{y} = \int_{\mathbb{R}^n} \left(\int_{\mathbb{R}^m} f \left(x, y\right) \dif{y} \right) \dif{x}.$$
+\end{enumerate}
+Similar para la $y$.
+%\begin{enumerate}
+%\item Para casi todo $y \in \mathbb{R}^m$, $f_y$ es medible en $\mathbb{R}^m$ (y no negativa).
+%\item La función $G: \mathbb{R}^n \rightarrow \left[0, \infty\right]$ definida por:
+%$$G \left(x\right) = \int_{\mathbb{R}^n} f_x \dif{\mu}$$
+%es medible en $\mathbb{R}^n$.
+%\item Además,
+%$$\int_{\mathbb{R}^n \times \mathbb{R}^m} f \dif{\mu} = \int_{\mathbb{R}^n} G \dif{\mu},$$
+%es decir, 
+%$$\int_{\mathbb{R}^n \times \mathbb{R}^m} f \left(x, y\right) \dif{x}\dif{y} = \int_{\mathbb{R}^m} \left(\int_{\mathbb{R}^n} f \left(x, y\right) \dif{x} \right) \dif{y}.$$
+%\end{enumerate}
+\end{theo}
+\begin{lema}
+Si $f, g$ satisfacen el th. y $a, b \ge 0 \Rightarrow af + bg$ satisface el th.
+\end{lema}
+\begin{lema}
+Si $\{f_k\}_{k=1}^{\infty}$ satisfacen el th. y $f_k \uparrow f$ puntualmente $\Rightarrow f$ satisface el th. 
+\end{lema}
+\begin{demo}[Teorema de Tonelli]
+\begin{enumerate}
+\item Sea $f = \chi_{Q}$ donde $Q \subset \mathbb{R}^{n+m}$ es un cubo semiabierto: $Q = \prod_{i=1}^{n+m} \left[a_i, b_i\right] \Rightarrow Q = A \times B$ con $A \subset \mathbb{R}^n$ y $B \in \mathbb{R}^m$ cubos semiabiertos.
+\begin{itemize}
+    \item $\left(\chi_Q\right)_x = \chi_{Q_x} = \begin{cases}
+        \chi_B \text{, si} x \in A\\
+        0 \text{, si} x \not\in A
+    \end{cases} \rightarrow $ es medible $\forall x \in \mathbb{R}^n$.
+    \item $F \left(x\right) = \int_{\mathbb{R}^n} \chi_{Q_x} \dif{\mu_n} = \begin{cases}
+        \left(\text{si } x \in A\right) = \int_{\mathbb{R}^m} \chi_b \dif{\mu_m} = \mu_m \left(B\right)\\
+        \left(\text{si } x \not\in A\right) = 0
+    \end{cases}$ es medible.
+    $$F \left(x\right) = \mu_m \left(B\right)\cdot \chi_A \left(x\right).$$
+    \item $\int_{\mathbb{R}^n} F \left(x\right) \dif{\mu_n} = \mu_m \left(B\right) \cdot \mu_n \left(A\right) = \mu_{n+m} \left(Q\right) = \int_{\mathbb{R}^n \times \mathbb{R}^m} \chi_Q \dif{\mu_{m+n}} $
+\end{itemize}
+\item Si $f = \chi_G$ donde $G \subset \mathbb{R}^{n+m}$ es abierto.
+$G = \bigcup_{j=1}^{\infty} Q_j$ donde cada $Q_j$ es un cubo semiabierto y la unión es disjunta.
+
+Denotando $G_k = \bigcup_{j=1}^{k} Q_j$ tenemos que $\chi_{G_k} = \sum_{j=1}^{k} \chi_{Q_j}$ cumple el lema $1$. Pero, $\{\chi_{Q_k}\}_{k=1}^{\infty} \uparrow \chi_G$ y podemos aplicar el lema 2. 
+$$\chi_G = \sum_{j=1}^{\infty} \chi_{G_j} = \lim_{k \rightarrow \infty}\chi_{G_k} $$
+
+\item Supongamos que $f = \chi_D$ donde $D$ es un $G\delta$. Puesto que $D = \bigcup_{k=1}^{\infty} D_k$ donde cada $D_k$ es $G\delta$ y acotado (por ejemplo, $D_k = D \cap \left(-k, k\right)^{n+m}$) usando el lema $2$, es suficiente considerar el caso de que $D$ es acotado y $G\delta $ al ser $\{\chi_{D_k}\}_{k=1}^{\infty} \uparrow \chi_D$
+
+Supongamos que $D$ es $G\delta $ y acotado, sea $D = \bigcap_{k = 1}^{\infty} G_k$ donde cada $G_k$ es abierto acotado y $G_1 \supset G_1 \supset G_k \supset \ldots \supset D$. Entonces, $\{\chi_{G_k}\}_{k=1}^{\infty} \upsilon \chi_D$. 
+
+Usando la versión decreciente de TCM se puede hacer una demostración análoga a la del lema $2$ para obtener que $\chi_D$ verifica el teorema. (Alternativamente, como $0 \le \chi_D \le \chi_{G_1}$ es integrable y satisface el teorema y se puede aplicar también el TCD).
+
+\item Sea $f = \chi_N$ donde $\mu_{n+m} \left(N\right) = 0$. Existe $C_T$ conjunto $G\delta $ con $N \subset G$ y $\mu_{n+m}\left(G\right) = 0$. 
+
+$\forall k \in N,\ \exists G_k$ abierto con $N \subset G_k$ y $\mu_{n+m}\left(G_k \setminus N\right) < \frac{1}{k}$. Basta tomar $G = \bigcap_{k \in \mathbb{N}} G_k$ que es $G\delta$ y 
+$$0 = \mu_{n+m}\left(G\setminus N\right) \le \mu_{n+m} \left(G_k \setminus N\right) < \frac{1}{k} \rightarrow 0$$
+$$\mu_{n+m} \left(G\right) = \mu_{n+m} \left(G\setminus N\right) + \mu_{n+m} \left(N\right) = 0+ 0 = 0$$
+\end{enumerate} 
+\end{demo}
+
 \end{document}
