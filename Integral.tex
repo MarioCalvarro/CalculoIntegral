@@ -81,7 +81,7 @@
 \DeclareMathOperator{\dom}{dom}
 \DeclareMathOperator{\img}{img}
 
-\newcommand{\dif}[1]{ d#1}
+\newcommand{\dif}[1]{\ d#1}
 
 \begin{document}
 \maketitle
@@ -921,16 +921,16 @@ $$0 < f\left(x \right) - \varphi_k \left(x\right) < \frac{1}{2^k},\ \lim_{k \rig
 
 \begin{prop}
 Si $f, g: \mathbb{R}^n \rightarrow \mathbb{R}$ son funciones medibles no negativas, entonces la integral es aditiva, es decir:
-$$\int_{\mathbb{R}^n} \left(f + g\right) \ \dif{\mu} = \int_{\mathbb{R}^n} f \ \dif{\mu} = \int_{\mathbb{R}^n} g \ \dif{\mu}$$
+$$\int_{\mathbb{R}^n} \left(f + g\right) \dif{\mu} = \int_{\mathbb{R}^n} f \dif{\mu} = \int_{\mathbb{R}^n} g \dif{\mu}$$
 \end{prop}
 \begin{demo}
 Por la proposición anterior, existen dos sucesiones $\{\varphi_k\}_{k=1}^\infty$ y $\{\psi_k\}_{k=1}^\infty$ convergentes a $f$ y a $g$ respectivamente. De este modo, es trivial comprobar que $\{\varphi_k + \psi_k\}_{k=1}^\infty$ converge a $f+g$ y por el Teorema de Convergencia Monótona, tenemos que
-$$\int_{\mathbb{R}^n}(f+g) \ \dif{\mu} = \lim_{k\rightarrow\infty} \int_{\mathbb{R}^n}(\varphi_k + \psi_k) \ \dif{\mu} = \lim_{k \rightarrow \infty} \left( \int_{\mathbb{R}^n} \varphi_k \ \dif{\mu} + \int_{\mathbb{R}^n} \psi \ \dif{\mu} \right) = \int_{\mathbb{R}^n} f \ \dif{\mu} + \int_{\mathbb{R}^n} g \ \dif{\mu}$$
+$$\int_{\mathbb{R}^n}(f+g) \dif{\mu} = \lim_{k\rightarrow\infty} \int_{\mathbb{R}^n}(\varphi_k + \psi_k) \dif{\mu} = \lim_{k \rightarrow \infty} \left( \int_{\mathbb{R}^n} \varphi_k \dif{\mu} + \int_{\mathbb{R}^n} \psi \dif{\mu} \right) = \int_{\mathbb{R}^n} f \dif{\mu} + \int_{\mathbb{R}^n} g \dif{\mu}$$
 \end{demo}
 
 \begin{prop}
 Sea $f: \mathbb{R}^n \rightarrow \mathbb{R}$ una función medible no negativa y $c\in \mathbb{R}^+$, entonces: 
-$$\int_{\mathbb{R}^n} \left(c f\right) \ \dif{\mu} = c \int_{\mathbb{R}^n}f \ \dif{\mu}$$
+$$\int_{\mathbb{R}^n} \left(c f\right) \dif{\mu} = c \int_{\mathbb{R}^n}f \dif{\mu}$$
 \end{prop}
 \begin{demo}
 Completamente análoga a la anterior y se deja como ejercicio.
@@ -938,27 +938,27 @@ Completamente análoga a la anterior y se deja como ejercicio.
 
 \begin{theo}[Convergencia monótona para series]
 Sea $\{f_k\}_{n=1}^{\infty}$ una sucesión de funciones medibles no negativas, entonces: 
-$$\int_{\mathbb{R}^n} \left(\sum_{k=1}^{\infty} f_k \right) \ \dif{\mu} = \sum_{k=1}^{\infty}\left( \int_{\mathbb{R}^n} f_k \ \dif{\mu}\right)$$
+$$\int_{\mathbb{R}^n} \left(\sum_{k=1}^{\infty} f_k \right) \dif{\mu} = \sum_{k=1}^{\infty}\left( \int_{\mathbb{R}^n} f_k \dif{\mu}\right)$$
 \end{theo}
 \begin{demo}
 La demostración es prácticamente consecuencia de los enunciados anteriores:
-$$\int_{\mathbb{R}^n} \left(\sum_{k=1}^{\infty} f_k\right) \ \dif{\mu} = \int_{\mathbb{R}^n} \lim_{m \rightarrow \infty} \left(\sum_{k=1}^{m} f_k \right)\ \dif{\mu} = \lim_{m \rightarrow \infty}\int_{\mathbb{R}^n} \left(\sum_{k=1}^{m} f_k\right) \ \dif{\mu} = $$
-$$=\lim_{m \rightarrow \infty} \sum_{k=1}^{m} \left(\int_{\mathbb{R}^n} f_k \ \dif{\mu}\right) = \sum_{k=1}^{\infty} \left(\int_{\mathbb{R}^n} f_k \ \dif{\mu}\right) $$
+$$\int_{\mathbb{R}^n} \left(\sum_{k=1}^{\infty} f_k\right) \dif{\mu} = \int_{\mathbb{R}^n} \lim_{m \rightarrow \infty} \left(\sum_{k=1}^{m} f_k \right)\dif{\mu} = \lim_{m \rightarrow \infty}\int_{\mathbb{R}^n} \left(\sum_{k=1}^{m} f_k\right) \dif{\mu} = $$
+$$=\lim_{m \rightarrow \infty} \sum_{k=1}^{m} \left(\int_{\mathbb{R}^n} f_k \dif{\mu}\right) = \sum_{k=1}^{\infty} \left(\int_{\mathbb{R}^n} f_k \dif{\mu}\right) $$
 \end{demo}
 
 \begin{lema}[de Fatou]
 Sea $\{f_k\}_{k=1}^{\infty}$ una sucesión de funciones medibles no negativas, entonces: 
-$$\int_{\mathbb{R}^n} \left( \liminf_{k \rightarrow \infty}f_k \right) \ \dif{\mu} \le \liminf_{k \rightarrow \infty} \left(\int_{\mathbb{R}^n} f_k \ \dif{\mu}\right) $$
+$$\int_{\mathbb{R}^n} \left( \liminf_{k \rightarrow \infty}f_k \right) \dif{\mu} \le \liminf_{k \rightarrow \infty} \left(\int_{\mathbb{R}^n} f_k \dif{\mu}\right) $$
 \end{lema}
 \begin{demo}
 Definimos las funciones $g_k = \inf_{m \ge k} f_m \ge 0$ medibles de modo que estas forman una sucesión creciente $\{g_k\}_{k=1}^\infty\uparrow$. En consecuencia, basta ver que:
-$$\int_{\mathbb{R}^n} \left(\liminf_{k \rightarrow \infty}f_k \right) \ \dif{\mu} = \int_{\mathbb{R}^n} \left(\lim_{k \rightarrow \infty}g_k \right)\ \dif{\mu} =  \lim_{k \rightarrow \infty} \int_{\mathbb{R}^n} g_k \ \dif{\mu} = \liminf_{k \rightarrow \infty}\int_{\mathbb{R}^n} g_k \ \dif{\mu} \le \liminf_{k \rightarrow \infty} \int_{\mathbb{R}^n} f_k \ \dif{\mu}$$
+$$\int_{\mathbb{R}^n} \left(\liminf_{k \rightarrow \infty}f_k \right) \dif{\mu} = \int_{\mathbb{R}^n} \left(\lim_{k \rightarrow \infty}g_k \right)\dif{\mu} =  \lim_{k \rightarrow \infty} \int_{\mathbb{R}^n} g_k \dif{\mu} = \liminf_{k \rightarrow \infty}\int_{\mathbb{R}^n} g_k \dif{\mu} \le \liminf_{k \rightarrow \infty} \int_{\mathbb{R}^n} f_k \dif{\mu}$$
 \end{demo}
 
 \begin{prop}
 Las integrales impropias se soportan por la integral de Lebesque:
 \begin{align*}
-\int_a^\infty f(x) \ \dif{x} = \int_{[a, \infty)}f(x)\ \dif{\mu} & &\int_a^b f(x)\ \dif{x} = \int_{[a,b]} f(x) \ \dif{\mu}
+\int_a^\infty f(x) \dif{x} = \int_{[a, \infty)}f(x)\dif{\mu} & &\int_a^b f(x)\dif{x} = \int_{[a,b]} f(x) \dif{\mu}
 \end{align*}
 \end{prop}
 \begin{demo}
@@ -977,7 +977,7 @@ Hasta ahora no hemos hecho más que definir la integral y las propiedades que ti
 
 \begin{defi}
 Sea $f: \mathbb{R}^{n} \rightarrow \mathbb{R}$ una función medible\footnote{No necesariamente negativa}, entonces diremos que es integrables si y sólo si: 
-$$\int_{\mathbb{R}^n} \vert f \vert \ \dif{\mu} < +\infty$$
+$$\int_{\mathbb{R}^n} \vert f \vert \dif{\mu} < +\infty$$
 \end{defi}
 
 \begin{defi}
@@ -1000,7 +1000,7 @@ que verifican las siguientes propiedades:
 \begin{prop}
 Si $f: \mathbb{R}^n\rightarrow\mathbb{R}$ es una función integrable, entonces $f^+$ y $f^-$ son integrables, es decir:
 \begin{align*}
-\int_{\mathbb{R}^n} f^+ \ \dif{\mu} < +\infty & & \int_{\mathbb{R}^n} f^- d \mu < +\infty
+\int_{\mathbb{R}^n} f^+ \dif{\mu} < +\infty & & \int_{\mathbb{R}^n} f^- d \mu < +\infty
 \end{align*}
 \end{prop}
 \begin{demo}
@@ -1012,7 +1012,7 @@ En consecuencia, podemos dar una definición alternativa de la que se ha dado de
 \newpage
 \begin{defi}
 Sea $f: \mathbb{R}^{n} \rightarrow \mathbb{R}$ una función integrable, entonces podemos expresar su integral como: 
-$$\int_{\mathbb{R}^n} f \ \dif{\mu} = \int_{\mathbb{R}^n} f^+ \ \dif{\mu} - \int_{\mathbb{R}^n} f^- \ \dif{\mu}$$
+$$\int_{\mathbb{R}^n} f \dif{\mu} = \int_{\mathbb{R}^n} f^+ \dif{\mu} - \int_{\mathbb{R}^n} f^- \dif{\mu}$$
 \end{defi}
 
 \underline{Observación}
@@ -1024,7 +1024,7 @@ $$\mu(A) > 0 \Rightarrow \forall k \in \mathbb{N}: k\cdot \chi_A \leq |f| \Right
 Supongamos que tenemos dos funciones $f,g: \mathbb{R}^n \rightarrow [-\infty, \infty]$ y tales que $f=g$ (c.t.p.), entonces tenemos que:
 $$f \mbox{ integrable }\Leftrightarrow g \mbox{ integrable}$$
 Y además las integrales coinciden:
-$$\int_{\mathbb{R}^n} f \ \dif{\mu} = \int_{\mathbb{R}^n} g \ \dif{\mu}$$
+$$\int_{\mathbb{R}^n} f \dif{\mu} = \int_{\mathbb{R}^n} g \dif{\mu}$$
 \end{prop}
 \begin{demo}
 Como ya lo tenemos demostrado para funciones no negativas, basta con trabajar con las funciones $f^+$ y $f^-$, es decir:
@@ -1051,7 +1051,7 @@ $$\int |f| = \int f^+ + \int f^- < \infty \Rightarrow f \mbox{ integrable}$$
 
 \begin{lema}
 Sea $f$ una función integrable, si $f = g - h$ con ambas funciones medibles, no negativas e integrables, entonces se verifica:
-$$\int f \ \dif{\mu}= \int g \ \dif{\mu} - \int h \ \dif{\mu}$$
+$$\int f \dif{\mu}= \int g \dif{\mu} - \int h \dif{\mu}$$
 \end{lema}
 \begin{demo}
 Suponemos sin pérdida de generalidad que las funciones toman valores en $\bar{\mathbb{R}}$, puesto que más adelante se explica como generalizar dicho lema. De este modo, podemos expresar $f$ como:
@@ -1066,9 +1066,9 @@ Este lema es válido para funciones que toman valores en $\bar{\mathbb{R}}$ porq
 
 \begin{theo}[Operaciones de Integrabilidad]
 Sean $f,g: \mathbb{R}^n \rightarrow \mathbb{R}$ dos funciones integrables, entonces la integral de la suma es:
-$$\int (f+g) \ \dif{\mu} = \int f \ \dif{\mu} + \int g \ \dif{\mu}$$
+$$\int (f+g) \dif{\mu} = \int f \dif{\mu} + \int g \dif{\mu}$$
 Del mismo modo, para $\alpha \in \mathbb{R}$ la integral del producto por $\alpha$ es:
-$$\int (\alpha \cdot f) \ \dif{\mu} = \alpha \int f \ \dif{\mu}$$
+$$\int (\alpha \cdot f) \dif{\mu} = \alpha \int f \dif{\mu}$$
 \end{theo}
 \begin{demo}
 Por la desigualdad triangular, $|f+g|\leq |f| + |g|$ y como ambas son funciones son no negativas, se les puede aplicar el lema:
@@ -1083,21 +1083,21 @@ $$f^+ + g^+ = (f+g)^+$$
 
 \begin{theo}[De convergencia dominada]
 Sea $\{f_k\}_{k=1}^{\infty}\rightarrow f$ una sucesión convergente c.t.p. a un a función $f$, donde las funciones $f_k: \mathbb{R}^n \rightarrow \mathbb{R}$ son medibles y $g: \mathbb{R}^n \rightarrow \left[0, +\infty\right]$ una función integrable que acota a $f$ c.t.p., es decir, $\vert f_k \vert \le g$ c.t.p., entonces:
-$$\int_{\mathbb{R}^n} f \ \dif{\mu} = \lim_{k \rightarrow \infty} \int_{\mathbb{R}^n} f_k \ \dif{\mu}$$
+$$\int_{\mathbb{R}^n} f \dif{\mu} = \lim_{k \rightarrow \infty} \int_{\mathbb{R}^n} f_k \dif{\mu}$$
 \end{theo}
 \begin{demo}
 Sabemos que $\vert f \vert \le g$ c.t.p, luego tenemos que:
-$$\int_{\mathbb{R}^n} \vert f \vert \ \dif{\mu} \le \int_{\mathbb{R}^n} g \ \dif{\mu} < +\infty$$
+$$\int_{\mathbb{R}^n} \vert f \vert \dif{\mu} \le \int_{\mathbb{R}^n} g \dif{\mu} < +\infty$$
 Por lo que ya sabemos que al menos $f$ es integrable (y por la misma razón las $f_k$ son integrables).
 
 Como $\vert f_k \vert \le g \Rightarrow g + f_k \ge 0$, de este modo formamos la sucesión de funciones $\{g + f_k\}_{k=1}^{\infty}$ a la que podemos aplicar el lema de Fatou: 
-$$\int_{\mathbb{R}^n} f \ \dif{\mu} + \int_{\mathbb{R}^n} g \ \dif{\mu} = \int_{\mathbb{R}^n} \left(f + g\right) \ \dif{\mu} = \int_{\mathbb{R}^n} \lim_{k \rightarrow \infty} \left(f_k + g\right) \ \dif{\mu} =\int_{\mathbb{R}^n} \liminf_{k \rightarrow \infty} \left(f_k + g\right)  \ \dif{\mu} \leq$$
-$$ \stackrel{Fatou}{\le} \liminf_{k \rightarrow \infty}\int_{\mathbb{R}^n} \left(f_k + g\right) \ \dif{\mu} = \liminf_{k \rightarrow \infty} \left( \int_{\mathbb{R}^n} f_k \ \dif{\mu} + \int_{\mathbb{R}^n} g \ \dif{\mu} \right) = \left(\liminf_{k \rightarrow \infty} \int_{\mathbb{R}^n} f_k \ \dif{\mu}  \right) + \int_{\mathbb{R}^n} g \ \dif{\mu}$$
+$$\int_{\mathbb{R}^n} f \dif{\mu} + \int_{\mathbb{R}^n} g \dif{\mu} = \int_{\mathbb{R}^n} \left(f + g\right) \dif{\mu} = \int_{\mathbb{R}^n} \lim_{k \rightarrow \infty} \left(f_k + g\right) \dif{\mu} =\int_{\mathbb{R}^n} \liminf_{k \rightarrow \infty} \left(f_k + g\right)  \dif{\mu} \leq$$
+$$ \stackrel{Fatou}{\le} \liminf_{k \rightarrow \infty}\int_{\mathbb{R}^n} \left(f_k + g\right) \dif{\mu} = \liminf_{k \rightarrow \infty} \left( \int_{\mathbb{R}^n} f_k \dif{\mu} + \int_{\mathbb{R}^n} g \dif{\mu} \right) = \left(\liminf_{k \rightarrow \infty} \int_{\mathbb{R}^n} f_k \dif{\mu}  \right) + \int_{\mathbb{R}^n} g \dif{\mu}$$
 Luego ya tenemos la desigualdad
-$$\int_{\mathbb{R}^n} f \ \dif{\mu} \le \liminf_{k \rightarrow \infty}\left( \int_{\mathbb{R}^n} f_k \ \dif{\mu}\right)$$
+$$\int_{\mathbb{R}^n} f \dif{\mu} \le \liminf_{k \rightarrow \infty}\left( \int_{\mathbb{R}^n} f_k \dif{\mu}\right)$$
 De forma análoga, tomamos la sucesión $\{-f_k + g\}_{k=1}^{\infty}$ y entonces:
-$$\int_{\mathbb{R}^n} \left(-f\right) \ \dif{\mu} \le \liminf_{k \rightarrow \infty} \int_{\mathbb{R}^n} \left(-f_k\right) \ \dif{\mu} \Rightarrow - \int_{\mathbb{R}^n} f \dif{\mu} \le \liminf_{k \rightarrow \infty} \left(-\int_{\mathbb{R}^n} f_k \ \dif{\mu} \right) = -\limsup_{k \rightarrow \infty} \left(\int_{\mathbb{R}^n} f_k \ \dif{\mu} \right) \Rightarrow$$
-$$\limsup_{k \rightarrow \infty} \int_{\mathbb{R}^n} f_k \ \dif{\mu} \le \int_{\mathbb{R}^n} f \ \dif{\mu} $$
+$$\int_{\mathbb{R}^n} \left(-f\right) \dif{\mu} \le \liminf_{k \rightarrow \infty} \int_{\mathbb{R}^n} \left(-f_k\right) \dif{\mu} \Rightarrow - \int_{\mathbb{R}^n} f \dif{\mu} \le \liminf_{k \rightarrow \infty} \left(-\int_{\mathbb{R}^n} f_k \dif{\mu} \right) = -\limsup_{k \rightarrow \infty} \left(\int_{\mathbb{R}^n} f_k \dif{\mu} \right) \Rightarrow$$
+$$\limsup_{k \rightarrow \infty} \int_{\mathbb{R}^n} f_k \dif{\mu} \le \int_{\mathbb{R}^n} f \dif{\mu} $$
 Como por la convergencia, se tiene que el límite superior e inferior coinciden con el límite global, se tiene la igualdad.
 \end{demo}
 
@@ -1111,11 +1111,11 @@ Sea $f: \mathbb{R}^{n} \times \mathbb{R}^m \rightarrow \left[0, +\infty\right)$ 
 \begin{enumerate}
     \item Las $f_x$ son medibles c.t.p de $x\in \mathbb{R}^n$.
     \item La función $F: \mathbb{R}^{n} \rightarrow \left[0, +\infty\right]$ es medible, donde se define como:
-        $$F \left(x\right) = \int_{\mathbb{R}^m} f_x \ \dif{\mu_m} $$
+        $$F \left(x\right) = \int_{\mathbb{R}^m} f_x \dif{\mu_m} $$
     \item Se puede dividir la integral en secciones, es decir:
-        $$\int_{\mathbb{R}^n \times \mathbb{R}^m} f \ \dif{\mu_{nm}} = \int_{\mathbb{R}^n} F \ \dif{\mu_n} $$
+        $$\int_{\mathbb{R}^n \times \mathbb{R}^m} f \ \dif{\mu_{nm}} = \int_{\mathbb{R}^n} F \dif{\mu_n} $$
     expresado de forma más intuitiva:
-    $$\int_{\mathbb{R}^n \times \mathbb{R}^m} f \left(x, y\right) \ \dif{x}\ \dif{y} = \int_{\mathbb{R}^n}\left(\int_{\mathbb{R}^m} f \left(x, y\right) \dif{y} \right)\dif{x} = \int_{\mathbb{R}^m}\left(\int_{\mathbb{R}^n} f \left(x, y\right) \dif{x} \right)\dif{y}$$
+    $$\int_{\mathbb{R}^n \times \mathbb{R}^m} f \left(x, y\right) \dif{x}\dif{y} = \int_{\mathbb{R}^n}\left(\int_{\mathbb{R}^m} f \left(x, y\right) \dif{y} \right)\dif{x} = \int_{\mathbb{R}^m}\left(\int_{\mathbb{R}^n} f \left(x, y\right) \dif{x} \right)\dif{y}$$
 \end{enumerate}
 \end{theo}
 
