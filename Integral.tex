@@ -1264,7 +1264,89 @@ Usando la versión decreciente de TCM se puede hacer una demostración análoga 
 $\forall k \in N,\ \exists G_k$ abierto con $N \subset G_k$ y $\mu_{n+m}\left(G_k \setminus N\right) < \frac{1}{k}$. Basta tomar $G = \bigcap_{k \in \mathbb{N}} G_k$ que es $G\delta$ y 
 $$0 = \mu_{n+m}\left(G\setminus N\right) \le \mu_{n+m} \left(G_k \setminus N\right) < \frac{1}{k} \rightarrow 0$$
 $$\mu_{n+m} \left(G\right) = \mu_{n+m} \left(G\setminus N\right) + \mu_{n+m} \left(N\right) = 0+ 0 = 0$$
+
+\item ¿Repetido?\\
+Sea $f = \chi_N$ donde $\mu_{n+m} \left(N\right) = 0$. $\forall k \in \mathbb{N},\ \exists G_k$ abierto en $\mathbb{R}^{n}\times \mathbb{R}^m$ con $N \subset G_k$ y $\mu_{n+m} \left(G_k \setminus N\right) < \frac{1}{k}$
+
+Sea $G = \bigcap_{k \in \mathbb{N}} G_k$ que es un $G\delta$ con $N \subset G $ y $\mu_{n+m} \left(G\setminus N\right) \le \mu_{n+m} \left(G_k \setminus N\right) < \frac{1}{k} \rightarrow 0$
+
+Luego, $\mu_{n+m} \left(G \setminus N\right) = 0$. Por tanto, $\mu_{n+m} \left(G\right) = \mu_{n+m} \left(G \setminus N\right) + \mu_{n+m} \left(N\right) = 0 + 0 = 0$
+
+Entonces, $\chi_G$ satisface el teorema para casi todo $x \in \mathbb{R}^n$, $\chi_G$es medible, 
+$$0 = \mu_{n+m} \left(G\right) = \int_{\mathbb{R}^n \times \mathbb{R}^m} \chi_{G} \dif{\mu_{n+m}} = \int_{\mathbb{R}^n} \left( \int_{\mathbb{R}^m} \chi_{G_x}  \dif{\mu_m} \right) \dif{\mu_n}.$$
+Por tanto, 
+$$\mu_m \left(G_k\right) = \int_{\mathbb{R}^n} \chi_{G_x} \dif{\mu_n} = 0 \text{ en casi todo punto } x \in \mathbb{R}^n$$
+
+Como $N_x \subset G_x$ obtenemos que $N_x$ tiene medida nula en $\mathbb{R}^m$ y en particular $N_x$ es medible y así $\chi_{N_x} = \left(\chi_N\right)_x$ es medible (para casi todo punto $x \in \mathbb{R}^n$)
+
+Ahora, 
+$$0 \le F \left(x\right) = \int_{\mathbb{R}^n} \chi_{N_x} \dif{\mu_n} \le \int_{\mathbb{R}^m} \chi_{G_x} \dif{\mu_m} = 0 \text{ para casi todo punto } \in \mathbb{R}^n$$
+En particular $F$ es medible.
+
+Por último veamos si son iguales las siguientes expresiones: 
+$$\int_{\mathbb{R}^n \times \mathbb{R}^m} \chi_N \dif{\mu_{n+m}} = \mu_{n+m} \left(N\right) = 0$$
+$$\int_{\mathbb{R}^n} \left(\int_{\mathbb{R}^m} \chi_{N_x} \dif{\mu_m} \right) \dif{\mu_n} $$
+Pero como esto último es igual a: 
+$$\int_{\mathbb{R}^n} F \left(x\right) \dif{\mu_n} = 0$$
+
+\underline{OBS}: 
+
+Si $N \subset \mathbb{R}^{n+m}$ satisface $\mu_{n+m} \left(N \right) = 0$ hemos visto que para casi todo $x \in \mathbb{R}$ la sección $N_x$ es medible porque tiene medida nula.
+
+Sin embargo, puede ocurrid que para algún $x \in \mathbb{R}^n$ la sección $N_x$ no sea medible en $\mathbb{R}^m$
+
+\underline{Ejemplo}: 
+
+Sea $E \subset \mathbb{R}$ no medible y sea $N = \{0\} \times E \subset \mathbb{R}^2$. Como $N$ está contenido en la recta $\{0\} \times \mathbb{R}$ esta claro que $\mu_2 \left(N\right) = 0$. Pero $N_0 = E$ no es medible.
+
+\item Sea $f = \chi_A$ donde $A \subset \mathbb{R}^{n+m} = \mathbb{R}^n \times \mathbb{R}^m$ es medible. 
+
+Sabemos que $A = D \setminus N$ donde $D$ es un $G\delta $ y $\mu_{n+m} \left(N\right) = 0$. Entonces, $D = A \cup N$ disjuntos, $\chi_D = \chi_A \cup \chi_N$, 
+$$\chi_A = \chi_D - \chi_N \text{ para casi todo } x \in \mathbb{R}^n$$
+$$\chi_{A_x}= \chi_{B_x} - \chi_{N_x} \text{ es medible por (3) y (4)}$$
+Tenemos ahora que: 
+$$F \left(x\right) = \int_{\mathbb{R}^m} \chi_{A_x} \dif{\mu_m} = \int_{\mathbb{R}^m} \chi_{D_x} \dif{\mu_m}$$
+puesto que $\mu_m \left(N_x\right) = 0$ y, entonces, $\int_{\mathbb{R}^m} \chi_{N_x} \dif{\mu_m} = 0$. Por tanto, es medible para casi todo punto $x \in \mathbb{R}^n$.
+
+A su vez, 
+$$\int_{\mathbb{R}^n} F \left(x\right) \dif{\mu_n} = \int_{\mathbb{R}^n} \left( \int_{\mathbb{R}^m} \chi_{A_x} \dif{\mu_m} \right) \dif{\mu_n} = \int_{\mathbb{R}^n} \left(\int_{\mathbb{R}^m} \chi_{D_x} \dif{\mu_m} \right) \dif{\mu_n} = $$
+$$= \int_{\mathbb{R}^n \times \mathbb{R}^m} \chi_{D} \dif{\mu_{n+m}} = \mu_{n+m} \left(D\right) = \mu_{n+m} \left(A\right) = \int_{\mathbb{R}^n \times \mathbb{R}^m} \chi_A \dif{\mu_{n+m}} $$
+
+\item Sea $f$ función simple, medible, no negativa $\Rightarrow f$ es com binación lineal no-negativa de funciones características de conjuntos medibles en $\mathbb{R}^n \times \mathbb{R}^m$ Por el lema $1$ y (5), determinamos que $f$ satisface el teorema. 
+
+\item Sea $f$ medible no-negativa $\Rightarrow \exists \{f_k\}_{k=1}^{\infty}\uparrow f$ donde $f_k$ son simples medibles no-negativas. Por el lema $2$ y (6), $f$ satisface el teorema.
+
+\underline{Lo siguiente no parece relevante}: 
+
+Si $f: \mathbb{R}^n \rightarrow \mathbb{R}$ es simple $\Rightarrow $ si $f \left(\mathbb{R}^n\right) = \{\alpha_1, \ldots, \alpha_n\}$ distintos 
+$$f = \sum_{i=1}^{n} \alpha_i \chi_{A_i} \text{ donde } A_i = f^{-1} \left(\{\alpha_i\}\right)$$
+Ahora $f$ es medible $\Leftrightarrow$ $A_i$ es medible $\forall i$.
+------------------
 \end{enumerate} 
 \end{demo}
+
+\begin{theo}[de Fubini]
+Sea $f: \mathbb{R}^n \times \mathbb{R}^m \rightarrow \mathbb{R}$ integrable. Entonces: 
+\begin{enumerate}
+    \item $f_x$ son integrables, para casi todo $x \in \mathbb{R}^n$.
+    \item $F \left(x\right) = \int_{\mathbb{R}^n} f_x \dif{\mu_n}$ es integrable en $\mathbb{R}^n$ (definida en c.t.p).
+    \item $\int_{\mathbb{R}^n \times \mathbb{R}^m} f \dif{\mu_{n+m}} = \int_{\mathbb{R}^n} \left(\int_{\mathbb{R}^m} f_x \dif{\mu_m} \right) \dif{\mu} $
+\end{enumerate}
+\end{theo}
+\begin{demo}
+\begin{enumerate}
+    \item $f = f^+ - f^-,\ \forall x \in \mathbb{R}^n, \left(f^+\right)_x = \left(f_x\right)^+ \; \land \; \left(f^-\right)_x = \left(f_x\right)^-$
+
+    Ahora, $f^+$ y $f^-$ verifican el teorema de Tonelli $\Rightarrow f^+_x $ y $f^-_x$ son medibles c.t.p $x \in \mathbb{R}^n \Rightarrow f_x = \left(f^+_x\right) - \left(f^-_x\right)$ también es medible, c.t.p $x \in \mathbb{R}^n$
+    $$\int_{\mathbb{R}^n} \left(\int_{\mathbb{R}^m} f^+_x \dif{\mu_m} \right) \dif{\mu_n} = \int_{\mathbb{R}^n \times \mathbb{R}^m} f^+ \dif{\mu_{n+m}} < \infty$$
+    y, por tanto, es finita en c.t.p.
+
+    Por tanto, $F \left(x\right) = \int_{\mathbb{R}^n} f^+_x \dif{\mu_n} = \int_{\mathbb{R}^n} f^-_x \dif{\mu_n}$ es finita en c.t.p.
+\end{enumerate}
+\end{demo}
+
+\underline{Observación}: 
+
+Sea $\int_{\mathbb{R}^n} \left(\int_{\mathbb{R}^m} \vert f \left(x, y\right) \vert \dif{y} \right) \dif{x} < \infty$, aplicando el th. de Tonelli a $\vert f\vert$ obtenemos que $f$ es integrable.
 
 \end{document}
