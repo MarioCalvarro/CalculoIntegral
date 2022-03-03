@@ -1424,4 +1424,91 @@ Dado $t \in \left(-1, \infty\right)$ sean $-1 < a < t_0 < b <\infty$. Vamos a de
     $$F \left(0\right) = \int_0^{\infty} 0 \dif{t} = 0 = \log \left(1\right) + C\Rightarrow C = 0$$
 \end{enumerate}
 
+\underline{Ejemplos}: 
+\begin{enumerate}
+\item[8.] Sea $E = \{ \left(x, y\right) \in \mathbb{R}^2\}$ y $f \left(x, y\right) = e^{-y^2} \rightarrow \int_E e^{-y^2} \dif{x}\dif{y}$ 
+    (\textit{Dibujo})
+
+\begin{itemize}
+    \item $f \left(x, y\right) = e^{-y^2} \ge 0$ es medible (es continua en $\mathbb{R}^2$).
+    \item 
+    $$\int_E^b f \left(x, y\right) \dif{x} \dif{y} = \int_{\mathbb{R}^2} f \left(x, y\right) \cdot \chi_{E} \left(x, y\right) \dif{x} \dif{y} =$$
+    $$\int_{-\infty}^{\infty} \int_{-\infty}^{\infty} e^{-y^2}\chi_E \left(x, y\right) \dif{x} \dif{y} = \int_{0}^{\infty} \int_{0}^{y} e^{-y^2} \dif{x} \dif{y} =  $$
+    $$\frac{1}{2} \int_{0}^{\infty} 2ye^{-y^2} \dif{y} = \left[\frac{1}{2} \left(e^{-y^2}\right)\right]_{y=0}^{y=\infty} = \frac{1}{2} \left(1 - 0\right) =\frac{1}{2}$$
+\end{itemize}
+Por tanto, 
+$$\int_{\left[0, \infty\right]} f \left(y\right) \dif{y} = \lim_{R \rightarrow \infty} \int_0^R f \left(y\right) \dif{y} \text{ (Riemann impropia).}   $$
+
+\underline{OBS}:
+Sea $f: \left[a, \infty\right) \rightarrow \left[0, +\infty\right)$ continua $\Rightarrow$
+$$\int_{a, +\infty} f = \lim_{R \rightarrow \infty} \int_a^R f \text{ (Riemann impropia).}$$
+
+\begin{demo}
+Sea $a \le \left(b_k\right)\uparrow \infty$ y definimos $f_k = f \cdot \chi_{\left[a, b_k\right]}$. Entonces $\{f_k\}_{k=1}^{\infty}\uparrow f$ luego por TCM $\Rightarrow$
+$$\int_{\left[a, \infty\right)} f = \lim_{k \rightarrow \infty} \int_{\left[a, \infty\right)} f_k = \lim_{k \rightarrow \infty} \int_a^{b_k} f $$
+\end{demo}
+
+\item[9.] Sea $A = \left[0, 1\right] \times \left[0, +\infty\right]$ y $f \left(x, y\right) = e^{-y} \sin \left(2xy\right) \rightarrow \int_A f \left(x, y\right) \dif{x} \dif{y}$.
+\begin{itemize}
+    \item ¿$f$ integrable? $\int_A \vert f\vert < \infty$?
+    $$\vert f \left(x, y\right)\vert = \vert e^{-y} \sin \left(2xy\right)\vert \le e^{-y}$$
+    $$\int_A \vert f \left(x, y\right) \vert \le \int_A e^{-y} \dif{x} \dif{y} = \int_0^1 \int_0^{\infty} ??e^{-y} \dif{y} \dif{x} = \left(\int_0^1 ?? \dif{x}  \right) \left(\int_0^{\infty} e^{-y} \dif{y} \right) = 1 < \infty $$
+\item Podemos aplicar Fubini: 
+    $$\int_A f \left(x, y\right) \dif{x} \dif{y} = \int_0^1 \left(\underbrace{\int_0^{\infty} e^{-y}\sin\left(2xy\right) \dif{y}}_{F \left(x\right)} \right) \dif{x}  = **$$
+
+Veamos $F \left(x\right)$:
+    $$\int_0^{\infty} e^{-y}\sin \left(2xy\right) \dif{y}$$
+    $$\begin{cases}
+        u = \sin \left(2xy\right)\\
+        dv = e^{-y}dx
+    \end{cases} \rightarrow \begin{cases}
+       du = 2x \cos \left(2xy\right)dy\\
+       v = -e^{-y}
+    \end{cases}$$
+    $$F \left(x\right) = \underbrace{\left[-e^{-y} \sin \left(x, y\right)\right]}_{= 0} + \int_0^{\infty} 2xe^{-y}\cos \left(2xy\right) \dif{y} = $$
+    $$\begin{cases}
+        u = 2x\cos \left(2xy\right) \\
+        dv = e^{-y}dy
+    \end{cases} \rightarrow \begin{cases}
+        du = \left(2x\right)^2 \cdot \left(-\sin \left(2xy\right)\right)dy\\
+        v = -e^{-y}
+    \end{cases}$$
+    $$= \left[-e^{-y}2x \cos \left(2xy\right)\right]_{0}^{\infty} - \int_0^{\infty} 4x^2e^{-y}\sin \left(2xy\right) \dif{y} = $$
+    $$= 2x - 4x^2 F \left(x\right)$$
+    $$F \left(x\right) \cdot \left(1 + 4x^2\right) = 2x;\ F \left(x\right) = \frac{2x}{1+4x^2}$$
+
+Volvamos a lo original:
+    $$** = \int_0^1 \frac{1}{4} \cdot \frac{2x}{1+4x^2} \dif{x} = \frac{1}{4} \left[\log \left(1 + 4x^2\right)\right]_{0}^{1} = \frac{\log \left(5\right)}{4}.$$
+\end{itemize}
+
+\underline{OBS}:
+Sea $f: \left[a, \infty\right) \rightarrow \mathbb{R}$ continua. Si $\int_{\left[a, \infty\right)} \vert f\vert < \infty \Rightarrow$
+$$\lim_{R \rightarrow \infty} \int_a^k f = \int_{\left[a, \infty\right)} f $$
+
+\begin{demo}
+Sea $a \le \{b_k\}_{k=1}^{\infty}\uparrow \infty$ y sean $f_k = f \cdot \chi_{\left[a, \infty\right)}$. Entonces, $\left(f_k\right) \rightarrow f$ puntualmente y además: 
+$$\vert f_k \vert \le \vert f \vert \text{ que es integrable en } \left[a, \infty\right) \Rightarrow \text{(TCD) } \lim_{k \rightarrow \infty} \int_a^{b_k} f = \int_a^{\infty} f$$ 
+\end{demo}
+\end{enumerate}
+
+\begin{defi}[Funciones definidas por integrales]
+Una función viene definida por una integral si tiene la siguiente forma: 
+$$F \left(u\right) = \int_{\mathbb{R}^n} f \left(x, u\right) \dif{x} $$
+\end{defi}
+
+\begin{theo}
+Sea $\mathcal{U} \subset \mathbb{R}^m$ y sea $f: \mathbb{R}^n \times \mathcal{U} \rightarrow \mathbb{R}$. Supongamos que: 
+\begin{enumerate}
+    \item $\forall u \in \mathcal{U},\ f_{u}: \mathbb{R}^n \rightarrow \mathbb{R}$ es integrable.
+    \item $\forall x \in \mathbb{R}^n,\ f_x: \mathcal{U} \rightarrow \mathbb{R}$ es continua.
+    \item $\exists g: \mathbb{R}^n \rightarrow \mathbb{R}$ integrable, tal que $\vert f \left(x, u\right) \vert \le g \left(x\right),\ \forall x \in \mathbb{R}^n,\ \forall u \in \mathcal{U}$
+\end{enumerate}
+Entonces: 
+$$F \left(u\right) = \int_{\mathbb{R}^n} f \left(x, u\right) \dif{x} \text{ es continua en } \mathcal{U}.$$
+\end{theo}
+\begin{demo}
+Sea $\{u_k\}_{k=1}^{\infty} \subset \mathcal{U}$ con $u_k \rightarrow u$ en $\mathcal{U}$. $\forall k \in \mathbb{N}$ definimos $f_k = f_{u_k},\ f_k \left(x\right) = f \left(x, u_k\right) \rightarrow f \left(x, u\right)$. Además, $\vert f_k \left(u\right) \vert = \vert f \left(x, u_k\right) \vert \le g \left(x\right),\ \forall x \in \mathbb{R}^n,\ \forall k \in \mathbb{N}$. Por TCD: 
+$$\underbrace{\int_{\mathbb{R}^n} f_k \left(x\right) \dif{x}}_{F \left(u_k\right)}} \rightarrow \underbrace{\int_{\mathbb{R}^n} f \left(x, u_0?\right) \dif{x}}_{= F \left(u_0?\right)} $$
+\end{demo}
+
 \end{document}
