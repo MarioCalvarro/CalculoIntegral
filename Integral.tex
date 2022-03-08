@@ -1508,7 +1508,79 @@ $$F \left(u\right) = \int_{\mathbb{R}^n} f \left(x, u\right) \dif{x} \text{ es c
 \end{theo}
 \begin{demo}
 Sea $\{u_k\}_{k=1}^{\infty} \subset \mathcal{U}$ con $u_k \rightarrow u$ en $\mathcal{U}$. $\forall k \in \mathbb{N}$ definimos $f_k = f_{u_k},\ f_k \left(x\right) = f \left(x, u_k\right) \rightarrow f \left(x, u\right)$. Además, $\vert f_k \left(u\right) \vert = \vert f \left(x, u_k\right) \vert \le g \left(x\right),\ \forall x \in \mathbb{R}^n,\ \forall k \in \mathbb{N}$. Por TCD: 
-$$\underbrace{\int_{\mathbb{R}^n} f_k \left(x\right) \dif{x}}_{F \left(u_k\right)}} \rightarrow \underbrace{\int_{\mathbb{R}^n} f \left(x, u_0?\right) \dif{x}}_{= F \left(u_0?\right)} $$
+$$\underbrace{\int_{\mathbb{R}^n} f_k \left(x\right) \dif{x}}_{F \left(u_k\right)} \rightarrow \underbrace{\int_{\mathbb{R}^n} f \left(x, u_0?\right) \dif{x}}_{= F \left(u_0?\right)} $$
 \end{demo}
+
+\begin{theo}[Regla de Leibniz]
+Sea $f: \mathbb{R}^{n}x\left[a, b\right] \rightarrow \mathbb{R}$ medible. $F \left(t\right) = \int_{\mathbb{R}^n} f \left(x, t\right) \dif{x}$. Supongamos que: 
+\begin{enumerate}
+    \item $\forall k \in \left[a, b\right],\ f_r: \mathbb{R}^{n} \rightarrow \mathbb{R}$ es integrable en $\mathbb{R}^n$.
+    \item $\forall x \in \mathbb{R}^n,\ f_x: \left[a, b\right] \rightarrow \mathbb{R}$ en $C^1$, donde $f_x \left(t\right) = f \left(x, t\right)$
+    \item $\exists g: \mathbb{R}^n \rightarrow \mathbb{R}$ integrable tal que $\vert \frac{\partial f \left(x, t\right)}{\partial t}\vert \le g \left(x\right),\ \forall x \in \mathbb{R}^n,\ \forall k \in \left[a, b\right]$
+\end{enumerate}
+Entonces $F$ es $C_1$ en $\left(a, b\right)$ y $\forall g \in \left(a, b\right)$: 
+$$F' \left(t\right) = \int_{\mathbb{R}^n} \frac{\partial f \left(x, t\right)}{\partial t} \dif{x} $$
+\end{theo}
+\underline{Obs}: 
+
+La derivada de la función $f_x$ es: 
+$$\left(f_x\right)' \left(t\right) = \frac{\partial f}{\partial t} \left(x, t\right)$$
+\begin{demo}
+Vamos a aplicar el th. de Fubini/Tonelli a $\frac{\partial f}{\partial t} \left(x, t\right)$
+\begin{itemize}
+    \item $\frac{\partial f}{\partial t} \left(x, t\right) = \lim_{s \rightarrow o^+} \frac{f \left(x, t + s\right) - f \left(x, t\right)}{s} = \lim_{k \rightarrow \infty} \frac{f \left(x, t \frac{1}{k}\right) - f \left(x, t\right)}{\frac{1}{k}}$ es medible al ser límite puntual de funciones medibles.
+    \item 
+    $$\int_{\mathbb{R}^n} \vert \frac{\partial f}{\partial t} \left(x, t\right)\vert  \dif{x} \dif{y} \le \int_{\mathbb{R}^n \times \left[a, b\right]} g \left(x\right) \dif{x} \dif{y} = \int_{\mathbb{R}^n} \left(\int_a^b g \left(x\right) \dif{t}  \right) \dif{x} =$$
+    $$\int_{\mathbb{R}^n} \left(b - a\right) g \left(x\right) \dif{x} = \left(b - a\right) \int_{\mathbb{R}^n} g < +\infty$$
+    Luego $\frac{\partial f}{\partial t}$ es integrable en $\mathbb{R}^n \times \left[a, b\right]$
+    \item Aplicamos el th. de Fubini. $\forall s \le \left[a, b\right]$: 
+    $$\int_a^b \left(\int_{\mathbb{R}^n} \frac{\partial f}{\partial t} \left(x, t\right) \dif{x} \right) \dif{t} = \int_{\mathbb{R}^n} \left(\int_a^s \frac{\partial f}{\partial t} \left(x, t\right) \dif{t} \right) \dif{x} = \int_{\mathbb{R}^n} \left( f \left(x, s\right) - f \left(x, a\right)\right) \dif{x} = F \left(s\right) - F \left(a\right).$$
+    Denotamos: 
+    $$H \left(t\right) = \int_{\mathbb{R}^n} \frac{\partial f}{\partial t} \left(x, t\right) \dif{x}$$
+    Como $\frac{\partial f}{\partial t} \left(x, t\right) = \left(f_x\right)' \left(x\right)$ es continua en $t$ y $\vert \frac{\partial f}{\partial t} \vert \le g \Rightarrow$
+    
+    Obtenemos que $H$ es continua en $t \in \left[a, b\right]$
+
+    Entonces: 
+    $$\int_a^s H \left(t\right) \dif{t} = F \left(s\right) - F \left(a\right) $$
+    $$F \left(s\right) = F \left(a\right) + \int_a^s H \left(t\right) \dif{t} \Rightarrow F' \left(t\right) = G \left(t\right),\ \forall t \in \left(a, b\right) $$
+\end{itemize}
+\end{demo}
+
+\underline{Ejemplo}: 
+$$F \left(t\right) = \int_0^{\infty} \frac{1 - e^{tx}}{xe^{x}} \dif{x} \text{, para } t > -1$$
+\textit{Veamos que $F$ está bien definido y es derivable en $t \in \left(-1, \infty\right)$}. 
+
+Dado $t \in \left(-1, \infty\right)$ sean $-1 < a < t_0 < b <\infty$. Vamos a demostrar que $F$ es derivable $\left(C'\right)$ en $\left(a, b\right)$. De aquí se deduce que $F$ es derivable $\left(C'\right)$ en $\left(-1, \infty\right)$.
+
+\begin{enumerate}
+    \item $\forall t > -1$. $f_t \left(x\right) = \frac{1 - e^{-tx}}{x} e^{-x}$ ¿es integrable en $\left(0, \infty\right)$?
+    $$\lim_{x \rightarrow o^+} \frac{1 - e^{-tx}}{x} = \lim_{x \rightarrow o^+} \frac{tetd-tx}{1} = t \in \mathbb{R} \Rightarrow f_x \text{ se extiende con continuidad a } x = 0 $$
+    $$\Rightarrow f_t \text{ es integrable ``cerca de $0$'' (en cualquier intervalo finito $\left[0, R\right]$)}$$
+
+    $$f_t \left(x\right) = \vert \frac{1 - e^{-tx}}{x}\vert e^{-x} = \frac{\vert 1 - e^{-tx}\vert}{x} e^{-x}$$
+    Si $x > 1 \Rightarrow \vert f_t \left(x\right) \vert \le \vert 1 - e^{-tx} e^{-x} \vert \le e^{-x} + e^{-\left(t+1\right)x}$ 
+    $$\int_1^{\infty} e^{-x} \dif{x} < \infty $$
+    $$\int_1^{\infty} e^{-\left(t + 1\right)x} \dif{x} < \infty \text{ porque } t + 1 > 0 $$
+    $$f_t \cdot \chi_{\left(0, \infty\right)}$$
+
+    \item 
+    $$\frac{\partial f}{\partial t} \left(x, t\right) = \frac{xe^{-tx}}{x}e^{-x} = e^{-\left(t+1\right)x} \text{ existe $g$ en continua en $t$.}$$
+    \item 
+    $$\vert \frac{\partial f}{\partial t} \left(x, t\right)\vert = e^{-\left(t+1\right)x}\text{, si } t= 1 \Rightarrow e^{-\left(t+1\right)x} = e^{0} = 1 \text{ no es integrable en } \left(0, \infty\right)$$
+
+    Fijamos $-1 < a < b < \infty$ y  consideramos $\left[a, b\right]$. Si $t \in \left[a, b\right] \Rightarrow a \le t \Rightarrow e^{-\left(t+1\right)x} \le e^{-\left(a+1\right)x} = g \left(x\right)$
+    $$\int_0^{\infty} g \left(x\right) \dif{x} = \int_0^{\infty} e^{-\left(a+1\right)x} \dif{x} =  $$
+    $$\left[\frac{e^{\left(a+1\right)x}}{a+1}\right]_{0}^{\infty} = \frac{1}{a+1} < \infty \text{ puede que } a+1>0$$
+    $\Rightarrow F$ derivable $C$ en $\left(a, b\right),\ \forall a, b \Rightarrow F$ en $C$ en $ \left(-1, \infty\right)$ y.
+
+    \textbf{Esto no se si está bien.} 
+
+    Además $F' \left(t\right) = \int_0^{\infty} \frac{\partial f}{\partial t} \left(x, t\right) \dif{x} = \int_0^{\infty} e^{-\left(t + 1\right)} \dif{x} = \left[-\frac{e^{- \left(t + 1\right)x}}{t+1}\right] = \frac{1}{t + 1},\ \forall t \in \left(a, b\right),\ \forall a, b con -1 < a < b < ?$ Luego $\forall t > -1$
+
+    $$F \left(t\right) = \int \frac{1}{1 + t} \dif{t} = \log \left(1 + t\right) + C$$
+    $$F \left(0\right) = \int_0^{\infty} 0 \dif{t} = 0 = \log \left(1\right) + C\Rightarrow C = 0$$
+\end{enumerate}
+
 
 \end{document}
