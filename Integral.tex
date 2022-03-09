@@ -1106,10 +1106,37 @@ Sea $f: \mathbb{R}^{n} \times \mathbb{R}^n \rightarrow \mathbb{R}$ una función 
 $$\forall x \in \mathbb{R}^n, \ f_x: \mathbb{R}^n \rightarrow \mathbb{R} \mbox{ donde } f_x \left(y\right) = f \left(x, y\right)$$
 \end{defi}
 
-\begin{theo}[De Tonelli]
+\begin{lema}
+Si $f$ y $g$ verifican el Tª de Tonelli y $a, b \in \mathbb{R}^+$, entonces la composición lineal de las funciones también, es decir, $af + bg$ cumple el Tª de Tonelli.
+\end{lema}
+\begin{demo}
+Se ha de demostrar que en primer lugar, se tiene que:
+$$\left(af + bg\right)_x = af_x + bg_x$$
+Esta combinación lineal será medible, por serlo de funciones medibles y, por tanto:
+$$F_{af + bg} = aF_f + bF_g$$ 
+\end{demo}
+
+\begin{lema}
+Si una sucesión de funciones $\{f_k\}_{k=1}^{\infty}$ convergente puntualmente a $f$ cumple el Tª de Tonelli, entonces $f$ cumple el Tª Tonelli. 
+\end{lema}
+\begin{demo}
+\begin{enumerate}
+    \item Primero, vemos que
+    $$f_x = \lim_{k \rightarrow \infty} \left(f_k\right)_x,\ \left(f_k\right)_x \uparrow f_x $$
+    que es medible por ser límite de medibles
+    \item En segundo lugar, como: 
+    $$F = \lim_{k \rightarrow \infty}F_k,\ \{F_k\}_{k=1}^{\infty} \uparrow F \Rightarrow\lim_{k \rightarrow \infty} \int_{\mathbb{R}^m} \left(f_k\right)_x \dif{\mu} = \int_{\mathbb{R}^m} f_x \dif{\mu} $$
+    \item Por último, tenemos que: 
+    $$\int_{\mathbb{R}^n} F \dif{\mu} = \int_{\mathbb{R}^n} \lim_{k \rightarrow \infty}F_k  \dif{\mu} = \lim_{k \rightarrow \infty}\int_{\mathbb{R}^n} F_k \dif{\mu} = \lim_{k \rightarrow \infty} \int_{\mathbb{R}^n \times \mathbb{R}^m} f_k  \dif{\mu} = \int_{\mathbb{R}^n} f \dif{\mu}  $$
+\end{enumerate}
+\end{demo}
+
+Como consecuencia de estos lemas el principio de Cavalieri es equivalente al teorema de Tonelli, es decir, basta con probar este principio para probar el teorema de Tonelli.
+
+\begin{theo}[de Tonelli]
 Sea $f: \mathbb{R}^{n} \times \mathbb{R}^m \rightarrow \left[0, +\infty\right)$ una función medible, entonces: 
 \begin{enumerate}
-    \item Las $f_x$ son medibles c.t.p de $x\in \mathbb{R}^n$.
+    \item Para casi todo $x \in \mathbb{R}^n$, $f_x$ es medible en $\mathbb{R}^n$ (y no negativa).
     \item La función $F: \mathbb{R}^{n} \rightarrow \left[0, +\infty\right]$ es medible, donde se define como:
         $$F \left(x\right) = \int_{\mathbb{R}^m} f_x \dif{\mu_m} $$
     \item Se puede dividir la integral en secciones, es decir:
@@ -1117,7 +1144,83 @@ Sea $f: \mathbb{R}^{n} \times \mathbb{R}^m \rightarrow \left[0, +\infty\right)$ 
     expresado de forma más intuitiva:
     $$\int_{\mathbb{R}^n \times \mathbb{R}^m} f \left(x, y\right) \dif{x}\dif{y} = \int_{\mathbb{R}^n}\left(\int_{\mathbb{R}^m} f \left(x, y\right) \dif{y} \right)\dif{x} = \int_{\mathbb{R}^m}\left(\int_{\mathbb{R}^n} f \left(x, y\right) \dif{x} \right)\dif{y}$$
 \end{enumerate}
+Este teorema se podría enunciar de forma análoga para $y$, siendo entonces las hipótesis:
+\begin{enumerate}
+\item Para casi todo $y \in \mathbb{R}^m$, $f_y$ es medible en $\mathbb{R}^m$ (y no negativa).
+\item La función $G: \mathbb{R}^n \rightarrow \left[0, \infty\right]$ es medible, donde se define como:
+$$G \left(x\right) = \int_{\mathbb{R}^n} f_x \dif{\mu}$$
+\item Se puede dividir la integral en secciones, es decir:
+$$\int_{\mathbb{R}^n \times \mathbb{R}^m} f \dif{\mu} = \int_{\mathbb{R}^n} G \dif{\mu},$$
+expresado de forma más intuitiva:
+$$\int_{\mathbb{R}^n \times \mathbb{R}^m} f \left(x, y\right) \dif{x}\dif{y} = \int_{\mathbb{R}^m} \left(\int_{\mathbb{R}^n} f \left(x, y\right) \dif{x} \right) \dif{y}.$$
+\end{enumerate}
 \end{theo}
+\begin{demo}
+Para demostrar este teorema para funciones no negativas se irá demostrando para funciones más sencillas e incrementaremos la complejidad de forma gradual hasta llegar a las de las hipótesis.
+
+\begin{enumerate}
+\item Primeramente consideramos $f = \chi_{Q}$ donde $Q \subset \mathbb{R}^{n+m}$ es un cubo semiabierto, es decir, $Q = \prod_{i=1}^{n+m} \left[a_i, b_i\right)$. Este cubo se puede expresar en términos de otros dos, esto es, $Q = A \times B$ con $A \subset \mathbb{R}^n$ y $B \in \mathbb{R}^m$ cubos semiabiertos. Veamos entonces que:
+\begin{enumerate}
+    \item
+    $$\left(\chi_Q\right)_x = \chi_{Q_x} = \begin{cases} \chi_B &  x \in A\\ 0 &  x \not\in A \end{cases} \Rightarrow \left(\chi_Q\right)_x \text{ ya que }Q_x = \begin{cases} B & x\in A \\ \emptyset & x\notin A \end{cases}\Rightarrow \chi_{Q_x} \text{ medible }\forall x \in \mathbb{R}^n$$
+    \item
+    $$F \left(x\right) = \int_{\mathbb{R}^m} \chi_{Q_x} \dif{\mu_m} = \begin{cases} \int_{\mathbb{R}^m} \chi_b \dif{\mu_m} = \mu_m \left(B\right) & x \in A \\ 0 & x \not\in A\end{cases} \text{ medible} \Rightarrow F \left(x\right) = \mu_m \left(B\right)\cdot \chi_A \left(x\right)$$
+    \item
+    $$\int_{\mathbb{R}^n} F \left(x\right) \dif{\mu_n} = \mu_m \left(B\right) \cdot \mu_n \left(A\right) = \mu_{n+m} \left(Q\right) = \int_{\mathbb{R}^n \times \mathbb{R}^m} \chi_Q \dif{\mu_{m+n}} $$
+    Siendo la 2 igualdad cierta por tratarse de un cubo.
+\end{enumerate}
+\item Consideramos ahora $f = \chi_G$ donde $G \subset \mathbb{R}^{n+m}$ es un abierto. Por serlo, podemos escribirlo como $G = \bigsqcup_{j=1}^{\infty} Q_j$ donde cada $Q_j$ es un cubo semiabierto y la unión es disjunta.
+
+Denotando $G_k = \bigsqcup_{j=1}^{k} Q_j$ tenemos que $\chi_{G_k} = \sum_{j=1}^{k} \chi_{Q_j}$. Por ser dicha función característica suma finita de funciones características de cubos (que ya sabemos que cumplen el Teorema), también cumple el Teorema por el primer lema y además vemos que $\{\chi_{Q_k}\}_{k=1}^{\infty} \uparrow \chi_G$ puntualmente, luego:
+$$\chi_G = \sum_{j=1}^{\infty} \chi_{G_j} = \lim_{k \rightarrow \infty}\chi_{G_k} $$
+De este modo, basta con aplicar el segundo lema y cumple el Teorema.
+
+\item Supongamos que $f = \chi_D$ donde $D \subset \mathbb{R}^{n + m}$ es un conjunto $G_\delta$. En este caso, es suficiente considerar que $D$ es acotado puesto que $D$ se puede expresar como una unión creciente $$D = \bigcup_{k=1}^{\infty} D_k$$ donde cada $D_k$ es un $G_\delta$ y acotado (por ejemplo, $D_k = D \cap \left(-k, k\right)^{n+m}$). De este modo, $\{\chi_{D_k}\}_{k=1}^{\infty} \uparrow \chi_D$ y usando el segundo lema, ya lo tendríamos.
+
+En consecuencia, supongamos que $D$ es $G_\delta $ y acotado, entonces escribimos
+$$D = \bigcap_{k = 1}^{\infty} G_k$$
+donde cada $G_k$ es abierto acotado y $G_1 \supset G_2 \supset G_k \supset \ldots \supset D$. De este modo, construimos la sucesión $\{\chi_{G_k}\}_{k=1}^{\infty} \downarrow \chi_D$ con la que, usando la versión decreciente de TCM, se puede hacer una demostración análoga a la del segundo lema para obtener que $\chi_D$ verifica el teorema. 
+
+Alternativamente, como $0 \le \chi_D \le \chi_{G_1}$ es integrable y satisface el teorema, entonces se puede aplicar el TCD.
+
+\item Consideramos ahora $f = \chi_N$ donde $\mu_{n+m} \left(N\right) = 0$. Por la regularidad de la medida, tenemos que:
+$$\forall k \in \mathbb{N},\ \exists G_k \subset \mathbb{R}^{n+m} \mbox{ abierto con } N \subset G_k  \mbox{ y }  \mu_{n+m} \left(G_k \setminus N\right) < \frac{1}{k}$$
+
+Si definimos $G:= \bigcap_{k \in \mathbb{N}} G_k$, entonces vemos que $G$ es un $G_\delta$ por ser intersección numerable de abiertos, tal que $N \subset G $ y además: 
+$$\mu_{n+m} \left(G\setminus N\right) \le \forall k \in \mathbb{N}: \mu_{n+m} \left(G_k \setminus N\right) < \frac{1}{k} \xrightarrow{k\rightarrow \infty} 0 \Rightarrow \mu_{n+m}(G) = 0$$
+
+De este modo, hemos encontrado un $G_\delta$ que contiene a $N$. En primer lugar, vemos que $\chi_G$ satisface el teorema para casi todo $x \in \mathbb{R}^n$ por el apartado anterior y, por tanto, $\chi_G$ es medible, luego:
+$$0 = \mu_{n+m} \left(G\right) = \int_{\mathbb{R}^n \times \mathbb{R}^m} \chi_{G} \dif{\mu_{n+m}} = \int_{\mathbb{R}^n} \left( \int_{\mathbb{R}^m} \chi_{G_x}  \dif{\mu_m} \right) \dif{\mu_n}.$$
+Por tanto, como la integral de dentro es la $F(x)$ del enunciado y es positiva:
+$$\mu_m \left(G_k\right) = \int_{\mathbb{R}^m} \chi_{G_x} \dif{\mu_m} = 0 \text{ en casi todo punto } x \in \mathbb{R}^n$$
+Como $N_x \subset G_x\Rightarrow \mu_m(N_x) \leq \mu_m(G_x) = 0 \Rightarrow \mu_m(N_x) = 0$ y además es medible, luego tenemos que $\chi_{N_x} = \left(\chi_N\right)_x = f_x$ es medible en para c.t.p. de $\mathbb{R}^n$.
+
+Para la segunda consecuencia basta ver que:
+$$0 \le F \left(x\right) = \int_{\mathbb{R}^m} \chi_{N_x} \dif{\mu_m} \le \int_{\mathbb{R}^m} \chi_{G_x} \dif{\mu_m} = 0 \text{ c.t.p. } \in \mathbb{R}^n$$
+Por lo que, en particular, $F$ es medible.
+
+Y, por último, hay que ver que la integral se puede iterar:
+$$\int_{\mathbb{R}^n \times \mathbb{R}^m} \chi_N \dif{\mu_{n+m}} = 0 = \int_{\mathbb{R}^n} \underbrace{F \left(x\right)}_{=0} \dif{\mu_n} = \int_{\mathbb{R}^n} \left(\int_{\mathbb{R}^m} \chi_{N_x} \dif{\mu_m} \right) \dif{\mu_n} $$
+
+\item Sea ahora $f = \chi_A$ donde $A \subset \mathbb{R}^{n+m}$ es medible. Por ser medible, sabemos que podemos descomponer $A$ como $A = D \setminus N$, donde $D$ es un $G_\delta $ y $\mu_{n+m} \left(N\right) = 0$. Por tanto, $D = A \sqcup N \Rightarrow \chi_D = \chi_A + \chi_N$ y, en consecuencia:
+$$\chi_A = \chi_D - \chi_N \text{ para c.t.p. } x \in \mathbb{R}^n$$
+Y es sencillo ver que también se cumple la igualdad:
+$$\chi_{A_x}= \chi_{B_x} - \chi_{N_x} \text{ es medible por (3) y (4)}$$
+
+Para ver la segunda conclusión, tenemos que: 
+$$F \left(x\right) = \int_{\mathbb{R}^m} \chi_{A_x} \dif{\mu_m} = \int_{\mathbb{R}^m} \chi_{D_x} \dif{\mu_m}$$
+puesto que $\mu_m \left(N_x\right) = 0$ y entonces es medible para c.t.p. $x \in \mathbb{R}^n$ porque $D$ es $G_\delta$ y aplicamos el apartado (3).
+
+Para terminar:
+$$\int_{\mathbb{R}^n} F \left(x\right) \dif{\mu_n} = \int_{\mathbb{R}^n} \left( \int_{\mathbb{R}^m} \chi_{A_x} \dif{\mu_m} \right) \dif{\mu_n} = \int_{\mathbb{R}^n} \left(\int_{\mathbb{R}^m} \chi_{D_x} \dif{\mu_m} \right) \dif{\mu_n} = $$
+$$= \int_{\mathbb{R}^n \times \mathbb{R}^m} \chi_{D} \dif{\mu_{n+m}} = \mu_{n+m} \left(D\right) = \mu_{n+m} \left(A\right) = \int_{\mathbb{R}^n \times \mathbb{R}^m} \chi_A \dif{\mu_{n+m}} $$
+Porque $D_x$ si verificaba ya el Teorema de Tonelli.
+
+\item Sea $f$ función simple, medible, no negativa, entonces $f$ es combinación lineal no negativa de funciones características de conjuntos medibles en $\mathbb{R}^n \times \mathbb{R}^m$ y por el lema trivialmente se tiene.
+
+\item Finalmente, consideramos $f$ medible no negativa. Como para estas funciones hemos demostrado que $ \exists \{f_k\}_{k=1}^{\infty}\uparrow f$ donde cada $f_k$ es simple, medible y no negativa, queda probado por el lema 2 y el apartado 6.
+\end{enumerate} 
+\end{demo}
 
 \begin{defi}[Secciones de conjuntos]
 Si tenemos un conjunto $A \subset \mathbb{R}^n \times \mathbb{R}^m$, podemos definir su \textbf{sección} como:
@@ -1135,213 +1238,46 @@ Sea $A \subset \mathbb{R}^n \times \mathbb{R}^m$ medible, entonces:
 
 $$DIBUJO DE LO QUE SIGNFICAN LAS SECCIONES$$
 
-\underline{Ejemplo}:
+\underline{Observación}: 
 
-Sea $A = \{ \left(x, 0\right) \in \mathbb{R}^2: x \in E\}$
-(\textit{Dibujo})
+Si $N \subset \mathbb{R}^{n+m}$ satisface que $\mu_{n+m} \left(N \right) = 0$ hemos visto que para casi todo $x \in \mathbb{R}$ la sección $N_x$ es medible porque tiene medida nula. Sin embargo, puede ocurrir que para algún $x \in \mathbb{R}^n$ la sección $N_x$ no sea medible en $\mathbb{R}^m$
 
-Si tomamos $E \subset \mathbb{R}$ no medible: 
-$$A_y = \begin{cases}
-    \emptyset \text{ si } y \neq 0\\
-    E \text{ si } y = 0
-\end{cases}$$
-Por lo que c.t.p es necesario.
+Por ejemplo, sea $E \subset \mathbb{R}$ no medible y sea $N = \{0\} \times E \subset \mathbb{R}^2$. Como $N$ está contenido en la recta $\{0\} \times \mathbb{R}$ está claro que $\mu_2 \left(N\right) = 0$, pero la sección $N_0 = E$ no es medible.
 
 \begin{coro}
 Si la medida del conjunto es nula, entonces la medida de casi todas las secciones también lo es.
 $$\mu_{n + m} \left(A\right) = 0 \Rightarrow \mu_m \left(A_x\right) = 0 \text{ c.t.p } x$$
 \end{coro}
 
-\begin{lema}
-Si $f$ y $g$ verifican el Tª de Tonelli y $a, b \in \mathbb{R}^+$, entonces la composición lineal de las funciones también, es decir, $af + bg$ cumple el Tª de Tonelli.
-\end{lema}
-\begin{demo}
-Se ha de demostrar que en primer lugar, se tiene que:
-$$\left(af + bg\right)_x = af_x + bg_x$$
-Esta combinación lineal será medible, por serlo de funciones medibles y, por tanto:
-$$F_{af + bg} = aF_f + bF_g$$ 
-\end{demo}
-
-\begin{lema}
-Si una sucesión de funciones $\{f_k\}_{k=1}^{\infty}$ convergente a $f$ cumple el Tª de Tonelli, entonces $f$ cumple el Tª Tonelli. 
-\end{lema}
-\begin{demo}
-\begin{enumerate}
-    \item Primero, vemos que
-    $$f_x = \lim_{k \rightarrow \infty} \left(f_k\right)_x,\ \left(f_k\right)_x \uparrow f_x $$
-    que es medible por ser límite de medibles
-    \item En segundo lugar, como: 
-    $$F = \lim_{k \rightarrow \infty}F_k,\ \{F_k\}_{k=1}^{\infty} \uparrow F \Rightarrow\lim_{k \rightarrow \infty} \int_{\mathbb{R}^m} \left(f_k\right)_x \dif{\mu} = \int_{\mathbb{R}^m} f_x \dif{\mu} $$
-    \item Por último, tenemos que: 
-    $$\int_{\mathbb{R}^n} F \dif{\mu} = \int_{\mathbb{R}^n} \lim_{k \rightarrow \infty}F_k  \dif{\mu} = \lim_{k \rightarrow \infty}\int_{\mathbb{R}^n} F_k \dif{\mu} = \lim_{k \rightarrow \infty} \int_{\mathbb{R}^n \times \mathbb{R}^m} f_k  \dif{\mu} = \int_{\mathbb{R}^n} f \dif{\mu}  $$
-\end{enumerate}
-\end{demo}
-
-Como consecuencia de estos lemas el principio de Cavalieri es equivalente al teorema de Tonelli, es decir, basta con probar este principio para probar el teorema de Tonelli.
-
 \underline{Ejemplo}: 
 
 Si $A \subset \mathbb{R}^n \times \mathbb{R}^m$:
 $$\int_A f \left(x, y\right) \dif{x} \dif{y} = \int_{\mathbb{R}^n \times \mathbb{R}^m} f \left(x, y\right) \chi_A \left(x, y\right) \dif{x}\dif{y} = $$
-$$\int_{\mathbb{R}^n} \left(\int_{\mathbb{R}^m} f \left(x, y\right) \chi_A \left(y\right) \dif{y} \right) \dif{x} = \int_{\mathbb{R}^n} \left(\int_{A_x} f \left(x, y\right) \dif{y}\right) \dif{x}.$$
-
--- INICIO CLASES TEÓRICAS CON JESÚS JARAMILLO --
-
-\textbf{NOTACIÓN:} (Creo que esto lo podemos quitar)
-
-En el espacio $\mathbb{R}^n \times \mathbb{R}^n = \mathbb{R}^{n+m}$, sea la función $f: \mathbb{R}^n \times \mathbb{R}^m \rightarrow \left[-\infty, \infty\right]$.
-$$\forall x \in \mathbb{R}^n, f_x : \mathbb{R}^m \rightarrow \left[-\infty, \infty\right]\; \land \;f_x \left(y\right) = f\left(x, y\right)$$
-Dado $E \subset \mathbb{R}^n \times \mathbb{R}^m,\ \forall x \in \mathbb{R}^n: E_x = \{y \in \mathbb{R}^m : \left(x, y\right) \in E\}$ será la sección vertical.
-
-(\textit{Dibujo}) 
-
-Si $f = \chi_E \Rightarrow$
-$$\left(\chi_E\right)_x \left(y\right) = \chi_E \left(x, y\right) = \begin{cases}
-    1 \text{, si} \left(x, y\right) \in E \Leftrightarrow y \in E_x\\
-    0 \text{, si} \left(x, y\right) \not\in e \Leftrightarrow y \not\in E_x
-\end{cases} = \chi_{E_x}$$
-Denotamos $\mu_k$ como la medida de Lebesque en $\mathbb{R}^k$
-
---------------------------------------------------
-
-\begin{theo}[de Tonelli]
-Sea $f: \mathbb{R}^n \times \mathbb{R}^m \rightarrow \left[0, \infty\right)$ una función medible. Entonces:
-\begin{enumerate}
-\item Para casi todo $x \in \mathbb{R}^n$, $f_x$ es medible en $\mathbb{R}^n$ (y no negativa).
-\item La función $F: \mathbb{R}^n \rightarrow \left[0, \infty\right]$ definida en casi todo punto por:
-$$F \left(x\right) = \int_{\mathbb{R}^m} f_x \dif{\mu}_m$$
-es medible en $\mathbb{R}^n$.
-\item Además,
-$$\int_{\mathbb{R}^n \times \mathbb{R}^m} f \dif{\mu}_{n+m} = \int_{\mathbb{R}^n} F \dif{\mu}_n,$$
-es decir, 
-$$\int_{\mathbb{R}^n \times \mathbb{R}^m} f \left(x, y\right) \dif{x}\dif{y} = \int_{\mathbb{R}^n} \left(\int_{\mathbb{R}^m} f \left(x, y\right) \dif{y} \right) \dif{x}.$$
-\end{enumerate}
-Este teorema se podría enunciar de forma análoga para $y$.
-%\begin{enumerate}
-%\item Para casi todo $y \in \mathbb{R}^m$, $f_y$ es medible en $\mathbb{R}^m$ (y no negativa).
-%\item La función $G: \mathbb{R}^n \rightarrow \left[0, \infty\right]$ definida por:
-%$$G \left(x\right) = \int_{\mathbb{R}^n} f_x \dif{\mu}$$
-%es medible en $\mathbb{R}^n$.
-%\item Además,
-%$$\int_{\mathbb{R}^n \times \mathbb{R}^m} f \dif{\mu} = \int_{\mathbb{R}^n} G \dif{\mu},$$
-%es decir, 
-%$$\int_{\mathbb{R}^n \times \mathbb{R}^m} f \left(x, y\right) \dif{x}\dif{y} = \int_{\mathbb{R}^m} \left(\int_{\mathbb{R}^n} f \left(x, y\right) \dif{x} \right) \dif{y}.$$
-%\end{enumerate}
-\end{theo}
-Para la demostración de este resultado, se hará uso de los siguientes lemas, ya probados anteriormente, que se proceden a enunciar de nuevo.
-\begin{lema}
-Si $f, g$ satisfacen el teorema de Tonelli, entonces su combinación lineal positiva, es decir, $a\cdot f + b \cdot g : a,b \in \mathbb{R}^+$, también satisface el teorema de Tonelli.
-\end{lema}
-\begin{lema}
-Si $\{f_k\}_{k=1}^{\infty}$ es una sucesión de funciones que satisfacen el Teorema de Tonelli y $f_k \uparrow f$ puntualmente, entonces $f$ también satisface el Teorema de Tonelli.
-\end{lema}
-\begin{demo}[Teorema de Tonelli]
-Procedemos a la demostración del Teorema de Tonelli. Esta se realiza de forma gradual, considerando funciones sencillas que en conjunto harán cierto el resultado para cualquier función medible $f$.
-
-\begin{enumerate}
-\item Primeramente consideramos $f = \chi_{Q}$ donde $Q \subset \mathbb{R}^{n+m}$ es un cubo semiabierto, es decir, $Q = \prod_{i=1}^{n+m} \left[a_i, b_i\right)$. Así, podemos considerar el cubo $Q$ como el producto cartesiano $Q = A \times B$ con $A \subset \mathbb{R}^n$ y $B \in \mathbb{R}^m$ cubos semiabiertos. Veamos que $f$ cumple el Teorema de Tonelli.
-\begin{itemize}
-    \item $\left(\chi_Q\right)_x = \chi_{Q_x} = \begin{cases}
-        \chi_B \text{, si } x \in A\\
-        0 \text{, si } x \not\in A
-    \end{cases} $. Es decir, $\left(\chi_Q\right)_x $ es medible  $\forall x \in \mathbb{R}^n$.
-    \item $F \left(x\right) = \int_{\mathbb{R}^n} \chi_{Q_x} \dif{\mu_n} = \begin{cases}
-        \left(\text{si } x \in A\right) = \int_{\mathbb{R}^m} \chi_b \dif{\mu_m} = \mu_m \left(B\right)\\
-        \left(\text{si } x \not\in A\right) = 0
-    \end{cases}$ es medible. En particular
-    $$F \left(x\right) = \mu_m \left(B\right)\cdot \chi_A \left(x\right).$$
-    \item $\int_{\mathbb{R}^n} F \left(x\right) \dif{\mu_n} = \mu_m \left(B\right) \cdot \mu_n \left(A\right) = \mu_{n+m} \left(Q\right) = \int_{\mathbb{R}^n \times \mathbb{R}^m} \chi_Q \dif{\mu_{m+n}} $
-\end{itemize}
-\item Consideramos ahora $f = \chi_G$ donde $G \subset \mathbb{R}^{n+m}$ es un conjunto abierto. Escribimos $G = \bigcup_{j=1}^{\infty} Q_j$ donde cada $Q_j$ es un cubo semiabierto y la unión es disjunta.
-
-Denotando $G_k = \bigcup_{j=1}^{k} Q_j$ tenemos que $\chi_{G_k} = \sum_{j=1}^{k} \chi_{Q_j}$. Como $\chi_{G_k} $es una suma finita de funciones características de cubos, resulta que cumple el Teorema por el primer lema. Pero, $\{\chi_{Q_k}\}_{k=1}^{\infty} \uparrow \chi_G$ 
-$$\chi_G = \sum_{j=1}^{\infty} \chi_{G_j} = \lim_{k \rightarrow \infty}\chi_{G_k} $$Así, aplicando el segundo lema resulta que $\chi_G$ cumple el Teorema de Tonelli.
-
-\item Supongamos que $f = \chi_D$ donde $D \subset \mathbb{R}^{n + m}$ es un conjunto $G\delta$. Puesto que $D$ es una unión creciente $$D = \bigcup_{k=1}^{\infty} D_k$$ donde cada $D_k$ es $G\delta$ y acotado (por ejemplo, $D_k = D \cap \left(-k, k\right)^{n+m}$).
-
-al ser $\{\chi_{D_k}\}_{k=1}^{\infty} \uparrow \chi_D$, usando el segundo lema, es suficiente considerar el caso de que $D$ es acotado y $G\delta$. 
-
-Así, supongamos que $D$ es $G\delta $ y acotado, escribimos $$D = \bigcap_{k = 1}^{\infty} G_k$$ donde cada $G_k$ es abierto acotado y $G_1 \supset G_2 \supset G_k \supset \ldots \supset D$. Entonces, $\{\chi_{G_k}\}_{k=1}^{\infty} \downarrow \chi_D$. Usando la versión decreciente de TCM, se puede hacer una demostración análoga a la del segundo lema para obtener que $\chi_D$ verifica el teorema. 
-
-Alternativamente, como $0 \le \chi_D \le \chi_{G_1}$ es integrable y satisface el teorema y se puede aplicar también el TCD.
-
-\item Consideramos ahora $f = \chi_N$ donde $\mu_{n+m} \left(N\right) = 0$. Por la regularidad de la medida, 
-$$\forall k \in \mathbb{N},\ \exists G_k \mbox{ abierto en }\mathbb{R}^{n}\times \mathbb{R}^m \mbox{ con } N \subset G_k  \mbox{ y }  \mu_{n+m} \left(G_k \setminus N\right) < \frac{1}{k}$$
-
-Sea $G = \bigcap_{k \in \mathbb{N}} G_k$ . $G$ es un $G\delta$ por se intersección numerable de abiertos tal que $N \subset G $ y 
-$$\mu_{n+m} \left(G\setminus N\right) \le \mu_{n+m} \left(G_k \setminus N\right) < \frac{1}{k} \rightarrow 0$$
-Luego, $\mu_{n+m} \left(G \setminus N\right) = 0$. Por tanto, $\mu_{n+m} \left(G\right) = \mu_{n+m} \left(G \setminus N\right) + \mu_{n+m} \left(N\right) = 0 + 0 = 0$
-
-Entonces, $\chi_G$ satisface el teorema por el apartado anterior para casi todo $x \in \mathbb{R}^n$, y por tanto $\chi_G$ es medible, 
-$$0 = \mu_{n+m} \left(G\right) = \int_{\mathbb{R}^n \times \mathbb{R}^m} \chi_{G} \dif{\mu_{n+m}} = \int_{\mathbb{R}^n} \left( \int_{\mathbb{R}^m} \chi_{G_x}  \dif{\mu_m} \right) \dif{\mu_n}.$$
-Por tanto, 
-$$\mu_m \left(G_k\right) = \int_{\mathbb{R}^m} \chi_{G_x} \dif{\mu_m} = 0 \text{ en casi todo punto } x \in \mathbb{R}^n$$
-
-Como $N_x \subset G_x$ obtenemos que $N_x$ tiene medida nula en $\mathbb{R}^m$ y en particular $N_x$ es medible y así $\chi_{N_x} = \left(\chi_N\right)_x$ es medible (para casi todo punto $x \in \mathbb{R}^n$)
-
-Ahora, 
-$$0 \le F \left(x\right) = \int_{\mathbb{R}^n} \chi_{N_x} \dif{\mu_n} \le \int_{\mathbb{R}^m} \chi_{G_x} \dif{\mu_m} = 0 \text{ para casi todo punto } \in \mathbb{R}^n$$
-En particular $F$ es medible.
-
-Por último veamos que son iguales las siguientes expresiones: 
-$$\int_{\mathbb{R}^n \times \mathbb{R}^m} \chi_N \dif{\mu_{n+m}} = \int_{\mathbb{R}^n} \left(\int_{\mathbb{R}^m} \chi_{N_x} \dif{\mu_m} \right) \dif{\mu_n} $$
-
-Vemos que 
-$$\int_{\mathbb{R}^n \times \mathbb{R}^m} \chi_N \dif{\mu_{n+m}} = \mu_{n+m} \left(N\right) = 0$$.
-
-Y además
-$$\int_{\mathbb{R}^n} \left(\int_{\mathbb{R}^m} \chi_{N_x} \dif{\mu_m} \right) \dif{\mu_n} = \int_{\mathbb{R}^n} F \left(x\right) \dif{\mu_n} = \int_{\mathbb{R}^n} 0 \dif{\mu_n} =0$$
-
-\underline{Observación}: 
-
-Si $N \subset \mathbb{R}^{n+m}$ satisface que $\mu_{n+m} \left(N \right) = 0$ hemos visto que para casi todo $x \in \mathbb{R}$ la sección $N_x$ es medible porque tiene medida nula. Sin embargo, puede ocurrir que para algún $x \in \mathbb{R}^n$ la sección $N_x$ no sea medible en $\mathbb{R}^m$
-
-Por ejemplo, sea $E \subset \mathbb{R}$ no medible y sea $N = \{0\} \times E \subset \mathbb{R}^2$. Como $N$ está contenido en la recta $\{0\} \times \mathbb{R}$ está claro que $\mu_2 \left(N\right) = 0$. Pero la sección $N_0 = E$ no es medible.
-
-\item Sea ahora $f = \chi_A$ donde $A \subset \mathbb{R}^{n+m} = \mathbb{R}^n \times \mathbb{R}^m$ es medible. 
-
-Sabemos que podemos descomponer $A$ como $A = D \setminus N$, donde $D$ es un $G\delta $ y $\mu_{n+m} \left(N\right) = 0$. Entonces, $D = A \sqcup N : \chi_D = \chi_A + \chi_N$. Así,
-$$\chi_A = \chi_D - \chi_N \text{ para casi todo } x \in \mathbb{R}^n$$
-$$\chi_{A_x}= \chi_{B_x} - \chi_{N_x} \text{ es medible por (3) y (4)}$$
-Tenemos ahora que: 
-$$F \left(x\right) = \int_{\mathbb{R}^m} \chi_{A_x} \dif{\mu_m} = \int_{\mathbb{R}^m} \chi_{D_x} \dif{\mu_m}$$
-puesto que $\mu_m \left(N_x\right) = 0$ y, consecuentemente, $\int_{\mathbb{R}^m} \chi_{N_x} \dif{\mu_m} = 0$. Por tanto, es medible para casi todo punto $x \in \mathbb{R}^n$ porque $D$ es $G_\delta$ y aplicamos el apartado (3).
-
-A su vez, 
-$$\int_{\mathbb{R}^n} F \left(x\right) \dif{\mu_n} = \int_{\mathbb{R}^n} \left( \int_{\mathbb{R}^m} \chi_{A_x} \dif{\mu_m} \right) \dif{\mu_n} = \int_{\mathbb{R}^n} \left(\int_{\mathbb{R}^m} \chi_{D_x} \dif{\mu_m} \right) \dif{\mu_n} = $$
-$$= \int_{\mathbb{R}^n \times \mathbb{R}^m} \chi_{D} \dif{\mu_{n+m}} = \mu_{n+m} \left(D\right) = \mu_{n+m} \left(A\right) = \int_{\mathbb{R}^n \times \mathbb{R}^m} \chi_A \dif{\mu_{n+m}} $$
-
-\item Sea $f$ función simple, medible, no negativa. Entonces, $f$ es combinación lineal no negativa de funciones características de conjuntos medibles en $\mathbb{R}^n \times \mathbb{R}^m$ Por el primer lema y (5), obtenemos que $f$ satisface el teorema. 
-
-\item Finalmente, consideramos $f$ medible no negativa. Entonces $ \exists \{f_k\}_{k=1}^{\infty}\uparrow f$ donde cada $f_k$ es simple, medible y no negativas. Por el lema $2$ y (6), $f$ satisface el teorema.
-\end{enumerate} 
-\end{demo}
+$$\int_{\mathbb{R}^n} \left(\int_{\mathbb{R}^m} f \left(x, y\right) \chi_A \left(y\right) \dif{y} \right) \dif{x} = \int_{\mathbb{R}^n} \left(\int_{A_x} f \left(x, y\right) \dif{y}\right) \dif{x}$$
 
 \begin{theo}[de Fubini]
 Sea $f: \mathbb{R}^n \times \mathbb{R}^m \rightarrow \mathbb{R}$ integrable. Entonces: 
 \begin{enumerate}
-\item Para casi todo $x \in \mathbb{R}^n$, $f_x$ es medible en $\mathbb{R}^n$ (y no negativa).
-\item La función $F: \mathbb{R}^n \rightarrow \left[0, \infty\right]$ definida en casi todo punto por:
+\item Para c.t.p. $x \in \mathbb{R}^n$, $f_x$ es medible en $\mathbb{R}^n$ (y no negativa).
+\item La función $F: \mathbb{R}^n \rightarrow \left[0, \infty\right]$ es medible en $\mathbb{R}^n$, donde $F$ está definida en c.t.p. como:
 $$F \left(x\right) = \int_{\mathbb{R}^m} f_x \dif{\mu}_m$$
-es medible en $\mathbb{R}^n$.
-\item Además,
+
+\item Se puede dividir la integral en secciones, es decir:
 $$\int_{\mathbb{R}^n \times \mathbb{R}^m} f \dif{\mu}_{n+m} = \int_{\mathbb{R}^n} F \dif{\mu}_n,$$
 \end{enumerate}
 \end{theo}
 \begin{demo}
 \begin{enumerate}
-    \item $f = f^+ - f^-,\ \forall x \in \mathbb{R}^n, \left(f^+\right)_x = \left(f_x\right)^+ \; \land \; \left(f^-\right)_x = \left(f_x\right)^-$
+Podemos escribir $f = f^+ - f^-$. De nuevo, es sencillo ver que $\forall x \in \mathbb{R}^n : \left(f^+\right)_x = \left(f_x\right)^+ \; \land \; \left(f^-\right)_x = \left(f_x\right)^-$, por tanto como $f^+$ y $f^-$ verifican el teorema de Tonelli, entonces $f^+_x $ y $f^-_x$ son medibles c.t.p $x \in \mathbb{R}^n$ y como $f_x = \left(f^+_x\right) - \left(f^-_x\right)$ también es medible c.t.p $x \in \mathbb{R}^n$.
 
-    Ahora, $f^+$ y $f^-$ verifican el teorema de Tonelli $\Rightarrow f^+_x $ y $f^-_x$ son medibles c.t.p $x \in \mathbb{R}^n \Rightarrow f_x = \left(f^+_x\right) - \left(f^-_x\right)$ también es medible, c.t.p $x \in \mathbb{R}^n$
-    $$\int_{\mathbb{R}^n} \left(\int_{\mathbb{R}^m} f^+_x \dif{\mu_m} \right) \dif{\mu_n} = \int_{\mathbb{R}^n \times \mathbb{R}^m} f^+ \dif{\mu_{n+m}} < \infty$$
-    y, por tanto, es finita en c.t.p.
-
-    Por tanto, $F \left(x\right) = \int_{\mathbb{R}^n} f^+_x \dif{\mu_n} = \int_{\mathbb{R}^n} f^-_x \dif{\mu_n}$ es finita en c.t.p.
+Tanto la $f^+$ como la $f^-$ son integrales porque:
+ $$\int_{\mathbb{R}^n} \left(\int_{\mathbb{R}^m} f^+_x \dif{\mu_m} \right) \dif{\mu_n} = \int_{\mathbb{R}^n \times \mathbb{R}^m} f^+ \dif{\mu_{n+m}} < \infty$$
+Por tanto, $F \left(x\right) = \int_{\mathbb{R}^n} f^+_x \dif{\mu_n} + \int_{\mathbb{R}^n} f^-_x \dif{\mu_n}$ es finita en c.t.p., luego integrable.
 \end{enumerate}
 \end{demo}
 
-\underline{Observación}: 
+\underline{Observación}:
 
-Sea $\int_{\mathbb{R}^n} \left(\int_{\mathbb{R}^m} \vert f \left(x, y\right) \vert \dif{y} \right) \dif{x} < \infty$, aplicando el th. de Tonelli a $\vert f\vert$ obtenemos que $f$ es integrable.
+El problema, en general, es demostrar que una función es integrable para poder aplicar este teorema. Un método útil suele ser demostrar que $\int_{\mathbb{R}^n} \left(\int_{\mathbb{R}^m} \vert f \left(x, y\right) \vert \dif{y} \right) \dif{x} < \infty$ y como con el valor absoluto es no negativa podemos aplicar Tonelli a $\vert f\vert$ y separar la integral para demostrar que $f$ es integrable.
 
 \end{document}
