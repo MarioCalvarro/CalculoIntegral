@@ -1567,8 +1567,8 @@ Dado $t \in \left(-1, \infty\right)$ sean $-1 < a < t_0 < b <\infty$. Vamos a de
     \item 
     $$\frac{\partial f}{\partial t} \left(x, t\right) = \frac{xe^{-tx}}{x}e^{-x} = e^{-\left(t+1\right)x} \text{ existe $g$ en continua en $t$.}$$
     \item 
-    $$\vert \frac{\partial f}{\partial t} \left(x, t\right)\vert = e^{-\left(t+1\right)x}\text{, si } t= 1 \Rightarrow e^{-\left(t+1\right)x} = e^{0} = 1 \text{ no es integrable en } \left(0, \infty\right)$$
-
+    $$\vert \frac{\partial f}{\partial t} \left(x, t\right)\vert = e^{-\left(t+1\right)x}\text{, si } t= 1 \Rightarrow e^{-\left(t+1\right)x} = e^{0} = 1 \text{ no es integrable en } \left(0, \infty\right)$$ 
+   
     Fijamos $-1 < a < b < \infty$ y  consideramos $\left[a, b\right]$. Si $t \in \left[a, b\right] \Rightarrow a \le t \Rightarrow e^{-\left(t+1\right)x} \le e^{-\left(a+1\right)x} = g \left(x\right)$
     $$\int_0^{\infty} g \left(x\right) \dif{x} = \int_0^{\infty} e^{-\left(a+1\right)x} \dif{x} =  $$
     $$\left[\frac{e^{\left(a+1\right)x}}{a+1}\right]_{0}^{\infty} = \frac{1}{a+1} < \infty \text{ puede que } a+1>0$$
@@ -1576,13 +1576,98 @@ Dado $t \in \left(-1, \infty\right)$ sean $-1 < a < t_0 < b <\infty$. Vamos a de
 
     \textbf{Esto no se si está bien.} 
 
-    Además $F' \left(t\right) = \int_0^{\infty} \frac{\partial f}{\partial t} \left(x, t\right) \dif{x} = \int_0^{\infty} e^{-\left(t + 1\right)} \dif{x} = \left[-\frac{e^{- \left(t + 1\right)x}}{t+1}\right] = \frac{1}{t + 1},\ \forall t \in \left(a, b\right),\ \forall a, b con -1 < a < b < ?$ Luego $\forall t > -1$
+    Además $F' \left(t\right) = \int_0^{\infty} \frac{\partial f}{\partial t} \left(x, t\right) \dif{x} = \int_0^{\infty} e^{-\left(t + 1\right)} \dif{x} = \left[-\frac{e^{- \left(t + 1\right)x}}{t+1}\right] = \frac{1}{t + 1},\ \forall t \in \left(a, b\right),\ \forall a, b $ con $ -1 < a < b < ?$ Luego $\forall t > -1$:
 
     $$F \left(t\right) = \int \frac{1}{1 + t} \dif{t} = \log \left(1 + t\right) + C$$
-    $$F \left(0\right) = \int_0^{\infty} 0 \dif{t} = 0 = \log \left(1\right) + C\Rightarrow C = 0$$
+    $$F \left(0\right) = \int_0^{\infty} 0 \dif{t} = 0 = \log \left(1\right) + C\Rightarrow C = 0$$ 
 \end{enumerate}
+ 
+\section*{Teorema de cambio de variable}%
+\begin{theo}
+Sea $T: \mathbb{R}^n \rightarrow \mathbb{R}^n$ lineal. Si $A \subset \mathbb{R}^n$ es medible, entonces $T \left( A\right)$ es medible y 
+$$\mu_n \left(T\left(A\right)\right) = \lvert det \left(T\right) \rvert \cdot \mu_n \left(A\right)$$
+\end{theo}
+\underline{Obs}: 
 
+$det \left(T\right) = 0 \Rightarrow T $ no es sobreyectiva $\Rightarrow T \left(\mathbb{R}^n\right)$ es una ev? propia de $\mathbb{R}^n \Rightarrow \mu_n \left(T \left(\mathbb{R}^n\right)\right) = 0$.
 
+\begin{defi}
+Sea $U, V \subset \mathbb{R}^n$ abiertos. Se dice que $\varphi: U \rightarrow V$ es un \textbf{difeomorfismo} si: 
+\begin{enumerate}
+    \item $\varphi: U \rightarrow V$ es $C'$.
+    \item $\varphi: U \rightarrow V$ es biyectiva. 
+    \item $\varphi^{-1}: V \rightarrow U$ es $C^1$
+\end{enumerate}
+\end{defi}
 
+\underline{Obs}: Sea $U \subset \mathbb{R}^n$ abierto y $\varphi: U \rightarrow \mathbb{R}^n$ de clase $C'$ tal que $\varphi$ es inyectiva en $U$ y $det \left(J \varphi \left(u\right) \right) \neq 0,\ \forall u \in U \Rightarrow$ por el Teorema de la Función Inversa, sabemos que $V = \varphi \left(U\right)$ es abierto y su inversa $\varphi^{-1}: V \rightarrow U$ es $C^1$. Es decir, $\varphi U \rightarrow \varphi \left(U\right)$ es un difeomorfismo-$C^1$.
+
+\begin{theo}
+Sea $\varphi: U \rightarrow V$ un difeomorfismo-$C^1$ entre dos abiertos de $\mathbb{R}^n$. Si $A \subset U$ es medible $\Rightarrow \varphi \left(A\right)$ es medible y 
+$$\mu \left(\varphi \left(A\right) \right) = \int_A \lvert det J \varphi\left(u\right) \rvert \dif{u}$$
+\end{theo}
+Este teorema es más general que el anterior: 
+
+\underline{Obs}: En el caso de que $\varphi = T: \mathbb{R}^n \rightarrow \mathbb{R}^n$ es un isomorfismo lineal $\Rightarrow$ obtenemos el th. anterior.
+
+\begin{theo}[Cambio de variable]
+Sea $\varphi: U \rightarrow V$ un difeomorfismo-$C^1$ entre dos abiertos de $\mathbb{R}^n$. Si $f: V \rightarrow \mathbb{R}$ es integrable en $ \varphi \left(A\right) \Rightarrow f \circ \varphi: U \rightarrow R$ es integrable en $A$ y 
+$$\boxed{\int_{\varphi \left(A\right)} f = \int_A f \circ \varphi \cdot \lvert det J \varphi \rvert} \Rightarrow \int_V f = \int_U f \circ \varphi \lvert det J \varphi \rvert$$
+o lo que es lo mismo: 
+$$\int_{\varphi \left(A\right)} f \left(x\right) \dif{x} = \int_A f \left(\varphi \left(u\right)\right) \lvert det J \varphi \left(u\right) \rvert \dif{u}$$
+\end{theo}
+\underline{Obs}: Si $f = \chi_{\varphi \left(A\right)}$ obtenemos el teorema anterior.
+
+\underline{Ejemplo}: 
+
+Sea $$\int_E e^{\frac{x - y}{x + y}} \dif{x} \dif{y}$$
+Donde $E = $triángulo de vértices: $\left(0, 0\right), \left(0, 2\right), \left(2, 0\right)$
+(\textit{Dibujo})
+
+Por ejemplo si $\varphi^{-1} = \begin{cases}
+    u = x - y\\
+    v = x + y
+\end{cases} \Rightarrow \varphi = \begin{cases}
+    x = \frac{u + v}{2}\\
+    y = \frac{v - u}{2}
+\end{cases}$
+
+Por tanto, 
+$\varphi^{-1} \left(x + y = 2\right) = \begin{cases}
+    u \\
+    v = 2
+\end{cases}$
+, $\varphi^{-1} \left(y = 0\right) = \begin{cases}
+    u = x \\
+    v = x
+\end{cases} u = v$
+y $\varphi^{-1} \left(x = 0\right) = \begin{cases}
+    u = -y\\
+    v = y
+\end{cases} u = -v$
+
+Por tanto, $\varphi^{-1} \left(E\right) = D$ es un triángulo de vértices: $\left(0, 0\right), \left(2, 2\right) y \left(-2, 2\right)$
+
+$$\int_E f \left(x, y\right) \dif{x} \dif{y} = \int_{\varphi \left(D\right)} f \left(x, y\right) \dif{x}\dif{y} = \int_D e^{u/v} \lvert det J \varphi \left(u, v\right) \rvert \dif{u} \dif{v} =$$
+$$= \int_{v = 0}^{v = 2} \int_{u = -v}^{u = v} e^{u/v} \frac{1}{2} \dif{u} \dif{v} = \int_{v = 0}^{v = 2} \frac{1}{2} \left[v e^{u/v}\right]_{u = -v}^{u = v} \dif{v} = $$
+$$= \frac{1}{2} \int_0^2 v \left(e^{1} - e^{-1}\right) \dif{v} = \frac{e - e^{-1}}{2} \left[\frac{v^2}{2}\right]_{v = 0}^{v = 2} = e - \frac{1}{2} $$
+
+\underline{Ejemplo}: Utilicemos coordenadas polares. 
+
+Tenemos que $\begin{cases}
+    x = r \cos \theta \\
+    y = r \sin \theta
+\end{cases}$ con $\begin{cases}
+    r \ge 0\\
+    0 \le \theta \le 2\pi
+\end{cases}$
+
+En este caso $\varphi: \mathbb{R}^2 \rightarrow \mathbb{R}^2,\ \varphi \left(r, \theta\right) = \left(r\cos \theta, r \sin \theta\right)$, $S = \{\left(x, 0: x \ge 0\right)\}$, $U = \left(0, +\infty\right) \times \left(0, 2\pi\right)$, $\varphi \left(U\right) = \mathbb{R}^2 \setminus S$
+$\varphi: U \rightarrow \varphi \left(U\right)$ es un difeomorfismo $C^1$ y $det J \varphi \neq 0$ en $U$.
+
+$$J\varphi = \begin{pmatrix} \cos \theta & -r\sin \theta \\
+\sin \theta & r\cos \theta \end{pmatrix} \mapsto det = r \ge 0$$
+Sea $E = \{\left(x, y\right): x^2 + y^2 \le 1\}$
+$$\int_E x^2 + y^2 \dif{x} \dif{y} = \int_{E\setminus S} \left(x^2 + y^2\right) \dif{x} \dif{y} = \int_{\theta = 0}^{\theta = 2\pi} \int_{r = 0}^{r = 1} r^2 \cdot r \dif{r} \dif{\theta} = 2\pi \left[\frac{r^4}{4}\right]_0^1 = \frac{\pi}{2} $$
 
 \end{document}
