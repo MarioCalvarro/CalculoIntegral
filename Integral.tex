@@ -78,6 +78,13 @@
 \theoremsymbol{\hfill\square}
     \newtheorem*{demo}{\underline{Demostración}:}
 
+\theoremheaderfont{\normalfont\color{teoremas}}
+\theorembodyfont{\normalfont}
+\theoremsymbol{\hfill\square}
+    \newtheorem*{obs}{\underline{Observación}:}
+    \newtheorem*{ej}{\underline{Ejemplo}:}
+
+
 \DeclareMathOperator{\dom}{dom}
 \DeclareMathOperator{\img}{img}
 
@@ -1691,8 +1698,20 @@ Sea $\varphi: \mathbb{R}^3\rightarrow  \mathbb{R}^3$ de forma que $\varphi(r, \t
 
 \underline{Ejemplo}:
 
-Tomando el mismo ejemplo anterior, pero integrando sobre
-$$\int_V x^2 + y^2 \dif{x} \dif{y} \dif{z} \mbox{ donde } V = \{\left(x, y, z\right) : x^2 + y^2 \le z^2 \le 4\}$$
+Tenemos $\begin{cases} z = \cos \varphi\\ h = r\sin \varphi \end{cases}$ y a su vez $\begin{cases} x = h\cos \theta\\ y = h\sin \theta \end{cases}$. Por tanto, uniéndolos: 
+$$\begin{cases}
+    x = r\cos \theta \sin \varphi\\ 
+    y = r\sin \theta \sin \varphi\\
+    z = r\cos \varphi
+\end{cases}\land \; \begin{cases}
+    r \ge 0\\ 0 \le \theta \le 2\pi\\ 0 \le \varphi \le \pi
+\end{cases}$$
+A su vez tenemos: 
+$$J = \begin{vmatrix} \cos \theta \sin \varphi & -r\sin \theta \sin \varphi & r\cos \theta \cos \varphi\\
+\sin \theta \sin \varphi & r\cos \theta \sin \varphi & r\sin \theta \cos\varphi\\ 
+\cos \varphi & 0 & -r\sin \varphi \end{vmatrix} \underbrace{=}_{\text{cálculos...}} -r^2\sin\varphi$$
+y (\textit{Dibujo})
+$$\boxed{\lvert J \rvert = r^2\sin \varphi} \ge 0$$
 
 (\textit{Dibujo})
 
@@ -1739,5 +1758,4 @@ $$= 2 \int_{\theta = 0}^{\theta = \pi} \int_{r = 0}^{r = a\sin \theta } r \sqrt{
 $$= \frac{2}{3} \int_{\theta = 0}^{\theta = \pi} a^3 - a^3 \lvert \cos \theta  \rvert^3 \dif{\theta } = \frac{4}{3} \int_{\theta = 0}^{\theta = \frac{\pi}{2}} a^3 - a^3 \cos^3 \theta \dif{\theta } = \ldots = \boxed{\frac{4}{3}a^3 \left(\frac{\pi}{2} - \frac{2}{3}\right)} $$
 
 %Creo que me he saltado pasos (el profesor tampoco puso todo)
-
 \end{document}
