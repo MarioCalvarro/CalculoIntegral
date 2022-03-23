@@ -1582,161 +1582,158 @@ Dado $t \in \left(-1, \infty\right)$ sean $-1 < a < t_0 < b <\infty$. Vamos a de
     $$F \left(0\right) = \int_0^{\infty} 0 \dif{t} = 0 = \log \left(1\right) + C\Rightarrow C = 0$$ 
 \end{enumerate}
  
-\section*{Teorema de cambio de variable}%
+\section*{TEOREMA DEL CAMBIO DE VARIABLE}%
 \begin{theo}
-Sea $T: \mathbb{R}^n \rightarrow \mathbb{R}^n$ lineal. Si $A \subset \mathbb{R}^n$ es medible, entonces $T \left( A\right)$ es medible y 
+Sea $T: \mathbb{R}^n \rightarrow \mathbb{R}^n$ lineal, si $A \subset \mathbb{R}^n$ es medible, entonces $T \left( A\right)$ es medible y se tiene que:
 $$\mu_n \left(T\left(A\right)\right) = \lvert det \left(T\right) \rvert \cdot \mu_n \left(A\right)$$
 \end{theo}
-\underline{Obs}: 
 
-$det \left(T\right) = 0 \Rightarrow T $ no es sobreyectiva $\Rightarrow T \left(\mathbb{R}^n\right)$ es una ev? propia de $\mathbb{R}^n \Rightarrow \mu_n \left(T \left(\mathbb{R}^n\right)\right) = 0$.
+\underline{Observación}:
 
-\begin{defi}
-Sea $U, V \subset \mathbb{R}^n$ abiertos. Se dice que $\varphi: U \rightarrow V$ es un \textbf{difeomorfismo} si: 
+En el caso en el que $det \left(T\right) = 0$, entonces $T$ no es sobreyectiva y, por tanto, $T \left(\mathbb{R}^n\right)$ es una espacio vectorial propio de $\mathbb{R}^n$, los cuales tienen $\mu_n \left(T \left(\mathbb{R}^n\right)\right) = 0$.
+
+\begin{defi}[Difeomorfismo]
+Sea $U, V \subset \mathbb{R}^n$ abiertos, se dice que $\varphi: U \rightarrow V$ es un \textbf{difeomorfismo} si: 
 \begin{enumerate}
-    \item $\varphi: U \rightarrow V$ es $C'$.
+    \item $\varphi: U \rightarrow V$ es $C^{1)}$.
     \item $\varphi: U \rightarrow V$ es biyectiva. 
-    \item $\varphi^{-1}: V \rightarrow U$ es $C^1$
+    \item $\varphi^{-1}: V \rightarrow U$ es $C^{1)}$
 \end{enumerate}
 \end{defi}
 
-\underline{Obs}: Sea $U \subset \mathbb{R}^n$ abierto y $\varphi: U \rightarrow \mathbb{R}^n$ de clase $C'$ tal que $\varphi$ es inyectiva en $U$ y $det \left(J \varphi \left(u\right) \right) \neq 0,\ \forall u \in U \Rightarrow$ por el Teorema de la Función Inversa, sabemos que $V = \varphi \left(U\right)$ es abierto y su inversa $\varphi^{-1}: V \rightarrow U$ es $C^1$. Es decir, $\varphi U \rightarrow \varphi \left(U\right)$ es un difeomorfismo-$C^1$.
+\underline{Observación}:
+
+Sea $U \subset \mathbb{R}^n$ abierto y $\varphi: U \rightarrow \mathbb{R}^n$ de clase $C'$ tal que $\varphi$ es inyectiva en $U$ y $det \left(J \varphi \left(u\right) \right) \neq 0,\ \forall u \in U \Rightarrow$ por el Teorema de la Función Inversa, sabemos que $V = \varphi \left(U\right)$ es abierto y su inversa $\varphi^{-1}: V \rightarrow U$ es $C^1$. Es decir, $\varphi U \rightarrow \varphi \left(U\right)$ es un difeomorfismo-$C^1$.
 
 \begin{theo}
-Sea $\varphi: U \rightarrow V$ un difeomorfismo-$C^1$ entre dos abiertos de $\mathbb{R}^n$. Si $A \subset U$ es medible $\Rightarrow \varphi \left(A\right)$ es medible y 
-$$\mu \left(\varphi \left(A\right) \right) = \int_A \lvert det J \varphi\left(u\right) \rvert \dif{u}$$
+Sea $\varphi: U \rightarrow V$ un difeomorfismo-$C^{1)}$ entre dos abiertos de $\mathbb{R}^n$, si $A \subset U$ es medible, entonces $\varphi \left(A\right)$ es medible y se tiene que:
+$$\mu \left(\varphi \left(A\right) \right) = \int_A \lvert \det J \varphi\left(u\right) \rvert \dif{u}$$
 \end{theo}
-Este teorema es más general que el anterior: 
 
-\underline{Obs}: En el caso de que $\varphi = T: \mathbb{R}^n \rightarrow \mathbb{R}^n$ es un isomorfismo lineal $\Rightarrow$ obtenemos el th. anterior.
+\underline{Observación}:
+
+Este teorema es una generalización del anterior, puesto que si $\varphi = T: \mathbb{R}^n \rightarrow \mathbb{R}^n$ es un isomorfismo lineal, entonces recuperamos el enunciado anterior.
 
 \begin{theo}[Cambio de variable]
-Sea $\varphi: U \rightarrow V$ un difeomorfismo-$C^1$ entre dos abiertos de $\mathbb{R}^n$. Si $f: V \rightarrow \mathbb{R}$ es integrable en $ \varphi \left(A\right) \Rightarrow f \circ \varphi: U \rightarrow R$ es integrable en $A$ y 
-$$\boxed{\int_{\varphi \left(A\right)} f = \int_A f \circ \varphi \cdot \lvert det J \varphi \rvert} \Rightarrow \int_V f = \int_U f \circ \varphi \lvert det J \varphi \rvert$$
-o lo que es lo mismo: 
-$$\int_{\varphi \left(A\right)} f \left(x\right) \dif{x} = \int_A f \left(\varphi \left(u\right)\right) \lvert det J \varphi \left(u\right) \rvert \dif{u}$$
+Sea $\varphi: U \rightarrow V$ un difeomorfismo-$C^{1)}$ donde $U, V\subset \mathbb{R}^n$ abiertos, si $A\subset U$ es medible y $f: V \rightarrow \mathbb{R}$ es integrable en $ \varphi \left(A\right)$, entonces $f \circ \varphi: U \rightarrow R$ es integrable en $A$ y la integral se expresa como:
+$$\int_{\varphi \left(A\right)} f = \int_A f \circ \varphi \cdot \lvert \det J \varphi \rvert$$
+Que si tomamos como $A= U$, sería
+$$\int_V f = \int_U f \circ \varphi \cdot \lvert \det J \varphi \rvert$$
+Si tratamos de ponerlo en una notación más habitual: 
+$$\int_{\varphi \left(A\right)} f \left(x\right) \dif{x} = \int_A f \left(\varphi \left(u\right)\right) \cdot \lvert \det J \varphi \left(u\right) \rvert \dif{u}$$
 \end{theo}
-\underline{Obs}: Si $f = \chi_{\varphi \left(A\right)}$ obtenemos el teorema anterior.
+\underline{Observación}:
+
+Este teorema es la generalización total de los dos anteriores, ya que si $f = \chi_{\varphi \left(A\right)}$ obtenemos el teorema anterior.
 
 \underline{Ejemplo}: 
 
-Sea $$\int_E e^{\frac{x - y}{x + y}} \dif{x} \dif{y}$$
-Donde $E = $triángulo de vértices: $\left(0, 0\right), \left(0, 2\right), \left(2, 0\right)$
-(\textit{Dibujo})
-
-Por ejemplo si $\varphi^{-1} = \begin{cases}
-    u = x - y\\
-    v = x + y
-\end{cases} \Rightarrow \varphi = \begin{cases}
-    x = \frac{u + v}{2}\\
-    y = \frac{v - u}{2}
-\end{cases}$
-
-Por tanto, 
-$\varphi^{-1} \left(x + y = 2\right) = \begin{cases}
-    u \\
-    v = 2
-\end{cases}$
-, $\varphi^{-1} \left(y = 0\right) = \begin{cases}
-    u = x \\
-    v = x
-\end{cases} u = v$
-y $\varphi^{-1} \left(x = 0\right) = \begin{cases}
-    u = -y\\
-    v = y
-\end{cases} u = -v$
-
-Por tanto, $\varphi^{-1} \left(E\right) = D$ es un triángulo de vértices: $\left(0, 0\right), \left(2, 2\right) y \left(-2, 2\right)$
-
-$$\int_E f \left(x, y\right) \dif{x} \dif{y} = \int_{\varphi \left(D\right)} f \left(x, y\right) \dif{x}\dif{y} = \int_D e^{u/v} \lvert det J \varphi \left(u, v\right) \rvert \dif{u} \dif{v} =$$
+Supongamos la siguiente integral $$\int_E e^{\frac{x - y}{x + y}} \dif{x} \dif{y}$$
+definiendo $E$ como el triángulo de vértices: $\left(0, 0\right), \left(0, 2\right), \left(2, 0\right)$, es decir:
+$$DIBUJO$$
+Si tenemos por ejemplo, la transformación $\varphi^{-1} = \begin{cases} u = x - y\\ v = x + y 
+\end{cases} \Rightarrow \varphi = \begin{cases} x = \frac{u + v}{2}\\ y = \frac{v - u}{2} \end{cases}$, entonces podemos ver que:
+\begin{align*}
+\varphi^{-1} \left(x + y = 2\right) \equiv v = 2 & & \varphi^{-1} \left(y = 0\right)\equiv u = v & & \varphi^{-1} \left(x = 0\right)\equiv u = -v
+\end{align*}
+Por tanto, $\varphi^{-1} \left(E\right) = D$ es un triángulo de vértices: $\left(0, 0\right), \left(2, 2\right) y \left(-2, 2\right)$ y entonces podemos calcular su integral como:
+$$\int_E f \left(x, y\right) \dif{x} \dif{y} = \int_{\varphi \left(D\right)} f \left(x, y\right) \dif{x}\dif{y} = \int_D e^{u/v}\cdot \lvert \det J \varphi \left(u, v\right) \rvert \dif{u} \dif{v} =$$
 $$= \int_{v = 0}^{v = 2} \int_{u = -v}^{u = v} e^{u/v} \frac{1}{2} \dif{u} \dif{v} = \int_{v = 0}^{v = 2} \frac{1}{2} \left[v e^{u/v}\right]_{u = -v}^{u = v} \dif{v} = $$
 $$= \frac{1}{2} \int_0^2 v \left(e^{1} - e^{-1}\right) \dif{v} = \frac{e - e^{-1}}{2} \left[\frac{v^2}{2}\right]_{v = 0}^{v = 2} = e - \frac{1}{2} $$
 
-\underline{Ejemplo}: Utilicemos \textbf{coordenadas polares}. 
+\subsection*{\underline{Cambios de sistemas de coordenadas}}
+En muchas ocasiones, el trabajo con geometrías concretas suscita dificultades a la hora de ser descrita por los ejes cartesianos para integrar, derivar, hacer un estudio topológico... Para solventar este problema de representación existen ciertos cambios muy significativos en el sistema de coordenadas que facilitan mucho las cosas.
 
-Tenemos que $\begin{cases}
-    x = r \cos \theta \\
-    y = r \sin \theta
-\end{cases}$ con $\begin{cases}
-    r \ge 0\\
-    0 \le \theta \le 2\pi
-\end{cases}$
+En concreto y con respecto a la integración, principalmente hay tres cambios muy notorios para poder integrar adecuadamente ciertos volúmenes o recintos. Estos cambios frecuentes y útiles se desarrollarán adelante exponiendo sus ventajas e inconvenientes.
 
-En este caso $\varphi: \mathbb{R}^2 \rightarrow \mathbb{R}^2,\ \varphi \left(r, \theta\right) = \left(r\cos \theta, r \sin \theta\right)$, $S = \{\left(x, 0: x \ge 0\right)\}$, $U = \left(0, +\infty\right) \times \left(0, 2\pi\right)$, $\varphi \left(U\right) = \mathbb{R}^2 \setminus S$
-$\varphi: U \rightarrow \varphi \left(U\right)$ es un difeomorfismo $C^1$ y $det J \varphi \neq 0$ en $U$.
+\subsubsection*{Coordenadas polares}
+Este cambio de sistema de referencia es bastante útil para trabajar con recintos en $\mathbb{R}^2$ definidos por curvas, cónicas o circunferencias. Parten de la idea de que cada punto del espacio se puede representar a través de la longitud del segmento $r$ que lo une con el origen y del ángulo que forma dicho segmento con el eje de coordenadas.
 
-$$J\varphi = \begin{pmatrix} \cos \theta & -r\sin \theta \\
-\sin \theta & r\cos \theta \end{pmatrix} \mapsto det = r \ge 0$$
-Sea $E = \{\left(x, y\right): x^2 + y^2 \le 1\}$
+\begin{defi}[Coordenadas Polares]
+Se definen las \textbf{coordenadas polares} de un punto como la transformación que a cada componente $(x,y)$ le asocia su componente $(r, \theta)$ de forma que se verifica:
+$$\begin{cases} x = r \cos \theta \\ y = r \sin \theta \end{cases} \mbox{ donde } \begin{cases} r \ge 0\\ 0 \le \theta \le 2\pi \end{cases}$$
+\end{defi}
+
+\begin{prop}
+Sea $\varphi: \mathbb{R}^2\rightarrow  \mathbb{R}^2$ de forma que $\varphi(r, \theta) = (r\cos\theta, r\sen\theta)$, la restricción de $\varphi$ sobre el conjunto $\mathcal{U} = (0,\infty)\times (0, 2\pi)$ cumple que:
+\begin{itemize}
+\item $\varphi(\mathcal{U}) = \mathbb{R}^2\setminus{S}$ donde $S = \{(x,0)\in \mathbb{R}^2: x\geq 0\}$
+\item $\varphi\mid_\mathcal{U}$ es un dimeomorfismo-$C^{1)}$
+\item $J_\varphi = \begin{pmatrix}\cos \theta & -r\sen \theta \\ \sen \theta & r\cos \theta\end{pmatrix}$
+\end{itemize}
+\end{prop}
+
+\underline{Ejemplo}:
+
+Supongamos que tenemos que calcular
+$$\int_E x^2 + y^2 \dif{x}\dif{y} \mbox{ donde } E = \{\left(x, y\right): x^2 + y^2 \le 1\}$$
+Podemos tomar en este caso que:
+$$\varphi = \begin{cases} x = r\cos \theta \\ y = r\sen\theta \end{cases} \Rightarrow J\varphi = \begin{pmatrix} \cos \theta & -r\sen \theta \\ \sen \theta & r\cos \theta \end{pmatrix} \Rightarrow \det = r \ge 0$$
+Entonces:
 $$\int_E x^2 + y^2 \dif{x} \dif{y} = \int_{E\setminus S} \left(x^2 + y^2\right) \dif{x} \dif{y} = \int_{\theta = 0}^{\theta = 2\pi} \int_{r = 0}^{r = 1} r^2 \cdot r \dif{r} \dif{\theta} = 2\pi \left[\frac{r^4}{4}\right]_0^1 = \frac{\pi}{2} $$
 
-\underline{Ejemplo}: Utilicemos \textbf{coordenadas cilíndricas en $\mathbb{R}^3$}. 
+\subsubsection*{Coordenadas cilíndricas}
+Este tipo de coordenadas son bastante útiles para extrapolar la situación de las coordenadas polares a $\mathbb{R}^3$, de forma que permite sobre cada plano paralelo a $\mathbb{R}^2$ utilizar la misma representación que hacíamos en polares anteriormente.
 
-Tenemos que $\begin{cases}
-    x = r\cos \theta\\
-    y = r\sin \theta\\
-    z = z
-\end{cases} \rightarrow \begin{cases}
-    r \ge 0\\
-    0 \le \theta \le 2\pi\\
-    -\infty < z < \infty
-\end{cases}$ y su jacobiano es: 
-    $$J = \begin{vmatrix} \cos \theta & - r\sin \theta & 0\\
-    \sin \theta & r\cos \theta & 0 \\
-    0 & 0 & 1\end{vmatrix} = r$$
+\begin{defi}[Coordenadas Cilíndricas]
+Se definen las \textbf{coordenadas cilíndricas} de un punto como la transformación que a cada componente $(x,y,z)$ le asocia su componente $(r, \theta, z)$ de forma que se verifica:
+$$\begin{cases} x = r \cos \theta \\ y = r \sin \theta \\ z = z\end{cases} \mbox{ donde } \begin{cases} r \ge 0\\ 0 \le \theta \le 2\pi \\ -\infty < z < \infty \end{cases}$$
+\end{defi}
 
-Un \underline{ejemplo} de su uso: 
-
-Sea $\int_V x^2 + y^2 \dif{x} \dif{y} \dif{z}$ donde $V = \{\left(x, y, z\right) : x^2 + y^2 \le z^2 \le 4\}$
-(\textit{Dibujo})
+\begin{prop}
+Sea $\varphi: \mathbb{R}^3\rightarrow  \mathbb{R}^3$ de forma que $\varphi(r, \theta, z) = (r\cos\theta, r\sen\theta, z)$, la restricción de $\varphi$ sobre el conjunto $\mathcal{U} = (0,\infty)\times (0, 2\pi) \times (-\infty, \infty)$ cumple que:
 \begin{itemize}
-    \item $x^2 + y^2 \le z^2$ cono (círculo de radio $\lvert z \rvert$.
-    \item $z^2  = 4 \Leftrightarrow z = \pm 2$
+\item $\varphi(\mathcal{U}) = \mathbb{R}^3\setminus{S}$ donde $S = \{(x,0,z)\in \mathbb{R}^2: x\geq 0\}$
+\item $\varphi\mid_\mathcal{U}$ es un dimeomorfismo-$C^{1)}$
+\item $J_\varphi = \begin{pmatrix}\cos \theta & -r\sen \theta & 0 \\ \sen \theta & r\cos \theta & 0 \\ 0 & 0 & 1\end{pmatrix}$
 \end{itemize}
-Por cada $z$ tenemos: $V_z = \{\left(x, y\right): x^2 + y^2 \le z^2\}$. Por tanto: 
-$$\int_V x^2 + y^2 \dif{x} \dif{y} \dif{z} = \int_{z = -2}^{z = 2} \int_{\theta = 0}^{\theta = 2\pi} \int_{r = 0}^{r = \lvert z \rvert} r^2 \cdot \underbrace{r}_{= J}  \dif{r}   \dif{\theta} \dif{z} $$
-$$= 2\pi \int_{z = -2}^{z = 2} \left(\int_{r = 0}^{r = \lvert z \rvert} r^3 \dif{r} \right) \dif{z} = 2\pi \int_{z = -2}^{z = 2} \left[\frac{r^4}{4}\right]_{r = 0}^{r = \lvert z \rvert} \dif{z} = $$
-$$= \frac{\pi}{2} \int_{z = -2}^{z = 2} z^4 \dif{z} = \frac{\pi}{10} \left[z^{5}\right]_{z = -2}^{z = 2}. $$
+\end{prop}
 
-\underline{Ejemplo}: Utilicemos \textbf{coordenadas esféricas en $\mathbb{R}^3$}. (\textit{Dibujo})
+\underline{Ejemplo}:
 
-Tenemos $\begin{cases} z = \cos \varphi\\ h = r\sin \varphi \end{cases}$ y a su vez $\begin{cases} x = h\cos \theta\\ y = h\sin \theta \end{cases}$. Por tanto, uniéndolos: 
-$$\begin{cases}
-    x = r\cos \theta \sin \varphi\\ 
-    y = r\sin \theta \sin \varphi\\
-    z = r\cos \varphi
-\end{ceases}\land \; \begin{cases}
-    r \ge 0\\ 0 \le \theta \le 2\pi\\ 0 \le \varphi \le \pi
-\end{cases}$$
-A su vez tenemos: 
-$$J = \begin{vmatrix} \cos \theta \sin \varphi & -r\sin \theta \sin \varphi & r\cos \theta \cos \varphi\\
-\sin \theta \sin \varphi & r\cos \theta \sin \varphi & r\sin \theta \cos\varphi\\ 
-\cos \varphi & 0 & -r\sin \varphi \end{vmatrix} \underbrace{=}_{\text{cálculos...}} -r^2\sin\varphi$$
-y (\textit{Dibujo})
-$$\boxed{\lvert J \rvert = r^2\sin \varphi} \ge 0$$
+Tomando el mismo ejemplo anterior, pero integrando sobre
+$$\int_V x^2 + y^2 \dif{x} \dif{y} \dif{z} \mbox{ donde } V = \{\left(x, y, z\right) : x^2 + y^2 \le z^2 \le 4\}$$
 
-Veamos un \underline{ejemplo} de su uso: 
+(\textit{Dibujo})
 
-\textit{Volumen de la esfera sólida de radio $R$}.
+Por cada $z$ tenemos $V_z = \{\left(x, y\right): x^2 + y^2 \le z^2\}$, por tanto: 
+$$\int_V x^2 + y^2 \dif{x} \dif{y} \dif{z} = \int_{z = -2}^{z = 2} \int_{\theta = 0}^{\theta = 2\pi} \int_{r = 0}^{r = \lvert z \rvert} r^2 \cdot r  \dif{r}   \dif{\theta} \dif{z}  = 2\pi \int_{z = -2}^{z = 2} \left(\int_{r = 0}^{r = \lvert z \rvert} r^3 \dif{r} \right) \dif{z}$$
+$$ = 2\pi \int_{z = -2}^{z = 2} \left[\frac{r^4}{4}\right]_{r = 0}^{r = \lvert z \rvert} \dif{z} = \frac{\pi}{2} \int_{z = -2}^{z = 2} z^4 \dif{z} = \frac{\pi}{10} \left[z^{5}\right]_{z = -2}^{z = 2} = \frac{32\pi}{5} $$
 
-La esfera será $B_R = \{\left(x, y, z\right) : x^2 + y^2 + z^2 \le R^2\}$
-$$vol \left(B_R\right) = \mu_3 \left(B_r\right) = \int_{B_R} 1 \dif{x} \dif{y} \dif{z}$$
-$$= \int_{\theta = 0}^{\theta = 2\pi }\int_{\varphi = 0}^{\varphi = \pi} \int_{r = 0}^{r = R} 1 \cdot r^2 \sin \varphi \dif{r} \dif{\varphi } \dif{\theta} $$
-$$= \left(\underbrace{\int_{\theta = 0}^{2\pi }1 \dif{\theta }}_{= 2\pi} \right) \cdot \left(\underbrace{\int_{\varphi = 0}^{\varphi = \pi} \sin \varphi \dif{\varphi }}_{= 2}\right) \cdot \left(\underbrace{\int_{r = 0}^{r = R} r^2 \dif{r}}_{= \left[\frac{r^3}{3}\right]_0^R = \frac{R^3}{3}}\right) = \frac{4}{3} \pi R^3$$
+\subsubsection*{Coordenadas Esféricas}
+Este tipo de coordenadas también son coordenadas aplicables a $\mathbb{R}^3$ (puesto que en $\mathbb{R}^2$ son las polares que se han visto) para situaciones en las que los dominios estén definidos por cónicas o funciones de aspecto radial o centrales.
 
-\underline{Ejemplo}: La bóveda de Viviani.
+\begin{defi}[Coordenadas Esféricas]
+Se definen las \textbf{coordenadas esféricas} de un punto como la transformación que a cada componente $(x,y,z)$ le asocia su componente $(r, \theta, \varphi)$ de forma que se verifica:
+$$\begin{cases} x = r\cos \theta \sen \varphi\\ y = r\sen \theta \sen \varphi\\ z = r\cos \varphi \end{cases}\mbox{ donde }\begin{cases} r \ge 0\\ 0 \le \theta \le 2\pi\\ 0 \le \varphi \le \pi \end{cases}$$
+\end{defi}
 
-Buscamos el volumen limitado por la esfera $x^2 + y^2 + z^2 = A^2$ y el cilindro $x^2 + y^2 = ay,\ \left(a > 0\right)$. (\textit{Dibujo})
+(\textit{Dibujo})
 
-En coordenadas polares: $r = a\sin \theta$.
+\begin{prop}
+Sea $\varphi: \mathbb{R}^3\rightarrow  \mathbb{R}^3$ de forma que $\varphi(r, \theta, \varphi) = (r\cos \theta \sen \varphi, r\sen \theta \sen \varphi, r\cos \varphi)$, la restricción de $\varphi$ sobre el conjunto $\mathcal{U} = (0,\infty)\times (0, 2\pi) \times (0, \pi)$ cumple que:
+\begin{itemize}
+\item $\varphi(\mathcal{U}) = \mathbb{R}^3\setminus{S}$ donde $S = \{(x,0,z)\in \mathbb{R}^2: x\geq 0\}$
+\item $\varphi\mid_\mathcal{U}$ es un dimeomorfismo-$C^{1)}$
+\item $J = \begin{pmatrix} \cos \theta \sen \varphi & -r\sen \theta \sen \varphi & r\cos \theta \cos \varphi\\ \sen \theta \sen \varphi & r\cos \theta \sen \varphi & r\sen \theta \cos\varphi\\ \cos \varphi & 0 & -r\sen \varphi \end{pmatrix}$, luego $\det J = r^2 \sen\varphi$
+\end{itemize}
+\end{prop}
 
-Tenemos que: 
-$$x^2 + y^2 - ay = 0$$
-$$x^2 + \left(y - \frac{a}{2}\right)^2 = \underbrace{x^2 + y^2 - ay}_{= 0} + \frac{a^2}{4}$$
-$$x^2 + \left(y - \frac{a}{2}\right)^2 = \frac{a^2}{4}$$
+\underline{Ejemplo}:
 
-Considerando $D = \{\left(x, y\right): x^2 + y^2 \le ay\} = \{\left(x, y\right): x^2 + \left(y - \frac{a}{2}\right)^2 \le \frac{a^2}{4}\}$ superficie de la base del cilindro?
-Por tanto, 
+Vamos a calcular el volumen de una esfera sólida, dada por $B_R = \{\left(x, y, z\right) : x^2 + y^2 + z^2 \le R^2\}$:
+$$vol \left(B_R\right) = \mu_3 \left(B_r\right) = \int_{B_R} 1 \dif{x} \dif{y} \dif{z}=$$
+$$= \int_{\theta = 0}^{\theta = 2\pi }\int_{\varphi = 0}^{\varphi = \pi} \int_{r = 0}^{r = R} 1 \cdot r^2 \sen \varphi \dif{r} \dif{\varphi } \dif{\theta} = \left(\underbrace{\int_{\theta = 0}^{2\pi }1 \dif{\theta }}_{= 2\pi} \right) \cdot \left(\underbrace{\int_{\varphi = 0}^{\varphi = \pi} \sen \varphi \dif{\varphi }}_{= 2}\right) \cdot \left(\underbrace{\int_{r = 0}^{r = R} r^2 \dif{r}}_{= \left[\frac{r^3}{3}\right]_0^R = \frac{R^3}{3}}\right) = \frac{4}{3} \pi R^3$$
+
+\underline{Ejemplo: La bóveda de Viviani}
+
+Buscamos el volumen limitado por la esfera $x^2 + y^2 + z^2 = A^2$ y el cilindro $x^2 + y^2 = ay,\ \left(a > 0\right)$.
+
+\textit{Dibujos}
+
+Vemos que si tomamos coordenadas polares: $r = a\sin \theta$ y además se cumple que:
+$$x^2 + y^2 - ay = 0 \Leftrightarrow x^2 + \left(y - \frac{a}{2}\right)^2 = \frac{a^2}{4}$$
+Por lo que, considerando $D = \{\left(x, y\right): x^2 + y^2 \le ay\} = \{\left(x, y\right): x^2 + \left(y - \frac{a}{2}\right)^2 \le \frac{a^2}{4}\}$ que es la superficie de la base del cilindro, podemos calcular el volumen como: 
 $$vol = 2 \int_{D} \sqrt{a^2 - x^2 - y^2} \dif{x} \dif{y} = $$
 $$= 2 \int_{\theta = 0}^{\theta = \pi} \int_{r = 0}^{r = a\sin \theta } r \sqrt{a^2 - r^2} \dif{r} \dif{\theta} = 2 \int_{\theta = 0}^{\theta = \pi} \left[-\frac{1}{3} \left(a^2 - r^2 \right)^{3/2}\right]_{r = 0}^{r = a\sin \theta }\dif{\theta} = $$
 $$= \frac{2}{3} \int_{\theta = 0}^{\theta = \pi} a^3 - a^3 \lvert \cos \theta  \rvert^3 \dif{\theta } = \frac{4}{3} \int_{\theta = 0}^{\theta = \frac{\pi}{2}} a^3 - a^3 \cos^3 \theta \dif{\theta } = \ldots = \boxed{\frac{4}{3}a^3 \left(\frac{\pi}{2} - \frac{2}{3}\right)} $$
