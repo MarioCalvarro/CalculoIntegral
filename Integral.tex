@@ -1747,4 +1747,110 @@ $$= \frac{2}{3} \int_{\theta = 0}^{\theta = \pi} a^3 - a^3 \lvert \cos \theta  \
 
 %Creo que me he saltado pasos (el profesor tampoco puso todo)
 
+\chapter*{Integrales de línea}%
+\label{cha:integrales_de_linea}
+\begin{defi}
+Llamamos \textbf{curva} en $\mathbb{R}^n$ a: 
+$$\gamma: \left[ a, b \right] \rightarrow \mathbb{R}^n$$
+$$\gamma\left[ a, b \right] = \img \gamma$$
+que es continua y $C^1$ a trozos.
+\end{defi}
+
+\begin{ej}
+\begin{enumerate}
+    \item Sea $x, y \in \mathbb{R}^n$: 
+    $$\left[ x, y \right] = \{ty + \left( 1 - t \right) x: t \in \left[ 0, 1 \right]\} = C_0 \{x, y\}$$
+    Podemos paramatrizar la curva tal que: 
+    $$\gamma: \left[ 0, 1 \right] \rightarrow\mathbb{R}^n$$
+    $$\gamma \left( t \right) = ty + \left( 1 - t \right) x$$
+
+    \item Sea $\gamma: \left[ 0, 2\pi \right] \rightarrow \mathbb{R}^2$, tal que: $\gamma\left( t \right) = \left( \cos t, \sin t \right) $ (Es una curva cerrada ya que empieza y acaba en el mismo sitio). (\textit{Dibujo})
+
+    \item Sea $\gamma: \left[ 0, \pi \right] \rightarrow \mathbb{R}^2$, tal que $\gamma\left( t \right) = \left( \cos 2t, \sin 2t \right)$. (\textit{Dibujo, igual}).
+
+    \item Sea $\gamma \left[ 0, 2\pi \right] \rightarrow \mathbb{R}^2$, tal que $\gamma \left( t \right) = \left( \cos 2t, \sin 2t \right)$. (\textit{Dibujo, igual})
+
+    \item Sea $\gamma \left[ 0, 2\pi \right] \rightarrow \mathbb{R}^2$, tal que $\gamma \left( t \right) = \left( \cos t, -\sin t \right) $. (\textit{Dibujo, igual}). 
+\end{enumerate}
+También nos indica la ``velocidad'' de la curva, si se recorre varias veces y su sentido.
+\end{ej}
+\begin{obs}
+Geometricamente, $\gamma'\left( t \right) \in \mathbb{R}^n$ es la tangente de la curva en un determinado punto que apunta en la dirección del movimiento.
+\end{obs}
+\begin{defi}
+Definimos la velocidad de una curva como: 
+$$v? = \lvert \lvert \gamma'\left( t \right) \rvert \rvert$$
+\end{defi}
+
+\begin{obs}
+Las curvas pueden poseer ``picos''. Por ejemplo: 
+$$\gamma: \left[ -1, 1 \right] \rightarrow \mathbb{R}^2$$
+$$\gamma \left( t \right) = \left( t^2, t^3 \right) $$
+Tendrá: $\gamma'\left( t \right) = \left( 2t, 3t^2 \right)$ y un pico en $0$.
+\end{obs}
+
+\begin{defi}
+Llamamos \textbf{longitud} de una curva a: 
+$$\ell\left( \gamma \right) = \int_{a}^{b} \lvert \lvert \gamma'\left( t \right) \rvert \rvert \dif{t}$$
+\end{defi}
+
+\begin{ej}
+Sea $\gamma\left( t \right) = \left( \cos t, \sin t, \cos 2t, \sin 2t \right) \in \mathbb{R}^4$, donde $t \in \left[ 0, \pi \right]$. Tenemos que: 
+$$\gamma'\left( t \right) = \left( -\sin t, \cos t, -2\sin 2t, 2\cos 2t\right) \Rightarrow$$
+$$\lvert \lvert \gamma'\left( t \right) \rvert \rvert = \sin^2 t + \cos^2 t + 4\sin^2 2t + 4 \cos^2 2t = 5$$
+$$\lvert \lvert \gamma'\left( t \right) \rvert \rvert = \sqrt{5},\ \forall t$$
+$$\ell \left( t \right) = \int_{0}^{\pi} \sqrt{5} \dif{t} = \pi\sqrt{5} $$
+\end{ej}
+\begin{ej}
+(1.e) Sea $\gamma: \left[ 0, \pi \right] \rightarrow \mathbb{R}^3$ tal que $\gamma \left( t \right) = \left( t, t\sin t, t \cos t \right) $
+
+$$\gamma'\left( t \right) = \left( 1, \sin t + t\cos t, \cos t - t \sin t\right) $$
+$$\lvert \lvert \gamma'\left( t \right) \rvert \rvert = 1 + \sin^2 t + t^2 \cos^2 t + 2t \sin t \cos t + \cos^2 t + t^2 \sin^2 t - 2t \sin t \cos t = \lvert t \rvert + t^2$$
+$$\ell \left( \gamma \right) = \int_{0}^{\pi} \sqrt{t^2 + 2} \dif{t}$$
+\end{ej}
+
+\begin{defi}
+Definimos la curva opuesta como: 
+$$\left( -\gamma \right): \left[ -b, -a \right] \rightarrow \mathbb{R}^n$$
+$$\left( -\gamma \right) \left( t \right) = \gamma \left( -t \right) $$
+\end{defi}(\textit{Dibujo})
+Son la misma curva, pero se recorre en sentido contrario.
+
+\begin{prop}
+Sea $\gamma$ una curva. Entonces: 
+$$\ell \left( -\gamma \right) = \ell \left( \gamma \right) $$
+\end{prop}
+
+\begin{defi}
+Sea dos curvas $\gamma, \sigma$ tal que: 
+$$\gamma: \left[ a, b \right] \rightarrow \mathbb{R}^n$$
+$$\sigma: \left[ b, c \right] \rightarrow \mathbb{R}^m$$
+$$\gamma\left( b \right) = \sigma \left( b \right) $$
+Definimos como \textbf{curva unión} a:
+$$\gamma \lor \sigma: \left[ a, c \right] \rightarrow \mathbb{R}^n$$
+$$\left( \gamma \lor \sigma \right) \left( t \right) = \begin{cases}
+    \gamma\left( t \right) \text{, si } t \in \left[ a, b \right]\\
+    \sigma\left( t \right) \text{, si } t \in \left[ b, c \right] 
+\end{cases}$$
+\end{defi}
+\begin{prop}
+Sea $\gamma, \sigma$ dos curvas con una curva unión. Entonces: 
+$$\ell \left( \gamma, \sigma \right) = \ell \left( \gamma \right) + \ell\left( \sigma \right) $$
+\end{prop}
+
+\begin{defi}
+Sea $\sigma: \left[ a, b \right] \rightarrow \mathbb{R}^n$ curva y $h: \left[ a', b' \right] \rightarrow \left[ a, b \right]$ creciente, biyectiva y $C^1$ a trozos. Llamamos \textbf{reparametrización} de $\gamma$ a:
+$$\gamma \circ h: \left[ a', b' \right] \rightarrow \mathbb{R}^n.$$
+\end{defi}
+
+\begin{prop}
+Sea $\gamma, h$ tal que se permite reparametrización de $\gamma$. Entonces: 
+$$\ell \left( \gamma \circ h \right) = \ell \left( \gamma \right) $$
+\end{prop}
+\begin{demo}
+$$\ell \left( \gamma \circ h\right) = \int_{a'}^{b'} \lvert \lvert \left( \gamma \circ h \right)'\left( t \right) \rvert \rvert \dif{t} = $$
+$$= \int_{a'}^{b'} \lvert \lvert \gamma'\left( h\left( t \right) \right) h'\left( t \right) \rvert \rvert \dif{t} = \int_{a'}^{b'} h'\left( t \right) \lvert \lvert \gamma'\left( h\left( t \right) \right) \rvert \rvert \dif{t} = $$
+$$= \int_{a}^{b} \lvert \lvert \gamma'\left( s \right) \rvert \rvert \dif{s} = \ell \left( \gamma \right) $$    
+\end{demo}
+
 \end{document}
