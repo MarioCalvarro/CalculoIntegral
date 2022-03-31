@@ -1899,11 +1899,46 @@ $$\int_{\gamma} F\cdot \dif{\overline{s}} = 0,\ \forall \gamma \text{ cerrado.} 
 \end{defi}
 
 \begin{prop}
-Si $F$ deriva de un potencia, $F = \nabla f$, entonces es conservativo?
+Sea $G \subset \mathbb{R}^n$ abierto y $F: G \rightarrow \mathbb{R}^n$ campo vectorial continuo.
+
+Si $F$ deriva de un potencia, $F = \nabla f \Leftrightarrow$ es conservativo
 \end{prop}
 \begin{demo}
-$$\int_{\gamma} F\cdot \dif{\overline{s}} = \int_{a}^{b} \nabla f\left( \gamma\left( t \right) \right) \cdot \gamma'\left( t \right) \dif{t} = $$
+$$\Rightarrow) \int_{\gamma} F\cdot \dif{\overline{s}} = \int_{a}^{b} \nabla f\left( \gamma\left( t \right) \right) \cdot \gamma'\left( t \right) \dif{t} = $$
 $$= \int_{a}^{b} \left( f \circ \gamma \right)'\left( t \right) \dif{t} = \left( f \circ \gamma \right)\left( b \right) - \left( f \circ \gamma \right) \left( a \right)$$    
+
+$\Leftarrow)$ Sea $F$ conservativo $\Rightarrow$
+$$\int_{\gamma} F \cdot \dif{\overline{s}} = 0,\ \forall \gamma \text{ curva cerrada } \gamma \subset G.$$
+(\textit{Dibujo})
+$$\int_{\gamma_1} F \cdot \dif{\overline{s}} = \int_{\gamma_2} F \cdot \dif{\overline{s}}?$$
+Como $\gamma_1 \lor \left( -\gamma_2 \right)$ es cerrada. 
+$$0 = \int_{\gamma_1 \lor \left( -\gamma_2 \right)} F \dif{\overline{s}} = \int_{\gamma_1} F \cdot \dif{\overline{s}} - \int_{\gamma_2} F \cdot \dif{\overline{s}} \Rightarrow \int_{\gamma_1} F \cdot \dif{\overline{s}} = \int_{\gamma_2} F \cdot \dif{\overline{s}}$$
+
+(\textit{Dibujo})\\
+Podemos suponer que $G$ conexo (y abierto) $\Rightarrow G$ conexo por caminos.
+
+Decimos que $\forall x \in G: \exists \gamma_x$ (conexo por caminos) que une $x_0$ con $x$.
+
+Tomamos $f: G \rightarrow \mathbb{R}$ tal que $f\left( x \right) = \int_{\gamma_x} F \cdot \dif{\overline{s}}$.
+
+¿$\nabla f = F$? $x \in G,\ \nabla f\left( x \right) = F\left( x \right)$.
+
+$$\forall \varepsilon > 0,\ \exists \delta > 0: \lvert \lvert F\left( x + h \right) - F\left( x \right) \rvert \rvert < \varepsilon \text{ si } \lvert \lvert h \rvert \rvert < \delta$$
+$$\left( B\left( x, \delta \right) \subset G \right)$$
+Tenemos que: 
+$$\sigma_n \sim \left[ x, x + h \right]$$
+$$\sigma_k \left( t \right) = x + th,\ t \in \left[ -??, ?? \right] $$
+$$\sigma_n' \left( t \right) = h$$
+$$\int_{\gamma_x} F\cdot \dif{\overline{s}} + \int_{\sigma_n} F \cdot \dif{\overline{s}} = \int_{\gamma_x \lor \sigma_k} F \dif{\overline{s}} = \int_{\gamma_{x + n}} F \cdot \dif{\overline{s}}$$
+$$f\left( x + h \right) - f\left( x \right) = \int_{\sigma_k} F \cdot \dif{\overline{s}} = \int_{0}^{1} \left( F\left( x + th \right) \cdot h \right) \dif{t}$$
+$$\lvert f\left( x + h \right) - f\left( x \right) - F\left( x \right) \cdot h \rvert = \lvert \int_{0}^{1} F\left( x + th \right) \cdot h \dif{t} - \int_{0}^{1} \left( F\left( x \right) \cdot h\right) \dif{t} \rvert$$
+$$\lvert \int_{0}^{1} \left( F\left( x + th \right) - F\left( x \right) \right) \cdot h \dif{t} \rvert \underbrace{\le}_{\text{D.C-S}} \int_{0}^{1} \lvert \lvert F\left( x + th \right) - F\left( x \right) \rvert \rvert \cdot \lVert h \rVert \dif{t} < \varepsilon \lvert \lvert h \rvert \rvert$$
+
+Por tanto, 
+$$\lvert \frac{f\left( x + h \right) - f\left( x \right) - F\left( x \right) \cdot h}{\lvert \lvert h \rvert \rvert} \rvert < \varepsilon$$
+Es decir, 
+$$\lim_{h \rightarrow 0} \frac{f\left( x + h \right) - f\left( x \right) - \left( F\left( x \right) \cdot h \right)}{\lvert \lvert h \rvert \rvert} = 0 \Rightarrow F\left( x \right) = \nabla f\left( x \right) $$
 \end{demo}
+
 
 \end{document}
