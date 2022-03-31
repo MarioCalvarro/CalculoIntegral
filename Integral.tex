@@ -1853,4 +1853,57 @@ $$= \int_{a'}^{b'} \lvert \lvert \gamma'\left( h\left( t \right) \right) h'\left
 $$= \int_{a}^{b} \lvert \lvert \gamma'\left( s \right) \rvert \rvert \dif{s} = \ell \left( \gamma \right) $$    
 \end{demo}
 
+\begin{defi}
+Sea $\gamma: \left[ a, b \right] \rightarrow \mathbb{R}^n$ tal que: $\img \gamma \in \Omega$ abierto. Sea también, $f: \Omega \rightarrow \mathbb{R}$ continua. Entonces:
+\[
+\int_{\gamma} f \dif{s} = \int_{a}^{b} \left( f \circ \gamma \right) \left( t \right) \lvert \lvert \gamma'\left( t \right) \rvert \rvert \dif{t} 
+\]
+\end{defi}
+
+\begin{obs}
+Sea $\gamma$ una curva y $f$. Entonces: 
+\begin{itemize}
+    \item 
+$$\ell \left( \gamma \right) = \int_{\gamma} 1 \cdot \dif{s}$$
+    \item 
+$$\int_{\gamma} f \dif{s} = \int_{-\gamma} f \dif{s}$$
+    \item 
+$$\int_{\gamma \lor \sigma} f \dif{s} = \int_{\gamma} f \dif{s} + \int_{\sigma} f \dif{s}$$
+\end{itemize}
+\end{obs}
+
+\begin{defi}
+Sea $\gamma: \left[ a, b \right] \rightarrow \underbrace{G}_{\text{abierto}} \subset \mathbb{R}^n$ curva y $F: G \rightarrow \mathbb{R}^3$ continua. Llamamos \textbf{integral de línea} de $F$ sobre $\gamma$ a:
+$$\int_{\gamma} F \cdot \dif{\overline{s}} = \int_{a}^{b} F\left( \gamma\left( t \right) \right) \cdot \gamma'\left( t \right) \dif{t}$$
+Además, decimos que $F$ es un \textbf{campo}.
+\end{defi}
+
+\begin{prop}
+\begin{enumerate}
+    \item Tenemos: 
+    $$\int_{\gamma} F\cdot \dif{\overline{s}} = \int_{a}^{b} F\left( \gamma\left( t \right) \right) \cdot \frac{\gamma'\left( t \right)}{\lvert \lvert \gamma'\left( t \right) \rvert \rvert} \lvert \lvert \gamma'\left( t \right) \rvert \rvert \dif{t} = \int_{a}^{b} F_T \left( \gamma\left( t \right) \right) \cdot \lvert \lvert \gamma'\left( t \right) \rvert \rvert \dif{t} = \int_{\gamma} F_T \dif{s}$$
+
+    \item Tenemos que si $\sigma$ es una reparametrización de $\gamma$: 
+    $$\int_{\sigma} F \cdot \dif{\overline{s}} = \int_{\gamma} F\cdot \dif{\overline{s}}$$
+
+    \item Tenemos que: 
+    $$\int_{-\left( \gamma \right)} F \cdot \dif{\overline{s}} = -\int_{\gamma} F \cdot \dif{\overline{s}}$$
+\end{enumerate}
+\end{prop}
+
+\begin{defi}
+Decimos que un campo $F$ \textbf{deriva de un potencial} si: 
+$$\exists f: G \rightarrow \mathbb{R}: F = \nabla f$$
+Un campo decimos que es \textbf{conservativo} si: 
+$$\int_{\gamma} F\cdot \dif{\overline{s}} = 0,\ \forall \gamma \text{ cerrado.} $$
+\end{defi}
+
+\begin{prop}
+Si $F$ deriva de un potencia, $F = \nabla f$, entonces es conservativo?
+\end{prop}
+\begin{demo}
+$$\int_{\gamma} F\cdot \dif{\overline{s}} = \int_{a}^{b} \nabla f\left( \gamma\left( t \right) \right) \cdot \gamma'\left( t \right) \dif{t} = $$
+$$= \int_{a}^{b} \left( f \circ \gamma \right)'\left( t \right) \dif{t} = \left( f \circ \gamma \right)\left( b \right) - \left( f \circ \gamma \right) \left( a \right)$$    
+\end{demo}
+
 \end{document}
