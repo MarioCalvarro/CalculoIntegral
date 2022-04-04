@@ -1940,5 +1940,50 @@ Es decir,
 $$\lim_{h \rightarrow 0} \frac{f\left( x + h \right) - f\left( x \right) - \left( F\left( x \right) \cdot h \right)}{\lvert \lvert h \rvert \rvert} = 0 \Rightarrow F\left( x \right) = \nabla f\left( x \right) $$
 \end{demo}
 
+\begin{theo}[Fórmula de Green]
+Sea $G \subset \mathbb{R}^2$ abierto, $P, Q: G \rightarrow \mathbb{R}$ que son $C^1$ y $D$ abierto tal que, $\overline{D} \subset G$. Tenemos que $\partial D^+ \subset G$ curva cerrada. Entonces. 
+$$\int_{\partial D^+} P \dif{x} + Q \dif{y} = \iint_{D} \left( \frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y} \right) \dif{x} \dif{y}$$
+\end{theo}
+\begin{demo}
+Sea $D = \{\left( x, y \right) : x \in \left[ a, b \right] \; \land \; f\left( x \right) \le y \le g\left( x \right) \}$ con $f, g: \left[ a, b \right] \rightarrow \mathbb{R}$ en $C^1$ a trozos (continuas). (Dibujo).
+
+Calculamos: 
+$$\int_{\substack{\gamma_i\\ i = 1, 2}} P \dif{x} = \int_{\gamma_i} \left( P, 0 \right) \dif{\overline{s}} = 0$$
+
+Tenemos que $\sigma_1 \left( t \right) = \left( t, f\left( x \right) \right)$: 
+$$\int_{\sigma_1} P \dif{x} = \int_{\sigma_1} \left( P, 0 \right) \dif{s} = \int_{a}^{b} \left( P \left( t, f\left( t \right) \right) \right) \cdot \left( 1, f'\left( t \right) \right) \dif{t} = $$
+$$= \int_{a}^{b} P\left( t, f\left( t \right) \right) \dif{t}$$
+
+A su vez?
+$$\int_{\sigma_2} P \dif{x} = - \int_{-\sigma_2} P \dif{x} = - \int_{a}^{b} P\left( t, g\left( t \right) \right) \dif{t}$$
+
+y 
+$$\int_{\partial D^+} P \dif{x} = - \left( \int_{a}^{b} P\left( t, g\left( t \right) \right) \dif{t} - \int_{a}^{b} P\left( t, f\left( t \right) \right) \dif{t} \right) = \boxed{- \int_{a}^{b} \left( \int_{f\left( x \right)}^{g\left( x \right)} \frac{\partial P\left( x, y \right)}{\partial y} \dif{y} \right) \dif{x}}$$
+$$\underbrace{=}_{\text{T. Fubini}} \boxed{- \iint_{D} \frac{\partial P}{\partial y} \left( x, y \right) \dif{x} \dif{y}}$$
+
+Supongamos ahora que, $D = \left( x, y \right) : y \in \left[ c, d \right] \; \land \; f\left( y \right) \le x \le g\left( y \right)$ donde $f, g: \left[ c, d \right] \rightarrow \mathbb{R}$ son $C^1$ a trozos. (Dibujo).
+
+Calculamos: 
+$$\int_{\partial D^+} Q \dif{y} \overbrace{=}^{\text{ejercicio}} \boxed{\iint_{D} \frac{\partial D}{\partial x} \dif{x} \dif{y}} $$
+
+Por último, si sumamos las dos fórmulas: 
+$$\iint_{\partial D^+} P \dif{x} + Q \dif{y} = \iint_{D} \left( \frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y} \right) \dif{x} \dif{y}$$
+\end{demo}
+
+\begin{obs}
+Esta fórmula la podemos aplicar, entre otros, a circunferencias, triángulos, conjuntos convexos (cuyo $\partial D$, borde, sea una curva cerrada)\ldots 
+
+También se cumple para dos triángulos que se intersecan, unicamente, en su frontera: 
+$$\iint_{D} = \iint_{D_1} + \iint_{D_2} = \int_{\partial D_1^+} + \int_{\partial D_2^+} = \int_{\partial D^+}$$
+Es decir, que la fórmula se puede aplicar a cualquier polígono (ya que se puede triangular).
+
+Sea, una situación más general, $D$ un conjunto abierto? podemos ``aproximarlo'' por un polígono. Esto nos permite ver que el teorema es cierto para $D$.
+\end{obs}
+
+\begin{prop}[Fórmula del área]
+Si tenemos que $Q\left( x, y \right) = x$ y $P\left( x, y \right) = -y$, tendremos que: 
+$$\int_{\partial D^+} x \dif{y} - y \dif{x} = 2\iint_{D} \dif{x} \dif{y} = 2 area\ D$$
+\end{prop}
+
 
 \end{document}
