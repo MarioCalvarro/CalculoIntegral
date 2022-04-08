@@ -122,11 +122,12 @@ Decimos que $A$ tiene medida nula si podemos encontrar recubrimientos de $A$ con
 $$\mu^{*}\left( A \right) = 0 \Leftrightarrow \forall \varepsilon > 0 \ \exists \{Q_k\} \text{ rec. de } A: \sum_{k=1}^{\infty} v\left( Q_k \right) < \varepsilon $$  
 \end{defi}
 
-\underline{Ejemplos}
+\begin{ej}
 	\begin{enumerate}
        \item Si $x_0 \in \mathbb{R}^{n}$, entonces $\forall \varepsilon > 0, \exists k \in \mathbb N: \ v\left( Q\left( x_0 \right)  \right) < \frac{\varepsilon}{2^{k}}$, luego es de medida nula.
        \item Si $N$ numerable, entonces podemos escribir $N = \{x_k\}$, para cada $x_k$ podemos encontrar $Q_k\left( x_k \right): v\left( Q_k\left( x_k \right)  \right) < \frac{\varepsilon}{2^{k}}$ que lo contenga, luego se tiene que es de medida nula.
     \end{enumerate}
+\end{ej}
     
 \begin{prop}
 La medida exterior de Lebesque cumple las siguientes propiedades:
@@ -1250,11 +1251,11 @@ Si la medida del conjunto es nula, entonces la medida de casi todas las seccione
 $$\mu_{n + m} \left(A\right) = 0 \Rightarrow \mu_m \left(A_x\right) = 0 \text{ c.t.p } x$$
 \end{coro}
 
-\underline{Ejemplo}: 
-
+\begin{ej} 
 Si $A \subset \mathbb{R}^n \times \mathbb{R}^m$:
 $$\int_A f \left(x, y\right) \dif{x} \dif{y} = \int_{\mathbb{R}^n \times \mathbb{R}^m} f \left(x, y\right) \chi_A \left(x, y\right) \dif{x}\dif{y} = $$
 $$\int_{\mathbb{R}^n} \left(\int_{\mathbb{R}^m} f \left(x, y\right) \chi_A \left(y\right) \dif{y} \right) \dif{x} = \int_{\mathbb{R}^n} \left(\int_{A_x} f \left(x, y\right) \dif{y}\right) \dif{x}$$
+\end{ej}
 
 \begin{theo}[de Fubini]
 Sea $f: \mathbb{R}^n \times \mathbb{R}^m \rightarrow \mathbb{R}$ integrable. Entonces: 
@@ -1281,8 +1282,7 @@ Por tanto, $F \left(x\right) = \int_{\mathbb{R}^n} f^+_x \dif{\mu_n} + \int_{\ma
 El problema, en general, es demostrar que una función es integrable para poder aplicar este teorema. Un método útil suele ser demostrar que $\int_{\mathbb{R}^n} \left(\int_{\mathbb{R}^m} \vert f \left(x, y\right) \vert \dif{y} \right) \dif{x} < \infty$ y como con el valor absoluto es no negativa podemos aplicar Tonelli a $\vert f\vert$ y separar la integral para demostrar que $f$ es integrable.
 \end{obs}
 
-\underline{Ejemplo}: 
-
+\begin{ej}
 Consideramos $E = \{ \left(x, y\right) \in \mathbb{R}^2 : 0 \leq x \leq y\}$ y $f \left(x, y\right) = e^{-y^2}$ y vamos a ver que es integrable en $E$ y a calcular su integral:
 \begin{itemize}
     \item En primer lugar, $f \left(x, y\right) = e^{-y^2} \ge 0$ es medible por ser continua en $\mathbb{R}^2$.
@@ -1290,6 +1290,7 @@ Consideramos $E = \{ \left(x, y\right) \in \mathbb{R}^2 : 0 \leq x \leq y\}$ y $
     $$\int_E f \left(x, y\right) \dif{x} \dif{y} = \int_{\mathbb{R}^2} f \left(x, y\right) \cdot \chi_{E} \left(x, y\right) \dif{x} \dif{y} = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} e^{-y^2}\chi_E \left(x, y\right) \dif{x} \dif{y} =$$
     $$=\int_{0}^{\infty} \int_{0}^{y} e^{-y^2} \dif{x} \dif{y} = \frac{1}{2} \int_{0}^{\infty} 2ye^{-y^2} \dif{y} = \left[\frac{1}{2} \left(e^{-y^2}\right)\right]_{y=0}^{y=\infty} = \frac{1}{2} \left(1 - 0\right) =\frac{1}{2}$$
 \end{itemize}
+\end{ej}
 
 \begin{prop}
 Sea $f: \left[a, \infty\right) \rightarrow \left[0, +\infty\right)$ continua, entonces la integral impropia coincide con la impropia de Riemann
@@ -1301,9 +1302,9 @@ Sea $a \le \{b_k\}{k=1}^{\infty}\uparrow \infty$ y definimos $f_k = f \cdot \chi
 $$\int_{\left[a, \infty\right)} f = \lim_{k \rightarrow \infty} \int_{\left[a, \infty\right)} f_k = \lim_{k \rightarrow \infty} \int_a^{b_k} f $$
 \end{demo}
 
-\underline{Ejemplo}:
-
+\begin{ej}
 Consideramos $A = \left[0, 1\right] \times \left[0, +\infty\right]$ y la función $f \left(x, y\right) = e^{-y} \sin \left(2xy\right)$ y vamos a demostrar que es integrable y a calcular la integral.
+\end{ej}
 
 \begin{itemize}
     \item En primer lugar, para poder aplicar el Teorema de Fubini, necesitamos ver que $f$ es integrable, es decir, $\int_A \vert f\vert < \infty$, luego calculamos:
@@ -1388,8 +1389,7 @@ Vamos a aplicar el Teorema de Fubini y de Tonelli a $\frac{\partial f\left(x, t\
 \end{itemize}
 \end{demo}
 
-\underline{Ejemplo}:
-
+\begin{ej}
 Supongamos la función 
 $$F \left(t\right) = \int_0^{\infty} \frac{1 - e^{tx}}{xe^{x}} \dif{x} \text{\quad con } t > -1$$
 En primer lugar, veamos que $F$ está bien definida y que es derivable en $t \in \left(-1, \infty\right)$:
@@ -1424,6 +1424,7 @@ Dado $t \in \left(-1, \infty\right)$ sean $-1 < a < t_0 < b <\infty$. Vamos a de
     Y para calcular el valor de la constante de integración basta con ver que:
     $$F \left(0\right) = \int_0^{\infty} 0 \dif{t} = 0 = \log \left(1\right) + C\Rightarrow C = 0$$
 \end{enumerate}
+\end{ej}
  
 \section*{TEOREMA DEL CAMBIO DE VARIABLE}%
 \begin{theo}
@@ -1470,8 +1471,7 @@ $$\int_{\varphi \left(A\right)} f \left(x\right) \dif{x} = \int_A f \left(\varph
 Este teorema es la generalización total de los dos anteriores, ya que si $f = \chi_{\varphi \left(A\right)}$ obtenemos el teorema anterior.
 \end{obs}
 
-\underline{Ejemplo}: 
-
+\begin{ej}
 Supongamos la siguiente integral $$\int_E e^{\frac{x - y}{x + y}} \dif{x} \dif{y}$$
 definiendo $E$ como el triángulo de vértices: $\left(0, 0\right), \left(0, 2\right), \left(2, 0\right)$, es decir:
 $$DIBUJO$$
@@ -1484,6 +1484,7 @@ Por tanto, $\varphi^{-1} \left(E\right) = D$ es un triángulo de vértices: $\le
 $$\int_E f \left(x, y\right) \dif{x} \dif{y} = \int_{\varphi \left(D\right)} f \left(x, y\right) \dif{x}\dif{y} = \int_D e^{u/v}\cdot \lvert \det J \varphi \left(u, v\right) \rvert \dif{u} \dif{v} =$$
 $$= \int_{v = 0}^{v = 2} \int_{u = -v}^{u = v} e^{u/v} \frac{1}{2} \dif{u} \dif{v} = \int_{v = 0}^{v = 2} \frac{1}{2} \left[v e^{u/v}\right]_{u = -v}^{u = v} \dif{v} = $$
 $$= \frac{1}{2} \int_0^2 v \left(e^{1} - e^{-1}\right) \dif{v} = \frac{e - e^{-1}}{2} \left[\frac{v^2}{2}\right]_{v = 0}^{v = 2} = e - \frac{1}{2} $$
+\end{ej}
 
 \subsection*{\underline{Cambios de sistemas de coordenadas}}
 En muchas ocasiones, el trabajo con geometrías concretas suscita dificultades a la hora de ser descrita por los ejes cartesianos para integrar, derivar, hacer un estudio topológico... Para solventar este problema de representación existen ciertos cambios muy significativos en el sistema de coordenadas que facilitan mucho las cosas.
@@ -1507,14 +1508,14 @@ Sea $\varphi: \mathbb{R}^2\rightarrow  \mathbb{R}^2$ de forma que $\varphi(r, \t
 \end{itemize}
 \end{prop}
 
-\underline{Ejemplo}:
-
+\begin{ej}
 Supongamos que tenemos que calcular
 $$\int_E x^2 + y^2 \dif{x}\dif{y} \mbox{ donde } E = \{\left(x, y\right): x^2 + y^2 \le 1\}$$
 Podemos tomar en este caso que:
 $$\varphi = \begin{cases} x = r\cos \theta \\ y = r\sen\theta \end{cases} \Rightarrow J\varphi = \begin{pmatrix} \cos \theta & -r\sen \theta \\ \sen \theta & r\cos \theta \end{pmatrix} \Rightarrow \det = r \ge 0$$
 Entonces:
 $$\int_E x^2 + y^2 \dif{x} \dif{y} = \int_{E\setminus S} \left(x^2 + y^2\right) \dif{x} \dif{y} = \int_{\theta = 0}^{\theta = 2\pi} \int_{r = 0}^{r = 1} r^2 \cdot r \dif{r} \dif{\theta} = 2\pi \left[\frac{r^4}{4}\right]_0^1 = \frac{\pi}{2} $$
+\end{ej}
 
 \subsubsection*{Coordenadas cilíndricas}
 Este tipo de coordenadas son bastante útiles para extrapolar la situación de las coordenadas polares a $\mathbb{R}^3$, de forma que permite sobre cada plano paralelo a $\mathbb{R}^2$ utilizar la misma representación que hacíamos en polares anteriormente.
@@ -1533,8 +1534,7 @@ Sea $\varphi: \mathbb{R}^3\rightarrow  \mathbb{R}^3$ de forma que $\varphi(r, \t
 \end{itemize}
 \end{prop}
 
-\underline{Ejemplo}:
-
+\begin{ej}
 Tomando el mismo ejemplo anterior, pero integrando sobre
 $$\int_V x^2 + y^2 \dif{x} \dif{y} \dif{z} \mbox{ donde } V = \{\left(x, y, z\right) : x^2 + y^2 \le z^2 \le 4\}$$
 
@@ -1543,6 +1543,7 @@ $$\int_V x^2 + y^2 \dif{x} \dif{y} \dif{z} \mbox{ donde } V = \{\left(x, y, z\ri
 Por cada $z$ tenemos $V_z = \{\left(x, y\right): x^2 + y^2 \le z^2\}$, por tanto: 
 $$\int_V x^2 + y^2 \dif{x} \dif{y} \dif{z} = \int_{z = -2}^{z = 2} \int_{\theta = 0}^{\theta = 2\pi} \int_{r = 0}^{r = \lvert z \rvert} r^2 \cdot r  \dif{r}   \dif{\theta} \dif{z}  = 2\pi \int_{z = -2}^{z = 2} \left(\int_{r = 0}^{r = \lvert z \rvert} r^3 \dif{r} \right) \dif{z}$$
 $$ = 2\pi \int_{z = -2}^{z = 2} \left[\frac{r^4}{4}\right]_{r = 0}^{r = \lvert z \rvert} \dif{z} = \frac{\pi}{2} \int_{z = -2}^{z = 2} z^4 \dif{z} = \frac{\pi}{10} \left[z^{5}\right]_{z = -2}^{z = 2} = \frac{32\pi}{5} $$
+\end{ej}
 
 \subsubsection*{Coordenadas Esféricas}
 Este tipo de coordenadas también son coordenadas aplicables a $\mathbb{R}^3$ (puesto que en $\mathbb{R}^2$ son las polares que se han visto) para situaciones en las que los dominios estén definidos por cónicas o funciones de aspecto radial o centrales.
@@ -1563,14 +1564,13 @@ Sea $\varphi: \mathbb{R}^3\rightarrow  \mathbb{R}^3$ de forma que $\varphi(r, \t
 \end{itemize}
 \end{prop}
 
-\underline{Ejemplo}:
-
+\begin{ej}
 Vamos a calcular el volumen de una esfera sólida, dada por $B_R = \{\left(x, y, z\right) : x^2 + y^2 + z^2 \le R^2\}$:
 $$vol \left(B_R\right) = \mu_3 \left(B_r\right) = \int_{B_R} 1 \dif{x} \dif{y} \dif{z}=$$
 $$= \int_{\theta = 0}^{\theta = 2\pi }\int_{\varphi = 0}^{\varphi = \pi} \int_{r = 0}^{r = R} 1 \cdot r^2 \sen \varphi \dif{r} \dif{\varphi } \dif{\theta} = \left(\underbrace{\int_{\theta = 0}^{2\pi }1 \dif{\theta }}_{= 2\pi} \right) \cdot \left(\underbrace{\int_{\varphi = 0}^{\varphi = \pi} \sen \varphi \dif{\varphi }}_{= 2}\right) \cdot \left(\underbrace{\int_{r = 0}^{r = R} r^2 \dif{r}}_{= \left[\frac{r^3}{3}\right]_0^R = \frac{R^3}{3}}\right) = \frac{4}{3} \pi R^3$$
+\end{ej}
 
-\underline{Ejemplo: La bóveda de Viviani}
-
+\begin{ej}
 Buscamos el volumen limitado por la esfera $x^2 + y^2 + z^2 = A^2$ y el cilindro $x^2 + y^2 = ay,\ \left(a > 0\right)$.
 
 \textit{Dibujos}
@@ -1581,8 +1581,7 @@ Por lo que, considerando $D = \{\left(x, y\right): x^2 + y^2 \le ay\} = \{\left(
 $$vol = 2 \int_{D} \sqrt{a^2 - x^2 - y^2} \dif{x} \dif{y} = $$
 $$= 2 \int_{\theta = 0}^{\theta = \pi} \int_{r = 0}^{r = a\sin \theta } r \sqrt{a^2 - r^2} \dif{r} \dif{\theta} = 2 \int_{\theta = 0}^{\theta = \pi} \left[-\frac{1}{3} \left(a^2 - r^2 \right)^{3/2}\right]_{r = 0}^{r = a\sin \theta }\dif{\theta} = $$
 $$= \frac{2}{3} \int_{\theta = 0}^{\theta = \pi} a^3 - a^3 \lvert \cos \theta  \rvert^3 \dif{\theta } = \frac{4}{3} \int_{\theta = 0}^{\theta = \frac{\pi}{2}} a^3 - a^3 \cos^3 \theta \dif{\theta } = \ldots = \boxed{\frac{4}{3}a^3 \left(\frac{\pi}{2} - \frac{2}{3}\right)} $$
-
-%Creo que me he saltado pasos (el profesor tampoco puso todo)
+\end{ej}
 
 \chapter*{INTEGRAL DE LÍNEA}
 \begin{defi}
