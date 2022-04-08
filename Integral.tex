@@ -84,7 +84,6 @@
     \newtheorem*{obs}{\underline{Observación}:}
     \newtheorem*{ej}{\underline{Ejemplo}:}
 
-
 \DeclareMathOperator{\dom}{dom}
 \DeclareMathOperator{\img}{img}
 
@@ -114,9 +113,9 @@ $$
 $$ 
 \end{defi}
 
-\underline{Observación}
-
+\begin{obs}
 Podemos restringir las familias $\{Q_k\}$ a aquellas que tengan $\mathrm{diam}\ Q_k < \delta$ para un cierto delta y la definición no cambia. Esto es así porque, en el fondo, el conjunto de sumatorios de volúmenes que estamos escogiendo es el mismo, ya que para familias con algún $Q_k$ de diámetro mayor, éste se puede dividir en varios rectángulos más pequeños cuyo volumen suman el de $Q_k$ pero cuyo diámetro es menor que dicho delta.
+\end{obs}
 
 \begin{defi}[Medida nula]
 Decimos que $A$ tiene medida nula si podemos encontrar recubrimientos de $A$ con sumatorio de volúmenes tan pequeños como queramos, es decir:
@@ -243,10 +242,10 @@ $$\mu^*\left( \bigcup_{k\in \mathbb{N}} A_k \right) \le \sum_{j, k} v\left( Q_j^
 Y como es para todo $\varepsilon$ se tiene la desigualdad.
 \end{demo}
 
-\underline{Observación}
-
+\begin{obs}
 La condición de $d(A,B) > 0$ para que la medida exterior de la unión sea la suma de las medidas exteriores no se puede relajar, es decir, existen conjuntos disjuntos en $\mathbb{R}^n $ con $d(A,B)>0$ para los cuales la medida de la suma no es la suma de las medidas.
 $$\exists A, B: A\cap B = \emptyset\; \land \;\mu^*\left( A\cup B \right) < \mu^*\left( A \right) + \mu^*\left( B \right)$$
+\end{obs}
 
 \begin{defi}[Conjunto Medible]
 Sea $A \subset \mathbb{R}^n$, se dice que es \textbf{medible} si y sólo si
@@ -427,10 +426,10 @@ $$\forall G \subset \mathbb{R}^m \text{ abierto, } f^{-1}(G) \text{ es medible}.
 \end{enumerate}
 \end{prop}
 
-\underline{Observación}:
-
+\begin{obs}
 Como podemos expresar un abierto como recubrimiento de bolas (que con la norma infinito serían cubos) tenemos que $G = \bigcup_{k \in \mathbb{N}} Q_k$, de este modo, se tiene que $f^{-1}\left( G \right) = \bigcup_{k \in \mathbb{N}}f^{-1}\left( Q_k \right)$ y, en consecuencia, podemos redefinir el concepto de función medible de la siguiente forma:
 $$f \text{ medible} \Leftrightarrow f^{-1}\left( Q \right) \text{ medible, } \forall Q \subset \mathbb{R}^m \text{ cubo abierto.}$$
+\end{obs}
 
 
 \begin{prop}
@@ -560,13 +559,13 @@ Sea $A \subset \mathbb{R}^n$ un conjunto medible y $f: A \rightarrow \left[-\inf
 Donde $\dom f = \{x\in A: f(x)\in \mathbb{R}\}$
 \end{defi}
 
-\underline{Observación}
-
+\begin{obs}
 Podemos descomponer $A$ en forma disjunta como:
 $$A = \left( \mathrm{dom}f \right) \sqcup \left( f^{-1}\left(+\infty\right)\right) \sqcup \left( f^{-1}\left(-\infty\right)\right) $$
 De lo que se sigue que:
 $$\mathrm{dom}f = A \setminus \left(  f^{-1}\left(+\infty\right) \sqcup  f^{-1}\left(-\infty \right) \right)$$
 Por tanto, que si $A$, $f^{-1}\left(+\infty\right)$ y $f^{-1}\left(-\infty\right)$ son conjuntos medibles, $\mathrm{dom}f$ también lo es.
+\end{obs}
 
 \begin{prop}
 Sea $A \subset \mathbb{R}^n$ medible y sea $\{f_k\}_{k=1}^\infty$ una sucesión de funciones donde $\forall k \in \mathbb{N}: f_k: A \rightarrow \left[-\infty, \infty\right]$ es medible, entonces:
@@ -744,8 +743,7 @@ $$\sum_{I \in P_1} \mu\left(I\right) < \varepsilon \mbox{ pero } D_{\frac{1}{n}}
 \end{itemize}
 \end{demo}
 
-\underline{Observación}
-
+\begin{obs}
 Recordemos que llamamos función simple a una función con la estructura:
 $$\varphi = \sum_{k=1}^{m} \alpha_k\chi{E_k}$$
 Dicha función cumple que:
@@ -757,6 +755,7 @@ Dicha función cumple que:
 E_j = \varphi^{-1}\left(\{\beta_j\}\right) \text{, medible} & & \varphi = \sum_{k=1}^{r} \beta_j \chi_{E_j} \Rightarrow \varphi \text{ es simple.}
 \end{align*}
 \end{itemize}
+\end{obs}
 
 \begin{prop}
 Si una función $f$ es integrable Riemann, entonces dicha función también es medible.
@@ -773,9 +772,9 @@ $$I\left(\varphi\right) = \sum_{k=1}^{m} \alpha_k \mu\left(E_k\right)$$
 \end{defi}
 $$Dibujo \chi no negativa como dos \chi que pueden ser negativa$$ 
 
-\underline{Observación}:
-
+\begin{obs}
 Como la medida de dichos conjuntos puede ser infinito y los valores $\alpha_k = 0$, es necesario que definamos $0 \cdot \left(+ \infty\right) = 0$ para poder dar una definición consistente de $I\left(\varphi\right) \in \left[0, +\infty\right]$.
+\end{obs}
 
 \begin{prop}
 Sea $\varphi$ función simple, es posible escribir dicha función de distintas formas:
@@ -800,9 +799,9 @@ La demostración se deja como ejercicio de las hojas, se trata de utilizar que e
 (\textit{Dibujo punto 3}). 
 \end{demo}
 
-\underline{Observación}
-
+\begin{obs}
 Los conjuntos no tienen porque ser intervalos, si fuese este el caso sería, en el fondo, integrabilidad Rienmann.
+\end{obs}
 
 \begin{defi}[Integral de Lebesque]
 Sea $f: \mathbb{R}^n \rightarrow \left[0, +\infty\right]$ una función medible, definimos la \textbf{integral de Lebesgue de $f$} de la siguiente\footnote{La definición no cambia si las funciones $\varphi \leq f$ en c.t.p.} forma:
@@ -841,9 +840,9 @@ Sea $A \subset \mathbb{R}^n$ un conjunto medible y $f: A \rightarrow \left[0, +\
 $$\int_A f \ d \mu = \int_{\mathbb{R}^n}f \cdot \chi_{A} \ d \mu$$
 \end{defi}
 
-\underline{Observación}:
-
+\begin{obs}
 En general se trabajará con funciones no infinitas para evitar que la integral sea infinita trivialmente.
+\end{obs}
 
 \begin{prop}
 Si $f:\mathbb{R}^n\rightarrow \mathbb{R}$ es una función medible, entonces el conjunto $\{(x, f(x))\}$ que definimos como la gráfica $f$ tiene medida $0$.
@@ -891,10 +890,9 @@ $$\int_{\mathbb{R}^n} \varphi \ d \mu \le \lim_{k\rightarrow\infty} \int_{\mathb
 Y ya tendríamos demostradas las dos desigualdades.
 \end{demo}
 
-\underline{Observación}
-
+\begin{obs}
 Este resultado sigue siendo cierto si se toman las hipótesis solo en c.t.p. Si ocurriese que $f_k \leq f$ no se cumpliera en un conjunto de medida nula, tomamos $f'_k$ que vale $f_k$ en todos los puntos donde se cumple y 0 en los que no. Como, por definición, $f_k = f'_k$ en c.t.p. la integral es la misma y la demostración no se ve alterada.
-
+\end{obs}
 
 \begin{theo}
 Sea $f: \left[a, b\right] \rightarrow \mathbb{R}^+$ una función acotada e integrable Rienmann, entonces $f$ es integrable Lebesgue y verifica:
@@ -1022,10 +1020,10 @@ Sea $f: \mathbb{R}^{n} \rightarrow \mathbb{R}$ una función integrable, entonces
 $$\int_{\mathbb{R}^n} f \dif{\mu} = \int_{\mathbb{R}^n} f^+ \dif{\mu} - \int_{\mathbb{R}^n} f^- \dif{\mu}$$
 \end{defi}
 
-\underline{Observación}
-
+\begin{obs}
 Podríamos dar la misma definición de integrabilidad que se dió para funciones arbitrarias, pero ahora para funciones que toman valores en la recta ampliada. Sin embargo, cabe observar que $A=\{x\in \mathbb{R}: |f(x)|< \infty\}$ tiene que tener medida en caso de que dicha función sea integrable, puesto que:
 $$\mu(A) > 0 \Rightarrow \forall k \in \mathbb{N}: k\cdot \chi_A \leq |f| \Rightarrow \int_{\mathbb{R}^n} |f| \ d\mu \geq I(k\chi_A) = k \cdot \mu(A)$$
+\end{obs}
 
 \begin{prop}
 Supongamos que tenemos dos funciones $f,g: \mathbb{R}^n \rightarrow [-\infty, \infty]$ y tales que $f=g$ (c.t.p.), entonces tenemos que:
@@ -1067,9 +1065,9 @@ Como todo son funciones no negativas e integrables, la integral de la suma es la
 $$\int f^+ + \int h = \int (f^+ + h) = \int (f^- + g)  = \int f^- + \int g \Rightarrow \int f^+ - \int f^- = \int g - \int h$$
 \end{demo}
 
-\underline{Observación}
-
+\begin{obs}
 Este lema es válido para funciones que toman valores en $\bar{\mathbb{R}}$ porque el conjunto donde los valores no son reales es de medida nula. Por tanto, las funciones son iguales en c.t.p. a las funciones de la hipótesis y para esas la demostración es válida, luego para estas también.
+\end{obs}
 
 \begin{theo}[Operaciones de Integrabilidad]
 Sean $f,g: \mathbb{R}^n \rightarrow \mathbb{R}$ dos funciones integrables, entonces la integral de la suma es:
@@ -1245,11 +1243,11 @@ Sea $A \subset \mathbb{R}^n \times \mathbb{R}^m$ medible, entonces:
 
 $$DIBUJO DE LO QUE SIGNFICAN LAS SECCIONES$$
 
-\underline{Observación}: 
-
+\begin{obs}
 Si $N \subset \mathbb{R}^{n+m}$ satisface que $\mu_{n+m} \left(N \right) = 0$ hemos visto que para casi todo $x \in \mathbb{R}$ la sección $N_x$ es medible porque tiene medida nula. Sin embargo, puede ocurrir que para algún $x \in \mathbb{R}^n$ la sección $N_x$ no sea medible en $\mathbb{R}^m$
 
-Por ejemplo, sea $E \subset \mathbb{R}$ no medible y sea $N = \{0\} \times E \subset \mathbb{R}^2$. Como $N$ está contenido en la recta $\{0\} \times \mathbb{R}$ está claro que $\mu_2 \left(N\right) = 0$, pero la sección $N_0 = E$ no es medible.
+Por ejemplo, sea $E \subset \mathbb{R}$ no medible y sea $N = \{0\} \times E \subset \mathbb{R}^2$. Como $N$ está contenido en la recta $\{0\} \times \mathbb{R}$ está claro que $\mu_2 \left(N\right) = 0$, pero la sección $N_0 = E$ no es medible.\\
+\end{obs}
 
 \begin{coro}
 Si la medida del conjunto es nula, entonces la medida de casi todas las secciones también lo es.
@@ -1283,9 +1281,9 @@ Por tanto, $F \left(x\right) = \int_{\mathbb{R}^n} f^+_x \dif{\mu_n} + \int_{\ma
 \end{enumerate}
 \end{demo}
 
-\underline{Observación}:
-
+\begin{obs}
 El problema, en general, es demostrar que una función es integrable para poder aplicar este teorema. Un método útil suele ser demostrar que $\int_{\mathbb{R}^n} \left(\int_{\mathbb{R}^m} \vert f \left(x, y\right) \vert \dif{y} \right) \dif{x} < \infty$ y como con el valor absoluto es no negativa podemos aplicar Tonelli a $\vert f\vert$ y separar la integral para demostrar que $f$ es integrable.
+\end{obs}
 
 \underline{Ejemplo}: 
 
@@ -1595,9 +1593,9 @@ Sea $T: \mathbb{R}^n \rightarrow \mathbb{R}^n$ lineal, si $A \subset \mathbb{R}^
 $$\mu_n \left(T\left(A\right)\right) = \lvert det \left(T\right) \rvert \cdot \mu_n \left(A\right)$$
 \end{theo}
 
-\underline{Observación}:
-
+\begin{obs}
 En el caso en el que $det \left(T\right) = 0$, entonces $T$ no es sobreyectiva y, por tanto, $T \left(\mathbb{R}^n\right)$ es una espacio vectorial propio de $\mathbb{R}^n$, los cuales tienen $\mu_n \left(T \left(\mathbb{R}^n\right)\right) = 0$.
+\end{obs}
 
 \begin{defi}[Difeomorfismo]
 Sea $U, V \subset \mathbb{R}^n$ abiertos, se dice que $\varphi: U \rightarrow V$ es un \textbf{difeomorfismo} si: 
@@ -1608,18 +1606,18 @@ Sea $U, V \subset \mathbb{R}^n$ abiertos, se dice que $\varphi: U \rightarrow V$
 \end{enumerate}
 \end{defi}
 
-\underline{Observación}:
-
+\begin{obs}
 Sea $U \subset \mathbb{R}^n$ abierto y $\varphi: U \rightarrow \mathbb{R}^n$ de clase $C'$ tal que $\varphi$ es inyectiva en $U$ y $det \left(J \varphi \left(u\right) \right) \neq 0,\ \forall u \in U \Rightarrow$ por el Teorema de la Función Inversa, sabemos que $V = \varphi \left(U\right)$ es abierto y su inversa $\varphi^{-1}: V \rightarrow U$ es $C^1$. Es decir, $\varphi U \rightarrow \varphi \left(U\right)$ es un difeomorfismo-$C^1$.
+\end{obs}
 
 \begin{theo}
 Sea $\varphi: U \rightarrow V$ un difeomorfismo-$C^{1)}$ entre dos abiertos de $\mathbb{R}^n$, si $A \subset U$ es medible, entonces $\varphi \left(A\right)$ es medible y se tiene que:
 $$\mu \left(\varphi \left(A\right) \right) = \int_A \lvert \det J \varphi\left(u\right) \rvert \dif{u}$$
 \end{theo}
 
-\underline{Observación}:
-
+\begin{obs}
 Este teorema es una generalización del anterior, puesto que si $\varphi = T: \mathbb{R}^n \rightarrow \mathbb{R}^n$ es un isomorfismo lineal, entonces recuperamos el enunciado anterior.
+\end{obs}
 
 \begin{theo}[Cambio de variable]
 Sea $\varphi: U \rightarrow V$ un difeomorfismo-$C^{1)}$ donde $U, V\subset \mathbb{R}^n$ abiertos, si $A\subset U$ es medible y $f: V \rightarrow \mathbb{R}$ es integrable en $ \varphi \left(A\right)$, entonces $f \circ \varphi: U \rightarrow R$ es integrable en $A$ y la integral se expresa como:
@@ -1629,9 +1627,10 @@ $$\int_V f = \int_U f \circ \varphi \cdot \lvert \det J \varphi \rvert$$
 Si tratamos de ponerlo en una notación más habitual: 
 $$\int_{\varphi \left(A\right)} f \left(x\right) \dif{x} = \int_A f \left(\varphi \left(u\right)\right) \cdot \lvert \det J \varphi \left(u\right) \rvert \dif{u}$$
 \end{theo}
-\underline{Observación}:
 
+\begin{obs}
 Este teorema es la generalización total de los dos anteriores, ya que si $f = \chi_{\varphi \left(A\right)}$ obtenemos el teorema anterior.
+\end{obs}
 
 \underline{Ejemplo}: 
 
@@ -1774,6 +1773,7 @@ que es continua y $C^1$ a trozos.
 \end{enumerate}
 También nos indica la ``velocidad'' de la curva, si se recorre varias veces y su sentido.
 \end{ej}
+
 \begin{obs}
 Geometricamente, $\gamma'\left( t \right) \in \mathbb{R}^n$ es la tangente de la curva en un determinado punto que apunta en la dirección del movimiento.
 \end{obs}
