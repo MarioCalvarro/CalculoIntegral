@@ -1303,27 +1303,27 @@ $$\int_{\left[a, \infty\right)} f = \lim_{k \rightarrow \infty} \int_{\left[a, \
 \end{demo}
 
 \begin{ej}
-Consideramos $A = \left[0, 1\right] \times \left[0, +\infty\right]$ y la función $f \left(x, y\right) = e^{-y} \sin \left(2xy\right)$ y vamos a demostrar que es integrable y a calcular la integral.
+Consideramos $A = \left[0, 1\right] \times \left[0, +\infty\right]$ y la función $f \left(x, y\right) = e^{-y} \sen \left(2xy\right)$ y vamos a demostrar que es integrable y a calcular la integral.
 \end{ej}
 
 \begin{itemize}
     \item En primer lugar, para poder aplicar el Teorema de Fubini, necesitamos ver que $f$ es integrable, es decir, $\int_A \vert f\vert < \infty$, luego calculamos:
-    $$\vert f \left(x, y\right)\vert = \vert e^{-y} \sin \left(2xy\right)\vert \le e^{-y}$$
+    $$\vert f \left(x, y\right)\vert = \vert e^{-y} \sen \left(2xy\right)\vert \le e^{-y}$$
     $$\int_A \vert f \left(x, y\right) \vert \le \int_A e^{-y} \dif{x} \dif{y} = \int_0^1 \int_0^{\infty} e^{-y} \dif{y} \dif{x} = \left(\int_0^1 1 \dif{x}  \right) \left(\int_0^{\infty} e^{-y} \dif{y} \right) = 1 < \infty $$
 \item Una vez que sabemos que es integrable, aplicamos Fubinni:
-    $$\int_A f \left(x, y\right) \dif{x} \dif{y} = \int_0^1 \left(\underbrace{\int_0^{\infty} e^{-y}\sin\left(2xy\right) \dif{y}}_{F \left(x\right)} \right) \dif{x}  = **$$
+    $$\int_A f \left(x, y\right) \dif{x} \dif{y} = \int_0^1 \left(\underbrace{\int_0^{\infty} e^{-y}\sen\left(2xy\right) \dif{y}}_{F \left(x\right)} \right) \dif{x}  = **$$
     \begin{itemize}
     	\item Veamos primero la $F \left(x\right)$:
     $$\begin{cases}
-        u = \sin \left(2xy\right) & du = 2x \cos \left(2xy\right)dy \\\\
+        u = \sen \left(2xy\right) & du = 2x \cos \left(2xy\right)dy \\\\
         dv = e^{-y}dx & v = -e^{-y}
     \end{cases} \Rightarrow$$
-    $$F \left(x\right) = \underbrace{\left[-e^{-y} \sin \left(x, y\right)\right]_{0}^{\infty}}_{= 0} + \int_0^{\infty} 2xe^{-y}\cos \left(2xy\right) \dif{y}$$
+    $$F \left(x\right) = \underbrace{\left[-e^{-y} \sen \left(x, y\right)\right]_{0}^{\infty}}_{= 0} + \int_0^{\infty} 2xe^{-y}\cos \left(2xy\right) \dif{y}$$
     $$\begin{cases}
-        u = 2x\cos \left(2xy\right) & du = \left(2x\right)^2 \cdot \left(-\sin \left(2xy\right)\right)dy \\
+        u = 2x\cos \left(2xy\right) & du = \left(2x\right)^2 \cdot \left(-\sen \left(2xy\right)\right)dy \\
         dv = e^{-y}dy & v = -e^{-y}
     \end{cases}$$
-    $$F(x)=\left[-e^{-y}2x \cos \left(2xy\right)\right]_{0}^{\infty} - \int_0^{\infty} 4x^2e^{-y}\sin \left(2xy\right) \dif{y} = 2x - 4x^2 F \left(x\right)\Rightarrow$$
+    $$F(x)=\left[-e^{-y}2x \cos \left(2xy\right)\right]_{0}^{\infty} - \int_0^{\infty} 4x^2e^{-y}\sen \left(2xy\right) \dif{y} = 2x - 4x^2 F \left(x\right)\Rightarrow$$
     $$\Rightarrow F \left(x\right) \cdot \left(1 + 4x^2\right) = 2x \Rightarrow F \left(x\right) = \frac{2x}{1+4x^2}$$
     	\item Volviendo a la integral original:
     $$\int_0^1 \frac{1}{4} \cdot \frac{8x}{1+4x^2} \dif{x} = \frac{1}{4} \left[\log \left(1 + 4x^2\right)\right]_{0}^{1} = \frac{\log \left(5\right)}{4}.$$
@@ -1496,7 +1496,7 @@ Este cambio de sistema de referencia es bastante útil para trabajar con recinto
 
 \begin{defi}[Coordenadas Polares]
 Se definen las \textbf{coordenadas polares} de un punto como la transformación que a cada componente $(x,y)$ le asocia su componente $(r, \theta)$ de forma que se verifica:
-$$\begin{cases} x = r \cos \theta \\ y = r \sin \theta \end{cases} \mbox{ donde } \begin{cases} r \ge 0\\ 0 \le \theta \le 2\pi \end{cases}$$
+$$\begin{cases} x = r \cos \theta \\ y = r \sen \theta \end{cases} \mbox{ donde } \begin{cases} r \ge 0\\ 0 \le \theta \le 2\pi \end{cases}$$
 \end{defi}
 
 \begin{prop}
@@ -1522,7 +1522,7 @@ Este tipo de coordenadas son bastante útiles para extrapolar la situación de l
 
 \begin{defi}[Coordenadas Cilíndricas]
 Se definen las \textbf{coordenadas cilíndricas} de un punto como la transformación que a cada componente $(x,y,z)$ le asocia su componente $(r, \theta, z)$ de forma que se verifica:
-$$\begin{cases} x = r \cos \theta \\ y = r \sin \theta \\ z = z\end{cases} \mbox{ donde } \begin{cases} r \ge 0\\ 0 \le \theta \le 2\pi \\ -\infty < z < \infty \end{cases}$$
+$$\begin{cases} x = r \cos \theta \\ y = r \sen \theta \\ z = z\end{cases} \mbox{ donde } \begin{cases} r \ge 0\\ 0 \le \theta \le 2\pi \\ -\infty < z < \infty \end{cases}$$
 \end{defi}
 
 \begin{prop}
@@ -1575,175 +1575,173 @@ Buscamos el volumen limitado por la esfera $x^2 + y^2 + z^2 = A^2$ y el cilindro
 
 \textit{Dibujos}
 
-Vemos que si tomamos coordenadas polares: $r = a\sin \theta$ y además se cumple que:
+Vemos que si tomamos coordenadas polares: $r = a\sen \theta$ y además se cumple que:
 $$x^2 + y^2 - ay = 0 \Leftrightarrow x^2 + \left(y - \frac{a}{2}\right)^2 = \frac{a^2}{4}$$
 Por lo que, considerando $D = \{\left(x, y\right): x^2 + y^2 \le ay\} = \{\left(x, y\right): x^2 + \left(y - \frac{a}{2}\right)^2 \le \frac{a^2}{4}\}$ que es la superficie de la base del cilindro, podemos calcular el volumen como: 
 $$vol = 2 \int_{D} \sqrt{a^2 - x^2 - y^2} \dif{x} \dif{y} = $$
-$$= 2 \int_{\theta = 0}^{\theta = \pi} \int_{r = 0}^{r = a\sin \theta } r \sqrt{a^2 - r^2} \dif{r} \dif{\theta} = 2 \int_{\theta = 0}^{\theta = \pi} \left[-\frac{1}{3} \left(a^2 - r^2 \right)^{3/2}\right]_{r = 0}^{r = a\sin \theta }\dif{\theta} = $$
+$$= 2 \int_{\theta = 0}^{\theta = \pi} \int_{r = 0}^{r = a\sen \theta } r \sqrt{a^2 - r^2} \dif{r} \dif{\theta} = 2 \int_{\theta = 0}^{\theta = \pi} \left[-\frac{1}{3} \left(a^2 - r^2 \right)^{3/2}\right]_{r = 0}^{r = a\sen \theta }\dif{\theta} = $$
 $$= \frac{2}{3} \int_{\theta = 0}^{\theta = \pi} a^3 - a^3 \lvert \cos \theta  \rvert^3 \dif{\theta } = \frac{4}{3} \int_{\theta = 0}^{\theta = \frac{\pi}{2}} a^3 - a^3 \cos^3 \theta \dif{\theta } = \ldots = \boxed{\frac{4}{3}a^3 \left(\frac{\pi}{2} - \frac{2}{3}\right)} $$
 \end{ej}
 
 \chapter*{INTEGRAL DE LÍNEA}
 \begin{defi}
-Llamamos \textbf{curva} en $\mathbb{R}^n$ a: 
-$$\gamma: \left[ a, b \right] \rightarrow \mathbb{R}^n$$
-$$\gamma\left[ a, b \right] = \img \gamma$$
-que es continua y $C^1$ a trozos.
+Definimos como \textbf{curva en $\mathbb{R}^n$} a una función $\gamma: \left[ a, b \right] \rightarrow \mathbb{R}^n$ continua y $C^{1)}$ a trozos. En definitiva estamos expresando que:
+$$DIUBUJO$$
 \end{defi}
 
 \begin{ej}
 \begin{enumerate}
-    \item Sea $x, y \in \mathbb{R}^n$: 
+    \item Sea $x, y \in \mathbb{R}^n$, podemos definir su envoltura convexa como: 
     $$\left[ x, y \right] = \{ty + \left( 1 - t \right) x: t \in \left[ 0, 1 \right]\} = C_0 \{x, y\}$$
-    Podemos paramatrizar la curva tal que: 
+    Esta curva se puede parametrizar de forma que:
     $$\gamma: \left[ 0, 1 \right] \rightarrow\mathbb{R}^n$$
     $$\gamma \left( t \right) = ty + \left( 1 - t \right) x$$
 
-    \item Sea $\gamma: \left[ 0, 2\pi \right] \rightarrow \mathbb{R}^2$, tal que: $\gamma\left( t \right) = \left( \cos t, \sin t \right) $ (Es una curva cerrada ya que empieza y acaba en el mismo sitio). (\textit{Dibujo})
-
-    \item Sea $\gamma: \left[ 0, \pi \right] \rightarrow \mathbb{R}^2$, tal que $\gamma\left( t \right) = \left( \cos 2t, \sin 2t \right)$. (\textit{Dibujo, igual}).
-
-    \item Sea $\gamma \left[ 0, 2\pi \right] \rightarrow \mathbb{R}^2$, tal que $\gamma \left( t \right) = \left( \cos 2t, \sin 2t \right)$. (\textit{Dibujo, igual})
-
-    \item Sea $\gamma \left[ 0, 2\pi \right] \rightarrow \mathbb{R}^2$, tal que $\gamma \left( t \right) = \left( \cos t, -\sin t \right) $. (\textit{Dibujo, igual}). 
+    \item Sea $\gamma: \left[ 0, 2\pi \right] \rightarrow \mathbb{R}^2$, tal que: $\gamma\left( t \right) = \left( \cos t, \sen t \right) $
+    $$DIBUJO$$
+    \item Sea $\gamma: \left[ 0, \pi \right] \rightarrow \mathbb{R}^2$, tal que $\gamma\left( t \right) = \left( \cos 2t, \sen 2t \right)$
+    $$DIBUJO$$
+    \item Sea $\gamma \left[ 0, 2\pi \right] \rightarrow \mathbb{R}^2$, tal que $\gamma \left( t \right) = \left( \cos 2t, \sen 2t \right)$
+    $$DIBUJO$$
+    \item Sea $\gamma \left[ 0, 2\pi \right] \rightarrow \mathbb{R}^2$, tal que $\gamma \left( t \right) = \left( \cos t, -\sen t \right) $
+    $$DIBUJO$$ 
 \end{enumerate}
-También nos indica la ``velocidad'' de la curva, si se recorre varias veces y su sentido.
+A pesar de que los cuatro últimos ejemplos tuviesen la misma apariencia, como curva son elementos distintos puesto que importa el sentido de recorrido de la curva, la velocidad a la que se recorre y el número de veces que se recorre.
 \end{ej}
 
 \begin{obs}
-Geometricamente, $\gamma'\left( t \right) \in \mathbb{R}^n$ es la tangente de la curva en un determinado punto que apunta en la dirección del movimiento.
+Geometricamente, $\gamma'\left( t \right) \in \mathbb{R}^n$ es el vector tangente de la curva en un determinado punto que apunta en la dirección del movimiento.
 \end{obs}
-\begin{defi}
-Definimos la velocidad de una curva como: 
-$$v? = \lvert \lvert \gamma'\left( t \right) \rvert \rvert$$
+
+\begin{defi}[Velocidad de una Curva]
+Sea $\gamma:[a,b]\rightarrow \mathbb{R}^n$ una curva, definimos la \textbf{velocidad} de la misma como: 
+$$v = \lvert \lvert \gamma'\left( t \right) \rvert \rvert$$
+Que de forma intuitiva, representa el módulo del vector tangente a la curva en ese punto.
 \end{defi}
 
 \begin{obs}
-Las curvas pueden poseer ``picos''. Por ejemplo: 
+La condición de $C^{1)}$ a trozos permite que las curvas puedan poseer ``picos'', es decir, que haya puntos donde la derivada no sea continua o donde no sea derivable, por ejemplo: 
 $$\gamma: \left[ -1, 1 \right] \rightarrow \mathbb{R}^2$$
 $$\gamma \left( t \right) = \left( t^2, t^3 \right) $$
-Tendrá: $\gamma'\left( t \right) = \left( 2t, 3t^2 \right)$ y un pico en $0$.
+Su derivada será $\gamma'\left( t \right) = \left( 2t, 3t^2 \right)$ y un pico en $0$.
 \end{obs}
 
-\begin{defi}
-Llamamos \textbf{longitud} de una curva a: 
+\begin{defi}[Longitud de una Curva]
+Dada una curva $\gamma:[a,b]\rightarrow \mathbb{R}^n$, definimos su \textbf{longitud} como:
 $$\ell\left( \gamma \right) = \int_{a}^{b} \lvert \lvert \gamma'\left( t \right) \rvert \rvert \dif{t}$$
+Este concepto coincide con la longitud real de la gráfica de la curva, sin embargo no se demuestra por falta de tiempo.
 \end{defi}
 
 \begin{ej}
-Sea $\gamma\left( t \right) = \left( \cos t, \sin t, \cos 2t, \sin 2t \right) \in \mathbb{R}^4$, donde $t \in \left[ 0, \pi \right]$. Tenemos que: 
-$$\gamma'\left( t \right) = \left( -\sin t, \cos t, -2\sin 2t, 2\cos 2t\right) \Rightarrow$$
-$$\lvert \lvert \gamma'\left( t \right) \rvert \rvert = \sin^2 t + \cos^2 t + 4\sin^2 2t + 4 \cos^2 2t = 5$$
-$$\lvert \lvert \gamma'\left( t \right) \rvert \rvert = \sqrt{5},\ \forall t$$
+Sea $\gamma\left( t \right) = \left( \cos t, \sen t, \cos 2t, \sen 2t \right) \in \mathbb{R}^4$, donde $t \in \left[ 0, \pi \right]$ vamos a ver que su longitud es:
+$$\gamma'\left( t \right) = \left( -\sen t, \cos t, -2\sen 2t, 2\cos 2t\right) \Rightarrow \lvert \lvert \gamma'\left( t \right) \rvert \rvert^2 = \sen^2 t + \cos^2 t + 4\sen^2 2t + 4 \cos^2 2t = 5$$
 $$\ell \left( t \right) = \int_{0}^{\pi} \sqrt{5} \dif{t} = \pi\sqrt{5} $$
 \end{ej}
 \begin{ej}
-(1.e) Sea $\gamma: \left[ 0, \pi \right] \rightarrow \mathbb{R}^3$ tal que $\gamma \left( t \right) = \left( t, t\sin t, t \cos t \right) $
-
-$$\gamma'\left( t \right) = \left( 1, \sin t + t\cos t, \cos t - t \sin t\right) $$
-$$\lvert \lvert \gamma'\left( t \right) \rvert \rvert = 1 + \sin^2 t + t^2 \cos^2 t + 2t \sin t \cos t + \cos^2 t + t^2 \sin^2 t - 2t \sin t \cos t = \lvert t \rvert + t^2$$
+Sea $\gamma: \left[ 0, \pi \right] \rightarrow \mathbb{R}^3$ tal que $\gamma \left( t \right) = \left( t, t\sen t, t \cos t \right) $, entonces podemos calcular su longitud como:
+$$\gamma'\left( t \right) = \left( 1, \sen t + t\cos t, \cos t - t \sen t\right) $$
+$$\lvert \lvert \gamma'\left( t \right) \rvert \rvert^2 = 1 + \sen^2 t + t^2 \cos^2 t + 2t \sen t \cos t + \cos^2 t + t^2 \sen^2 t - 2t \sen t \cos t = 2 + t^2$$
 $$\ell \left( \gamma \right) = \int_{0}^{\pi} \sqrt{t^2 + 2} \dif{t}$$
 \end{ej}
 
-\begin{defi}
-Definimos la curva opuesta como: 
-$$\left( -\gamma \right): \left[ -b, -a \right] \rightarrow \mathbb{R}^n$$
+\begin{defi}[Curva opuesta]
+Dada una curva $\gamma:[a,b]\rightarrow \mathbb{R}^n$, definimos su \textbf{curva opuesta}, que denotamos por $(-\gamma):[-b,-a]\rightarrow \mathbb{R}^n$, como: 
 $$\left( -\gamma \right) \left( t \right) = \gamma \left( -t \right) $$
-\end{defi}(\textit{Dibujo})
-Son la misma curva, pero se recorre en sentido contrario.
+Es decir, fundamentalmente son la misma curva, pero cambia el sentido de recorrido.
+\end{defi}
 
 \begin{prop}
-Sea $\gamma$ una curva. Entonces: 
+Sea $\gamma:[a,b]\rightarrow \mathbb{R}^n$ una curva y $-\gamma:[-b,-a]\rightarrow \mathbb{R}^n$ su opuesta, entonces: 
 $$\ell \left( -\gamma \right) = \ell \left( \gamma \right) $$
 \end{prop}
 
-\begin{defi}
-Sea dos curvas $\gamma, \sigma$ tal que: 
-$$\gamma: \left[ a, b \right] \rightarrow \mathbb{R}^n$$
-$$\sigma: \left[ b, c \right] \rightarrow \mathbb{R}^m$$
-$$\gamma\left( b \right) = \sigma \left( b \right) $$
-Definimos como \textbf{curva unión} a:
-$$\gamma \lor \sigma: \left[ a, c \right] \rightarrow \mathbb{R}^n$$
+\begin{defi}[Unión de curvas]
+Sea dos curvas $\gamma : \left[ a, b \right] \rightarrow \mathbb{R}^n$ y $\sigma : \left[ b, c \right] \rightarrow \mathbb{R}^m$ tal que $\gamma\left( b \right) = \sigma \left( b \right)$, definimos como la \textbf{curva unión} de ambas a la curva $\gamma \lor \sigma: \left[ a, c \right] \rightarrow \mathbb{R}^n$ definida como:
 $$\left( \gamma \lor \sigma \right) \left( t \right) = \begin{cases}
     \gamma\left( t \right) \text{, si } t \in \left[ a, b \right]\\
     \sigma\left( t \right) \text{, si } t \in \left[ b, c \right] 
 \end{cases}$$
 \end{defi}
 \begin{prop}
-Sea $\gamma, \sigma$ dos curvas con una curva unión. Entonces: 
-$$\ell \left( \gamma, \sigma \right) = \ell \left( \gamma \right) + \ell\left( \sigma \right) $$
+Sea dos curvas $\gamma : \left[ a, b \right] \rightarrow \mathbb{R}^n$ y $\sigma : \left[ b, c \right] \rightarrow \mathbb{R}^m$ tal que $\gamma\left( b \right) = \sigma \left( b \right)$, entonces:
+$$\ell \left( \gamma \lor \sigma \right) = \ell \left( \gamma \right) + \ell\left( \sigma \right) $$
 \end{prop}
 
-\begin{defi}
-Sea $\sigma: \left[ a, b \right] \rightarrow \mathbb{R}^n$ curva y $h: \left[ a', b' \right] \rightarrow \left[ a, b \right]$ creciente, biyectiva y $C^1$ a trozos. Llamamos \textbf{reparametrización} de $\gamma$ a:
+\begin{defi}[Reparametrización]
+Sea $\gamma: \left[ a, b \right] \rightarrow \mathbb{R}^n$ una curva y $h: \left[ a', b' \right] \rightarrow \left[ a, b \right]$ una función creciente, biyectiva y $C^1$ a trozos, entonces llamamos \textbf{reparametrización} de $\gamma$ a:
 $$\gamma \circ h: \left[ a', b' \right] \rightarrow \mathbb{R}^n.$$
 \end{defi}
 
 \begin{prop}
-Sea $\gamma, h$ tal que se permite reparametrización de $\gamma$. Entonces: 
+Sea $\gamma: \left[ a, b \right] \rightarrow \mathbb{R}^n$ una curva y $h: \left[ a', b' \right] \rightarrow \left[ a, b \right]$ que verifican las condiciones de reparametrización de $\gamma$, entonces se conserva la longitud de la curva: 
 $$\ell \left( \gamma \circ h \right) = \ell \left( \gamma \right) $$
+Intuitivamente una forma alternativa de describir la curva no puede cambiar la longitud de la misma.
 \end{prop}
 \begin{demo}
-$$\ell \left( \gamma \circ h\right) = \int_{a'}^{b'} \lvert \lvert \left( \gamma \circ h \right)'\left( t \right) \rvert \rvert \dif{t} = $$
-$$= \int_{a'}^{b'} \lvert \lvert \gamma'\left( h\left( t \right) \right) h'\left( t \right) \rvert \rvert \dif{t} = \int_{a'}^{b'} h'\left( t \right) \lvert \lvert \gamma'\left( h\left( t \right) \right) \rvert \rvert \dif{t} = $$
+$$\ell \left( \gamma \circ h\right) = \int_{a'}^{b'} \lvert \lvert \left( \gamma \circ h \right)'\left( t \right) \rvert \rvert \dif{t} =  \int_{a'}^{b'} \lvert \lvert \gamma'\left( h\left( t \right) \right) h'\left( t \right) \rvert \rvert \dif{t} = \int_{a'}^{b'} h'\left( t \right) \lvert \lvert \gamma'\left( h\left( t \right) \right) \rvert \rvert \dif{t} = $$
 $$= \int_{a}^{b} \lvert \lvert \gamma'\left( s \right) \rvert \rvert \dif{s} = \ell \left( \gamma \right) $$    
 \end{demo}
 
-\begin{defi}
-Sea $\gamma: \left[ a, b \right] \rightarrow \mathbb{R}^n$ tal que: $\img \gamma \in \Omega$ abierto. Sea también, $f: \Omega \rightarrow \mathbb{R}$ continua. Entonces:
+\begin{obs}
+La reparametrización de una curva conserva la forma, el sentido y la longitud de la curva, pero NO la velocidad de la misma ni aunque los segmentos $[a,b]$ y $[a',b']$ midan lo mismo pues en este caso el tiempo total en completar el recorrido sería el mismo, pero la velocidad puntual en cada punto no.
+\end{obs}
+
+\begin{defi}[Integral sobre la curva]
+Sea $\gamma: \left[ a, b \right] \rightarrow \mathbb{R}^n$ una curva donde $\img \gamma \subset \Omega$ abierto y $f: \Omega \rightarrow \mathbb{R}$ una función continua, entonces la integral sobre la curva es:
 \[
 \int_{\gamma} f \dif{s} = \int_{a}^{b} \left( f \circ \gamma \right) \left( t \right) \lvert \lvert \gamma'\left( t \right) \rvert \rvert \dif{t} 
 \]
 \end{defi}
 
 \begin{obs}
-Sea $\gamma$ una curva y $f$. Entonces: 
+Sea $\gamma$ una curva y $f$ una función continua, entonces es sencillo ver que: 
 \begin{itemize}
-    \item 
-$$\ell \left( \gamma \right) = \int_{\gamma} 1 \cdot \dif{s}$$
-    \item 
-$$\int_{\gamma} f \dif{s} = \int_{-\gamma} f \dif{s}$$
-    \item 
-$$\int_{\gamma \lor \sigma} f \dif{s} = \int_{\gamma} f \dif{s} + \int_{\sigma} f \dif{s}$$
+    \item $\ell \left( \gamma \right) = \int_{\gamma} 1 \cdot \dif{s}$
+    \item $\int_{\gamma} f \dif{s} = \int_{-\gamma} f \dif{s}$
+    \item $\int_{\gamma \lor \sigma} f \dif{s} = \int_{\gamma} f \dif{s} + \int_{\sigma} f \dif{s}$
 \end{itemize}
 \end{obs}
 
-\begin{defi}
-Sea $\gamma: \left[ a, b \right] \rightarrow \underbrace{G}_{\text{abierto}} \subset \mathbb{R}^n$ curva y $F: G \rightarrow \mathbb{R}^3$ continua. Llamamos \textbf{integral de línea} de $F$ sobre $\gamma$ a:
+\begin{defi}[Integral de Línea]
+Sea $\gamma: \left[ a, b \right] \rightarrow G \subset \mathbb{R}^n$ una curva, $F: G \rightarrow \mathbb{R}^n$ un campo vectorial\footnote{Este término simplemente indica que es una función entre espacios de la misma dimensión} continuo y el conjunto $G$ abierto, entonces llamamos \textbf{integral de línea} de $F$ sobre $\gamma$ a:
 $$\int_{\gamma} F \cdot \dif{\overline{s}} = \int_{a}^{b} F\left( \gamma\left( t \right) \right) \cdot \gamma'\left( t \right) \dif{t}$$
-Además, decimos que $F$ es un \textbf{campo}.
 \end{defi}
 
 \begin{prop}
 \begin{enumerate}
-    \item Tenemos: 
-    $$\int_{\gamma} F\cdot \dif{\overline{s}} = \int_{a}^{b} F\left( \gamma\left( t \right) \right) \cdot \frac{\gamma'\left( t \right)}{\lvert \lvert \gamma'\left( t \right) \rvert \rvert} \lvert \lvert \gamma'\left( t \right) \rvert \rvert \dif{t} = \int_{a}^{b} F_T \left( \gamma\left( t \right) \right) \cdot \lvert \lvert \gamma'\left( t \right) \rvert \rvert \dif{t} = \int_{\gamma} F_T \dif{s}$$
-
-    \item Tenemos que si $\sigma$ es una reparametrización de $\gamma$: 
+   	\item Tenemos que si $\sigma$ es una reparametrización de $\gamma$, entonces: 
     $$\int_{\sigma} F \cdot \dif{\overline{s}} = \int_{\gamma} F\cdot \dif{\overline{s}}$$
 
-    \item Tenemos que: 
+    \item Del mismo modo, si $-\gamma$ es la curva opuesta a $\gamma$, entonces: 
     $$\int_{-\left( \gamma \right)} F \cdot \dif{\overline{s}} = -\int_{\gamma} F \cdot \dif{\overline{s}}$$
 \end{enumerate}
 \end{prop}
 
-\begin{defi}
-Decimos que un campo $F$ \textbf{deriva de un potencial} si: 
-$$\exists f: G \rightarrow \mathbb{R}: F = \nabla f$$
-Un campo decimos que es \textbf{conservativo} si: 
-$$\int_{\gamma} F\cdot \dif{\overline{s}} = 0,\ \forall \gamma \text{ cerrado.} $$
+\begin{obs}
+La interpretación geométrica de lo que estamos haciendo es la siguiente:
+$$DIBUJO$$
+Realmente en la integral de línea lo que haces es calcular las proyecciones sobre la curva de los vectores del campo en cada punto. De esta forma, sumamos los módulos de dichos vectores a lo largo de toda la curva:
+$$\int_{\gamma} F\cdot \dif{\overline{s}} = \int_{a}^{b} \underbrace{F\left( \gamma\left( t \right) \right) \cdot \frac{\gamma'\left( t \right)}{\lvert \lvert \gamma'\left( t \right) \rvert \rvert} \lvert \lvert}_{\text{proy. sobre la tangente}} \gamma'\left( t \right) \rvert \rvert \dif{t} = \int_{a}^{b} F_T \left( \gamma\left( t \right) \right) \cdot \lvert \lvert \gamma'\left( t \right) \rvert \rvert \dif{t} = \int_{\gamma} F_T \dif{s}$$
+Es sencillo ver que $F(\gamma(t))$ es el vector del campo en el punto $\gamma(t)$ y al multiplicarlo por el cociente siguiente, estamos proyectándolo sobre el vector unitario de la dirección tangente.
+\end{obs}
+
+\begin{defi}[Campo conservativo y potencial]
+Decimos que un campo $F:G\subset \mathbb{R}^n\rightarrow \mathbb{R}^n$ \textbf{deriva de un potencial} si: 
+$$\exists f: G \rightarrow \mathbb{R} \text{ de modo que } F = \nabla f$$
+Del mismo modo, decimos que un campo es \textbf{conservativo} si: 
+$$\forall \gamma \text{ cerrada }:\int_{\gamma} F\cdot \dif{\overline{s}} = 0$$
 \end{defi}
 
 \begin{prop}
-Sea $G \subset \mathbb{R}^n$ abierto y $F: G \rightarrow \mathbb{R}^n$ campo vectorial continuo.
-
-Si $F$ deriva de un potencia, $F = \nabla f \Leftrightarrow$ es conservativo
+Sea $G \subset \mathbb{R}^n$ abierto y $F: G \rightarrow \mathbb{R}^n$ campo vectorial continuo, entonces $F$ deriva de un potencia si y sólo si es conservativo.
 \end{prop}
 \begin{demo}
-$$\Rightarrow) \int_{\gamma} F\cdot \dif{\overline{s}} = \int_{a}^{b} \nabla f\left( \gamma\left( t \right) \right) \cdot \gamma'\left( t \right) \dif{t} = $$
-$$= \int_{a}^{b} \left( f \circ \gamma \right)'\left( t \right) \dif{t} = \left( f \circ \gamma \right)\left( b \right) - \left( f \circ \gamma \right) \left( a \right)$$    
+\begin{itemize}
+\item $\Rightarrow$
+$$\int_{\gamma} F\cdot \dif{\overline{s}} = \int_{a}^{b} \nabla f\left( \gamma\left( t \right) \right) \cdot \gamma'\left( t \right) \dif{t} = \int_{a}^{b} \left( f \circ \gamma \right)'\left( t \right) \dif{t} = \left( f \circ \gamma \right)\left( b \right) - \left( f \circ \gamma \right) \left( a \right)$$
+Si la curva es cerrada, entonces $\gamma(a) = \gamma(b)$, luego $\left( f \circ \gamma \right)\left( b \right) - \left( f \circ \gamma \right) \left( a \right) = 0$.
 
-$\Leftarrow)$ Sea $F$ conservativo $\Rightarrow$
+\item $\Leftarrow$
 $$\int_{\gamma} F \cdot \dif{\overline{s}} = 0,\ \forall \gamma \text{ curva cerrada } \gamma \subset G.$$
 (\textit{Dibujo})
 $$\int_{\gamma_1} F \cdot \dif{\overline{s}} = \int_{\gamma_2} F \cdot \dif{\overline{s}}?$$
@@ -1774,6 +1772,7 @@ Por tanto,
 $$\lvert \frac{f\left( x + h \right) - f\left( x \right) - F\left( x \right) \cdot h}{\lvert \lvert h \rvert \rvert} \rvert < \varepsilon$$
 Es decir, 
 $$\lim_{h \rightarrow 0} \frac{f\left( x + h \right) - f\left( x \right) - \left( F\left( x \right) \cdot h \right)}{\lvert \lvert h \rvert \rvert} = 0 \Rightarrow F\left( x \right) = \nabla f\left( x \right) $$
+\end{itemize}
 \end{demo}
 
 \begin{theo}[Fórmula de Green]
