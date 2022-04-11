@@ -1742,83 +1742,70 @@ $$\int_{\gamma} F\cdot \dif{\overline{s}} = \int_{a}^{b} \nabla f\left( \gamma\l
 Si la curva es cerrada, entonces $\gamma(a) = \gamma(b)$, luego $\left( f \circ \gamma \right)\left( b \right) - \left( f \circ \gamma \right) \left( a \right) = 0$.
 
 \item $\Leftarrow$
-$$\int_{\gamma} F \cdot \dif{\overline{s}} = 0,\ \forall \gamma \text{ curva cerrada } \gamma \subset G.$$
-(\textit{Dibujo})
-$$\int_{\gamma_1} F \cdot \dif{\overline{s}} = \int_{\gamma_2} F \cdot \dif{\overline{s}}?$$
-Como $\gamma_1 \lor \left( -\gamma_2 \right)$ es cerrada. 
+
+Para entender el argumento de la demostración utilizamos como guía el siguiente dibujo:
+$$Dibujo$$
+Es decir, cualquier curva cerrada $\gamma$ la podemos dividir como $\gamma_1 \vee -\gamma_2$ y además vemos que:
 $$0 = \int_{\gamma_1 \lor \left( -\gamma_2 \right)} F \dif{\overline{s}} = \int_{\gamma_1} F \cdot \dif{\overline{s}} - \int_{\gamma_2} F \cdot \dif{\overline{s}} \Rightarrow \int_{\gamma_1} F \cdot \dif{\overline{s}} = \int_{\gamma_2} F \cdot \dif{\overline{s}}$$
+Por razones topológicas, podemos suponer que $G$ es conexo (puesto que cualquier abierto es suma de conexos) y como además $G$ es abierto, entonces es conexo por caminos, es decir, $\forall x \in G: \exists \gamma_x$ que une $x_0$ con $x$.
 
-(\textit{Dibujo})\\
-Podemos suponer que $G$ conexo (y abierto) $\Rightarrow G$ conexo por caminos.
-
-Decimos que $\forall x \in G: \exists \gamma_x$ (conexo por caminos) que une $x_0$ con $x$.
-
-Tomamos $f: G \rightarrow \mathbb{R}$ tal que $f\left( x \right) = \int_{\gamma_x} F \cdot \dif{\overline{s}}$.
-
-¿$\nabla f = F$? $x \in G,\ \nabla f\left( x \right) = F\left( x \right)$.
-
+Definimos la función $f: G \rightarrow \mathbb{R}$ de forma que $f\left( x \right) = \int_{\gamma_x} F \cdot \dif{\overline{s}}$ y para terminar la demostración bastaría con probar que $\nabla f = F$.
+Por ser el campo continuo, sabemos que:
 $$\forall \varepsilon > 0,\ \exists \delta > 0: \lvert \lvert F\left( x + h \right) - F\left( x \right) \rvert \rvert < \varepsilon \text{ si } \lvert \lvert h \rvert \rvert < \delta$$
-$$\left( B\left( x, \delta \right) \subset G \right)$$
-Tenemos que: 
-$$\sigma_n \sim \left[ x, x + h \right]$$
-$$\sigma_k \left( t \right) = x + th,\ t \in \left[ -??, ?? \right] $$
-$$\sigma_n' \left( t \right) = h$$
-$$\int_{\gamma_x} F\cdot \dif{\overline{s}} + \int_{\sigma_n} F \cdot \dif{\overline{s}} = \int_{\gamma_x \lor \sigma_k} F \dif{\overline{s}} = \int_{\gamma_{x + n}} F \cdot \dif{\overline{s}}$$
-$$f\left( x + h \right) - f\left( x \right) = \int_{\sigma_k} F \cdot \dif{\overline{s}} = \int_{0}^{1} \left( F\left( x + th \right) \cdot h \right) \dif{t}$$
-$$\lvert f\left( x + h \right) - f\left( x \right) - F\left( x \right) \cdot h \rvert = \lvert \int_{0}^{1} F\left( x + th \right) \cdot h \dif{t} - \int_{0}^{1} \left( F\left( x \right) \cdot h\right) \dif{t} \rvert$$
-$$\lvert \int_{0}^{1} \left( F\left( x + th \right) - F\left( x \right) \right) \cdot h \dif{t} \rvert \underbrace{\le}_{\text{D.C-S}} \int_{0}^{1} \lvert \lvert F\left( x + th \right) - F\left( x \right) \rvert \rvert \cdot \lVert h \rVert \dif{t} < \varepsilon \lvert \lvert h \rvert \rvert$$
-
+Y sabiendo esto escogemos el $\delta$ de forma que $B\left( x, \delta \right) \subset G$ de modo que $x+h \in B(x,\delta)$ y como la bola es convexa, entonces el segmento que denotaremos por $\sigma_n \sim \left[ x, x + h \right]$ pertenece a la bola. Por tanto:
+$$\int_{\gamma_x} F\cdot \dif{\overline{s}} + \int_{\sigma_n} F \cdot \dif{\overline{s}} = \int_{\gamma_x \lor \sigma_n} F \dif{\overline{s}} = \int_{\gamma_{x + h}} F \cdot \dif{\overline{s}}$$
+Por otro lado, tenemos que:
+$$f\left( x + h \right) - f\left( x \right) = \int_{\sigma_n} F \cdot \dif{\overline{s}} = \int_{0}^{1} \left( F\left( x + th \right) \cdot h \right) \dif{t}$$
+Luego, entonces:
+$$\left\lvert f\left( x + h \right) - f\left( x \right) - F\left( x \right) \cdot h \right\rvert = \left\lvert \int_{0}^{1} F\left( x + th \right) \cdot h \dif{t} - \int_{0}^{1} \left( F\left( x \right) \cdot h\right) \dif{t} \right\rvert$$
+$$\left\lvert \int_{0}^{1} \left( F\left( x + th \right) - F\left( x \right) \right) \cdot h \dif{t} \right\rvert \underbrace{\le}_{\text{D.C-S}} \int_{0}^{1} \lvert \lvert F\left( x + th \right) - F\left( x \right) \rvert \rvert \cdot \lVert h \rVert \dif{t} < \varepsilon \lvert \lvert h \rvert \rvert$$
 Por tanto, 
-$$\lvert \frac{f\left( x + h \right) - f\left( x \right) - F\left( x \right) \cdot h}{\lvert \lvert h \rvert \rvert} \rvert < \varepsilon$$
+$$\left\lvert \frac{f\left( x + h \right) - f\left( x \right) - F\left( x \right) \cdot h}{\lvert \lvert h \rvert \rvert} \right\rvert < \varepsilon$$
 Es decir, 
 $$\lim_{h \rightarrow 0} \frac{f\left( x + h \right) - f\left( x \right) - \left( F\left( x \right) \cdot h \right)}{\lvert \lvert h \rvert \rvert} = 0 \Rightarrow F\left( x \right) = \nabla f\left( x \right) $$
 \end{itemize}
 \end{demo}
 
 \begin{theo}[Fórmula de Green]
-Sea $G \subset \mathbb{R}^2$ abierto, $P, Q: G \rightarrow \mathbb{R}$ que son $C^1$ y $D$ abierto tal que, $\overline{D} \subset G$. Tenemos que $\partial D^+ \subset G$ curva cerrada. Entonces. 
-$$\int_{\partial D^+} P \dif{x} + Q \dif{y} = \iint_{D} \left( \frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y} \right) \dif{x} \dif{y}$$
+Sea $G \subset \mathbb{R}^2$ un abierto, $P, Q: G \rightarrow \mathbb{R}$ dos funciones $C^1$ y $D$ un abierto tal que $\overline{D} \subset G$ y donde $\partial D^+ \subset G$ es una curva cerrada, entonces:
+$$\int_{\partial D^+} (P, Q) \dif{\bar{s}} = \iint_{D} \left( \frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y} \right) \dif{x} \dif{y}$$
 \end{theo}
 \begin{demo}
-Sea $D = \{\left( x, y \right) : x \in \left[ a, b \right] \; \land \; f\left( x \right) \le y \le g\left( x \right) \}$ con $f, g: \left[ a, b \right] \rightarrow \mathbb{R}$ en $C^1$ a trozos (continuas). (Dibujo).
+La demostración se va a hacer para conjuntos definidos entre funciones puesto que se puede aproximar cualquier conjunto por una poligonal suficientemente semejante al mismo, cualquier poligonal se puede poner como unión de triángulos y los triángulos son conjuntos de este tipo.
 
-Calculamos: 
+Sea $D = \{\left( x, y \right) : x \in \left[ a, b \right] \; \land \; f\left( x \right) \le y \le g\left( x \right) \}$ con $f, g: \left[ a, b \right] \rightarrow \mathbb{R}$ en $C^1$ a trozos (continuas).
+$$DIBUJO$$
+Calculamos, las distintas integrales sobre cada curva:
+\begin{itemize}
+\item  
 $$\int_{\substack{\gamma_i\\ i = 1, 2}} P \dif{x} = \int_{\gamma_i} \left( P, 0 \right) \dif{\overline{s}} = 0$$
-
-Tenemos que $\sigma_1 \left( t \right) = \left( t, f\left( x \right) \right)$: 
-$$\int_{\sigma_1} P \dif{x} = \int_{\sigma_1} \left( P, 0 \right) \dif{s} = \int_{a}^{b} \left( P \left( t, f\left( t \right) \right) \right) \cdot \left( 1, f'\left( t \right) \right) \dif{t} = $$
-$$= \int_{a}^{b} P\left( t, f\left( t \right) \right) \dif{t}$$
-
-A su vez?
+\item $\sigma_1 \left( t \right) = \left( t, f\left( x \right) \right)$: 
+$$\int_{\sigma_1} P \dif{x} = \int_{\sigma_1} \left( P, 0 \right) \dif{s} = \int_{a}^{b} \left( P \left( t, f\left( t \right) \right) \right) \cdot \left( 1, f'\left( t \right) \right) \dif{t} = \int_{a}^{b} P\left( t, f\left( t \right) \right) \dif{t}$$
+\item
 $$\int_{\sigma_2} P \dif{x} = - \int_{-\sigma_2} P \dif{x} = - \int_{a}^{b} P\left( t, g\left( t \right) \right) \dif{t}$$
-
-y 
-$$\int_{\partial D^+} P \dif{x} = - \left( \int_{a}^{b} P\left( t, g\left( t \right) \right) \dif{t} - \int_{a}^{b} P\left( t, f\left( t \right) \right) \dif{t} \right) = \boxed{- \int_{a}^{b} \left( \int_{f\left( x \right)}^{g\left( x \right)} \frac{\partial P\left( x, y \right)}{\partial y} \dif{y} \right) \dif{x}}$$
-$$\underbrace{=}_{\text{T. Fubini}} \boxed{- \iint_{D} \frac{\partial P}{\partial y} \left( x, y \right) \dif{x} \dif{y}}$$
-
-Supongamos ahora que, $D = \left( x, y \right) : y \in \left[ c, d \right] \; \land \; f\left( y \right) \le x \le g\left( y \right)$ donde $f, g: \left[ c, d \right] \rightarrow \mathbb{R}$ son $C^1$ a trozos. (Dibujo).
-
-Calculamos: 
-$$\int_{\partial D^+} Q \dif{y} \overbrace{=}^{\text{ejercicio}} \boxed{\iint_{D} \frac{\partial D}{\partial x} \dif{x} \dif{y}} $$
-
+\end{itemize}
+Por tanto, sobre la integral del enunciado tenemos: 
+$$\int_{\partial D^+} P \dif{x} = - \left( \int_{a}^{b} P\left( t, g\left( t \right) \right) \dif{t} - \int_{a}^{b} P\left( t, f\left( t \right) \right) \dif{t} \right) = $$
+$$= - \int_{a}^{b} \left( \int_{f\left( x \right)}^{g\left( x \right)} \frac{\partial P\left( x, y \right)}{\partial y} \dif{y} \right) \dif{x} \underbrace{=}_{\text{T. Fubini}} - \iint_{D} \frac{\partial P}{\partial y} \left( x, y \right) \dif{x} \dif{y}$$
+Suponiendo ahora las funciones sobre $y$ que definen al conjunto, es decir, $D = \left( x, y \right) : y \in \left[ c, d \right] \; \land \; f\left( y \right) \le x \le g\left( y \right)$ donde $f, g: \left[ c, d \right] \rightarrow \mathbb{R}$ son $C^1$ a trozos. La demostración es completamente análoga: 
+$$\int_{\partial D^+} Q \dif{y} \overbrace{=}^{\text{ejercicio}} \iint_{D} \frac{\partial D}{\partial x} \dif{x} \dif{y}$$
 Por último, si sumamos las dos fórmulas: 
 $$\iint_{\partial D^+} P \dif{x} + Q \dif{y} = \iint_{D} \left( \frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y} \right) \dif{x} \dif{y}$$
 \end{demo}
 
 \begin{obs}
-Esta fórmula la podemos aplicar, entre otros, a circunferencias, triángulos, conjuntos convexos (cuyo $\partial D$, borde, sea una curva cerrada)\ldots 
-
-También se cumple para dos triángulos que se intersecan, unicamente, en su frontera: 
-$$\iint_{D} = \iint_{D_1} + \iint_{D_2} = \int_{\partial D_1^+} + \int_{\partial D_2^+} = \int_{\partial D^+}$$
-Es decir, que la fórmula se puede aplicar a cualquier polígono (ya que se puede triangular).
-
-Sea, una situación más general, $D$ un conjunto abierto? podemos ``aproximarlo'' por un polígono. Esto nos permite ver que el teorema es cierto para $D$.
+En ciertos contextos y suponiendo que tenemos las funciones $P, Q: G \rightarrow \mathbb{R}$, es habitual encontrar el siguiente cambio de notación:
+$$\int_{\partial D^+} P \dif{x} + Q \dif{y} = \int_{\partial D^+} (P, Q) \dif{\bar{s}}$$
 \end{obs}
 
 \begin{prop}[Fórmula del área]
-Si tenemos que $Q\left( x, y \right) = x$ y $P\left( x, y \right) = -y$, tendremos que: 
-$$\int_{\partial D^+} x \dif{y} - y \dif{x} = 2\iint_{D} \dif{x} \dif{y} = 2 area\ D$$
+Sea $D$ un conjunto en las condiciones de la Fórmula de Green, entonces podemos calcular su área como:
+$$A\left(D\right)=\iint_{D} \dif{x} \dif{y} = \frac{1}{2}\int_{\partial D^+} x \dif{y} - y \dif{x}$$
 \end{prop}
+\begin{demo}
+Si escogemos $Q\left( x, y \right) = x$ y $P\left( x, y \right) = -y$, por el Teorema anterior tendremos que:
+$$\int_{\partial D^+} x \dif{y} - y \dif{x} = 2\iint_{D} \dif{x} \dif{y} = 2 A\left(D\right)$$
+\end{demo}
 
 
 \end{document}
