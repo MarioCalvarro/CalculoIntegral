@@ -92,7 +92,7 @@
 \begin{document}
 \maketitle
 \chapter*{CONCEPTO DE MEDIDA}%
-En general, la teoría de la integración está sustentada mayoritariamente por el concepto de medida que se tiene en el espacio sobre el que se integra. Pueden darse dos situaciones, que se defina una medida y a partir de ahí la integral correspondiente o puede ocurrir que se defina la integral y a partir de la misma se mida. Nosotros optaremos por definir todo lo relativo a la medida de forma previa, para que la teoría de integración que se desarrollará después esté sustentada en las propiedades métricas con las que dotemos a $\mathbb{R}^n$ a través de la definición de dicha medida.
+En general, la teoría de la integración está sustentada mayoritariamente por el concepto de medida que se tiene en el espacio sobre el que se integra. Pueden darse dos situaciones, que se defina una medida y a partir de ahí la integral correspondiente o puede ocurrir que se defina la integral y a partir de la misma se mida. Nosotros optaremos por definir todo lo relativo a la medida de forma previa, para que la teoría de integración que se desarrollará después esté sustentada en las propiedades métricas con las que dotemos a $\mathbb{R}^n$ y que caracterizarán la teoría posterior.
 \label{sec:medidas}
 \section*{MEDIDA}%
 El concepto fundamental de esta sección es comprender qué entendemos por medida y que propiedades tiene, así como demostrar que la medida de Lebesque es un buen intrumento de medida para trabajar en $\mathbb{R}^n$.
@@ -406,9 +406,8 @@ Y la demostración es análoga a la implicación $2 \Rightarrow 3$.
 De nuevo y por similitud con $3\Rightarrow 1$, $A = C \cup N$ es medible por ser unión de medibles.
 \end{itemize}
 \end{demo}
-\chapter*{FUNCIONES MEDIBLES}%
-\label{cha:funciones_medibles}
-Comprobadas las propiedades que tiene la medida sobre conjuntos medibles, nos interesa saber qué funciones nos permiten conservar propiedades de medida interesantes. Es aquí donde juegan un papel fundamental las funciones medibles que permiten asegurar que las preimágenes de abiertos son medibles y, por ello, al trabajar sobre abiertos no debemos preocuparnos sobre las propiedades de medibilidad ya que se conservan también en el conjunto de partida.
+\section*{FUNCIONES MEDIBLES}%
+Comprobadas las propiedades que tiene la medida sobre conjuntos medibles, nos interesa saber qué funciones nos permiten conservar propiedades de medida interesantes. Es aquí donde juegan un papel fundamental las funciones medibles, que permiten asegurar que las preimágenes de abiertos son medibles y, por ello, al trabajar sobre abiertos no debemos preocuparnos sobre las propiedades de medibilidad ya que se conservan también en el conjunto de partida.
  
 \begin{defi}
 Sea $A \subset \mathbb{R}^m$ medible y $f: A \rightarrow \mathbb{R}^m$, definimos una función \textbf{medible} como aquella que verifica:
@@ -740,6 +739,18 @@ $$\sum_{I \in P_1} \mu\left(I\right) < \varepsilon \mbox{ pero } D_{\frac{1}{n}}
 \end{itemize}
 \end{demo}
 
+\begin{prop}
+Si una función $f$ es integrable Riemann, entonces dicha función también es medible.
+\end{prop}
+\begin{demo}
+Por el teorema de antes, $\mu(D) = 0$ lo que implica que $f$ es continua en c.t.p. y, por tanto, es medible.
+\end{demo}
+
+\chapter*{INTEGRAL DE LEBESQUE}
+Una vez definida la medida en $\mathbb{R}^n$, tenemos todos los ingredientes necesarios para desarrollar una teoría de la integrabilidad sólida. Durante este capítulo se va a desarrollar la Integral de Lebesque, relacionar dicha integral con la integral de Riemann y estudiar las propiedades de las que goza dicho objeto matemático.
+
+\section*{DEFINICIÓN DE INTEGRAL}
+
 \begin{obs}
 Recordemos que llamamos función simple a una función con la estructura:
 $$\varphi = \sum_{k=1}^{m} \alpha_k\chi{E_k}$$
@@ -753,13 +764,6 @@ E_j = \varphi^{-1}\left(\{\beta_j\}\right) \text{, medible} & & \varphi = \sum_{
 \end{align*}
 \end{itemize}
 \end{obs}
-
-\begin{prop}
-Si una función $f$ es integrable Riemann, entonces dicha función también es medible.
-\end{prop}
-\begin{demo}
-Por el teorema de antes, $\mu(D) = 0$ lo que implica que $f$ es continua en c.t.p. y, por tanto, es medible.
-\end{demo}
 
 \begin{defi}[Integral]
 Sea $\varphi$ función simple no negativa:
@@ -973,7 +977,7 @@ $$\int_a^b f \left(x\right) dx = \lim_{k \rightarrow \infty}\int_a^{b - \frac{1}
 \end{itemize}
 \end{demo}
 
-\chapter*{FUNCIONES INTEGRABLES}%
+\section*{FUNCIONES INTEGRABLES}%
 \label{cha:funciones_integrables}
 Hasta ahora no hemos hecho más que definir la integral y las propiedades que tiene y todo ello mayoritariamente para funciones no negativas. En esta sección, el objetivo es ampliar las miras y dar una definición consistente con las propiedades ya vistas para funciones no negativas y así poder sacarle completamente partido al concepto de integral.
 
@@ -981,6 +985,10 @@ Hasta ahora no hemos hecho más que definir la integral y las propiedades que ti
 Sea $f: \mathbb{R}^{n} \rightarrow \mathbb{R}$ una función medible\footnote{No necesariamente no negativa}, entonces diremos que es integrables si y sólo si: 
 $$\int_{\mathbb{R}^n} \vert f \vert \dif{\mu} < +\infty$$
 \end{defi}
+
+\begin{obs}
+Cabe destacar que dicha definición de integrabilidad para funciones no negativas tiene como consecuencia que puede haber funciones cuya integral en el sentido de Riemann converja (puesto que haya partes negativas que anulen partes positivas), pero que no sea integrable desde el punto de vista de Lebesque.
+\end{obs}
 
 \begin{defi}
 Dada una función medible $f: \mathbb{R}^{n} \rightarrow \mathbb{R}$, definimos:
@@ -1011,7 +1019,6 @@ Basta con ver que ambas funciones están acotadas por el módulo de $f$ y, por t
 
 En consecuencia, podemos dar una definición alternativa de la que se ha dado de función integrable que es completamente compatible e intercambiable con la que se ha dado anteriormente.
 
-\newpage
 \begin{defi}
 Sea $f: \mathbb{R}^{n} \rightarrow \mathbb{R}$ una función integrable, entonces podemos expresar su integral como: 
 $$\int_{\mathbb{R}^n} f \dif{\mu} = \int_{\mathbb{R}^n} f^+ \dif{\mu} - \int_{\mathbb{R}^n} f^- \dif{\mu}$$
@@ -1102,6 +1109,9 @@ $$\int_{\mathbb{R}^n} \left(-f\right) \dif{\mu} \le \liminf_{k \rightarrow \inft
 $$\limsup_{k \rightarrow \infty} \int_{\mathbb{R}^n} f_k \dif{\mu} \le \int_{\mathbb{R}^n} f \dif{\mu} $$
 Como por la convergencia, se tiene que el límite superior e inferior coinciden con el límite global, se tiene la igualdad.
 \end{demo}
+
+\subsection*{\underline{Cálculo de integrales en $\mathbb{R}^n$}}
+A pesar de que hemos definido todos los conceptos relativos al cálculo de integrales en $\mathbb{R}^n$, hasta ahora no hemos visto ningún método efectivo en términos prácticos para calcular integrales superiores a una dimensión. Aquí se desarrolla el Teorema fundamental que nos permite simplificar el cálculo de integrales en $\mathbb{R}^n$ al cálculo de varias integrales en $\mathbb{R}$.
 
 \begin{defi}[Secciones de funciones]
 Sea $f: \mathbb{R}^{n} \times \mathbb{R}^n \rightarrow \mathbb{R}$ una función que expresaremos como $f \left(x, y\right)$ donde $x \in \mathbb{R}^n$ y $y \in \mathbb{R}^n$, llamamos \textbf{secciones} de $f$ a:
@@ -1426,7 +1436,9 @@ Dado $t \in \left(-1, \infty\right)$ sean $-1 < a < t_0 < b <\infty$. Vamos a de
 \end{enumerate}
 \end{ej}
  
-\section*{TEOREMA DEL CAMBIO DE VARIABLE}%
+\section*{TEOREMA DEL CAMBIO DE VARIABLE}
+Del mismo modo que para poder integrar en $\mathbb{R}$ podíamos hacer cambios de variable que simplificasen las expresiones que se debía integrar, es posible definir un teorema equivalente para dimensiones superiores que nos permiten cambiar el sistema de coordenadas sobre el que describir los objetos matemáticos y seguir integrando cómodamente.
+
 \begin{theo}
 Sea $T: \mathbb{R}^n \rightarrow \mathbb{R}^n$ lineal, si $A \subset \mathbb{R}^n$ es medible, entonces $T \left( A\right)$ es medible y se tiene que:
 $$\mu_n \left(T\left(A\right)\right) = \lvert det \left(T\right) \rvert \cdot \mu_n \left(A\right)$$
