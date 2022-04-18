@@ -1432,7 +1432,37 @@ Sea $A \subset \mathbb{R}^n \times \mathbb{R}^m$ medible, entonces:
 \end{enumerate}
 \end{prop}
 
-$$DIBUJO DE LO QUE SIGNFICAN LAS SECCIONES$$
+$$\begin{tikzpicture}
+\begin{axis}[
+tick style={draw=none},
+axis y line=middle,
+axis x line=middle,
+xlabel=$\mathbb{R}^n$,
+ylabel=$\mathbb{R}^m$,
+xticklabels={},yticklabels={}
+%grid = both, %major/minor
+];
+\addplot [thick, domain=0:7,fill=red, opacity=0.6]  plot[smooth, tension=.7] coordinates {(2,2.5) (3,3) (4,2.8) (5.2,2.5) (5.5,1.5) (7,0) (6,-2)(4.5,-2.5) (2,-2) (3.5,0.5) (1,1) (2,2.5)};
+
+\draw [dashed] (3,3) -- (3,0.8);
+\draw [solid] (3,0.8) -- (3,-0.5);
+\draw [dashed] (3,-0.5) -- (3,-3);
+
+\draw [densely dotted, very thick, red] (0,3) -- (0,0.8);
+\draw [densely dotted, very thick, red] (0,-0.5) -- (0,-2.5);
+
+\addplot [domain=0:3, samples=100, thick, color=red, dashed]{3};
+\addplot [domain=0:3, samples=100, thick, color=red, dashed]{0.8};
+\addplot [domain=0:3, samples=100, thick, color=red, dashed]{-0.5};
+\addplot [domain=0:3, samples=100, thick, color=red, dashed]{-2.5};       
+   
+
+\end{axis}
+\filldraw [black] (2.95,2.6) circle (2pt);
+\node[color=black,right] at (-0.8,2.6) {$A_x$};
+\node[color=black,right] at (2.55,2.4)  {$x$};
+\node[color=black,right] at (3.5,3.5) {$A$};
+\end{tikzpicture}$$
 
 \begin{obs}
 Si $N \subset \mathbb{R}^{n+m}$ satisface que $\mu_{n+m} \left(N \right) = 0$ hemos visto que para casi todo $x \in \mathbb{R}$ la sección $N_x$ es medible porque tiene medida nula. Sin embargo, puede ocurrir que para algún $x \in \mathbb{R}^n$ la sección $N_x$ no sea medible en $\mathbb{R}^m$
