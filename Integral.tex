@@ -93,6 +93,7 @@
 \usepackage{tikz,tikz-3dplot}
 \tdplotsetmaincoords{80}{45}
 \tdplotsetrotatedcoords{-90}{180}{-90}
+\usetikzlibrary{arrows}
 
 %% style for surfaces
 \tikzset{surface/.style={draw=blue!70!black, fill=blue!40!white, fill opacity=.6}}
@@ -1917,13 +1918,108 @@ $$DIUBUJO$$
     $$\gamma \left( t \right) = ty + \left( 1 - t \right) x$$
 
     \item Sea $\gamma: \left[ 0, 2\pi \right] \rightarrow \mathbb{R}^2$, tal que: $\gamma\left( t \right) = \left( \cos t, \sen t \right) $
-    $$DIBUJO$$
+    $$\begin{tikzpicture}[paths/.style={->, thick, >=stealth'}]
+
+
+ \node (species_2) at (0,0) 
+     {$\gamma(\frac{\pi}{2})$};
+
+ \node (species_3) at (2,-2) 
+     {$\gamma(0)=\gamma(2\pi)$};
+
+ \node (species_4) at (0,-4) 
+     {$\gamma(\frac{3\pi}{2})$};
+
+ \node (species_5) at (-2,-2) 
+     {$\gamma(\pi)$};
+
+
+
+ \draw [paths] (species_3) to [bend right=40] node {} (species_2);
+ \draw [paths] (species_4) to [bend right=40] node {} (species_3);
+ \draw [paths] (species_5) to [bend right=40] node {} (species_4);
+ \draw [paths] (species_2) to [bend right=40] node {} (species_5);
+
+
+ \end{tikzpicture}$$
     \item Sea $\gamma: \left[ 0, \pi \right] \rightarrow \mathbb{R}^2$, tal que $\gamma\left( t \right) = \left( \cos 2t, \sen 2t \right)$
-    $$DIBUJO$$
+        $$\begin{tikzpicture}[paths/.style={->, thick, >=stealth'}]
+
+
+ \node (species_2) at (0,0) 
+     {$\gamma(\frac{\pi}{4})$};
+
+ \node (species_3) at (2,-2) 
+     {$\gamma(0)=\gamma(\pi)$};
+
+ \node (species_4) at (0,-4) 
+     {$\gamma(\frac{3\pi}{4})$};
+
+ \node (species_5) at (-2,-2) 
+     {$\gamma(\frac{\pi}{4})$};
+
+
+
+ \draw [paths] (species_3) to [bend right=40] node {} (species_2);
+ \draw [paths] (species_4) to [bend right=40] node {} (species_3);
+ \draw [paths] (species_5) to [bend right=40] node {} (species_4);
+ \draw [paths] (species_2) to [bend right=40] node {} (species_5);
+
+
+ \end{tikzpicture}$$
+ Misma curva que 2 pero tardo la mitad en recorrerla.
     \item Sea $\gamma \left[ 0, 2\pi \right] \rightarrow \mathbb{R}^2$, tal que $\gamma \left( t \right) = \left( \cos 2t, \sen 2t \right)$
-    $$DIBUJO$$
+        $$\begin{tikzpicture}[paths/.style={->, thick, >=stealth'}]
+
+
+ \node (species_2) at (0,0) 
+     {$\gamma(\frac{\pi}{4})$};
+
+ \node (species_3) at (2,-2) 
+     {$\gamma(0)=\gamma(\pi)=\gamma(2\pi)$};
+
+ \node (species_4) at (0,-4) 
+     {$\gamma(\frac{3\pi}{4})$};
+
+ \node (species_5) at (-2,-2) 
+     {$\gamma(\frac{\pi}{4})$};
+
+
+
+ \draw [paths] (species_3) to [bend right=40] node {} (species_2);
+ \draw [paths] (species_4) to [bend right=40] node {} (species_3);
+ \draw [paths] (species_5) to [bend right=40] node {} (species_4);
+ \draw [paths] (species_2) to [bend right=40] node {} (species_5);
+
+
+ \end{tikzpicture}$$
+ Misma curva que 3 pero la recorro 2 veces.
     \item Sea $\gamma \left[ 0, 2\pi \right] \rightarrow \mathbb{R}^2$, tal que $\gamma \left( t \right) = \left( \cos t, -\sen t \right) $
-    $$DIBUJO$$ 
+        $$\begin{tikzpicture}[paths/.style={->, thick, >=stealth'}]
+
+
+ \node (species_2) at (0,0) 
+     {$\gamma(\frac{3\pi}{2})$};
+
+ \node (species_3) at (2,-2) 
+     {$\gamma(0)=\gamma(2\pi)$};
+
+ \node (species_4) at (0,-4) 
+     {$\gamma(\frac{\pi}{2})$};
+
+ \node (species_5) at (-2,-2) 
+     {$\gamma(\pi)$};
+
+
+
+ \draw [paths] (species_2) to [bend left=40] node {} (species_3);
+ \draw [paths] (species_3) to [bend left=40] node {} (species_4);
+ \draw [paths] (species_4) to [bend left=40] node {} (species_5);
+ \draw [paths] (species_5) to [bend left=40] node {} (species_2);
+
+
+ \end{tikzpicture}$$
+ Misma curva que 2 pero la recorro en sentido contrario.
 \end{enumerate}
 A pesar de que los cuatro últimos ejemplos tuviesen la misma apariencia, como curva son elementos distintos puesto que importa el sentido de recorrido de la curva, la velocidad a la que se recorre y el número de veces que se recorre.
 \end{ej}
