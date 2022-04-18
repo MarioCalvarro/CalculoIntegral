@@ -1776,8 +1776,30 @@ Este tipo de coordenadas también son coordenadas aplicables a $\mathbb{R}^3$ (p
 Se definen las \textbf{coordenadas esféricas} de un punto como la transformación que a cada componente $(x,y,z)$ le asocia su componente $(r, \theta, \varphi)$ de forma que se verifica:
 $$\begin{cases} x = r\cos \theta \sen \varphi\\ y = r\sen \theta \sen \varphi\\ z = r\cos \varphi \end{cases}\mbox{ donde }\begin{cases} r \ge 0\\ 0 \le \theta \le 2\pi\\ 0 \le \varphi \le \pi \end{cases}$$
 \end{defi}
+$$
+\tdplotsetmaincoords{60}{110}
+%
+\pgfmathsetmacro{\rvec}{.8}
+\pgfmathsetmacro{\thetavec}{30}
+\pgfmathsetmacro{\phivec}{60}
+%
+\begin{tikzpicture}[scale=5,tdplot_main_coords]
+    \coordinate (O) at (0,0,0);
+    \draw[thick,->] (0,0,0) -- (1,0,0) node[anchor=north east]{$x$};
+    \draw[thick,->] (0,0,0) -- (0,1,0) node[anchor=north west]{$y$};
+\draw[thick,->] (0,0,0) -- (0,0,1) node[anchor=south]{$z$};
+    \tdplotsetcoord{P}{\rvec}{\thetavec}{\phivec}
+    \draw[-stealth,color=red] (O) -- (P) node[above right] {$P$};
+    \draw[dashed, color=red] (O) -- (Pxy);
+    \draw[dashed, color=red] (P) -- (Pxy);
+    \tdplotdrawarc[-stealth]{(O)}{0.2}{0}{\phivec}{anchor=north}{$\theta$}
+    \tdplotsetthetaplanecoords{\phivec}
+    \tdplotdrawarc[-stealth, tdplot_rotated_coords]{(0,0,0)}{0.5}{0}%
+        {\thetavec}{anchor=south west}{$\phi$}
 
-(\textit{Dibujo})
+
+\end{tikzpicture}
+$$
 
 \begin{prop}
 Sea $\varphi: \mathbb{R}^3\rightarrow  \mathbb{R}^3$ de forma que $\varphi(r, \theta, \varphi) = (r\cos \theta \sen \varphi, r\sen \theta \sen \varphi, r\cos \varphi)$, la restricción de $\varphi$ sobre el conjunto $\mathcal{U} = (0,\infty)\times (0, 2\pi) \times (0, \pi)$ cumple que:
@@ -1797,7 +1819,9 @@ $$= \int_{\theta = 0}^{\theta = 2\pi }\int_{\varphi = 0}^{\varphi = \pi} \int_{r
 \begin{ej}
 Buscamos el volumen limitado por la esfera $x^2 + y^2 + z^2 = A^2$ y el cilindro $x^2 + y^2 = ay,\ \left(a > 0\right)$.
 
-\textit{Dibujos}
+\begin{center}
+\includegraphics[scale=0.20]{Cone and Sphere}
+\end{center}
 
 Vemos que si tomamos coordenadas polares: $r = a\sen \theta$ y además se cumple que:
 $$x^2 + y^2 - ay = 0 \Leftrightarrow x^2 + \left(y - \frac{a}{2}\right)^2 = \frac{a^2}{4}$$
