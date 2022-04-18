@@ -25,6 +25,7 @@
 \usepackage{subcaption}
 \usepackage{float}
 
+
 \usepackage{titlesec} %Formato de capitulos y secciones
     \titleformat{\chapter}[display]{\normalfont\huge\bfseries\color{capitulos}}{\thechapter}{20pt}{\Huge}[\titlerule{}]
     \titleformat{\section}{\normalfont\Large\bfseries\color{secciones}}{\thesection}{1em}{}
@@ -88,7 +89,23 @@
 \DeclareMathOperator{\img}{img}
 
 \newcommand{\dif}[1]{\ d#1}
+\usepgfplotslibrary{fillbetween}
+\usepackage{tikz,tikz-3dplot}
+\tdplotsetmaincoords{80}{45}
+\tdplotsetrotatedcoords{-90}{180}{-90}
 
+%% style for surfaces
+\tikzset{surface/.style={draw=blue!70!black, fill=blue!40!white, fill opacity=.6}}
+
+%% macros to draw back and front of cones
+%% optional first argument is styling; others are z, radius, side offset (in degrees)
+\newcommand{\coneback}[4][]{
+  %% start at the correct point on the circle, draw the arc, then draw to the origin of the diagram, then close the path
+  \draw[canvas is xy plane at z=#2, #1] (45-#4:#3) arc (45-#4:225+#4:#3) -- (O) --cycle;
+  }
+\newcommand{\conefront}[4][]{
+  \draw[canvas is xy plane at z=#2, #1] (45-#4:#3) arc (45-#4:-135+#4:#3) -- (O) --cycle;
+  }
 \begin{document}
 \maketitle
 \chapter*{CONCEPTO DE MEDIDA}%
@@ -711,7 +728,37 @@ Como tiene medida nula:
 $$\exists \{I_n\}_{n=1}^{\infty}: D_{\varepsilon} \subset \bigcup_{n \in \mathbb{N}} I_n \mbox{ y } \sum_{n=1}^{\infty} \mu\left(I_n\right) < \varepsilon$$
 Pero, al ser compacto, se tiene que:
 $$D_{\varepsilon} \subset I_1 \cup \ldots \cup I_N :  \mu\left(I_1\right) + \ldots + \mu\left(I_N\right) < \varepsilon $$
-$$Dibujo particion$$
+$$   \begin{tikzpicture}[x=50]
+       \draw (-1.2,0) -- (2.2,0);      
+       \draw (-1, 0) node[below=7pt] {$a$};
+       \draw[] (-1,-0.1) -- (-1,0.1);
+       \draw (2, 0) node[below=7pt] {$b$};       
+       \draw[] (2,-0.1) -- (2,0.1);
+       
+       \foreach \x in {-0.7,-0.5,-0.1,0, 0.7,0.9,1.1,1.5} {
+        \draw[blue] (\x,-0.1) -- (\x,0.1);
+    }
+     \draw[blue, thick] (-0.7,0) -- (-0.5,0);
+    \fill (-0.7,0) circle (0.02);
+     \fill (-0.5,0) circle (0.02);
+     
+     \draw[blue, thick] (-0.1,0) -- (0,0);
+    \fill (-0.1,0) circle (0.02);
+     \fill (0,0) circle (0.02);
+     
+     \draw[blue, thick] (0.7,0) -- (0.9,0);
+    \fill (0.7,0) circle (0.02);
+     \fill (0.9,0) circle (0.02);
+     
+     \draw[blue, thick] (1.1,0) -- (1.5,0);
+    \fill (1.1,0) circle (0.02);
+     \fill (1.5,0) circle (0.02);
+     
+     \draw (-0.6, 0) node[above=3pt] {$I_1$};
+     \draw (-0.05, 0) node[above=3pt] {$I_2$};
+     \draw (1.3, 0) node[above=3pt] {$I_N$};
+     
+   \end{tikzpicture}$$
 
 Con este recubrimiento finito, generamos una partición formada por $a$, $b$ y todos los extremos de los intervalos $I_j$ que denotaremos por $P$. Dicha partición, la expresaremos en términos de otras dos: $P_1$ que será la formada por los intervalos de la partición $P$ contenidos en algún $I_j$ y $P_2$ formada por los otros (que en particular no cortan a $D_{\varepsilon}$, luego la oscilación en estos es $<\varepsilon$). De este modo, tenemos $P = P_1 \cup P_2$.
 
@@ -912,13 +959,66 @@ Donde $f_k = \sum m_S\left(f\right) \chi_S$ y vemos que por ser crecientes las p
 Sea $f: \mathbb{R}^n \rightarrow \mathbb{R}^n$ medible no negativa, entonces $\exists \{\varphi_k\}_{k=1}^{\infty}$ sucesión de funciones simples tal que $\{\varphi_k\}_{k=1}^\infty \uparrow f $ es creciente y converge \textbf{puntualmente}\footnote{Si la función $f$ es acotada, entonces la convergencia es \textbf{uniforme}} a $f$.
 \end{prop}
 \begin{demo}
-(\textit{Dibujo}) 
+Dividimos la imagen de la función en intervalos disjuntos $I_j = [(j-1) \cdot 2^{-k}, j \cdot 2^{-k}]$ donde $j = 1, \ldots, k \cdot 2^k$ y la unión de todos los intervalos resulta el intervalo $[0,k)$
+$$\begin{tikzpicture}
+\begin{axis}[
+axis y line=middle,
+axis x line=middle,
+xlabel=$\mathbb{R}^n$,
+%grid = both, %major/minor
+xticklabels={},yticklabels={}
+];
+\addplot [
+very thick,red,mark=none,
+domain=-2:3,samples=50,
+] {(x^2)};
+\addplot [
+very thick,red,mark=none,
+domain=-3:-2,samples=50,
+] {4};
+\draw [dashed] (-1,2) -- (1,2);
+\draw [dashed] (-2,4) -- (2,4);
+\draw [dashed] (-3,9) -- (3,9);
+
+ \draw [dashed] (-1,2) -- (-1,0);
+ \draw [dashed] (1,2) -- (1,0);
+\draw [dashed] (-2,4) -- (-2,0);
+\draw [dashed] (-3,9) -- (-3,0);
+\draw [dashed] (2,4) -- (2,0);
+\draw [dashed] (3,9) -- (3,0);
+
+\draw[violet,  thick] (-1,0) -- (1,0);
+\draw[violet,  thick] (-1,2) -- (-2,2);
+\draw[violet,  thick] (1,2) -- (2,2);
+\draw[violet,  thick] (2,4) -- (3,4);
+\draw[violet,  thick] (-2,4) -- (-3,4);
+   
+\end{axis}
+
+\node[color=black,right] at (3.2,-0.2) {$E_1$};
+\node[color=black,right] at (1.3,-0.2) {$E_2$};
+\node[color=black,right] at (4.9,-0.2) {$E_2$};
+\node[color=black,right] at (3.2,6) {$k$};
+
+\node[color=black,right] at (2.12,0) {$[$};
+\node[color=black,right] at (2.07,0) {$)$};
+\node[color=black,right] at (0.98,0) {$[$};
+\node[color=black,right] at (4.35,0) {$)$};
+\node[color=black,right] at (4.4,0) {$[$};
+\node[color=black,right] at (5.5,0) {$)$};
+
+\node[color=violet,right] at (3.2,0.2) {$\varphi_1$};
+\node[color=violet,right] at (1.3,1.5) {$\varphi_2$};
+\node[color=violet,right] at (4.9,1.5) {$\varphi_2$};
+\node[color=violet,right] at (0.4,2.7) {$\varphi_3$};
+\node[color=violet,right] at (6.1,2.7) {$\varphi_3$};
+\end{tikzpicture}$$
 Fijado un entero $k> 0$, definimos los siguientes conjuntos:
-$$E_j^k := f^{-1}\left([(j-1)\cdot 2^{-k}, j\cdot 2^{-k}\right)$$
+$$E_j^k := f^{-1}\left([(j-1)\cdot 2^{-k}, j\cdot 2^{-k} )\right)$$
 Con dicha definición, es sencillo ver que los conjuntos son medibles, disjuntos y su unión queda como
 $$\bigcup_{j=1}^{k\cdot 2^k}E_j^k = \{x\in  \mathbb{R}^n: f(x) < k\}$$
 Definimos la siguiente función simple:
-$$\varphi := \sum_{j=1}^{k\cdot 2^k} \frac{j-1}{2^k} \chi_{E_j^k}$$
+$$\varphi_k := \sum_{j=1}^{k\cdot 2^k} \frac{j-1}{2^k} \chi_{E_j^k}$$
 Esto genera una sucesión de funciones creciente que denotamos por $\{\varphi_k\}_{k=1}^\infty \uparrow$.
 
 Luego, por la definición que se ha dado de los $E_j^k$, dado $x \in \mathbb{R}^n,\ \exists k\in \mathbb{N} : \forall k \ge k_0: k > f\left(x\right) \Rightarrow x \in E_j^k$ para algún $j $ y, por tanto:
@@ -996,7 +1096,50 @@ Dada una función medible $f: \mathbb{R}^{n} \rightarrow \mathbb{R}$, definimos:
 f^+ := \max \{f, 0 \} & & f^- := -\min \{f, 0\}
 \end{align*}
 
-(\textit{Dibujo})
+$$\begin{tikzpicture}
+\begin{axis}[
+axis y line=middle,
+axis x line=middle,
+xlabel=$x$,
+%grid = both, %major/minor
+xticklabels={},yticklabels={}
+];
+
+\addplot [
+very thick,black,mark=none,
+domain=-4:4,samples=50,
+] {x^2 - 4)};
+
+\addplot [
+very thick,red,mark=none, dashed,
+domain=-4:-2,samples=50,
+] {x^2 - 4)};
+\addplot [
+very thick,red,mark=none, dashed,
+domain=2:4,samples=50,
+] {x^2 - 4)};
+\addplot [
+very thick,violet,mark=none,dashed,
+domain=-2:2,samples=50,
+] {abs(x^2 - 4))};
+
+\addplot [
+very thick,violet,mark=none,dashed,
+domain=-4:-2,samples=50,
+] {0};
+\addplot [
+very thick,violet,mark=none,dashed,
+domain=2:4,samples=50,
+] {0};
+
+\addplot [
+very thick,red,mark=none,dashed,
+domain=-2:2,samples=50,
+] {0};
+\end{axis}
+\node[color=red,right] at (5.4,4) {$f^+$};
+\node[color=violet,right] at (2,3) {$f^-$};
+\end{tikzpicture}$$
 
 que verifican las siguientes propiedades:
 \begin{enumerate}
@@ -1486,12 +1629,66 @@ Este teorema es la generalización total de los dos anteriores, ya que si $f = \
 \begin{ej}
 Supongamos la siguiente integral $$\int_E e^{\frac{x - y}{x + y}} \dif{x} \dif{y}$$
 definiendo $E$ como el triángulo de vértices: $\left(0, 0\right), \left(0, 2\right), \left(2, 0\right)$, es decir:
-$$DIBUJO$$
+$$\begin{tikzpicture}
+\begin{axis}[
+axis y line=middle,
+axis x line=middle,
+%xlabel=$x$,
+%grid = both, %major/minor
+];
+
+\addplot [domain=0:2, samples=100, name path=f, thick, color=red!50]
+        {-x + 2};
+
+\path [name path=xaxis]
+      (\pgfkeysvalueof{/pgfplots/xmin},0) --
+      (\pgfkeysvalueof{/pgfplots/xmax},0);
+
+\addplot[red!10, opacity=0.4] fill between [of=f and xaxis, soft clip={domain=-2:2}];
+\node[color=black,right] at (axis cs: 0,0.1) {$(0,0)$};
+\node[color=black,right] at (axis cs: 0,1.9)  {$(0,2)$};
+\node[color=black,right] at (axis cs: 1.7,0.1)  {$(2,0)$};
+\node[color=black,right] at (axis cs: 0.5,0.7) {$E$};
+\node[color=red, font=\footnotesize] at (axis cs: 1.3,1) {$x + y = 2$};
+\end{axis}
+\filldraw [black] (0,0) circle (2pt);
+\filldraw [black] (6.8,0) circle (2pt);
+\filldraw [black] (0,5.7) circle (2pt);
+\end{tikzpicture}$$
 Si tenemos por ejemplo, la transformación $\varphi^{-1} = \begin{cases} u = x - y\\ v = x + y 
 \end{cases} \Rightarrow \varphi = \begin{cases} x = \frac{u + v}{2}\\ y = \frac{v - u}{2} \end{cases}$, entonces podemos ver que:
 \begin{align*}
 \varphi^{-1} \left(x + y = 2\right) \equiv v = 2 & & \varphi^{-1} \left(y = 0\right)\equiv u = v & & \varphi^{-1} \left(x = 0\right)\equiv u = -v
 \end{align*}
+$$\begin{tikzpicture}
+\begin{axis}[
+axis y line=middle,
+axis x line=middle,
+%xlabel=$x$,
+%grid = both, %major/minor
+];
+
+\addplot [domain=-2.5:2.5, samples=100, name path=f, thick, color=red!50]
+        {abs(x)};
+
+\addplot [domain=-2.5:2.5, samples=100, name path=g, thick, color=blue!50]
+        {2};
+
+\addplot[red!10, opacity=0.4] fill between [of=f and g, soft clip={domain=-2:2}];
+
+\node[color=black,right] at (axis cs: 0,0.1) {$(0,0)$};
+\node[color=black,right] at (axis cs: -2.5,1.9)  {$(-2,2)$};
+\node[color=black,right] at (axis cs:1.8,1.9)  {$(2,2)$};
+\node[color=black,right] at (axis cs: 0,1) {$D$};
+\node[color=red, font=\footnotesize] at (axis cs: 1.3,1) {$u = v$};
+\node[color=red, font=\footnotesize] at (axis cs: -1.3,1) {$u = -v$};
+\node[color=blue, font=\footnotesize] at (axis cs: 0,2.2) {$v = 2$};
+\end{axis}
+\filldraw [black] (3.5,0) circle (2pt);
+\filldraw [black] (6.2,4.55) circle (2pt);
+\filldraw [black] (0.7,4.55) circle (2pt);
+\end{tikzpicture}$$
+
 Por tanto, $\varphi^{-1} \left(E\right) = D$ es un triángulo de vértices: $\left(0, 0\right), \left(2, 2\right) y \left(-2, 2\right)$ y entonces podemos calcular su integral como:
 $$\int_E f \left(x, y\right) \dif{x} \dif{y} = \int_{\varphi \left(D\right)} f \left(x, y\right) \dif{x}\dif{y} = \int_D e^{u/v}\cdot \lvert \det J \varphi \left(u, v\right) \rvert \dif{u} \dif{v} =$$
 $$= \int_{v = 0}^{v = 2} \int_{u = -v}^{u = v} e^{u/v} \frac{1}{2} \dif{u} \dif{v} = \int_{v = 0}^{v = 2} \frac{1}{2} \left[v e^{u/v}\right]_{u = -v}^{u = v} \dif{v} = $$
@@ -1550,8 +1747,23 @@ Sea $\varphi: \mathbb{R}^3\rightarrow  \mathbb{R}^3$ de forma que $\varphi(r, \t
 Tomando el mismo ejemplo anterior, pero integrando sobre
 $$\int_V x^2 + y^2 \dif{x} \dif{y} \dif{z} \mbox{ donde } V = \{\left(x, y, z\right) : x^2 + y^2 \le z^2 \le 4\}$$
 
-(\textit{Dibujo})
+$$\begin{tikzpicture}[tdplot_main_coords]
+  \coordinate (O) at (0,0,0);
 
+
+  \coneback[surface]{-3}{2}{-10}
+  \draw (0,0,-5) -- (O);
+  \conefront[surface]{-3}{2}{-10}
+
+  \draw[->] (-6,0,0) -- (6,0,0) node[right] {$x$};
+  \draw[->] (0,-6,0) -- (0,6,0) node[right] {$y$};
+
+  \coneback[surface]{3}{2}{10}
+  \draw[->] (O) -- (0,0,5) node[above] {$z$};
+  \conefront[surface]{3}{2}{10}
+  \node[color=black,right] at  (0,0,3) {$z = 2$};
+  \node[color=black,right] at  (0,0,-3) {$z = -2$};
+\end{tikzpicture}$$
 Por cada $z$ tenemos $V_z = \{\left(x, y\right): x^2 + y^2 \le z^2\}$, por tanto: 
 $$\int_V x^2 + y^2 \dif{x} \dif{y} \dif{z} = \int_{z = -2}^{z = 2} \int_{\theta = 0}^{\theta = 2\pi} \int_{r = 0}^{r = \lvert z \rvert} r^2 \cdot r  \dif{r}   \dif{\theta} \dif{z}  = 2\pi \int_{z = -2}^{z = 2} \left(\int_{r = 0}^{r = \lvert z \rvert} r^3 \dif{r} \right) \dif{z}$$
 $$ = 2\pi \int_{z = -2}^{z = 2} \left[\frac{r^4}{4}\right]_{r = 0}^{r = \lvert z \rvert} \dif{z} = \frac{\pi}{2} \int_{z = -2}^{z = 2} z^4 \dif{z} = \frac{\pi}{10} \left[z^{5}\right]_{z = -2}^{z = 2} = \frac{32\pi}{5} $$
