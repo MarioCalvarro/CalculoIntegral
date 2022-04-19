@@ -17,6 +17,7 @@
 \usepackage{latexsym} %Paquetes para mates
 \usepackage{multicol} %Paquetes columnas
 \usepackage{cancel} %Paquete tachar cosas
+\usepackage{esint}
 \usepackage[top=2.5cm, bottom=2.5cm, left=3cm, right=3cm]{geometry}
 
 \usepackage{centernot}
@@ -1819,5 +1820,41 @@ Si escogemos $Q\left( x, y \right) = x$ y $P\left( x, y \right) = -y$, por el Te
 $$\int_{\partial D^+} x \dif{y} - y \dif{x} = 2\iint_{D} \dif{x} \dif{y} = 2 A\left(D\right)$$
 \end{demo}
 
+\subsection*{Área de una superficie, $\mathbb{R}^3$}%
+\label{sub:area_de_una_superficie}
+\begin{defi}
+Sea $D \subset  \mathbb{R}^2$ abierto y $\Phi: D \rightarrow \mathbb{R}^3$ $C^1$ tal que $\img D \Phi\left( u, v \right) = 2,\ \forall \left( u, v \right) \in D$: 
+$$\Phi\left( D \right) = S,\ \text{ será una \textbf{superficie paramétrica}.}$$
+\end{defi}
+(\textit{Dibujo})
+
+Tenemos que: 
+$$\begin{pmatrix} \frac{\partial \Phi_1}{\partial u} & \frac{\partial \Phi_1}{\partial v} \\
+\frac{\partial \Phi_2}{\partial u} & \frac{\partial \Phi_2}{\partial v} \\ 
+\frac{\partial \Phi_3}{\partial u} & \frac{\partial \Phi_3}{\partial v} \end{pmatrix} = \begin{pmatrix} \frac{\partial \Phi}{\partial u} & \frac{\partial \Phi}{\partial v} \end{pmatrix} $$
+
+El espacio generado por $\left[ \{\Phi_u, \Phi_v\} \right] = \img D \varphi \left( u, v \right)$. Sin embargo, este pasará por el origen. El que es realmente tangente será: 
+$$\boxed{\Phi \left( u, v \right) + \img D \Phi \left( u, v \right)}$$
+
+\begin{defi}
+Definimos \textbf{área} de una $S$: 
+$$A\left( S \right) = \iint_{D} \lVert \Phi_{u} \times \Phi_v \rVert \dif{u} \dif{v}$$
+\end{defi}
+
+\begin{ej}
+Sea $f: \left[ a, b \right] \rightarrow \mathbb{R}$ pertenece a $C^1$ y $f\left( x \right) \ge 0,\ \forall x \in \left[ a, b \right]$
+
+Parametrizamos la curva. Sea:
+$$\Phi: \left( a, b \right) \times \left( 0, 2\pi \right) \rightarrow \mathbb{R}^3$$
+$$\Phi \left( u, v \right) = \left( u, f\left( u \right)\cos v, f\left( u \right)\sin v \right) $$
+
+Ahora, 
+$$\Phi_u = \left( 1, f'\left( u \right) \cos v, f'\left( u \right) \sin v \right)$$
+$$\Phi_v = \left( 0, -f\left( u \right) \sin v, f\left( u \right) \cos v \right)$$
+$$\Phi_u \times \Phi_v = \left( f\left( u \right) f'\left( v \right) \left[ \cos^2 v + \sin^2 v \right], -f\left( u \right) \cos v, -f\left( u \right) \sin v \right)$$
+$$\lVert \Phi_u \times \Phi_v \rVert = \sqrt{f\left( u \right)^2 \left[ f'\left( u \right) \right]^2 + f\left( u \right)^2} = f\left( u \right) \sqrt{1 + f'\left( u \right)^2} \Rightarrow$$
+$$A\left( S \right) = \int_{a}^{b} \left( \int_{0}^{2\pi} f\left( u \right) \sqrt{1 + f'\left( u \right)^2} \dif{v} \right) \dif{u} = 2\pi \int_{a}^{b} f\left( u \right) \sqrt{1 + f'\left( u \right)^2} \dif{u} $$
+
+\end{ej}
 
 \end{document}
