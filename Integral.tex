@@ -1854,7 +1854,31 @@ $$\Phi_v = \left( 0, -f\left( u \right) \sin v, f\left( u \right) \cos v \right)
 $$\Phi_u \times \Phi_v = \left( f\left( u \right) f'\left( v \right) \left[ \cos^2 v + \sin^2 v \right], -f\left( u \right) \cos v, -f\left( u \right) \sin v \right)$$
 $$\lVert \Phi_u \times \Phi_v \rVert = \sqrt{f\left( u \right)^2 \left[ f'\left( u \right) \right]^2 + f\left( u \right)^2} = f\left( u \right) \sqrt{1 + f'\left( u \right)^2} \Rightarrow$$
 $$A\left( S \right) = \int_{a}^{b} \left( \int_{0}^{2\pi} f\left( u \right) \sqrt{1 + f'\left( u \right)^2} \dif{v} \right) \dif{u} = 2\pi \int_{a}^{b} f\left( u \right) \sqrt{1 + f'\left( u \right)^2} \dif{u} $$
-
 \end{ej}
+
+\begin{defi}
+Sea $S \subset \underbrace{G}_{\text{abierto}} \subset \mathbb{R}^3$ y $f: G \rightarrow \mathbb{R}$ continua. Definimos la integral de $f$ sobre $S$ a: 
+$$\iint_{D} f \dif{S} = \iint_{D} f\left( \Phi\left( u, v \right) \right) \lVert \Phi_u \times \Phi_v \rVert \dif{u} \dif{v}$$
+donde $\Phi: D \rightarrow \mathbb{R}^3$ es la parametrización de $S$.
+\end{defi}
+\begin{obs}
+Si $f \equiv 1 \rightarrow$ área de $S$.
+\end{obs}
+
+\begin{prop}
+Sea $\varphi: G \rightarrow D$ difeomorfismo $C^1$, tenemos que: 
+$$\Phi \circ \varphi: G \rightarrow S \subset \mathbb{R}^3$$
+es una parametrización.
+\end{prop}
+\begin{demo}?
+Tenemos que: 
+$$D\left( \Phi \circ \varphi \right) \left( u, v \right) = D\Phi\left( \varphi\left( u, v \right) \right) \circ D\varphi\left( u, v \right)$$
+\end{demo}
+
+\begin{prop}
+Tenemos que: 
+$$\iint_{D} f\left( \left( \Phi \circ \varphi \right) \left( x, y \right) \right) \lVert \left( \Phi \circ \varphi \right)_x \left( \Phi \circ \varphi \right)_y \rVert \dif{x} \dif{y}$$
+$$\lVert \left( \Phi \circ \varphi \right)_x \times \left( \Phi \circ \varphi \right)_y \rVert = \lvert \det D \varphi\left( x, y \right) \rvert \lVert \Phi_u \left( \varphi\left( x, y \right) \right) \times \Phi_v \left( \varphi\left( x, y \right) \right) \rVert$$
+\end{prop}
 
 \end{document}
