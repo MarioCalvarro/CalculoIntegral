@@ -1881,4 +1881,51 @@ $$\iint_{D} f\left( \left( \Phi \circ \varphi \right) \left( x, y \right) \right
 $$\lVert \left( \Phi \circ \varphi \right)_x \times \left( \Phi \circ \varphi \right)_y \rVert = \lvert \det D \varphi\left( x, y \right) \rvert \lVert \Phi_u \left( \varphi\left( x, y \right) \right) \times \Phi_v \left( \varphi\left( x, y \right) \right) \rVert$$
 \end{prop}
 
+\begin{defi}
+Sea $G \subset \mathbb{R}^3$ abierto $S \subset G$ paramatrizada por $\Phi: D \rightarrow S$. Sea $F: G \rightarrow \mathbb{R}^3$ campo continuo. 
+Definimos la \textbf{integral de superficie} de $F$ sobre $S$ a: 
+$$\iint_{S} F \dif{\overline{S}} = \iint_{D} F\left( \Phi\left( u, v \right) \right) \cdot \left( \Phi_u \times \Phi_v \right) \dif{u} \dif{v}$$
+\end{defi}
+
+\begin{obs}
+\begin{itemize}
+    \item El signo de la integral depende de la parametrización.
+    \item Si $F$ es tangente a $S \Rightarrow \iint_{S} F \dif{\overline{S}} = 0$. 
+    \item Esta integral nos permite calcular el \textbf{flujo} del campo que atraviesa la superficie.
+    
+    (\textit{Dibujo})
+\end{itemize}
+\end{obs}
+
+\begin{defi}
+Denotamos por vector normal unitario a $\overline{n}$.
+\end{defi}
+
+\begin{ej}
+Sea: 
+$$\overline{n} = \frac{\Phi_u \times \Phi_v}{\lVert \Phi_u \times \Phi_v \rVert}$$
+y también: 
+$$S \rightarrow \mathbb{R}^n,\ p \mapsto \begin{cases}
+    \vec{n}_p\\
+    -\vec{n}_p
+\end{cases} $$
+Siempre que se pueda hacer esta ``selección'' de forma continua diremos que la superficie es \textbf{orientable}. En el caso de una esfera, solo habrá dos posibles orientaciones.
+
+Como superficie no orientable tenemos la banda de Möbius.
+\begin{center}
+    \includegraphics[scale=0.3]{images/mobius} 
+\end{center}
+\end{ej}
+
+\begin{prop}
+La integral de superficie es invariante por reparametrizaciones que conserven la orientación.
+\end{prop}
+(\textit{Dibujo})
+
+\begin{prop}
+Con $S$ superficie orientable, tenemos que: 
+$$\iint_{D} F \dif{\overline{S}} = \iint_{D} \left( F\left( \Phi \left( u, v \right) \right) \lVert \Phi_u \times \Phi_v \rVert \right) \cdot \frac{\left( \Phi_u \times \Phi_v \right)}{\lVert \Phi_u \times \Phi_v \rVert} \dif{u} \dif{v} =$$
+$$= \iint_{D} \left( \underbrace{F\left( \Phi\left( u, v \right) \right)}_{= F_{\vec{n}}} \cdot \vec{n} \left( u, v \right) \right) \lVert \Phi_u \times \Phi_v \rVert \dif{u} \dif{v} = \iint_{S} F_{\vec{n}} \dif{\overline{S}}$$
+\end{prop}
+
 \end{document}
