@@ -87,6 +87,7 @@
 
 \DeclareMathOperator{\dom}{dom}
 \DeclareMathOperator{\img}{img}
+\DeclareMathOperator{\rot}{rot}
 
 \newcommand{\dif}[1]{\ d#1}
 
@@ -1927,5 +1928,76 @@ Con $S$ superficie orientable, tenemos que:
 $$\iint_{D} F \dif{\overline{S}} = \iint_{D} \left( F\left( \Phi \left( u, v \right) \right) \lVert \Phi_u \times \Phi_v \rVert \right) \cdot \frac{\left( \Phi_u \times \Phi_v \right)}{\lVert \Phi_u \times \Phi_v \rVert} \dif{u} \dif{v} =$$
 $$= \iint_{D} \left( \underbrace{F\left( \Phi\left( u, v \right) \right)}_{= F_{\vec{n}}} \cdot \vec{n} \left( u, v \right) \right) \lVert \Phi_u \times \Phi_v \rVert \dif{u} \dif{v} = \iint_{S} F_{\vec{n}} \dif{\overline{S}}$$
 \end{prop}
+
+(\textit{Dibujo})
+
+\begin{defi}
+Sea $D$ superficie interior a una curva $\gamma$, $\Phi: D \rightarrow \mathbb{R}^3$ la parametrización de dicha superficie que se puede extender ($C^1$) a la frontera de $D$, $\partial D$. 
+
+Definimos el \textbf{borde} de $S,\ \partial S$, como $\Phi\left( \partial D \right)$.
+\end{defi}
+\begin{obs}
+\begin{itemize}
+    \item Tenemos que: 
+    $$\left[ a, b \right] \rightarrow^{\gamma} \mathbb{R}^2 \rightarrow^{\Phi} \mathbb{R}^3$$
+    $\Phi \circ \gamma$ parametriza $\partial S$.
+
+    \item Las orientaciones que tomamos son: 
+    \begin{itemize}
+        \item Orientación de $S$ a través de $\Phi$. 
+        \item Orientación de $\gamma$ a través de $D$ queda a la izquierda.
+    \end{itemize}
+    Por tanto, orientación de la curva por $\Phi \circ \gamma$. 
+
+    Orientación de $S \leftrightarrow$ orientación de $\partial S$.
+
+    La superficie $S$ y su borde $\partial S$ están orientadas de forma compatible.
+\end{itemize}
+\end{obs}
+
+\begin{defi}
+Sea el campo $F: \mathbb{R}^3 \rightarrow \mathbb{R}^3$ llamamos \textbf{rotacional} de $F$ a: 
+$$\rot F = \nabla \times F = \begin{vmatrix} i & j & k\\
+\frac{\partial}{\partial x} & \frac{\partial }{\partial y} & \frac{\partial }{\partial z} \\
+F_1 & F_2 & F_3\end{vmatrix} = \left( \frac{\partial F_3}{\partial y} - \frac{\partial F_2}{\partial z}, \frac{\partial F_1}{\partial z} - \frac{\partial F_3}{\partial x}, \frac{\partial F_2}{\partial x} - \frac{\partial F_1}{\partial y} \right)$$
+\end{defi}
+
+\begin{theo}[de Stokes]
+Dada una superficie orientada $S$, con borde orientado de forma compatible. Dado $F$ un campo de clase $C^1$. Entonces, 
+$$\iint_{S} \rot F \cdot \dif{\vec{S}} = \int_{\partial S} F \dif{\overline{s}}$$
+\end{theo}
+\begin{demo}
+Caso particular, la superficie es una gráfica de una función.
+
+La parametrización será: $\Phi\left( x, y \right) = \left( x, y, f\left( x, y \right) \right),\ \Phi: D \rightarrow \mathbb{R}^3$.
+
+Sea $\sigma\left( t \right) = \left( x\left( t \right), y\left( t \right) \right),\ \sigma: I \rightarrow \mathbb{R}^2$ la parametrización de $\partial D$. 
+
+Podemos parametrizar $\partial S$ tal que: 
+$$\partial S \rightarrow \Phi \circ \sigma$$
+$$\gamma: I \rightarrow \mathbb{R}^3$$
+$$\gamma\left( t \right) = \left( x\left( t \right), y\left( t \right), f\left( x\left( t \right), y\left( t \right) \right) \right)$$
+
+Por tanto, por un lado:
+$$\iint_{S} \rot F \dif{\overline{S}} = \int_{D} \rot F \cdot \left( \Phi_x \times \Phi_y \right) \dif{x} \dif{y} =$$
+$$= \iint_{D} \left( \left( \frac{\partial F_3}{\partial y} - \frac{\partial F_2}{\partial z} \right) \left( -\frac{\partial f}{\partial x} \right) + \left( \frac{\partial F_1}{\partial z - \frac{\partial F_3}{\partial x}} \right) \left( -\frac{\partial f}{\partial y} \right) + \left( \frac{\partial F_2}{\partial x} - \frac{\partial F_1}{\partial y} \right) \right)$$
+Por el otro lado: 
+$$\int_{\partial S} F \dif{\overline{s}} = \int_{a}^{b} \left( F_1, F_2, F_3 \right) \cdot \left( x'\left( t \right), y'\left( t \right), \frac{\partial f}{\partial x} x'\left( t \right) + \frac{\partial f}{\partial y} y'\left( t \right) \right) = $$
+$$= \int_{a}^{b} \left( F_1x'\left( t \right) - F_2y'\left( t \right) + F_3\left( \frac{\partial f}{\partial x} x'\left( t \right) + \frac{\partial f}{\partial y} y'\left( t \right) \right) \right) \dif{t} = $$
+$$= \int_{\partial D} \left( F_1 + F_3 \frac{\partial f}{\partial x} \right) \dif{x} + \left( F_2 + F_3 \frac{\partial f}{\partial y} \right) \dif{y} \underbrace{=}_{FG?}$$
+$$= \iint_{D} \frac{\partial}{\partial x} \left( F_2 + F_3 \frac{\partial f}{\partial y} \right) - \frac{\partial}{\partial y} \left( F_1 + F_3 \frac{\partial f}{\partial x} \right) \dif{x} \dif{y}$$
+\end{demo}
+\begin{obs}
+La interpretación geométrica del teorema es?: 
+\begin{center}
+    \includegraphics[scale=0.1]{images/stokeTh} 
+\end{center}
+
+Si tenemos $F$ entonces: 
+$$\int_{S} \rot F \dif{\overline{S}} \approx \lVert \rot F \left( p \right) \rVert \cdot Area\left( S \right)$$
+que es igual a: 
+$$\int_{\partial S} F \dif{\overline{s}} $$
+\end{obs}
+
 
 \end{document}
