@@ -88,6 +88,7 @@
 \DeclareMathOperator{\dom}{dom}
 \DeclareMathOperator{\img}{img}
 \DeclareMathOperator{\rot}{rot}
+\DeclareMathOperator{\divg}{div}
 
 \newcommand{\dif}[1]{\ d#1}
 
@@ -1999,5 +2000,72 @@ que es igual a:
 $$\int_{\partial S} F \dif{\overline{s}} $$
 \end{obs}
 
+\begin{theo}
+Sea $F: \mathbb{R}^3 \rightarrow \mathbb{R}^3 \in C^1$. Son equivalentes: 
+\begin{itemize}
+    \item $F$ es conservativo.
+    \item $\exists f: \mathbb{R}^3 \rightarrow \mathbb{R} \in C^2: F = \nabla f$ 
+    \item $\rot F = 0$
+\end{itemize}
+\end{theo}
+\begin{demo}
+$2 \Rightarrow 3)$: 
+$$F = \left( \frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}, \frac{\partial f}{\partial z} \right)$$
+$$\rot F = \begin{vmatrix} \vec{i} & \vec{j} & \vec{k} \\
+\frac{\partial }{\partial x} & \frac{\partial }{\partial y} & \frac{\partial }{\partial z} \\
+\frac{\partial f}{\partial x} & \frac{\partial f}{\partial y} & \frac{\partial f}{\partial z} \end{vmatrix} \underbrace{=}_{T. Schwarz} \left( 0, 0, 0 \right)$$
+
+$3 \Rightarrow 1)$: 
+(\textit{Dibujo})
+
+Sea $S : \partial S = \gamma$: 
+$$\int_{\gamma} F \dif{\overline{s}} = \iint_{S} \rot F \dif{\overline{S}} = 0$$
+(No es una demostración rigurosa. \textit{Dibujo explicando el razonamiento de $\partial S = \gamma$})
+\end{demo}
+
+\begin{ej}
+Sea $G = \mathbb{R}^3 \setminus Z$ y $F: G \rightarrow \mathbb{R}^3$ con $F\left( x, y, z \right) = \left( \frac{-y}{x^2 + y^2}, \frac{x}{x^2 + y^2}, 0 \right)$. 
+
+En este caso, $\rot F = \left( 0, 0, 0 \right)$. Porque (tercera componente): 
+$$\frac{\partial \left( \frac{x}{x^2 + y^2} \right)}{\partial x} - \frac{\partial \left( \frac{-y}{x^2 + y^2} \right)}{\partial y} = \frac{x^2 + y^2 - 2x^2}{\left( x^2 + y^2 \right)^2} + \frac{x^2 + y^2 - 2y^2}{\left( x^2 + y^2 \right)^2} = 0$$
+Con la curva: 
+$$\gamma: \left[ 0, 2\pi \right] \rightarrow \mathbb{R}^3$$
+$$\gamma\left( t \right) = \left( \cos t, \sin t, 0 \right)$$
+$$\int_{\gamma} F \dif{\overline{s}} = \int_{0}^{2\pi} \left( -\sin t, \cos t, 0 \right) \cdot \left( -\sin t, \cos t, 0 \right) \dif{t} = $$
+$$= \int_{0}^{2\pi} \cos^2 t + \sin^2t \dif{x} = 2\pi$$
+
+No podemos aplicar el teorema en este caso porque el dominio no es $\mathbb{R}^3$. (No podemos construir una superficie con la curva formada por la circunferencia unidad que no corte al eje Z).
+\end{ej}
+
+El teorema solo funciona en campos con dominio \textbf{simplemente conexo}. 
+
+\begin{defi}
+Sea $F: G \rightarrow \mathbb{R}^3 \in C^1,\ G \subset \mathbb{R}^3$ abierto. Llamamos \textbf{divergencia} de $F$ a: 
+$$\divg F = \frac{\partial F_1}{\partial x} + \frac{\partial F_2}{\partial y} + \frac{\partial F_3}{\partial z} = \nabla \cdot F$$
+\end{defi}
+\begin{prop}
+Sea $H$ campo $C^2 \Rightarrow \divg \left( \rot H \right) = 0$. 
+\end{prop}
+\begin{demo}
+$$\left( \underbrace{\frac{\partial H_3}{\partial y} - \frac{\partial H_2}{\partial z}}_{\frac{\partial }{\partial x}}, \underbrace{\frac{\partial H_1}{\partial z} - \frac{\partial H_3}{\partial x}}_{\frac{\partial }{\partial y}}, \underbrace{\frac{\partial H_2}{\partial x} - \frac{\partial H_1}{\partial y}}_{\frac{\partial }{\partial z}} \right) = 0$$
+Utilizando T. Schwarz.
+\end{demo}
+
+\begin{theo}
+Si $F: \mathbb{R}^3 \rightarrow \mathbb{R}^3 \in C^1 : \divg F = 0 \Rightarrow \exists G \in C^2 : F = \rot G$.
+\end{theo}
+\begin{demo}
+Se define: 
+$$G_1\left( x, y, z \right) = \int_{0}^{z} F_2\left( x, y, t \right) \dif{t} - \int_{0}^{y} F_3\left( x, t, 0 \right) \dif{t}$$
+$$G_2\left( x, y, z \right) = -\int_{0}^{z} F_1\left( x, y, t \right) \dif{t}$$
+$$G_3\left( x, y, z \right) = 0$$
+\end{demo}
+\begin{obs}
+\begin{enumerate}
+    \item $G$ no es único. Si $H$ campo con $H_3 \neq 0 \rightarrow \rot H = \underbrace{F}_{= \rot G} \rightarrow G \Rightarrow H \neq G$.
+
+    \item El campo gravitatorio es un contraejemplo en el caso de que quitemos un punto del dominio (del campo).
+\end{enumerate}
+\end{obs}
 
 \end{document}
