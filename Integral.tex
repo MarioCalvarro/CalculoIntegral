@@ -2068,4 +2068,62 @@ $$G_3\left( x, y, z \right) = 0$$
 \end{enumerate}
 \end{obs}
 
+\begin{theo}[de la Divergencia de Gauss]
+    Sea $\Omega \subset \mathbb{R}^3$ dominio tal que $\partial \Omega$ orientada exterior. $\Omega$ cumple: $\mathring{\overline{\Omega}} = \mathring{\Omega}$ y $\overline{\Omega} = \overline{\mathring{\Omega}}$. Sea un campo $F: G \rightarrow \mathbb{R}^3 \in C^1 : \underbrace{G}_{\text{abierto}} \supset \overline{\Omega}$. Entonces: 
+$$\iint_{\partial \Omega} F \cdot \dif{\overline{S}} = \iiint_{\Omega} \divg F \dif{x} \dif{y} \dif{z}$$
+\end{theo}
+\textit{Dibujo} 
+\begin{demo}
+Sea $F = \left( F_1, F_2, F_3 \right)$ y $\int_{\Omega} \divg F = \int_{\Omega} \left( \frac{\partial F_1}{\partial x} + \frac{\partial F_2}{\partial y} + \frac{\partial F_3}{\partial z} \right) \dif{x} \dif{y} \dif{z}$.
+Suponemos que $\Omega = \left\{ \left( x, y, z \right) : f\left( x, y \right) \le z \le g\left( x, y \right) \right\}$ con $f, g : D \rightarrow \mathbb{R} \in C^1,\ \left( D \subset \mathbb{R}^2,\ f \le g \right)$.
+
+(\textit{Dibujo})
+
+Podemos poner $\partial \Omega = S_1 \cup S_2 \cup S_3$. 
+
+Entonces: 
+$$\int_{\Omega} \frac{\partial F_3}{\partial z} \dif{x} \dif{y} \dif{z} = \int_{D} \left[ \int_{f\left( x, y \right)}^{g\left( x, y \right)} \frac{\partial F_3}{\partial z} \dif{z} \right] \dif{x} \dif{y} = \int_{D} F_3\left( x, y, g\left( x, y \right) \right) - F_3\left( x, y, f\left( x, y \right) \right) \dif{x} \dif{y}$$
+Ahora: 
+$$\iint_{\partial \Omega} \left( 0, 0, F_3 \right) \dif{\overline{S}} = \int_{S_1} \left( 0, 0, F_3 \right) + \iint_{S_2} \left( 0, 0, F_3 \right) + \underbrace{\iint_{S_3} \left( 0, 0, F_3 \right)}_{= 0 \text{ (por pendicularidad)}}$$
+$$= \iint_{S_1} \left( 0, 0, F_3 \right) \dif{\overline{S}} + \iint_{S_2} \left( 0, 0, F_3 \right) \dif{\overline{S}}$$
+Parametrización: 
+$$\Phi: D \rightarrow \mathbb{R}^3$$
+$$\Phi\left( x, y, f\left( x, y \right) \right)$$
+$$\Phi_x = \left( 1, 0, \frac{\partial f}{\partial x} \right)$$
+$$\Phi_y = \left( 0, 1, \frac{\partial f}{\partial y} \right)$$
+$$\Phi_x \times \Phi_y = \left( -\frac{\partial f}{\partial x}, - \frac{\partial f}{\partial y}, 1 \right)$$
+
+Con esto: 
+$$\iint_{S_1} \left( 0, 0, F_3 \right) \dif{\overline{S}} = \int_{S_1} \left[ \left( 0, 0, F_3 \right) \cdot n_1 \right] \dif{S} = \iint_{S_1} F_3\left( x, y, f\left( x, y \right) \right) \cdot \frac{- 1}{\sqrt{1 + \frac{\partial f}{\partial x}^2 + \frac{\partial f}{\partial y}^2}} \dif{S} $$
+$$= -\iint_{D} F_3\left( x, y, f\left( x, y \right) \right) \frac{1}{\not\sqrt{1 + \frac{\partial f}{\partial x}^2 + \frac{\partial f}{\partial y}^2}} \cdot \not\sqrt{1 + \frac{\partial f}{\partial x}^2 + \frac{\partial f}{\partial y}^2} \dif{S}$$
+$$= - \iint_{D} F_3\left( x, y, f\left( x, y \right) \right) \dif{x} \dif{y}$$
+Por el otro lado,
+$$\iint_{S_2} \left( 0, 0, F_3 \right) \dif{\overline{S}} = \iint_{D} F_3\left( x, y, g\left( x, y \right) \right) \dif{x} \dif{y}$$
+
+Hemos probado que?
+$$\int_{\Omega} \frac{\partial F_3}{\partial z} \dif{x} \dif{y} \dif{z} = \iint_{\Omega} \left( 0, 0, F_3 \right) \dif{\overline{S}}$$
+
+(\textit{Dibujo, entre dos gráficas verticales})
+
+Además, 
+$$\int_{\Omega} \frac{\partial F_2}{\partial y} \dif{x} \dif{y} \dif{z} = \int_{\partial \Omega} \left( 0, F_2, 0 \right) \dif{\overline{S}} $$
+
+(\textit{Dibujo, entre otras dos gráficas verticales}) 
+
+Y, 
+$$\int_{\Omega} \frac{\partial F_1}{\partial x} \dif{x} \dif{y} \dif{z} = \int_{\partial \Omega} \left( F_1, 0, 0 \right) \dif{\overline{S}}$$
+
+Sumando estas últimas ecuaciones tenemos el resultado.
+\end{demo}
+
+(\textit{Dibujos})
+
+\begin{ej}
+\textit{Dibujo}. 
+
+$$\iiint_{\Omega} \divg F \dif{x} \dif{y} \dif{z} \approx \divg F\left( p \right) \cdot V\left( \Omega \right)$$
+$$= \iint_{S} F \dif{\overline{S}}$$
+(\textit{Dibujo})
+\end{ej}
+
 \end{document}
