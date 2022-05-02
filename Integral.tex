@@ -950,7 +950,7 @@ $$= \lim_{k\rightarrow\infty} \sum_{j=1}^{m} \left( \alpha_j \int_{\mathbb{R}^n}
 $$= \sum_{j=1}^{m} \alpha_j \cdot \mu\left(E_j \cap A\right) = \sum_{j=1}^{m} \left(\alpha_j \int_{\mathbb{R}^n} \chi_{E_j \cap A} \ d \mu\right) = \int_{\mathbb{R}^n}\sum_{j=1}^{m} \alpha_j \chi_{E_j} \chi_{A} \ d \mu= \int_{\mathbb{R}^n} \varphi \cdot \chi_A \ d \mu = \int_A \varphi \ d \mu$$
 \end{demo}
 
-\subsection*{Propiedades de la integral}
+\subsection{Propiedades de la integral}
 Vamos a demostrar las operaciones y propiedades analíticas que tiene esta nueva definición de integral que se ha dado.
 
 \begin{theo}[Convergencia Monótona]
@@ -1127,7 +1127,6 @@ $$\int_a^b f \left(x\right) dx = \lim_{k \rightarrow \infty}\int_a^{b - \frac{1}
 \label{cha:funciones_integrables}
 Hasta ahora no hemos hecho más que definir la integral y las propiedades que tiene y todo ello mayoritariamente para funciones no negativas. En esta sección, el objetivo es ampliar las miras y dar una definición consistente con las propiedades ya vistas para funciones no negativas y así poder sacarle completamente partido al concepto de integral.
 
-\newpage
 \begin{defi}
 Sea $f: \mathbb{R}^{n} \rightarrow \mathbb{R}$ una función medible\footnote{No necesariamente no negativa}, entonces diremos que es integrables si y sólo si: 
 $$\int_{\mathbb{R}^n} \vert f \vert \dif{\mu} < +\infty$$
@@ -1913,7 +1912,7 @@ Hasta ahora hemos trabajado siempre con funciones cuyo espacio de llegada era $\
 \section{INTEGRAL DE LÍNEA}
 En esta sección, vamos a estudiar como concepto central la integral de línea. Por un lado, para funciones cuyo espacio de llegada es $\mathbb{R} $ puede surgir la pregunta de ¿qué pasa si yo quiero integrar la función en una línea (no necesariamente recta) del plano? Esto calcularía el área bajo la función y sobre dicha línea. Por otro lado, también es razonable pensar qué significa dicha integral si el espacio de llegada es $\mathbb{R}^n$.
 
-\subsection*{Definición de curva}
+\subsection{Definición de curva}
 Para poder desarrollar la pregunta hecha al principio de la sección, es necesario primero definir cómo y qué propiedades tiene esa línea o curva sobre la que vamos a integrar.
 
 \begin{defi}
@@ -2112,7 +2111,7 @@ $$= \int_{a}^{b} \lvert \lvert \gamma'\left( s \right) \rvert \rvert \dif{s} = \
 La reparametrización de una curva conserva la forma, el sentido y la longitud de la curva, pero NO la velocidad de la misma ni aunque los segmentos $[a,b]$ y $[a',b']$ midan lo mismo pues en este caso el tiempo total en completar el recorrido sería el mismo, pero la velocidad puntual en cada punto no.
 \end{obs}
 
-\subsection*{Concepto de Integral de Línea}
+\subsection{Concepto de Integral de Línea}
 Una vez restringido el significado de lo que es una curva y analizadas sus propiedades con respecto a integral, desarrollamos el concepto de integral de línea.
 
 \begin{defi}[Integral sobre la curva]
@@ -2237,6 +2236,10 @@ $$\int_{\partial D^+} x \dif{y} - y \dif{x} = 2\iint_{D} \dif{x} \dif{y} = 2 A\l
 \end{demo}
 
 \section{INTEGRAL DE SUPERFICIE}
+De nuevo, hemos calculado integrales de funciones cuyo espacio de llegada era $\mathbb{R}$ en conjuntos definidos en $\mathbb{R}^2$. Sin embargo, ¿qué ocurre si el conjunto de integración no es plano sobre $\mathbb{R}^2$ si no que puede ser considerado una superficie en $\mathbb{R}^3$? Además, ¿qué estamos haciendo y cómo si el espacio de llegada es $\mathbb{R}^n$?
+
+\subsection{Concepto de Integral de Superficie}
+Para poder responder a las preguntas previas es necesario, de nuevo, acotar el concepto de superficie y ver qué propiedades tiene dicha definición con respecto al concepto de integral.
 
 \begin{defi}[Superficie]
 Sea $D \subset  \mathbb{R}^2$ abierto y $\Phi: D \rightarrow \mathbb{R}^3$ una función $C^1$ tal que $\forall \left( u, v \right) \in D : rg\left(D\Phi\left( u, v \right) \right)= 2$, definimos una \textbf{superficie paramétrica} como: 
@@ -2352,6 +2355,9 @@ Como superficie no orientable tenemos la banda de Möbius.
     \includegraphics[scale=0.3]{images/mobius} 
 \end{center}
 \end{ej}
+
+\subsection{Rotacional y Divergencia de un campo}
+Se van a desarrollar dos conceptos fundamentales en el análisis vectorial que son la divergencia y el rotacional de un campo. Estos elementos matemáticos son esenciales en áreas como la mecánica de fluidos, la aerodinámica o física y permiten analizar las características que tiene un campo concreto sobre el espacio en el que está definido.
 
 \begin{defi}[Borde de una superficie]
 Sea $D$ el recinto interior a una curva $\gamma$ y $\Phi: D \rightarrow \mathbb{R}^3$ la parametrización de una superficie que se puede extender de forma inyectiva y $C^1$ a $\bar{D}$, es decir, a $\partial D$, definimos el \textbf{borde de $S$} como:
