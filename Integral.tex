@@ -25,12 +25,13 @@
 \usepackage{graphicx}
 \usepackage{subcaption}
 \usepackage{float}
+\usepackage{ulem}
 
-\usepackage{titlesec} %Formato de capitulos y secciones
-    \titleformat{\chapter}[display]{\normalfont\huge\bfseries\color{capitulos}}{\thechapter}{20pt}{\Huge}[\titlerule{}]
-    \titleformat{\section}{\normalfont\Large\bfseries\color{secciones}}{\thesection}{1em}{}
-    \titleformat{\subsection}{\normalfont\large\bfseries\color{subsecciones}}{\thesubsection}{1em}{}
-    \titleformat{\subsubsection}{\normalfont\normalsize\bfseries\color{subsubsecciones}}{\thesubsubsection}{1em}{}
+\usepackage[explicit]{titlesec} %Formato de capitulos y secciones
+    \titleformat{\chapter}[display]{\normalfont\huge\bfseries\color{capitulos}}{}{0pt}{\Huge #1}[\titlerule]
+    \titleformat{\section}{\normalfont\Large\bfseries\color{secciones}}{}{0pt}{#1}
+    \titleformat{\subsection}{\normalfont\large\bfseries\color{subsecciones}}{}{0pt}{\uline{#1}}
+    \titleformat{\subsubsection}{\normalfont\normalsize\bfseries\color{subsubsecciones}}{}{0pt}{#1}
 
 \usepackage[dvipsnames,usenames]{xcolor} %activar e incluir colores
     \definecolor{capitulos}{RGB}{60,0,0}%gama de colores de los capitulos
@@ -94,10 +95,12 @@
 
 \begin{document}
 \maketitle
-\chapter*{CONCEPTO DE MEDIDA}%
+\setcounter{tocdepth}{3}% para que salgan las subsubsecciones en el indice
+\tableofcontents
+\chapter{CONCEPTO DE MEDIDA}%
 En general, la teoría de la integración está sustentada mayoritariamente por el concepto de medida que se tiene en el espacio sobre el que se integra. Pueden darse dos situaciones, que se defina una medida y a partir de ahí la integral correspondiente o puede ocurrir que se defina la integral y a partir de la misma se mida. Nosotros optaremos por definir todo lo relativo a la medida de forma previa, para que la teoría de integración que se desarrollará después esté sustentada en las propiedades métricas con las que dotemos a $\mathbb{R}^n$ y que caracterizarán la teoría posterior.
 \label{sec:medidas}
-\section*{MEDIDA}%
+\section{MEDIDA}%
 El concepto fundamental de esta sección es comprender qué entendemos por medida y que propiedades tiene, así como demostrar que la medida de Lebesque es un buen intrumento de medida para trabajar en $\mathbb{R}^n$.
 
 \label{sub:definicion_de_medida_exterior}
@@ -409,7 +412,7 @@ Y la demostración es análoga a la implicación $2 \Rightarrow 3$.
 De nuevo y por similitud con $3\Rightarrow 1$, $A = C \cup N$ es medible por ser unión de medibles.
 \end{itemize}
 \end{demo}
-\section*{FUNCIONES MEDIBLES}%
+\section{FUNCIONES MEDIBLES}%
 Comprobadas las propiedades que tiene la medida sobre conjuntos medibles, nos interesa saber qué funciones nos permiten conservar propiedades de medida interesantes. Es aquí donde juegan un papel fundamental las funciones medibles, que permiten asegurar que las preimágenes de abiertos son medibles y, por ello, al trabajar sobre abiertos no debemos preocuparnos sobre las propiedades de medibilidad ya que se conservan también en el conjunto de partida.
  
 \begin{defi}
@@ -749,10 +752,11 @@ Si una función $f$ es integrable Riemann, entonces dicha función también es m
 Por el teorema de antes, $\mu(D) = 0$ lo que implica que $f$ es continua en c.t.p. y, por tanto, es medible.
 \end{demo}
 
-\chapter*{INTEGRAL DE LEBESQUE}
+\chapter{INTEGRAL DE LEBESQUE}
 Una vez definida la medida en $\mathbb{R}^n$, tenemos todos los ingredientes necesarios para desarrollar una teoría de la integrabilidad sólida. Durante este capítulo se va a desarrollar la Integral de Lebesque, relacionar dicha integral con la integral de Riemann y estudiar las propiedades de las que goza dicho objeto matemático.
 
-\section*{DEFINICIÓN DE INTEGRAL}
+\section{DEFINICIÓN DE INTEGRAL}
+La definición de la integral de Lebesque posibilita extender el la Integral de Riemann y establecer un cimiento sólido para todas aquellas áreas matemáticas que se nutren de la integración y que poseen situaciones peculiares que hacen las integrales de Riemann inservibles.
 
 \begin{obs}
 Recordemos que llamamos función simple a una función con la estructura:
@@ -774,11 +778,11 @@ $$\varphi = \sum_{k=1}^{m} \alpha_k \cdot \chi{E_k} \mbox{ donde } \left(\alpha_
 Definimos la \textbf{integral} de dicha función como:
 $$I\left(\varphi\right) = \sum_{k=1}^{m} \alpha_k \mu\left(E_k\right)$$
 \end{defi}
-$$Dibujo \chi no negativa como dos \chi que pueden ser negativa$$ 
 
 \begin{obs}
 Como la medida de dichos conjuntos puede ser infinito y los valores $\alpha_k = 0$, es necesario que definamos $0 \cdot \left(+ \infty\right) = 0$ para poder dar una definición consistente de $I\left(\varphi\right) \in \left[0, +\infty\right]$.
 \end{obs}
+
 
 \begin{prop}
 Sea $\varphi$ función simple, es posible escribir dicha función de distintas formas:
@@ -862,6 +866,9 @@ $$\lim_{k\rightarrow\infty} \int_{A_k} \varphi \ d \mu = \lim_{k\rightarrow\inft
 $$= \lim_{k\rightarrow\infty} \sum_{j=1}^{m} \left( \alpha_j \int_{\mathbb{R}^n} \chi_{E_j \cap A_k} d \mu \right) = \lim_{k\rightarrow\infty} \sum_{j=1}^{m} \alpha_j \cdot \mu\left(E_j \cap A_k\right) = \sum_{j=1}^{m} \alpha_j \cdot \lim_{k\rightarrow\infty} \mu\left(E_j \cap A_k\right) = $$
 $$= \sum_{j=1}^{m} \alpha_j \cdot \mu\left(E_j \cap A\right) = \sum_{j=1}^{m} \left(\alpha_j \int_{\mathbb{R}^n} \chi_{E_j \cap A} \ d \mu\right) = \int_{\mathbb{R}^n}\sum_{j=1}^{m} \alpha_j \chi_{E_j} \chi_{A} \ d \mu= \int_{\mathbb{R}^n} \varphi \cdot \chi_A \ d \mu = \int_A \varphi \ d \mu$$
 \end{demo}
+
+\subsection*{Propiedades de la integral}
+Vamos a demostrar las operaciones y propiedades analíticas que tiene esta nueva definición de integral que se ha dado.
 
 \begin{theo}[Convergencia Monótona]
 Supongamos una sucesión creciente de funciones $\{f_k\}_{k=1}^\infty \uparrow f$ convergente\footnote{Esto quiere decir que $f_k \leq f_{k+1}$ y $\lim_{k\rightarrow\infty} f_k(x) = f(x)$ de forma puntual} a $f$ donde cada función $f_k: \mathbb{R}^n \rightarrow \left[0, +\infty\right]$ es medible, entonces:
@@ -980,10 +987,11 @@ $$\int_a^b f \left(x\right) dx = \lim_{k \rightarrow \infty}\int_a^{b - \frac{1}
 \end{itemize}
 \end{demo}
 
-\section*{FUNCIONES INTEGRABLES}%
+\section{FUNCIONES INTEGRABLES}%
 \label{cha:funciones_integrables}
 Hasta ahora no hemos hecho más que definir la integral y las propiedades que tiene y todo ello mayoritariamente para funciones no negativas. En esta sección, el objetivo es ampliar las miras y dar una definición consistente con las propiedades ya vistas para funciones no negativas y así poder sacarle completamente partido al concepto de integral.
 
+\newpage
 \begin{defi}
 Sea $f: \mathbb{R}^{n} \rightarrow \mathbb{R}$ una función medible\footnote{No necesariamente no negativa}, entonces diremos que es integrables si y sólo si: 
 $$\int_{\mathbb{R}^n} \vert f \vert \dif{\mu} < +\infty$$
@@ -1055,7 +1063,6 @@ Son equivalentes:
 \end{prop}
 \begin{demo}
 \begin{itemize}
-\item FALTAN LOS OTRO DOS APARTADOS.
 \item $3)\rightarrow 1)$
 $$\int |f| = \int f^+ + \int f^- < \infty \Rightarrow f \mbox{ integrable}$$
 \end{itemize}
@@ -1113,7 +1120,7 @@ $$\limsup_{k \rightarrow \infty} \int_{\mathbb{R}^n} f_k \dif{\mu} \le \int_{\ma
 Como por la convergencia, se tiene que el límite superior e inferior coinciden con el límite global, se tiene la igualdad.
 \end{demo}
 
-\subsection*{\underline{Cálculo de integrales en $\mathbb{R}^n$}}
+\subsection{Cálculo de integrales en $\mathbb{R}^n$}
 A pesar de que hemos definido todos los conceptos relativos al cálculo de integrales en $\mathbb{R}^n$, hasta ahora no hemos visto ningún método efectivo en términos prácticos para calcular integrales superiores a una dimensión. Aquí se desarrolla el Teorema fundamental que nos permite simplificar el cálculo de integrales en $\mathbb{R}^n$ al cálculo de varias integrales en $\mathbb{R}$.
 
 \begin{defi}[Secciones de funciones]
@@ -1439,7 +1446,7 @@ Dado $t \in \left(-1, \infty\right)$ sean $-1 < a < t_0 < b <\infty$. Vamos a de
 \end{enumerate}
 \end{ej}
  
-\section*{TEOREMA DEL CAMBIO DE VARIABLE}
+\section{TEOREMA DEL CAMBIO DE VARIABLE}
 Del mismo modo que para poder integrar en $\mathbb{R}$ podíamos hacer cambios de variable que simplificasen las expresiones que se debía integrar, es posible definir un teorema equivalente para dimensiones superiores que nos permiten cambiar el sistema de coordenadas sobre el que describir los objetos matemáticos y seguir integrando cómodamente.
 
 \begin{theo}
@@ -1501,12 +1508,12 @@ $$= \int_{v = 0}^{v = 2} \int_{u = -v}^{u = v} e^{u/v} \frac{1}{2} \dif{u} \dif{
 $$= \frac{1}{2} \int_0^2 v \left(e^{1} - e^{-1}\right) \dif{v} = \frac{e - e^{-1}}{2} \left[\frac{v^2}{2}\right]_{v = 0}^{v = 2} = e - \frac{1}{2} $$
 \end{ej}
 
-\subsection*{\underline{Cambios de sistemas de coordenadas}}
+\subsection{Cambios de sistemas de coordenadas}
 En muchas ocasiones, el trabajo con geometrías concretas suscita dificultades a la hora de ser descrita por los ejes cartesianos para integrar, derivar, hacer un estudio topológico... Para solventar este problema de representación existen ciertos cambios muy significativos en el sistema de coordenadas que facilitan mucho las cosas.
 
 En concreto y con respecto a la integración, principalmente hay tres cambios muy notorios para poder integrar adecuadamente ciertos volúmenes o recintos. Estos cambios frecuentes y útiles se desarrollarán adelante exponiendo sus ventajas e inconvenientes.
 
-\subsubsection*{Coordenadas polares}
+\subsubsection{Coordenadas polares}
 Este cambio de sistema de referencia es bastante útil para trabajar con recintos en $\mathbb{R}^2$ definidos por curvas, cónicas o circunferencias. Parten de la idea de que cada punto del espacio se puede representar a través de la longitud del segmento $r$ que lo une con el origen y del ángulo que forma dicho segmento con el eje de coordenadas.
 
 \begin{defi}[Coordenadas Polares]
@@ -1532,7 +1539,7 @@ Entonces:
 $$\int_E x^2 + y^2 \dif{x} \dif{y} = \int_{E\setminus S} \left(x^2 + y^2\right) \dif{x} \dif{y} = \int_{\theta = 0}^{\theta = 2\pi} \int_{r = 0}^{r = 1} r^2 \cdot r \dif{r} \dif{\theta} = 2\pi \left[\frac{r^4}{4}\right]_0^1 = \frac{\pi}{2} $$
 \end{ej}
 
-\subsubsection*{Coordenadas cilíndricas}
+\subsubsection{Coordenadas cilíndricas}
 Este tipo de coordenadas son bastante útiles para extrapolar la situación de las coordenadas polares a $\mathbb{R}^3$, de forma que permite sobre cada plano paralelo a $\mathbb{R}^2$ utilizar la misma representación que hacíamos en polares anteriormente.
 
 \begin{defi}[Coordenadas Cilíndricas]
@@ -1560,7 +1567,7 @@ $$\int_V x^2 + y^2 \dif{x} \dif{y} \dif{z} = \int_{z = -2}^{z = 2} \int_{\theta 
 $$ = 2\pi \int_{z = -2}^{z = 2} \left[\frac{r^4}{4}\right]_{r = 0}^{r = \lvert z \rvert} \dif{z} = \frac{\pi}{2} \int_{z = -2}^{z = 2} z^4 \dif{z} = \frac{\pi}{10} \left[z^{5}\right]_{z = -2}^{z = 2} = \frac{32\pi}{5} $$
 \end{ej}
 
-\subsubsection*{Coordenadas Esféricas}
+\subsubsection{Coordenadas Esféricas}
 Este tipo de coordenadas también son coordenadas aplicables a $\mathbb{R}^3$ (puesto que en $\mathbb{R}^2$ son las polares que se han visto) para situaciones en las que los dominios estén definidos por cónicas o funciones de aspecto radial o centrales.
 
 \begin{defi}[Coordenadas Esféricas]
@@ -1598,7 +1605,15 @@ $$= 2 \int_{\theta = 0}^{\theta = \pi} \int_{r = 0}^{r = a\sen \theta } r \sqrt{
 $$= \frac{2}{3} \int_{\theta = 0}^{\theta = \pi} a^3 - a^3 \lvert \cos \theta  \rvert^3 \dif{\theta } = \frac{4}{3} \int_{\theta = 0}^{\theta = \frac{\pi}{2}} a^3 - a^3 \cos^3 \theta \dif{\theta } = \ldots = \boxed{\frac{4}{3}a^3 \left(\frac{\pi}{2} - \frac{2}{3}\right)} $$
 \end{ej}
 
-\chapter*{INTEGRAL DE LÍNEA}
+\chapter{CÁLCULO VECTORIAL}
+Hasta ahora hemos trabajado siempre con funciones cuyo espacio de llegada era $\mathbb{R}$ y se ha hecho todo un trabajo de cimentación de la teoría de la integración para la nueva definición de Lebesque de la integral. A partir de aquí, se van a dar unas nociones de Cálculo Vectorial, esto es, propiedades de dicha definición de integral para funciones cuyo espacio de llegada es $\mathbb{R}^n$.
+
+\section{INTEGRAL DE LÍNEA}
+En esta sección, vamos a estudiar como concepto central la integral de línea. Por un lado, para funciones cuyo espacio de llegada es $\mathbb{R} $ puede surgir la pregunta de ¿qué pasa si yo quiero integrar la función en una línea (no necesariamente recta) del plano? Esto calcularía el área bajo la función y sobre dicha línea. Por otro lado, también es razonable pensar qué significa dicha integral si el espacio de llegada es $\mathbb{R}^n$.
+
+\subsection*{Definición de curva}
+Para poder desarrollar la pregunta hecha al principio de la sección, es necesario primero definir cómo y qué propiedades tiene esa línea o curva sobre la que vamos a integrar.
+
 \begin{defi}
 Definimos como \textbf{curva en $\mathbb{R}^n$} a una función $\gamma: \left[ a, b \right] \rightarrow \mathbb{R}^n$ continua y $C^{1)}$ a trozos. En definitiva estamos expresando que:
 $$DIUBUJO$$
@@ -1611,7 +1626,6 @@ $$DIUBUJO$$
     Esta curva se puede parametrizar de forma que:
     $$\gamma: \left[ 0, 1 \right] \rightarrow\mathbb{R}^n$$
     $$\gamma \left( t \right) = ty + \left( 1 - t \right) x$$
-
     \item Sea $\gamma: \left[ 0, 2\pi \right] \rightarrow \mathbb{R}^2$, tal que: $\gamma\left( t \right) = \left( \cos t, \sen t \right) $
     $$DIBUJO$$
     \item Sea $\gamma: \left[ 0, \pi \right] \rightarrow \mathbb{R}^2$, tal que $\gamma\left( t \right) = \left( \cos 2t, \sen 2t \right)$
@@ -1700,6 +1714,9 @@ $$= \int_{a}^{b} \lvert \lvert \gamma'\left( s \right) \rvert \rvert \dif{s} = \
 \begin{obs}
 La reparametrización de una curva conserva la forma, el sentido y la longitud de la curva, pero NO la velocidad de la misma ni aunque los segmentos $[a,b]$ y $[a',b']$ midan lo mismo pues en este caso el tiempo total en completar el recorrido sería el mismo, pero la velocidad puntual en cada punto no.
 \end{obs}
+
+\subsection*{Concepto de Integral de Línea}
+Una vez restringido el significado de lo que es una curva y analizadas sus propiedades con respecto a integral, desarrollamos el concepto de integral de línea.
 
 \begin{defi}[Integral sobre la curva]
 Sea $\gamma: \left[ a, b \right] \rightarrow \mathbb{R}^n$ una curva donde $\img \gamma \subset \Omega$ abierto y $f: \Omega \rightarrow \mathbb{R}$ una función continua, entonces la integral sobre la curva es:
@@ -1822,86 +1839,106 @@ Si escogemos $Q\left( x, y \right) = x$ y $P\left( x, y \right) = -y$, por el Te
 $$\int_{\partial D^+} x \dif{y} - y \dif{x} = 2\iint_{D} \dif{x} \dif{y} = 2 A\left(D\right)$$
 \end{demo}
 
-\subsection*{Área de una superficie, $\mathbb{R}^3$}%
-\label{sub:area_de_una_superficie}
-\begin{defi}
-Sea $D \subset  \mathbb{R}^2$ abierto y $\Phi: D \rightarrow \mathbb{R}^3$ $C^1$ tal que $\img D \Phi\left( u, v \right) = 2,\ \forall \left( u, v \right) \in D$: 
-$$\Phi\left( D \right) = S,\ \text{ será una \textbf{superficie paramétrica}.}$$
-\end{defi}
-(\textit{Dibujo})
+\section{INTEGRAL DE SUPERFICIE}
 
-Tenemos que: 
+\begin{defi}[Superficie]
+Sea $D \subset  \mathbb{R}^2$ abierto y $\Phi: D \rightarrow \mathbb{R}^3$ una función $C^1$ tal que $\forall \left( u, v \right) \in D : rg\left(D\Phi\left( u, v \right) \right)= 2$, definimos una \textbf{superficie paramétrica} como: 
+$$\Phi\left( D \right) = S$$
+\end{defi}
+
+\begin{obs}
+$$Dibujo$$
+Intuitivamente, estamos diciendo que escogemos un trozo del plano en $\mathbb{R}^2$, lo metemos en $\mathbb{R}^3$ y lo moldeamos como queramos para formar nuestra superficie.
+
+Por la definición que se ha dado, podemos expresar la diferencial como: 
 $$\begin{pmatrix} \frac{\partial \Phi_1}{\partial u} & \frac{\partial \Phi_1}{\partial v} \\
 \frac{\partial \Phi_2}{\partial u} & \frac{\partial \Phi_2}{\partial v} \\ 
 \frac{\partial \Phi_3}{\partial u} & \frac{\partial \Phi_3}{\partial v} \end{pmatrix} = \begin{pmatrix} \frac{\partial \Phi}{\partial u} & \frac{\partial \Phi}{\partial v} \end{pmatrix} $$
-
-El espacio generado por $\left[ \{\Phi_u, \Phi_v\} \right] = \img D \varphi \left( u, v \right)$. Sin embargo, este pasará por el origen. El que es realmente tangente será: 
+donde las parciales generales sobre $u$ y $v$ son las tangentes sobre la recta en su respectiva coordenada. Precisamente por esto, el espacio generado por $\left\langle \Phi_u, \Phi_v\right\rangle$ es un plano paralelo al tangente a la superficie en ese punto, puesto que los tangentes anteriores son independientes y conforman un sistema generador. El que es realmente será tangente a la superficie es: 
 $$\boxed{\Phi \left( u, v \right) + \img D \Phi \left( u, v \right)}$$
+Y, por tanto, es razonable pensar que el vector $\frac{\partial\Phi}{\partial u} \times \frac{\partial\Phi}{\partial v}$ será perpendicular a la superficie, por ser perpendicular al plano tangente a la misma.
+\end{obs}
 
-\begin{defi}
-Definimos \textbf{área} de una $S$: 
+\underline{Notación}
+
+A partir de ahora y durante el resto del documento, se utilizarán las siguientes expresiones:
+\begin{align*}
+\Phi_u = \frac{\partial \Phi}{\partial u} & & \Phi_v = \frac{\partial \Phi}{\partial v}
+\end{align*}
+para simplificar la complejidad de las expresiones.
+
+\begin{defi}[Área de una superficie]
+Dada una superficie $S$ en términos de la caracterización anterior, definimos el \textbf{área} como: 
 $$A\left( S \right) = \iint_{D} \lVert \Phi_{u} \times \Phi_v \rVert \dif{u} \dif{v}$$
+Cabe destacar que dicha definición coincide\footnote{La demostración se omite por ser muy extensa} con el concepto geométrico de área de una superficie.
 \end{defi}
 
 \begin{ej}
-Sea $f: \left[ a, b \right] \rightarrow \mathbb{R}$ pertenece a $C^1$ y $f\left( x \right) \ge 0,\ \forall x \in \left[ a, b \right]$
-
-Parametrizamos la curva. Sea:
+Sea $f: \left[ a, b \right] \rightarrow \mathbb{R}$ de $C^1$ y $\forall x \in \left[ a, b \right]: f\left( x \right) \ge 0$, podemos calcular el área generada por su revolución de la siguiente forma:
+$$DIBUJO$$
+En primer lugar, es necesario parametrizar dicha superficie:
 $$\Phi: \left( a, b \right) \times \left( 0, 2\pi \right) \rightarrow \mathbb{R}^3$$
 $$\Phi \left( u, v \right) = \left( u, f\left( u \right)\cos v, f\left( u \right)\sin v \right) $$
-
-Ahora, 
-$$\Phi_u = \left( 1, f'\left( u \right) \cos v, f'\left( u \right) \sin v \right)$$
-$$\Phi_v = \left( 0, -f\left( u \right) \sin v, f\left( u \right) \cos v \right)$$
-$$\Phi_u \times \Phi_v = \left( f\left( u \right) f'\left( v \right) \left[ \cos^2 v + \sin^2 v \right], -f\left( u \right) \cos v, -f\left( u \right) \sin v \right)$$
+Con esta parametrización, solo renunciamos al borde de puntos de $a$ a $b$ y los puntos del plano horizontal, pero como tienen medida nula no influyen en el resultado, ahora: 
+$$\begin{cases}
+\Phi_u = \left( 1, f'\left( u \right) \cos v, f'\left( u \right) \sin v \right) \\ \Phi_v = \left( 0, -f\left( u \right) \sin v, f\left( u \right) \cos v \right)
+\end{cases}\Rightarrow \Phi_u \times \Phi_v = \left( f\left( u \right) f'\left( v \right) \left[ \cos^2 v + \sin^2 v \right], -f\left( u \right) \cos v, -f\left( u \right) \sin v \right)$$
 $$\lVert \Phi_u \times \Phi_v \rVert = \sqrt{f\left( u \right)^2 \left[ f'\left( u \right) \right]^2 + f\left( u \right)^2} = f\left( u \right) \sqrt{1 + f'\left( u \right)^2} \Rightarrow$$
 $$A\left( S \right) = \int_{a}^{b} \left( \int_{0}^{2\pi} f\left( u \right) \sqrt{1 + f'\left( u \right)^2} \dif{v} \right) \dif{u} = 2\pi \int_{a}^{b} f\left( u \right) \sqrt{1 + f'\left( u \right)^2} \dif{u} $$
+Vemos finalmente que la expresión final es, en cierta manera, como integrar las áreas de cada anillo desde $a$ hasta $b$.
 \end{ej}
 
-\begin{defi}
-Sea $S \subset \underbrace{G}_{\text{abierto}} \subset \mathbb{R}^3$ y $f: G \rightarrow \mathbb{R}$ continua. Definimos la integral de $f$ sobre $S$ a: 
-$$\iint_{D} f \dif{S} = \iint_{D} f\left( \Phi\left( u, v \right) \right) \lVert \Phi_u \times \Phi_v \rVert \dif{u} \dif{v}$$
+\begin{defi}[Integral sobre una superficie]
+Sea $S \subset G \subset \mathbb{R}^3$ donde $G$ es un abierto y $f: G \rightarrow \mathbb{R}$ continua, definimos la \textbf{integral de $f$ sobre $S$} como: 
+$$\iint_{S} f \dif{S} = \iint_{D} f\left( \Phi\left( u, v \right) \right) \lVert \Phi_u \times \Phi_v \rVert \dif{u} \dif{v}$$
 donde $\Phi: D \rightarrow \mathbb{R}^3$ es la parametrización de $S$.
 \end{defi}
+
 \begin{obs}
-Si $f \equiv 1 \rightarrow$ área de $S$.
+Si tomamos como $f = 1$, entonces estamos calculando el área de $S$.
 \end{obs}
 
 \begin{prop}
-Sea $\varphi: G \rightarrow D$ difeomorfismo $C^1$, tenemos que: 
+Sea $\varphi: G \rightarrow D$ difeomorfismo de $C^1$, entonces: 
 $$\Phi \circ \varphi: G \rightarrow S \subset \mathbb{R}^3$$
-es una parametrización.
+es una reparametrización.
 \end{prop}
-\begin{demo}?
+\begin{demo}
 Tenemos que: 
 $$D\left( \Phi \circ \varphi \right) \left( u, v \right) = D\Phi\left( \varphi\left( u, v \right) \right) \circ D\varphi\left( u, v \right)$$
 \end{demo}
 
 \begin{prop}
-Tenemos que: 
+El área de una superficie se mantiene invariante ante reparametrizaciones:
 $$\iint_{D} f\left( \left( \Phi \circ \varphi \right) \left( x, y \right) \right) \lVert \left( \Phi \circ \varphi \right)_x \left( \Phi \circ \varphi \right)_y \rVert \dif{x} \dif{y}$$
+Este área es la misma puesto que:
 $$\lVert \left( \Phi \circ \varphi \right)_x \times \left( \Phi \circ \varphi \right)_y \rVert = \lvert \det D \varphi\left( x, y \right) \rvert \lVert \Phi_u \left( \varphi\left( x, y \right) \right) \times \Phi_v \left( \varphi\left( x, y \right) \right) \rVert$$
 \end{prop}
 
-\begin{defi}
-Sea $G \subset \mathbb{R}^3$ abierto $S \subset G$ paramatrizada por $\Phi: D \rightarrow S$. Sea $F: G \rightarrow \mathbb{R}^3$ campo continuo. 
-Definimos la \textbf{integral de superficie} de $F$ sobre $S$ a: 
+\begin{defi}[Integral de Superficie]
+Sea $G \subset \mathbb{R}^3$ un abierto, $S \subset G$ una superficie en él parametrizada por $\Phi: D \rightarrow S$ y $F: G \rightarrow \mathbb{R}^3$ un campo continuo, definimos la \textbf{integral de superficie} de $F$ sobre $S$ a: 
 $$\iint_{S} F \dif{\overline{S}} = \iint_{D} F\left( \Phi\left( u, v \right) \right) \cdot \left( \Phi_u \times \Phi_v \right) \dif{u} \dif{v}$$
 \end{defi}
 
 \begin{obs}
+Del mismo modo que se hizo con las integrales de línea, aquí la idea intuitiva es que $F\left( \Phi\left( u, v \right) \right)$ es el vector que asigna el campo al punto $\Phi\left( u, v \right)$ de la superficie, pues dicho vector se proyecta sobre el vector normal a la superficie en ese punto que es $\Phi_u \times \Phi_v$ y sumamos todos esos vectores. Es decir, si recordamos el producto mixto de vectores, esto es, $a\cdot b\times c$ esta expresión nos daba el volumen del paralelepípedo formado por los 3 vectores, luego de alguna forma estamos sumando los volúmenes generados por un trozo diferencial de superficie.
+$$DIBUJO$$
+Por tanto, esta integral nos permite calcular el \textbf{flujo} del campo que atraviesa la superficie. Además, es necesario tener en cuenta las siguientes características:
 \begin{itemize}
-    \item El signo de la integral depende de la parametrización.
-    \item Si $F$ es tangente a $S \Rightarrow \iint_{S} F \dif{\overline{S}} = 0$. 
-    \item Esta integral nos permite calcular el \textbf{flujo} del campo que atraviesa la superficie.
-    
-    (\textit{Dibujo})
+    \item El signo de la integral depende de la parametrización, luego habrá que determinar algún sistema para diferenciar la integral.
+    \item Si $F$ es tangente a $S \Rightarrow \iint_{S} F \dif{\overline{S}} = 0$.
+
+Para hacer más patente el significado de la integral de superficie vemos que:
+$$\iint_{S} F \dif{\overline{S}} = \iint_{D} F\left( \Phi\left( u, v \right) \right) \cdot \left( \Phi_u \times \Phi_v \right) = \iint_{D} F\left( \Phi\left( u, v \right) \right) \cdot \underbrace{\frac{\Phi_u \times \Phi_v}{\lVert \Phi_u \times \Phi_v \rVert}}_{\vec{n}} \cdot \lVert \Phi_u \times \Phi_v \rVert = \iint_{S} F_{\vec{n}} \dif{S}$$
+Es decir, estamos haciendo una integral sobre una superficie de la función que proyecta el campo sobre el vector normal.
 \end{itemize}
 \end{obs}
 
-\begin{defi}
-Denotamos por vector normal unitario a $\overline{n}$.
-\end{defi}
+\begin{prop}
+La integral de superficie es invariante por reparametrizaciones siempre que conserven la orientación. De hecho, en caso de que no la conserven únicamente cambia el signo de la integral.
+
+(\textit{Dibujo})
+\end{prop}
 
 \begin{ej}
 Sea: 
@@ -1919,64 +1956,50 @@ Como superficie no orientable tenemos la banda de Möbius.
 \end{center}
 \end{ej}
 
-\begin{prop}
-La integral de superficie es invariante por reparametrizaciones que conserven la orientación.
-\end{prop}
-(\textit{Dibujo})
-
-\begin{prop}
-Con $S$ superficie orientable, tenemos que: 
-$$\iint_{D} F \dif{\overline{S}} = \iint_{D} \left( F\left( \Phi \left( u, v \right) \right) \lVert \Phi_u \times \Phi_v \rVert \right) \cdot \frac{\left( \Phi_u \times \Phi_v \right)}{\lVert \Phi_u \times \Phi_v \rVert} \dif{u} \dif{v} =$$
-$$= \iint_{D} \left( \underbrace{F\left( \Phi\left( u, v \right) \right)}_{= F_{\vec{n}}} \cdot \vec{n} \left( u, v \right) \right) \lVert \Phi_u \times \Phi_v \rVert \dif{u} \dif{v} = \iint_{S} F_{\vec{n}} \dif{\overline{S}}$$
-\end{prop}
-
-(\textit{Dibujo})
-
-\begin{defi}
-Sea $D$ superficie interior a una curva $\gamma$, $\Phi: D \rightarrow \mathbb{R}^3$ la parametrización de dicha superficie que se puede extender ($C^1$) a la frontera de $D$, $\partial D$. 
-
-Definimos el \textbf{borde} de $S,\ \partial S$, como $\Phi\left( \partial D \right)$.
+\begin{defi}[Borde de una superficie]
+Sea $D$ el recinto interior a una curva $\gamma$ y $\Phi: D \rightarrow \mathbb{R}^3$ la parametrización de una superficie que se puede extender de forma inyectiva y $C^1$ a $\bar{D}$, es decir, a $\partial D$, definimos el \textbf{borde de $S$} como:
+$$\partial S = \Phi\left( \partial D \right)$$
+$$DIBUJO$$
+Esta definición permite trabajar siempre con conjuntos $D$ muy regulares donde $\partial D$ es una curva cerrada cuyo interior es $D$.
 \end{defi}
 \begin{obs}
-\begin{itemize}
-    \item Tenemos que: 
-    $$\left[ a, b \right] \rightarrow^{\gamma} \mathbb{R}^2 \rightarrow^{\Phi} \mathbb{R}^3$$
-    $\Phi \circ \gamma$ parametriza $\partial S$.
-
-    \item Las orientaciones que tomamos son: 
+Por la definición que se ha dado, tenemos que: 
+$$\left[ a, b \right] \xrightarrow{\gamma} \mathbb{R}^2 \xrightarrow{\Phi} \mathbb{R}^3$$
+Luego $\Phi \circ \gamma$ parametriza a la curva $\partial S$, por tanto, es razonable pensar qué orientación inducir a dicha curva para que todo se mantenga uniforme (ya hemos visto que la integral depende de la oritentación). Tomemos las siguientes orientaciones: 
     \begin{itemize}
-        \item Orientación de $S$ a través de $\Phi$. 
-        \item Orientación de $\gamma$ a través de $D$ queda a la izquierda.
+        \item Sabemos la orientación de $S$ a través de $\Phi$. 
+        \item Sabemos la orientación de $\gamma$ a través de $D$
     \end{itemize}
-    Por tanto, orientación de la curva por $\Phi \circ \gamma$. 
-
-    Orientación de $S \leftrightarrow$ orientación de $\partial S$.
-
-    La superficie $S$ y su borde $\partial S$ están orientadas de forma compatible.
-\end{itemize}
+Éstas orientaciones determinan una orientación concreta de la curva definida por $\Phi \circ \gamma$. Cuando dada una superficie se toma como orientación de su borde la que viene dada por éste proceso, decimos que la superficie y su borde están orientados de forma compatible.
 \end{obs}
 
-\begin{defi}
+\begin{defi}[Rotacional]
 Sea el campo $F: \mathbb{R}^3 \rightarrow \mathbb{R}^3$ llamamos \textbf{rotacional} de $F$ a: 
 $$\rot F = \nabla \times F = \begin{vmatrix} i & j & k\\
 \frac{\partial}{\partial x} & \frac{\partial }{\partial y} & \frac{\partial }{\partial z} \\
 F_1 & F_2 & F_3\end{vmatrix} = \left( \frac{\partial F_3}{\partial y} - \frac{\partial F_2}{\partial z}, \frac{\partial F_1}{\partial z} - \frac{\partial F_3}{\partial x}, \frac{\partial F_2}{\partial x} - \frac{\partial F_1}{\partial y} \right)$$
 \end{defi}
 
+\begin{obs}
+En cierta manera, el rotacional mide la cantidad de giro que provoca el campo en un punto concreto del mismo. Si éste es distinto de 0 hay giro (positivo o negativo determinan el sentido) y si éste es cercano a 0 quiere decir que no hay giro.
+\end{obs}
+
 \begin{theo}[de Stokes]
-Dada una superficie orientada $S$, con borde orientado de forma compatible. Dado $F$ un campo de clase $C^1$. Entonces, 
-$$\iint_{S} \rot F \cdot \dif{\vec{S}} = \int_{\partial S} F \dif{\overline{s}}$$
+Dada una superficie orientada $S$ con borde orientado de forma compatible y un campo $F$ de clase $C^1$, entonces:
+$$\iint_{S} \rot F \dif{\overline{S}} = \int_{\partial S} F \dif{\overline{s}}$$
 \end{theo}
 \begin{demo}
-Caso particular, la superficie es una gráfica de una función.
+La demostración se va a hacer para el caso en que la superficie es la gráfica de una función, puesto que es posible demostrar que cualquier superficie se puede poner en términos de otras que sean de esta forma.
 
-La parametrización será: $\Phi\left( x, y \right) = \left( x, y, f\left( x, y \right) \right),\ \Phi: D \rightarrow \mathbb{R}^3$.
+Por un lado, la parametrización $\Phi: D \rightarrow \mathbb{R}^3$ de la superficie nos indica que
+$$\Phi\left( x, y \right) = \left( x, y, f\left( x, y \right) \right)\Rightarrow \Phi_x \times \Phi_y = \left( \frac{-\partial f}{\partial x}, \frac{-\partial f}{\partial y}, 1\right)$$
+la orientación que se toma es hacia las $z$ positivas por ser un 1 la tercera coordenada.
 
-Sea $\sigma\left( t \right) = \left( x\left( t \right), y\left( t \right) \right),\ \sigma: I \rightarrow \mathbb{R}^2$ la parametrización de $\partial D$. 
+Del mismo modo, tomamos la parametrización $\sigma: I \rightarrow \mathbb{R}^2$ de la curva $\partial D$ de la forma:
+$$\sigma\left( t \right) = \left( x\left( t \right), y\left( t \right) \right)$$
 
-Podemos parametrizar $\partial S$ tal que: 
-$$\partial S \rightarrow \Phi \circ \sigma$$
-$$\gamma: I \rightarrow \mathbb{R}^3$$
+Estas dos elecciones, inducen una parametrización en $\partial S$ tal que: 
+$$\partial D \xrightarrow{\Phi \circ \sigma} \partial S \stackrel{\Phi \circ \sigma = \gamma}{\Rightarrow} \gamma: I \rightarrow \mathbb{R}^3$$
 $$\gamma\left( t \right) = \left( x\left( t \right), y\left( t \right), f\left( x\left( t \right), y\left( t \right) \right) \right)$$
 
 Por tanto, por un lado:
@@ -1985,145 +2008,131 @@ $$= \iint_{D} \left( \left( \frac{\partial F_3}{\partial y} - \frac{\partial F_2
 Por el otro lado: 
 $$\int_{\partial S} F \dif{\overline{s}} = \int_{a}^{b} \left( F_1, F_2, F_3 \right) \cdot \left( x'\left( t \right), y'\left( t \right), \frac{\partial f}{\partial x} x'\left( t \right) + \frac{\partial f}{\partial y} y'\left( t \right) \right) = $$
 $$= \int_{a}^{b} \left( F_1x'\left( t \right) - F_2y'\left( t \right) + F_3\left( \frac{\partial f}{\partial x} x'\left( t \right) + \frac{\partial f}{\partial y} y'\left( t \right) \right) \right) \dif{t} = $$
-$$= \int_{\partial D} \left( F_1 + F_3 \frac{\partial f}{\partial x} \right) \dif{x} + \left( F_2 + F_3 \frac{\partial f}{\partial y} \right) \dif{y} \underbrace{=}_{FG?}$$
-$$= \iint_{D} \frac{\partial}{\partial x} \left( F_2 + F_3 \frac{\partial f}{\partial y} \right) - \frac{\partial}{\partial y} \left( F_1 + F_3 \frac{\partial f}{\partial x} \right) \dif{x} \dif{y}$$
+$$= \int_{\partial D} \left( F_1 + F_3 \frac{\partial f}{\partial x} \right) \dif{x} + \left( F_2 + F_3 \frac{\partial f}{\partial y} \right) \dif{y} \stackrel{\text{F. Green}}{=}\iint_{D} \frac{\partial}{\partial x} \left( F_2 + F_3 \frac{\partial f}{\partial y} \right) - \frac{\partial}{\partial y} \left( F_1 + F_3 \frac{\partial f}{\partial x} \right) \dif{x} \dif{y}$$
+Y desarrollando se ve que las dos cosas son iguales.
 \end{demo}
 \begin{obs}
-La interpretación geométrica del teorema es?: 
+La interpretación geométrica del teorema nos viene de nuevo a remarcar el significado profundo del rotacional: el grado de giro (que viene dado por el rotacional) en un área $S$ es más o menos como:
+$$\int_{S} \rot F \dif{\overline{S}} \approx \lVert \rot F \left( p \right) \rVert \cdot Area\left( S \right)$$
+pero el teorema dice que se puede calcular también como la integral de línea de $F$ sobre el borde de dicha superficie. Como vimos que la integral de línea era sumar los módulos de las proyecciones del campo sobre las tangentes de la curva, en cierta manera estamos sumando todos los vectores de giro en el borde tal y como muestra el siguiente dibujo:
 \begin{center}
     \includegraphics[scale=0.1]{images/stokeTh} 
 \end{center}
-
-Si tenemos $F$ entonces: 
-$$\int_{S} \rot F \dif{\overline{S}} \approx \lVert \rot F \left( p \right) \rVert \cdot Area\left( S \right)$$
-que es igual a: 
-$$\int_{\partial S} F \dif{\overline{s}} $$
 \end{obs}
 
 \begin{theo}
 Sea $F: \mathbb{R}^3 \rightarrow \mathbb{R}^3 \in C^1$. Son equivalentes: 
 \begin{itemize}
     \item $F$ es conservativo.
-    \item $\exists f: \mathbb{R}^3 \rightarrow \mathbb{R} \in C^2: F = \nabla f$ 
+    \item $\exists f: \mathbb{R}^3 \rightarrow \mathbb{R}$ de $C^2$ de modo que $F = \nabla f$ 
     \item $\rot F = 0$
 \end{itemize}
 \end{theo}
 \begin{demo}
-$2 \Rightarrow 3)$: 
-$$F = \left( \frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}, \frac{\partial f}{\partial z} \right)$$
+La implicación $1)\Rightarrow 2)$ ya la vimos cuando definimos lo que era un campo conservativo, luego sólo faltan las otras.
+\begin{itemize}
+\item $2) \Rightarrow 3)$
+
+Esta implicación es inmediata porque el Tª de Schwarz nos asegura que las parciales segundas cruzadas son iguales, luego para $F = \left( \frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}, \frac{\partial f}{\partial z} \right)$, tenemos que:
 $$\rot F = \begin{vmatrix} \vec{i} & \vec{j} & \vec{k} \\
 \frac{\partial }{\partial x} & \frac{\partial }{\partial y} & \frac{\partial }{\partial z} \\
 \frac{\partial f}{\partial x} & \frac{\partial f}{\partial y} & \frac{\partial f}{\partial z} \end{vmatrix} \underbrace{=}_{T. Schwarz} \left( 0, 0, 0 \right)$$
 
-$3 \Rightarrow 1)$: 
-(\textit{Dibujo})
+\item $3 \Rightarrow 1)$: 
+$$DIBUJO$$
 
-Sea $S : \partial S = \gamma$: 
+Sea $S$, si tomamos $\partial S = \gamma$ como curva, entonces por ser el rotacional nulo y el Teorema de Stokes, sabemos que: 
 $$\int_{\gamma} F \dif{\overline{s}} = \iint_{S} \rot F \dif{\overline{S}} = 0$$
-(No es una demostración rigurosa. \textit{Dibujo explicando el razonamiento de $\partial S = \gamma$})
+La demostración no es del todo rigurosa porque falta demostrar que para una curva cualquiera, existe una superficie de la que es borde y esto es más extenso de demostrar (pero cierto).
+\end{itemize}
 \end{demo}
 
-\begin{ej}
-Sea $G = \mathbb{R}^3 \setminus Z$ y $F: G \rightarrow \mathbb{R}^3$ con $F\left( x, y, z \right) = \left( \frac{-y}{x^2 + y^2}, \frac{x}{x^2 + y^2}, 0 \right)$. 
+\begin{obs}
+Precisamente de la última observación se deduce que el resultado NO es cierto si $F$ no tiene dominio en todo $\mathbb{R}^3$ o, si se quiere precisar más, si no tiene dominio en un conjunto simplemente conexo (que no haya tubos infinitos que me agujeren una posible superficie).
+\end{obs}
 
-En este caso, $\rot F = \left( 0, 0, 0 \right)$. Porque (tercera componente): 
+\begin{ej}
+Sea $G = \mathbb{R}^3 \setminus Z$ y $F: G \rightarrow \mathbb{R}^3$ con $F\left( x, y, z \right) = \left( \frac{-y}{x^2 + y^2}, \frac{x}{x^2 + y^2}, 0 \right)$, vemos que $\rot F = \left( 0, 0, 0 \right)$ porque trivialmente las dos primeras componentes son 0, pero la tercera componente además:
 $$\frac{\partial \left( \frac{x}{x^2 + y^2} \right)}{\partial x} - \frac{\partial \left( \frac{-y}{x^2 + y^2} \right)}{\partial y} = \frac{x^2 + y^2 - 2x^2}{\left( x^2 + y^2 \right)^2} + \frac{x^2 + y^2 - 2y^2}{\left( x^2 + y^2 \right)^2} = 0$$
-Con la curva: 
+Tomamos la curva:
 $$\gamma: \left[ 0, 2\pi \right] \rightarrow \mathbb{R}^3$$
 $$\gamma\left( t \right) = \left( \cos t, \sin t, 0 \right)$$
-$$\int_{\gamma} F \dif{\overline{s}} = \int_{0}^{2\pi} \left( -\sin t, \cos t, 0 \right) \cdot \left( -\sin t, \cos t, 0 \right) \dif{t} = $$
-$$= \int_{0}^{2\pi} \cos^2 t + \sin^2t \dif{x} = 2\pi$$
+Y vemos que:
+$$\int_{\gamma} F \dif{\overline{s}} = \int_{0}^{2\pi} \left( -\sin t, \cos t, 0 \right) \cdot \left( -\sin t, \cos t, 0 \right) \dif{t} = \int_{0}^{2\pi} \cos^2 t + \sin^2t \dif{x} = 2\pi$$
+Este ejemplo hace evidente la necesidad de que el dominio sea $\mathbb{R}^3$ ya que no podemos construir una superficie con la curva formada por la circunferencia unidad que no corte al eje Z.
+\end{ej} 
 
-No podemos aplicar el teorema en este caso porque el dominio no es $\mathbb{R}^3$. (No podemos construir una superficie con la curva formada por la circunferencia unidad que no corte al eje Z).
-\end{ej}
-
-El teorema solo funciona en campos con dominio \textbf{simplemente conexo}. 
-
-\begin{defi}
-Sea $F: G \rightarrow \mathbb{R}^3 \in C^1,\ G \subset \mathbb{R}^3$ abierto. Llamamos \textbf{divergencia} de $F$ a: 
+\begin{defi}[Divergencia]
+Sea $F: G \rightarrow \mathbb{R}^3$ un campo de $C^1$ y $G \subset \mathbb{R}^3$ un abierto, llamamos \textbf{divergencia} de $F$ a: 
 $$\divg F = \frac{\partial F_1}{\partial x} + \frac{\partial F_2}{\partial y} + \frac{\partial F_3}{\partial z} = \nabla \cdot F$$
 \end{defi}
+
+\begin{obs}
+La idea intuitiva detrás del concepto de la divergencia es la cantidad de flujo que sale o entra en un punto del campo, es decir, que para divergencias cercanas a 0 tendremos puntos donde no hay casi flujo de campo, pero para divergencias lejanas a 0 tendremos puntos donde entra más campo o sale más campo (depende del signo).
+\end{obs}
+
 \begin{prop}
-Sea $H$ campo $C^2 \Rightarrow \divg \left( \rot H \right) = 0$. 
+Sea $H$ un campo $C^2$, entonces $\divg \left( \rot H \right) = 0$. Luego que la divergencia de un campo sea 0 será condición necesaria para ser el rotacional de algún otro.
 \end{prop}
 \begin{demo}
+De nuevo, por el Teorema de Schwarz para las parciales segundas cruzadas:
 $$\left( \underbrace{\frac{\partial H_3}{\partial y} - \frac{\partial H_2}{\partial z}}_{\frac{\partial }{\partial x}}, \underbrace{\frac{\partial H_1}{\partial z} - \frac{\partial H_3}{\partial x}}_{\frac{\partial }{\partial y}}, \underbrace{\frac{\partial H_2}{\partial x} - \frac{\partial H_1}{\partial y}}_{\frac{\partial }{\partial z}} \right) = 0$$
-Utilizando T. Schwarz.
 \end{demo}
 
 \begin{theo}
-Si $F: \mathbb{R}^3 \rightarrow \mathbb{R}^3 \in C^1 : \divg F = 0 \Rightarrow \exists G \in C^2 : F = \rot G$.
+Sea $F: \mathbb{R}^3 \rightarrow \mathbb{R}^3$ un campo de $C^1$ tal que su $\divg F = 0$, entonces $\exists G$ campo de $C^2$ tal que $F = \rot G$.
 \end{theo}
 \begin{demo}
-Se define: 
-$$G_1\left( x, y, z \right) = \int_{0}^{z} F_2\left( x, y, t \right) \dif{t} - \int_{0}^{y} F_3\left( x, t, 0 \right) \dif{t}$$
-$$G_2\left( x, y, z \right) = -\int_{0}^{z} F_1\left( x, y, t \right) \dif{t}$$
-$$G_3\left( x, y, z \right) = 0$$
+El $G$ que es rotacional de $F$ viene dado por:
+$$\begin{cases}
+G_1\left( x, y, z \right) = \displaystyle \int_{0}^{z} F_2\left( x, y, t \right) \dif{t} - \int_{0}^{y} F_3\left( x, t, 0 \right) \dif{t} \\  G_2\left( x, y, z \right) = \displaystyle  -\int_{0}^{z} F_1\left( x, y, t \right) \dif{t} \\ G_3\left( x, y, z \right) = 0
+\end{cases}$$
 \end{demo}
 \begin{obs}
 \begin{enumerate}
-    \item $G$ no es único. Si $H$ campo con $H_3 \neq 0 \rightarrow \rot H = \underbrace{F}_{= \rot G} \rightarrow G \Rightarrow H \neq G$.
-
-    \item El campo gravitatorio es un contraejemplo en el caso de que quitemos un punto del dominio (del campo).
+    \item $G$ no es único, puesto que si tenemos un campo $H$ con $H_3 \neq 0$, entonces $\rot H = F = \rot G \Rightarrow H \neq G$.
+    \item El campo gravitatorio es un contraejemplo en el caso de que quitemos un punto del dominio del campo, luego tiene que estar definido en $\mathbb{R}^3$.
 \end{enumerate}
 \end{obs}
 
 \begin{theo}[de la Divergencia de Gauss]
-    Sea $\Omega \subset \mathbb{R}^3$ dominio tal que $\partial \Omega$ orientada exterior. $\Omega$ cumple: $\mathring{\overline{\Omega}} = \mathring{\Omega}$ y $\overline{\Omega} = \overline{\mathring{\Omega}}$. Sea un campo $F: G \rightarrow \mathbb{R}^3 \in C^1 : \underbrace{G}_{\text{abierto}} \supset \overline{\Omega}$. Entonces: 
-$$\iint_{\partial \Omega} F \cdot \dif{\overline{S}} = \iiint_{\Omega} \divg F \dif{x} \dif{y} \dif{z}$$
+Sea $\Omega \subset \mathbb{R}^3$ dominio\footnote{Esto quiere decir que $\mathring{\overline{\Omega}} = \mathring{\Omega}$, que $\overline{\Omega} = \overline{\mathring{\Omega}}$ y que $\partial \Omega$ acota a $\Omega$} con la frontera $\partial \Omega$ orientada hacia el exterior y sea $F: G \rightarrow \mathbb{R}^3$ un campo de $C^1$ donde $ \overline{\Omega} \subset G$ y $G$ es un abierto, entonces: 
+$$\iint_{\partial \Omega} F \dif{\overline{S}} = \iiint_{\Omega} \divg F$$
+$$DIBUJO$$
 \end{theo}
-\textit{Dibujo} 
 \begin{demo}
-Sea $F = \left( F_1, F_2, F_3 \right)$ y $\int_{\Omega} \divg F = \int_{\Omega} \left( \frac{\partial F_1}{\partial x} + \frac{\partial F_2}{\partial y} + \frac{\partial F_3}{\partial z} \right) \dif{x} \dif{y} \dif{z}$.
-Suponemos que $\Omega = \left\{ \left( x, y, z \right) : f\left( x, y \right) \le z \le g\left( x, y \right) \right\}$ con $f, g : D \rightarrow \mathbb{R} \in C^1,\ \left( D \subset \mathbb{R}^2,\ f \le g \right)$.
-
-(\textit{Dibujo})
-
-Podemos poner $\partial \Omega = S_1 \cup S_2 \cup S_3$. 
-
-Entonces: 
+Vamos a hacer la demostración para el caso en el que suponemos que $\Omega = \left\{ \left( x, y, z \right) : f\left( x, y \right) \le z \le g\left( x, y \right) \right\}$ con $f, g : D \rightarrow \mathbb{R}$ de $C^1$, $D \subset \mathbb{R}^2$ y $f \le g$.
+$$DIBUJO$$
+Sea $F = \left( F_1, F_2, F_3 \right)$ y $\int_{\Omega} \divg F = \int_{\Omega} \left( \frac{\partial F_1}{\partial x} + \frac{\partial F_2}{\partial y} + \frac{\partial F_3}{\partial z} \right) \dif{x} \dif{y} \dif{z}$. En primer lugar, podemos dividir $\partial \Omega = S_1 \cup S_2 \cup S_3$. 
+Luego, tenemos que:
 $$\int_{\Omega} \frac{\partial F_3}{\partial z} \dif{x} \dif{y} \dif{z} = \int_{D} \left[ \int_{f\left( x, y \right)}^{g\left( x, y \right)} \frac{\partial F_3}{\partial z} \dif{z} \right] \dif{x} \dif{y} = \int_{D} F_3\left( x, y, g\left( x, y \right) \right) - F_3\left( x, y, f\left( x, y \right) \right) \dif{x} \dif{y}$$
-Ahora: 
+Por el otro lado, tenemos:
 $$\iint_{\partial \Omega} \left( 0, 0, F_3 \right) \dif{\overline{S}} = \int_{S_1} \left( 0, 0, F_3 \right) + \iint_{S_2} \left( 0, 0, F_3 \right) + \underbrace{\iint_{S_3} \left( 0, 0, F_3 \right)}_{= 0 \text{ (por pendicularidad)}}$$
-$$= \iint_{S_1} \left( 0, 0, F_3 \right) \dif{\overline{S}} + \iint_{S_2} \left( 0, 0, F_3 \right) \dif{\overline{S}}$$
-Parametrización: 
-$$\Phi: D \rightarrow \mathbb{R}^3$$
-$$\Phi\left( x, y, f\left( x, y \right) \right)$$
-$$\Phi_x = \left( 1, 0, \frac{\partial f}{\partial x} \right)$$
-$$\Phi_y = \left( 0, 1, \frac{\partial f}{\partial y} \right)$$
-$$\Phi_x \times \Phi_y = \left( -\frac{\partial f}{\partial x}, - \frac{\partial f}{\partial y}, 1 \right)$$
-
+Parametrizamos la superficie $S_1$, tomando $\Phi: D \rightarrow \mathbb{R}^3$ tal que $\Phi\left( x, y, f\left( x, y \right) \right)$, luego:
+$$\begin{cases}
+\Phi_x = \left( 1, 0, \frac{\partial f}{\partial x} \right) \\ \Phi_y = \left( 0, 1, \frac{\partial f}{\partial y} \right)
+\end{cases}\Rightarrow \Phi_x \times \Phi_y = \left( -\frac{\partial f}{\partial x}, - \frac{\partial f}{\partial y}, 1 \right)$$
 Con esto: 
-$$\iint_{S_1} \left( 0, 0, F_3 \right) \dif{\overline{S}} = \int_{S_1} \left[ \left( 0, 0, F_3 \right) \cdot n_1 \right] \dif{S} = \iint_{S_1} F_3\left( x, y, f\left( x, y \right) \right) \cdot \frac{- 1}{\sqrt{1 + \frac{\partial f}{\partial x}^2 + \frac{\partial f}{\partial y}^2}} \dif{S} $$
-$$= -\iint_{D} F_3\left( x, y, f\left( x, y \right) \right) \frac{1}{\not\sqrt{1 + \frac{\partial f}{\partial x}^2 + \frac{\partial f}{\partial y}^2}} \cdot \not\sqrt{1 + \frac{\partial f}{\partial x}^2 + \frac{\partial f}{\partial y}^2} \dif{S}$$
-$$= - \iint_{D} F_3\left( x, y, f\left( x, y \right) \right) \dif{x} \dif{y}$$
-Por el otro lado,
+$$\iint_{S_1} \left( 0, 0, F_3 \right) \dif{\overline{S}} = \int_{S_1} \left[ \left( 0, 0, F_3 \right) \cdot n_1 \right] \dif{S} = \iint_{S_1} F_3\left( x, y, f\left( x, y \right) \right) \cdot \frac{- 1}{\sqrt{1 + \left(\frac{\partial f}{\partial x}\right)^2 + \left(\frac{\partial f}{\partial y}\right)^2}} \dif{S} $$
+$$= -\iint_{D} F_3\left( x, y, f\left( x, y \right) \right) \frac{1}{\cancel{\sqrt{1 + \frac{\partial f}{\partial x}^2 + \frac{\partial f}{\partial y}^2}}} \cdot \cancel{\sqrt{1 + \frac{\partial f}{\partial x}^2 + \frac{\partial f}{\partial y}^2}} \dif{S} = - \iint_{D} F_3\left( x, y, f\left( x, y \right) \right) \dif{x} \dif{y}$$
+Calculando ahora sobre la superficie $S_2$, tenemos que:
 $$\iint_{S_2} \left( 0, 0, F_3 \right) \dif{\overline{S}} = \iint_{D} F_3\left( x, y, g\left( x, y \right) \right) \dif{x} \dif{y}$$
-
-Hemos probado que?
+Por tanto, hemos probado que:
 $$\int_{\Omega} \frac{\partial F_3}{\partial z} \dif{x} \dif{y} \dif{z} = \iint_{\Omega} \left( 0, 0, F_3 \right) \dif{\overline{S}}$$
 
 (\textit{Dibujo, entre dos gráficas verticales})
 
-Además, 
+De modo completamente análogo y escribiéndolo todo para que sean funciones en el otro eje, tenemos que: 
 $$\int_{\Omega} \frac{\partial F_2}{\partial y} \dif{x} \dif{y} \dif{z} = \int_{\partial \Omega} \left( 0, F_2, 0 \right) \dif{\overline{S}} $$
 
 (\textit{Dibujo, entre otras dos gráficas verticales}) 
 
-Y, 
+Y, de nuevo:
 $$\int_{\Omega} \frac{\partial F_1}{\partial x} \dif{x} \dif{y} \dif{z} = \int_{\partial \Omega} \left( F_1, 0, 0 \right) \dif{\overline{S}}$$
-
-Sumando estas últimas ecuaciones tenemos el resultado.
+Consecuentemente, sumando estas últimas ecuaciones obtenemos el resultado del enunciado.
 \end{demo}
-
-(\textit{Dibujos})
-
-\begin{ej}
-\textit{Dibujo}. 
-
-$$\iiint_{\Omega} \divg F \dif{x} \dif{y} \dif{z} \approx \divg F\left( p \right) \cdot V\left( \Omega \right)$$
-$$= \iint_{S} F \dif{\overline{S}}$$
-(\textit{Dibujo})
-\end{ej}
+\begin{obs}
+La idea que subyace tras este teorema es que la cantidad de flujo de campo que atraviesa un conjunto $\Omega$ puede expresarse en términos de la divergencia de cada punto de dicho recinto, es decir, como podemos ver aproximado $\iiint_{\Omega} \divg F \dif{x} \dif{y} \dif{z} \approx \divg F\left( p \right) \cdot V\left( \Omega \right)$, entendemos que estamos sumando las divergencias del campo en cada punto de dicho conjunto. El teorema por tanto afirma que calcular eso es lo mismo que calcular el flujo a través de la superficie, que se expresa como $\iint_S F\dif{\overline{S}}$.
+\end{obs}
 
 \end{document}
