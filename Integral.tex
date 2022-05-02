@@ -92,7 +92,24 @@
 \DeclareMathOperator{\divg}{div}
 
 \newcommand{\dif}[1]{\ d#1}
+\usepgfplotslibrary{fillbetween}
+\usepackage{tikz,tikz-3dplot}
+\tdplotsetmaincoords{80}{45}
+\tdplotsetrotatedcoords{-90}{180}{-90}
+\usetikzlibrary{arrows}
 
+%% style for surfaces
+\tikzset{surface/.style={draw=blue!70!black, fill=blue!40!white, fill opacity=.6}}
+
+%% macros to draw back and front of cones
+%% optional first argument is styling; others are z, radius, side offset (in degrees)
+\newcommand{\coneback}[4][]{
+  %% start at the correct point on the circle, draw the arc, then draw to the origin of the diagram, then close the path
+  \draw[canvas is xy plane at z=#2, #1] (45-#4:#3) arc (45-#4:225+#4:#3) -- (O) --cycle;
+  }
+\newcommand{\conefront}[4][]{
+  \draw[canvas is xy plane at z=#2, #1] (45-#4:#3) arc (45-#4:-135+#4:#3) -- (O) --cycle;
+  }
 \begin{document}
 \maketitle
 \setcounter{tocdepth}{3}% para que salgan las subsubsecciones en el indice
@@ -371,8 +388,49 @@ Como $\mu (A) < + \infty$, entonces podemos ver que:
 $$\mu\left( G \setminus A \right) = \mu\left( G \right) - \mu\left( A \right) \le \sum_{k=1}^{\infty} \mu\left( Q_k \right) - \mu\left( A \right) < \varepsilon $$ 
 En general, si $A$ no es acotado, definimos: 
 $$A_k := \{x \in A: k - 1 \le \vert \vert x \vert  \vert < k \}$$
-[DIBUJO]
 
+$$\begin{tikzpicture}
+\begin{axis}[
+axis line style={draw=none},
+tick style={draw=none},
+axis y line=middle,
+axis x line=middle,
+%xlabel=$x$,
+%grid = both, %major/minor
+xticklabels={},yticklabels={}
+];
+
+\addplot [domain=-1:1, samples=100, name path=f, thick, color=red!50]
+        {sqrt(1 - x^2)};
+        \addplot [domain=-1:1, samples=100, name path=f1, thick, color=red!50]
+        {-sqrt(1 - x^2)};
+
+\addplot [domain=-2:2, samples=100, name path=f, thick, color=red!50]
+        {sqrt(4 - x^2)};
+        \addplot [domain=-2:2, samples=100, name path=f1, thick, color=red!50]
+        {-sqrt(4 - x^2)};
+        
+\addplot [domain=-3:3, samples=100, name path=f, thick, color=red!50]
+        {sqrt(9 - x^2)};
+        \addplot [domain=-3:3, samples=100, name path=f1, thick, color=red!50]
+        {-sqrt(9 - x^2)};
+
+\addplot [domain=-4:1.5, samples=100, name path=g, thick, color=black, very thick]
+        {e^x};
+
+\addplot[red!10, opacity=0.4] fill between [of=f and g, soft clip={domain=-4:1.03}];
+
+\node[color=red,right] at (axis cs: -0.5,0.5) {$A_1$};
+\node[color=red,right] at (axis cs: -0.5,1.5) {$A_2$};
+\node[color=red,right] at (axis cs: -0.5,2.5) {$A_3$};
+
+\node[color=black,right] at (axis cs: 1.03,3) {$A$};\\
+
+
+\end{axis}
+
+\end{tikzpicture}
+$$
 Los conjuntos $A_k$ son la intersección de $A$ con coronas disjuntas 2 a 2 concéntricas que descomponen $A$ como:
 $$ A = \bigsqcup_{k=1}^{\infty}A_k$$ 
 Si fijamos $\varepsilon > 0$ y como $\mu\left( A \right) < +\infty$, podemos aplicar el razonamiento anterior para acotados en cada $A_k$, luego:
@@ -717,7 +775,37 @@ Como tiene medida nula:
 $$\exists \{I_n\}_{n=1}^{\infty}: D_{\varepsilon} \subset \bigcup_{n \in \mathbb{N}} I_n \mbox{ y } \sum_{n=1}^{\infty} \mu\left(I_n\right) < \varepsilon$$
 Pero, al ser compacto, se tiene que:
 $$D_{\varepsilon} \subset I_1 \cup \ldots \cup I_N :  \mu\left(I_1\right) + \ldots + \mu\left(I_N\right) < \varepsilon $$
-$$Dibujo particion$$
+$$   \begin{tikzpicture}[x=50]
+       \draw (-1.2,0) -- (2.2,0);      
+       \draw (-1, 0) node[below=7pt] {$a$};
+       \draw[] (-1,-0.1) -- (-1,0.1);
+       \draw (2, 0) node[below=7pt] {$b$};       
+       \draw[] (2,-0.1) -- (2,0.1);
+       
+       \foreach \x in {-0.7,-0.5,-0.1,0, 0.7,0.9,1.1,1.5} {
+        \draw[blue] (\x,-0.1) -- (\x,0.1);
+    }
+     \draw[blue, thick] (-0.7,0) -- (-0.5,0);
+    \fill (-0.7,0) circle (0.02);
+     \fill (-0.5,0) circle (0.02);
+     
+     \draw[blue, thick] (-0.1,0) -- (0,0);
+    \fill (-0.1,0) circle (0.02);
+     \fill (0,0) circle (0.02);
+     
+     \draw[blue, thick] (0.7,0) -- (0.9,0);
+    \fill (0.7,0) circle (0.02);
+     \fill (0.9,0) circle (0.02);
+     
+     \draw[blue, thick] (1.1,0) -- (1.5,0);
+    \fill (1.1,0) circle (0.02);
+     \fill (1.5,0) circle (0.02);
+     
+     \draw (-0.6, 0) node[above=3pt] {$I_1$};
+     \draw (-0.05, 0) node[above=3pt] {$I_2$};
+     \draw (1.3, 0) node[above=3pt] {$I_N$};
+     
+   \end{tikzpicture}$$
 
 Con este recubrimiento finito, generamos una partición formada por $a$, $b$ y todos los extremos de los intervalos $I_j$ que denotaremos por $P$. Dicha partición, la expresaremos en términos de otras dos: $P_1$ que será la formada por los intervalos de la partición $P$ contenidos en algún $I_j$ y $P_2$ formada por los otros (que en particular no cortan a $D_{\varepsilon}$, luego la oscilación en estos es $<\varepsilon$). De este modo, tenemos $P = P_1 \cup P_2$.
 
@@ -739,7 +827,6 @@ Como $D = \bigcup_{n \in \mathbb{N}} D_{\frac{1}{n}}$, basta con ver que $\foral
 
 Denotamos por $P_1$ a los intervalos de $P$ que cortan a $D_{\frac{1}{n}}$ (con esto estamos asumiendo que los puntos de $D_{\frac{1}{n}}$ no son puntos de los extremos de la partición, pero no pasaría nada porque ese conjunto es de medida nula y la integral es la misma). De este modo, tenemos que:
 $$\frac{\varepsilon}{n} > \sum_{I \in P_1} \left(\sup_{x \in I} f\left(x\right) - \inf_{x \in I} f\left(x\right) \right) \mu\left(I\right) \ge \frac{1}{n} \sum_{I \in P_1} \mu\left(I\right)$$
-(\textit{Dibujo})
 Sin embargo, esto quiere decir que:
 $$\sum_{I \in P_1} \mu\left(I\right) < \varepsilon \mbox{ pero } D_{\frac{1}{n}} \subset \bigcup_{I \in P_1} I \Rightarrow \mu\left(D_{\frac{1}{m}}\right) = 0$$
 \end{itemize}
@@ -803,10 +890,6 @@ La demostración se deja como ejercicio de las hojas, se trata de utilizar que e
     \item Si $\varphi = \psi$ c.t.p, entonces $I\left(\varphi\right) = I\left(\psi\right)$
 \end{enumerate}
 \end{prop}
-\begin{demo}
-(\textit{Dibujo punto 3}). 
-\end{demo}
-
 \begin{obs}
 Los conjuntos no tienen porque ser intervalos, si fuese este el caso sería, en el fondo, integrabilidad Rienmann.
 \end{obs}
@@ -922,13 +1005,66 @@ Donde $f_k = \sum m_S\left(f\right) \chi_S$ y vemos que por ser crecientes las p
 Sea $f: \mathbb{R}^n \rightarrow \mathbb{R}^n$ medible no negativa, entonces $\exists \{\varphi_k\}_{k=1}^{\infty}$ sucesión de funciones simples tal que $\{\varphi_k\}_{k=1}^\infty \uparrow f $ es creciente y converge \textbf{puntualmente}\footnote{Si la función $f$ es acotada, entonces la convergencia es \textbf{uniforme}} a $f$.
 \end{prop}
 \begin{demo}
-(\textit{Dibujo}) 
+Dividimos la imagen de la función en intervalos disjuntos $I_j = [(j-1) \cdot 2^{-k}, j \cdot 2^{-k}]$ donde $j = 1, \ldots, k \cdot 2^k$ y la unión de todos los intervalos resulta el intervalo $[0,k)$
+$$\begin{tikzpicture}
+\begin{axis}[
+axis y line=middle,
+axis x line=middle,
+xlabel=$\mathbb{R}^n$,
+%grid = both, %major/minor
+xticklabels={},yticklabels={}
+];
+\addplot [
+very thick,red,mark=none,
+domain=-2:3,samples=50,
+] {(x^2)};
+\addplot [
+very thick,red,mark=none,
+domain=-3:-2,samples=50,
+] {4};
+\draw [dashed] (-1,2) -- (1,2);
+\draw [dashed] (-2,4) -- (2,4);
+\draw [dashed] (-3,9) -- (3,9);
+
+ \draw [dashed] (-1,2) -- (-1,0);
+ \draw [dashed] (1,2) -- (1,0);
+\draw [dashed] (-2,4) -- (-2,0);
+\draw [dashed] (-3,9) -- (-3,0);
+\draw [dashed] (2,4) -- (2,0);
+\draw [dashed] (3,9) -- (3,0);
+
+\draw[violet,  thick] (-1,0) -- (1,0);
+\draw[violet,  thick] (-1,2) -- (-2,2);
+\draw[violet,  thick] (1,2) -- (2,2);
+\draw[violet,  thick] (2,4) -- (3,4);
+\draw[violet,  thick] (-2,4) -- (-3,4);
+   
+\end{axis}
+
+\node[color=black,right] at (3.2,-0.2) {$E_1$};
+\node[color=black,right] at (1.3,-0.2) {$E_2$};
+\node[color=black,right] at (4.9,-0.2) {$E_2$};
+\node[color=black,right] at (3.2,6) {$k$};
+
+\node[color=black,right] at (2.12,0) {$[$};
+\node[color=black,right] at (2.07,0) {$)$};
+\node[color=black,right] at (0.98,0) {$[$};
+\node[color=black,right] at (4.35,0) {$)$};
+\node[color=black,right] at (4.4,0) {$[$};
+\node[color=black,right] at (5.5,0) {$)$};
+
+\node[color=violet,right] at (3.2,0.2) {$\varphi_1$};
+\node[color=violet,right] at (1.3,1.5) {$\varphi_2$};
+\node[color=violet,right] at (4.9,1.5) {$\varphi_2$};
+\node[color=violet,right] at (0.4,2.7) {$\varphi_3$};
+\node[color=violet,right] at (6.1,2.7) {$\varphi_3$};
+\end{tikzpicture}$$
 Fijado un entero $k> 0$, definimos los siguientes conjuntos:
-$$E_j^k := f^{-1}\left([(j-1)\cdot 2^{-k}, j\cdot 2^{-k}\right)$$
+$$E_j^k := f^{-1}\left([(j-1)\cdot 2^{-k}, j\cdot 2^{-k} )\right)$$
 Con dicha definición, es sencillo ver que los conjuntos son medibles, disjuntos y su unión queda como
 $$\bigcup_{j=1}^{k\cdot 2^k}E_j^k = \{x\in  \mathbb{R}^n: f(x) < k\}$$
 Definimos la siguiente función simple:
-$$\varphi := \sum_{j=1}^{k\cdot 2^k} \frac{j-1}{2^k} \chi_{E_j^k}$$
+$$\varphi_k := \sum_{j=1}^{k\cdot 2^k} \frac{j-1}{2^k} \chi_{E_j^k}$$
 Esto genera una sucesión de funciones creciente que denotamos por $\{\varphi_k\}_{k=1}^\infty \uparrow$.
 
 Luego, por la definición que se ha dado de los $E_j^k$, dado $x \in \mathbb{R}^n,\ \exists k\in \mathbb{N} : \forall k \ge k_0: k > f\left(x\right) \Rightarrow x \in E_j^k$ para algún $j $ y, por tanto:
@@ -1007,7 +1143,50 @@ Dada una función medible $f: \mathbb{R}^{n} \rightarrow \mathbb{R}$, definimos:
 f^+ := \max \{f, 0 \} & & f^- := -\min \{f, 0\}
 \end{align*}
 
-(\textit{Dibujo})
+$$\begin{tikzpicture}
+\begin{axis}[
+axis y line=middle,
+axis x line=middle,
+xlabel=$x$,
+%grid = both, %major/minor
+xticklabels={},yticklabels={}
+];
+
+\addplot [
+very thick,black,mark=none,
+domain=-4:4,samples=50,
+] {x^2 - 4)};
+
+\addplot [
+very thick,red,mark=none, dashed,
+domain=-4:-2,samples=50,
+] {x^2 - 4)};
+\addplot [
+very thick,red,mark=none, dashed,
+domain=2:4,samples=50,
+] {x^2 - 4)};
+\addplot [
+very thick,violet,mark=none,dashed,
+domain=-2:2,samples=50,
+] {abs(x^2 - 4))};
+
+\addplot [
+very thick,violet,mark=none,dashed,
+domain=-4:-2,samples=50,
+] {0};
+\addplot [
+very thick,violet,mark=none,dashed,
+domain=2:4,samples=50,
+] {0};
+
+\addplot [
+very thick,red,mark=none,dashed,
+domain=-2:2,samples=50,
+] {0};
+\end{axis}
+\node[color=red,right] at (5.4,4) {$f^+$};
+\node[color=violet,right] at (2,3) {$f^-$};
+\end{tikzpicture}$$
 
 que verifican las siguientes propiedades:
 \begin{enumerate}
@@ -1258,7 +1437,37 @@ Sea $A \subset \mathbb{R}^n \times \mathbb{R}^m$ medible, entonces:
 \end{enumerate}
 \end{prop}
 
-$$DIBUJO DE LO QUE SIGNFICAN LAS SECCIONES$$
+$$\begin{tikzpicture}
+\begin{axis}[
+tick style={draw=none},
+axis y line=middle,
+axis x line=middle,
+xlabel=$\mathbb{R}^n$,
+ylabel=$\mathbb{R}^m$,
+xticklabels={},yticklabels={}
+%grid = both, %major/minor
+];
+\addplot [thick, domain=0:7,fill=red, opacity=0.6]  plot[smooth, tension=.7] coordinates {(2,2.5) (3,3) (4,2.8) (5.2,2.5) (5.5,1.5) (7,0) (6,-2)(4.5,-2.5) (2,-2) (3.5,0.5) (1,1) (2,2.5)};
+
+\draw [dashed] (3,3) -- (3,0.8);
+\draw [solid] (3,0.8) -- (3,-0.5);
+\draw [dashed] (3,-0.5) -- (3,-3);
+
+\draw [densely dotted, very thick, red] (0,3) -- (0,0.8);
+\draw [densely dotted, very thick, red] (0,-0.5) -- (0,-2.5);
+
+\addplot [domain=0:3, samples=100, thick, color=red, dashed]{3};
+\addplot [domain=0:3, samples=100, thick, color=red, dashed]{0.8};
+\addplot [domain=0:3, samples=100, thick, color=red, dashed]{-0.5};
+\addplot [domain=0:3, samples=100, thick, color=red, dashed]{-2.5};       
+   
+
+\end{axis}
+\filldraw [black] (2.95,2.6) circle (2pt);
+\node[color=black,right] at (-0.8,2.6) {$A_x$};
+\node[color=black,right] at (2.55,2.4)  {$x$};
+\node[color=black,right] at (3.5,3.5) {$A$};
+\end{tikzpicture}$$
 
 \begin{obs}
 Si $N \subset \mathbb{R}^{n+m}$ satisface que $\mu_{n+m} \left(N \right) = 0$ hemos visto que para casi todo $x \in \mathbb{R}$ la sección $N_x$ es medible porque tiene medida nula. Sin embargo, puede ocurrir que para algún $x \in \mathbb{R}^n$ la sección $N_x$ no sea medible en $\mathbb{R}^m$
@@ -1496,12 +1705,66 @@ Este teorema es la generalización total de los dos anteriores, ya que si $f = \
 \begin{ej}
 Supongamos la siguiente integral $$\int_E e^{\frac{x - y}{x + y}} \dif{x} \dif{y}$$
 definiendo $E$ como el triángulo de vértices: $\left(0, 0\right), \left(0, 2\right), \left(2, 0\right)$, es decir:
-$$DIBUJO$$
+$$\begin{tikzpicture}
+\begin{axis}[
+axis y line=middle,
+axis x line=middle,
+%xlabel=$x$,
+%grid = both, %major/minor
+];
+
+\addplot [domain=0:2, samples=100, name path=f, thick, color=red!50]
+        {-x + 2};
+
+\path [name path=xaxis]
+      (\pgfkeysvalueof{/pgfplots/xmin},0) --
+      (\pgfkeysvalueof{/pgfplots/xmax},0);
+
+\addplot[red!10, opacity=0.4] fill between [of=f and xaxis, soft clip={domain=-2:2}];
+\node[color=black,right] at (axis cs: 0,0.1) {$(0,0)$};
+\node[color=black,right] at (axis cs: 0,1.9)  {$(0,2)$};
+\node[color=black,right] at (axis cs: 1.7,0.1)  {$(2,0)$};
+\node[color=black,right] at (axis cs: 0.5,0.7) {$E$};
+\node[color=red, font=\footnotesize] at (axis cs: 1.3,1) {$x + y = 2$};
+\end{axis}
+\filldraw [black] (0,0) circle (2pt);
+\filldraw [black] (6.8,0) circle (2pt);
+\filldraw [black] (0,5.7) circle (2pt);
+\end{tikzpicture}$$
 Si tenemos por ejemplo, la transformación $\varphi^{-1} = \begin{cases} u = x - y\\ v = x + y 
 \end{cases} \Rightarrow \varphi = \begin{cases} x = \frac{u + v}{2}\\ y = \frac{v - u}{2} \end{cases}$, entonces podemos ver que:
 \begin{align*}
 \varphi^{-1} \left(x + y = 2\right) \equiv v = 2 & & \varphi^{-1} \left(y = 0\right)\equiv u = v & & \varphi^{-1} \left(x = 0\right)\equiv u = -v
 \end{align*}
+$$\begin{tikzpicture}
+\begin{axis}[
+axis y line=middle,
+axis x line=middle,
+%xlabel=$x$,
+%grid = both, %major/minor
+];
+
+\addplot [domain=-2.5:2.5, samples=100, name path=f, thick, color=red!50]
+        {abs(x)};
+
+\addplot [domain=-2.5:2.5, samples=100, name path=g, thick, color=blue!50]
+        {2};
+
+\addplot[red!10, opacity=0.4] fill between [of=f and g, soft clip={domain=-2:2}];
+
+\node[color=black,right] at (axis cs: 0,0.1) {$(0,0)$};
+\node[color=black,right] at (axis cs: -2.5,1.9)  {$(-2,2)$};
+\node[color=black,right] at (axis cs:1.8,1.9)  {$(2,2)$};
+\node[color=black,right] at (axis cs: 0,1) {$D$};
+\node[color=red, font=\footnotesize] at (axis cs: 1.3,1) {$u = v$};
+\node[color=red, font=\footnotesize] at (axis cs: -1.3,1) {$u = -v$};
+\node[color=blue, font=\footnotesize] at (axis cs: 0,2.2) {$v = 2$};
+\end{axis}
+\filldraw [black] (3.5,0) circle (2pt);
+\filldraw [black] (6.2,4.55) circle (2pt);
+\filldraw [black] (0.7,4.55) circle (2pt);
+\end{tikzpicture}$$
+
 Por tanto, $\varphi^{-1} \left(E\right) = D$ es un triángulo de vértices: $\left(0, 0\right), \left(2, 2\right) y \left(-2, 2\right)$ y entonces podemos calcular su integral como:
 $$\int_E f \left(x, y\right) \dif{x} \dif{y} = \int_{\varphi \left(D\right)} f \left(x, y\right) \dif{x}\dif{y} = \int_D e^{u/v}\cdot \lvert \det J \varphi \left(u, v\right) \rvert \dif{u} \dif{v} =$$
 $$= \int_{v = 0}^{v = 2} \int_{u = -v}^{u = v} e^{u/v} \frac{1}{2} \dif{u} \dif{v} = \int_{v = 0}^{v = 2} \frac{1}{2} \left[v e^{u/v}\right]_{u = -v}^{u = v} \dif{v} = $$
@@ -1560,8 +1823,23 @@ Sea $\varphi: \mathbb{R}^3\rightarrow  \mathbb{R}^3$ de forma que $\varphi(r, \t
 Tomando el mismo ejemplo anterior, pero integrando sobre
 $$\int_V x^2 + y^2 \dif{x} \dif{y} \dif{z} \mbox{ donde } V = \{\left(x, y, z\right) : x^2 + y^2 \le z^2 \le 4\}$$
 
-(\textit{Dibujo})
+$$\begin{tikzpicture}[tdplot_main_coords]
+  \coordinate (O) at (0,0,0);
 
+
+  \coneback[surface]{-3}{2}{-10}
+  \draw (0,0,-5) -- (O);
+  \conefront[surface]{-3}{2}{-10}
+
+  \draw[->] (-6,0,0) -- (6,0,0) node[right] {$x$};
+  \draw[->] (0,-6,0) -- (0,6,0) node[right] {$y$};
+
+  \coneback[surface]{3}{2}{10}
+  \draw[->] (O) -- (0,0,5) node[above] {$z$};
+  \conefront[surface]{3}{2}{10}
+  \node[color=black,right] at  (0,0,3) {$z = 2$};
+  \node[color=black,right] at  (0,0,-3) {$z = -2$};
+\end{tikzpicture}$$
 Por cada $z$ tenemos $V_z = \{\left(x, y\right): x^2 + y^2 \le z^2\}$, por tanto: 
 $$\int_V x^2 + y^2 \dif{x} \dif{y} \dif{z} = \int_{z = -2}^{z = 2} \int_{\theta = 0}^{\theta = 2\pi} \int_{r = 0}^{r = \lvert z \rvert} r^2 \cdot r  \dif{r}   \dif{\theta} \dif{z}  = 2\pi \int_{z = -2}^{z = 2} \left(\int_{r = 0}^{r = \lvert z \rvert} r^3 \dif{r} \right) \dif{z}$$
 $$ = 2\pi \int_{z = -2}^{z = 2} \left[\frac{r^4}{4}\right]_{r = 0}^{r = \lvert z \rvert} \dif{z} = \frac{\pi}{2} \int_{z = -2}^{z = 2} z^4 \dif{z} = \frac{\pi}{10} \left[z^{5}\right]_{z = -2}^{z = 2} = \frac{32\pi}{5} $$
@@ -1574,8 +1852,30 @@ Este tipo de coordenadas también son coordenadas aplicables a $\mathbb{R}^3$ (p
 Se definen las \textbf{coordenadas esféricas} de un punto como la transformación que a cada componente $(x,y,z)$ le asocia su componente $(r, \theta, \varphi)$ de forma que se verifica:
 $$\begin{cases} x = r\cos \theta \sen \varphi\\ y = r\sen \theta \sen \varphi\\ z = r\cos \varphi \end{cases}\mbox{ donde }\begin{cases} r \ge 0\\ 0 \le \theta \le 2\pi\\ 0 \le \varphi \le \pi \end{cases}$$
 \end{defi}
+$$
+\tdplotsetmaincoords{60}{110}
+%
+\pgfmathsetmacro{\rvec}{.8}
+\pgfmathsetmacro{\thetavec}{30}
+\pgfmathsetmacro{\phivec}{60}
+%
+\begin{tikzpicture}[scale=5,tdplot_main_coords]
+    \coordinate (O) at (0,0,0);
+    \draw[thick,->] (0,0,0) -- (1,0,0) node[anchor=north east]{$x$};
+    \draw[thick,->] (0,0,0) -- (0,1,0) node[anchor=north west]{$y$};
+\draw[thick,->] (0,0,0) -- (0,0,1) node[anchor=south]{$z$};
+    \tdplotsetcoord{P}{\rvec}{\thetavec}{\phivec}
+    \draw[-stealth,color=red] (O) -- (P) node[above right] {$P$};
+    \draw[dashed, color=red] (O) -- (Pxy);
+    \draw[dashed, color=red] (P) -- (Pxy);
+    \tdplotdrawarc[-stealth]{(O)}{0.2}{0}{\phivec}{anchor=north}{$\theta$}
+    \tdplotsetthetaplanecoords{\phivec}
+    \tdplotdrawarc[-stealth, tdplot_rotated_coords]{(0,0,0)}{0.5}{0}%
+        {\thetavec}{anchor=south west}{$\phi$}
 
-(\textit{Dibujo})
+
+\end{tikzpicture}
+$$
 
 \begin{prop}
 Sea $\varphi: \mathbb{R}^3\rightarrow  \mathbb{R}^3$ de forma que $\varphi(r, \theta, \varphi) = (r\cos \theta \sen \varphi, r\sen \theta \sen \varphi, r\cos \varphi)$, la restricción de $\varphi$ sobre el conjunto $\mathcal{U} = (0,\infty)\times (0, 2\pi) \times (0, \pi)$ cumple que:
@@ -1595,7 +1895,9 @@ $$= \int_{\theta = 0}^{\theta = 2\pi }\int_{\varphi = 0}^{\varphi = \pi} \int_{r
 \begin{ej}
 Buscamos el volumen limitado por la esfera $x^2 + y^2 + z^2 = A^2$ y el cilindro $x^2 + y^2 = ay,\ \left(a > 0\right)$.
 
-\textit{Dibujos}
+\begin{center}
+\includegraphics[scale=0.20]{Cone and Sphere}
+\end{center}
 
 Vemos que si tomamos coordenadas polares: $r = a\sen \theta$ y además se cumple que:
 $$x^2 + y^2 - ay = 0 \Leftrightarrow x^2 + \left(y - \frac{a}{2}\right)^2 = \frac{a^2}{4}$$
@@ -1627,13 +1929,108 @@ $$DIUBUJO$$
     $$\gamma: \left[ 0, 1 \right] \rightarrow\mathbb{R}^n$$
     $$\gamma \left( t \right) = ty + \left( 1 - t \right) x$$
     \item Sea $\gamma: \left[ 0, 2\pi \right] \rightarrow \mathbb{R}^2$, tal que: $\gamma\left( t \right) = \left( \cos t, \sen t \right) $
-    $$DIBUJO$$
+    $$\begin{tikzpicture}[paths/.style={->, thick, >=stealth'}]
+
+
+ \node (species_2) at (0,0) 
+     {$\gamma(\frac{\pi}{2})$};
+
+ \node (species_3) at (2,-2) 
+     {$\gamma(0)=\gamma(2\pi)$};
+
+ \node (species_4) at (0,-4) 
+     {$\gamma(\frac{3\pi}{2})$};
+
+ \node (species_5) at (-2,-2) 
+     {$\gamma(\pi)$};
+
+
+
+ \draw [paths] (species_3) to [bend right=40] node {} (species_2);
+ \draw [paths] (species_4) to [bend right=40] node {} (species_3);
+ \draw [paths] (species_5) to [bend right=40] node {} (species_4);
+ \draw [paths] (species_2) to [bend right=40] node {} (species_5);
+
+
+ \end{tikzpicture}$$
     \item Sea $\gamma: \left[ 0, \pi \right] \rightarrow \mathbb{R}^2$, tal que $\gamma\left( t \right) = \left( \cos 2t, \sen 2t \right)$
-    $$DIBUJO$$
+        $$\begin{tikzpicture}[paths/.style={->, thick, >=stealth'}]
+
+
+ \node (species_2) at (0,0) 
+     {$\gamma(\frac{\pi}{4})$};
+
+ \node (species_3) at (2,-2) 
+     {$\gamma(0)=\gamma(\pi)$};
+
+ \node (species_4) at (0,-4) 
+     {$\gamma(\frac{3\pi}{4})$};
+
+ \node (species_5) at (-2,-2) 
+     {$\gamma(\frac{\pi}{4})$};
+
+
+
+ \draw [paths] (species_3) to [bend right=40] node {} (species_2);
+ \draw [paths] (species_4) to [bend right=40] node {} (species_3);
+ \draw [paths] (species_5) to [bend right=40] node {} (species_4);
+ \draw [paths] (species_2) to [bend right=40] node {} (species_5);
+
+
+ \end{tikzpicture}$$
+ Misma curva que 2 pero tardo la mitad en recorrerla.
     \item Sea $\gamma \left[ 0, 2\pi \right] \rightarrow \mathbb{R}^2$, tal que $\gamma \left( t \right) = \left( \cos 2t, \sen 2t \right)$
-    $$DIBUJO$$
+        $$\begin{tikzpicture}[paths/.style={->, thick, >=stealth'}]
+
+
+ \node (species_2) at (0,0) 
+     {$\gamma(\frac{\pi}{4})$};
+
+ \node (species_3) at (2,-2) 
+     {$\gamma(0)=\gamma(\pi)=\gamma(2\pi)$};
+
+ \node (species_4) at (0,-4) 
+     {$\gamma(\frac{3\pi}{4})$};
+
+ \node (species_5) at (-2,-2) 
+     {$\gamma(\frac{\pi}{4})$};
+
+
+
+ \draw [paths] (species_3) to [bend right=40] node {} (species_2);
+ \draw [paths] (species_4) to [bend right=40] node {} (species_3);
+ \draw [paths] (species_5) to [bend right=40] node {} (species_4);
+ \draw [paths] (species_2) to [bend right=40] node {} (species_5);
+
+
+ \end{tikzpicture}$$
+ Misma curva que 3 pero la recorro 2 veces.
     \item Sea $\gamma \left[ 0, 2\pi \right] \rightarrow \mathbb{R}^2$, tal que $\gamma \left( t \right) = \left( \cos t, -\sen t \right) $
-    $$DIBUJO$$ 
+        $$\begin{tikzpicture}[paths/.style={->, thick, >=stealth'}]
+
+
+ \node (species_2) at (0,0) 
+     {$\gamma(\frac{3\pi}{2})$};
+
+ \node (species_3) at (2,-2) 
+     {$\gamma(0)=\gamma(2\pi)$};
+
+ \node (species_4) at (0,-4) 
+     {$\gamma(\frac{\pi}{2})$};
+
+ \node (species_5) at (-2,-2) 
+     {$\gamma(\pi)$};
+
+
+
+ \draw [paths] (species_2) to [bend left=40] node {} (species_3);
+ \draw [paths] (species_3) to [bend left=40] node {} (species_4);
+ \draw [paths] (species_4) to [bend left=40] node {} (species_5);
+ \draw [paths] (species_5) to [bend left=40] node {} (species_2);
+
+
+ \end{tikzpicture}$$
+ Misma curva que 2 pero la recorro en sentido contrario.
 \end{enumerate}
 A pesar de que los cuatro últimos ejemplos tuviesen la misma apariencia, como curva son elementos distintos puesto que importa el sentido de recorrido de la curva, la velocidad a la que se recorre y el número de veces que se recorre.
 \end{ej}
