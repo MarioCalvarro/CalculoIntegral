@@ -2599,11 +2599,62 @@ G_1\left( x, y, z \right) = \displaystyle \int_{0}^{z} F_2\left( x, y, t \right)
 \begin{theo}[de la Divergencia de Gauss]
 Sea $\Omega \subset \mathbb{R}^3$ dominio\footnote{Esto quiere decir que $\mathring{\overline{\Omega}} = \mathring{\Omega}$, que $\overline{\Omega} = \overline{\mathring{\Omega}}$ y que $\partial \Omega$ acota a $\Omega$} con la frontera $\partial \Omega$ orientada hacia el exterior y sea $F: G \rightarrow \mathbb{R}^3$ un campo de $C^1$ donde $ \overline{\Omega} \subset G$ y $G$ es un abierto, entonces: 
 $$\iint_{\partial \Omega} F \dif{\overline{S}} = \iiint_{\Omega} \divg F$$
-$$DIBUJO$$
 \end{theo}
 \begin{demo}
 Vamos a hacer la demostración para el caso en el que suponemos que $\Omega = \left\{ \left( x, y, z \right) : f\left( x, y \right) \le z \le g\left( x, y \right) \right\}$ con $f, g : D \rightarrow \mathbb{R}$ de $C^1$, $D \subset \mathbb{R}^2$ y $f \le g$.
-$$DIBUJO$$
+$$\begin{tikzpicture}[scale=1]
+\def\Anglei{-66}
+
+\draw[thin,->] (-2,0) -- (5,0);
+\draw[thin,->] (0,-2) -- (0,3);
+
+%Zylinder
+\begin{scope}[canvas is zx plane at y=0]
+\draw[fill=lime,opacity=0.5] (0,2.5) circle (1cm);
+\draw[->] (-2,0) -- (3,0);
+\end{scope}
+
+\begin{scope}[canvas is zx plane at y=1.5]
+\path [fill=lime,opacity=0.5] (0,2.5) circle (1cm);
+\coordinate (circ1a) at ( $ (0,2.5) + (\Anglei:1cm) $ );
+\coordinate (circ1b) at ( $ (0,2.5) + (180+\Anglei:1cm) $ );
+\end{scope}
+
+\begin{scope}[canvas is zx plane at y=-1.5]
+\path (0,2.5) circle (1cm);
+\coordinate (circ2a) at ( $ (0,2.5) + (\Anglei:1cm) $ );
+\coordinate (circ2b) at ( $ (0,2.5) + (180+\Anglei:1cm) $ );
+\end{scope} 
+
+\begin{scope}[canvas is xy plane at z=0]
+\draw (circ1a) -- (circ2a);
+\draw (circ1b) -- (circ2b);
+\end{scope}
+
+\begin{scope}[canvas is zx plane at y=1.5]
+\draw (0,2.5) circle (1cm);
+\end{scope}
+
+\begin{scope}[canvas is zx plane at y=-1.5]
+\draw (0,2.5) circle (1cm);
+\end{scope} 
+
+\begin{scope}[every node/.append style={
+xslant=1,sloped}
+]
+\node at (2.4,-.2) {\scalebox{1}[.7]{Gráfica f}};
+\node at (-.8,-.2) {\scalebox{1}[.7]{$\Omega$}};
+\node at (3.8, -.2, 3.5) {\scalebox{1}[.7]{D}};
+\node at (0.8, -.2, -4.5) {\scalebox{1}[.7]{Gráfica g}};
+\end{scope}
+
+\begin{scope}[red]
+\node at (3.2, 2.1, 0) {$S_2 \downarrow$};
+\node at (3.3, -0.5, 0) {$S_1 \nwarrow$};
+\node at (0.9, 0.5, 0) {$S_3 \hookrightarrow$};
+\end{scope}
+
+\end{tikzpicture}$$
 Sea $F = \left( F_1, F_2, F_3 \right)$ y $\int_{\Omega} \divg F = \int_{\Omega} \left( \frac{\partial F_1}{\partial x} + \frac{\partial F_2}{\partial y} + \frac{\partial F_3}{\partial z} \right) \dif{x} \dif{y} \dif{z}$. En primer lugar, podemos dividir $\partial \Omega = S_1 \cup S_2 \cup S_3$. 
 Luego, tenemos que:
 $$\int_{\Omega} \frac{\partial F_3}{\partial z} \dif{x} \dif{y} \dif{z} = \int_{D} \left[ \int_{f\left( x, y \right)}^{g\left( x, y \right)} \frac{\partial F_3}{\partial z} \dif{z} \right] \dif{x} \dif{y} = \int_{D} F_3\left( x, y, g\left( x, y \right) \right) - F_3\left( x, y, f\left( x, y \right) \right) \dif{x} \dif{y}$$
