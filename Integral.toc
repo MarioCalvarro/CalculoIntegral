@@ -1,22 +1,22 @@
 \babel@toc {spanish}{}
 \babel@toc {spanish}{}
-\contentsline {chapter}{\numberline {1}CONCEPTO DE MEDIDA}{5}%
-\contentsline {section}{\numberline {1.1}MEDIDA}{5}%
-\contentsline {section}{\numberline {1.2}FUNCIONES MEDIBLES}{13}%
-\contentsline {chapter}{\numberline {2}INTEGRAL DE LEBESQUE}{23}%
-\contentsline {section}{\numberline {2.1}DEFINICIÓN DE INTEGRAL}{23}%
-\contentsline {subsection}{\numberline {2.1.1}Propiedades de la integral}{26}%
-\contentsline {section}{\numberline {2.2}FUNCIONES INTEGRABLES}{30}%
-\contentsline {subsection}{\numberline {2.2.1}Cálculo de integrales en $\mathbb {R}^n$}{33}%
-\contentsline {section}{\numberline {2.3}TEOREMA DEL CAMBIO DE VARIABLE}{42}%
-\contentsline {subsection}{\numberline {2.3.1}Cambios de sistemas de coordenadas}{44}%
-\contentsline {subsubsection}{Coordenadas polares}{44}%
-\contentsline {subsubsection}{Coordenadas cilíndricas}{45}%
-\contentsline {subsubsection}{Coordenadas Esféricas}{46}%
-\contentsline {chapter}{\numberline {3}CÁLCULO VECTORIAL}{49}%
-\contentsline {section}{\numberline {3.1}INTEGRAL DE LÍNEA}{49}%
-\contentsline {subsection}{\numberline {3.1.1}Definición de curva}{49}%
-\contentsline {subsection}{\numberline {3.1.2}Concepto de Integral de Línea}{53}%
-\contentsline {section}{\numberline {3.2}INTEGRAL DE SUPERFICIE}{56}%
-\contentsline {subsection}{\numberline {3.2.1}Concepto de Integral de Superficie}{56}%
-\contentsline {subsection}{\numberline {3.2.2}Rotacional y Divergencia de un campo}{59}%
+\contentsline {chapter}{\numberline {1}CONCEPTO DE MEDIDA}{5}{}%
+\contentsline {section}{\numberline {1.1}MEDIDA}{5}{}%
+\contentsline {section}{\numberline {1.2}FUNCIONES MEDIBLES}{13}{}%
+\contentsline {chapter}{\numberline {2}INTEGRAL DE LEBESQUE}{23}{}%
+\contentsline {section}{\numberline {2.1}DEFINICIÓN DE INTEGRAL}{23}{}%
+\contentsline {subsection}{\numberline {2.1.1}Propiedades de la integral}{26}{}%
+\contentsline {section}{\numberline {2.2}FUNCIONES INTEGRABLES}{30}{}%
+\contentsline {subsection}{\numberline {2.2.1}Cálculo de integrales en $\mathbb {R}^n$}{33}{}%
+\contentsline {section}{\numberline {2.3}TEOREMA DEL CAMBIO DE VARIABLE}{42}{}%
+\contentsline {subsection}{\numberline {2.3.1}Cambios de sistemas de coordenadas}{44}{}%
+\contentsline {subsubsection}{Coordenadas polares}{44}{}%
+\contentsline {subsubsection}{Coordenadas cilíndricas}{45}{}%
+\contentsline {subsubsection}{Coordenadas Esféricas}{46}{}%
+\contentsline {chapter}{\numberline {3}CÁLCULO VECTORIAL}{49}{}%
+\contentsline {section}{\numberline {3.1}INTEGRAL DE LÍNEA}{49}{}%
+\contentsline {subsection}{\numberline {3.1.1}Definición de curva}{49}{}%
+\contentsline {subsection}{\numberline {3.1.2}Concepto de Integral de Línea}{53}{}%
+\contentsline {section}{\numberline {3.2}INTEGRAL DE SUPERFICIE}{56}{}%
+\contentsline {subsection}{\numberline {3.2.1}Concepto de Integral de Superficie}{56}{}%
+\contentsline {subsection}{\numberline {3.2.2}Rotacional y Divergencia de un campo}{60}{}%
