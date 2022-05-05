@@ -235,7 +235,7 @@ $$Q \subset Q_1 \cup \ldots \cup Q_N \Rightarrow v\left( Q \right) \le v\left( Q
 
 \begin{defi}
 Definimos el \textbf{diámetro de un conjunto} como:
-$$\mathrm{diam}\ A = \sup \{\vert \vert x - t \vert  \vert: \ x \in A, \ t \in B \}$$
+$$\mathrm{diam}\ A = \sup \{\vert \vert x - y \vert  \vert: \ x,y \in A\}$$
 Y definimos la \textbf{distancia entre dos conjuntos} como:
 $$d(A,B) = \inf \{||x-y||: x\in A, \ y \in B\}$$
 \end{defi}
@@ -335,8 +335,8 @@ $$\mu^*\left( S\cap Q \right) + \mu^*\left( S \cap Q^c \right) \le \sum_{j=1}^{\
 \begin{itemize}
 \item Todo conjunto abierto es medible
 \item Todo cerrado es medible
-\item Las uniones numerables de cerrados son medibles
-\item Las intersecciones numerables de abiertos son medibles
+\item Las uniones numerables de cerrados (conjuntos $F_\sigma$) son medibles
+\item Las intersecciones numerables de abiertos  (conjuntos $G_\delta$) son medibles
 \end{itemize}
 \end{prop}
 
@@ -490,7 +490,7 @@ De nuevo y por similitud con $3\Rightarrow 1$, $A = C \cup N$ es medible por ser
 Comprobadas las propiedades que tiene la medida sobre conjuntos medibles, nos interesa saber qué funciones nos permiten conservar propiedades de medida interesantes. Es aquí donde juegan un papel fundamental las funciones medibles, que permiten asegurar que las preimágenes de abiertos son medibles y, por ello, al trabajar sobre abiertos no debemos preocuparnos sobre las propiedades de medibilidad ya que se conservan también en el conjunto de partida.
  
 \begin{defi}
-Sea $A \subset \mathbb{R}^m$ medible y $f: A \rightarrow \mathbb{R}^m$, definimos una función \textbf{medible} como aquella que verifica:
+Sea $A \subset \mathbb{R}^n$ medible y $f: A \rightarrow \mathbb{R}^m$, definimos una función \textbf{medible} como aquella que verifica:
 $$\forall G \subset \mathbb{R}^m \text{ abierto, } f^{-1}(G) \text{ es medible}.$$ 
 \end{defi}
 
