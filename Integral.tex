@@ -1933,7 +1933,34 @@ Para poder desarrollar la pregunta hecha al principio de la sección, es necesar
 
 \begin{defi}
 Definimos como \textbf{curva en $\mathbb{R}^n$} a una función $\gamma: \left[ a, b \right] \rightarrow \mathbb{R}^n$ continua y $C^{1)}$ a trozos. En definitiva estamos expresando que:
-$$DIUBUJO$$
+$$\begin{tikzpicture}
+
+\begin{axis}[
+tick style={draw=none},
+axis y line=middle,
+axis x line=middle,
+%xlabel=$x$,
+%grid = both, %major/minor
+xticklabels={},yticklabels={}
+];
+
+\addplot [domain=1.45:2.58, samples=100, name path=f, thick, color=teal!50, very thick]
+        {e^x};
+\fill (1.5,e^1.5)  circle[radius=2pt];
+\fill (2.5,e^2.5) circle[radius=2pt];
+
+
+\node (n2) at (2,8) {$\gamma(t)$};
+
+
+\node (n1) [above] at (1.5,e^1.5) {$\gamma(a)$};
+
+\node (n3) [above] at (2.5,e^2.5) {$\gamma(b)$};
+
+
+
+\end{axis}
+\end{tikzpicture}$$
 \end{defi}
 
 \begin{ej}
@@ -2163,7 +2190,32 @@ $$\int_{\gamma} F \cdot \dif{\overline{s}} = \int_{a}^{b} F\left( \gamma\left( t
 
 \begin{obs}
 La interpretación geométrica de lo que estamos haciendo es la siguiente:
-$$DIBUJO$$
+$$\begin{tikzpicture}[declare function={f(\x,\y)=\x*\x+\y*\y-1;},scale=2.5]
+\def\xmax{1} \def\xmin{-1.2}
+\def\ymax{1} \def\ymin{-1.2}
+\def\nx{15}  \def\ny{15}
+
+\pgfmathsetmacro{\hx}{(\xmax-\xmin)/\nx}
+\pgfmathsetmacro{\hy}{(\ymax-\ymin)/\ny}
+\foreach \i in {0,...,\nx}
+\foreach \j in {0,...,\ny}{
+\draw[teal,-stealth] 
+({\xmin+\i*\hx},{\ymin+\j*\hy}) -- ++ ({atan2(f({\xmin+\i*\hx},{\ymin+\j*\hy}),1)}:0.1);
+}
+\pgfmathsetmacro{\stepx}{0.01}
+\pgfmathsetmacro{\nextx}{\xmin+\stepx}
+\pgfmathsetmacro{\nextnextx}{\xmin+2*\stepx}
+\pgfmathsetmacro{\xfin}{\xmax+0.1}
+\xdef\lstX{(\xmin,0.5)}
+\pgfmathsetmacro{\myy}{0.5}
+\foreach \x in {\nextx,\nextnextx,...,\xfin}
+{\pgfmathsetmacro{\myy}{\myy+f(\x,\myy)*\stepx}
+\xdef\myy{\myy}
+\xdef\lstX{\lstX (\x,\myy)}
+}
+\draw[blue,thick] plot[smooth] coordinates {\lstX};
+\draw (\xmin,\ymin) rectangle ($(\xmax,\ymax)+(1mm,1mm)$);
+\end{tikzpicture}$$
 Realmente en la integral de línea lo que haces es calcular las proyecciones sobre la curva de los vectores del campo en cada punto. De esta forma, sumamos los módulos de dichos vectores a lo largo de toda la curva:
 $$\int_{\gamma} F\cdot \dif{\overline{s}} = \int_{a}^{b} \underbrace{F\left( \gamma\left( t \right) \right) \cdot \frac{\gamma'\left( t \right)}{\lvert \lvert \gamma'\left( t \right) \rvert \rvert} \lvert \lvert}_{\text{proy. sobre la tangente}} \gamma'\left( t \right) \rvert \rvert \dif{t} = \int_{a}^{b} F_T \left( \gamma\left( t \right) \right) \cdot \lvert \lvert \gamma'\left( t \right) \rvert \rvert \dif{t} = \int_{\gamma} F_T \dif{s}$$
 Es sencillo ver que $F(\gamma(t))$ es el vector del campo en el punto $\gamma(t)$ y al multiplicarlo por el cociente siguiente, estamos proyectándolo sobre el vector unitario de la dirección tangente.
@@ -2542,7 +2594,22 @@ $$\rot F = \begin{vmatrix} \vec{i} & \vec{j} & \vec{k} \\
 \frac{\partial f}{\partial x} & \frac{\partial f}{\partial y} & \frac{\partial f}{\partial z} \end{vmatrix} \underbrace{=}_{T. Schwarz} \left( 0, 0, 0 \right)$$
 
 \item $3 \Rightarrow 1)$: 
-$$DIBUJO$$
+
+$$\begin{tikzpicture}
+  \begin{axis}[
+    axis y line=middle,
+axis x line=middle,
+%xlabel=$x$,
+%grid = both, %major/minor
+xticklabels={},yticklabels={},
+      xmin=-1.2, xmax=1.2
+  ]
+  \addplot [middlearrow={latex},domain=-180:180, samples=100, color=blue!50, fill = blue!10, opacity = .5, thick] ({cos(x)},{sin(x)});
+  
+  \node (n4) at (0.5,0.5) {$S$};
+\node (n3) [blue] at (0.9,0.2) {$\partial S = \gamma$};
+  \end{axis}
+\end{tikzpicture}$$
 
 Sea $S$, si tomamos $\partial S = \gamma$ como curva, entonces por ser el rotacional nulo y el Teorema de Stokes, sabemos que: 
 $$\int_{\gamma} F \dif{\overline{s}} = \iint_{S} \rot F \dif{\overline{S}} = 0$$

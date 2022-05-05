@@ -17,6 +17,6 @@
 \contentsline {section}{\numberline {3.1}INTEGRAL DE LÍNEA}{49}{}%
 \contentsline {subsection}{\numberline {3.1.1}Definición de curva}{49}{}%
 \contentsline {subsection}{\numberline {3.1.2}Concepto de Integral de Línea}{53}{}%
-\contentsline {section}{\numberline {3.2}INTEGRAL DE SUPERFICIE}{56}{}%
-\contentsline {subsection}{\numberline {3.2.1}Concepto de Integral de Superficie}{56}{}%
-\contentsline {subsection}{\numberline {3.2.2}Rotacional y Divergencia de un campo}{60}{}%
+\contentsline {section}{\numberline {3.2}INTEGRAL DE SUPERFICIE}{57}{}%
+\contentsline {subsection}{\numberline {3.2.1}Concepto de Integral de Superficie}{57}{}%
+\contentsline {subsection}{\numberline {3.2.2}Rotacional y Divergencia de un campo}{61}{}%
