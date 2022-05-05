@@ -2240,7 +2240,39 @@ Si la curva es cerrada, entonces $\gamma(a) = \gamma(b)$, luego $\left( f \circ 
 \item $\Leftarrow$
 
 Para entender el argumento de la demostración utilizamos como guía el siguiente dibujo:
-$$DIBUJO$$
+$$\begin{tikzpicture}
+
+\begin{axis}[
+tick style={draw=none},
+axis y line=middle,
+axis x line=middle,
+ymin = -1.2,
+xmin = -1.2, xmax = 1.2,
+%xlabel=$x$,
+%grid = both, %major/minor
+xticklabels={},yticklabels={}
+];
+
+\addplot [middlearrow={latex reversed},domain=-1:1, samples=100, name path=f, thick, color=blue!50]
+        {x^2 - 1};
+
+\addplot [middlearrow={latex reversed},domain=-1:1, samples=100, name path=g, thick, color=red!50]
+        {abs(x*(x-1)*(x+1))};
+
+
+\fill (1,0)  circle[radius=2pt];
+\fill (-1,0) circle[radius=2pt];
+
+
+\node (n4) [above,red] at (-0.1,0.2) {$\gamma_1$};
+\node (n3) [blue] at (0.1, -0.9) {$\gamma_2$};
+\node (n2)  at (-.5,-.5) {$\gamma$};
+
+
+
+
+\end{axis}
+\end{tikzpicture}$$
 Es decir, cualquier curva cerrada $\gamma$ la podemos dividir como $\gamma_1 \vee -\gamma_2$ y además vemos que:
 $$0 = \int_{\gamma_1 \lor \left( -\gamma_2 \right)} F \dif{\overline{s}} = \int_{\gamma_1} F \cdot \dif{\overline{s}} - \int_{\gamma_2} F \cdot \dif{\overline{s}} \Rightarrow \int_{\gamma_1} F \cdot \dif{\overline{s}} = \int_{\gamma_2} F \cdot \dif{\overline{s}}$$
 Por razones topológicas, podemos suponer que $G$ es conexo (puesto que cualquier abierto es suma de conexos) y como además $G$ es abierto, entonces es conexo por caminos, es decir, $\forall x \in G: \exists \gamma_x$ que une $x_0$ con $x$.
@@ -2476,8 +2508,9 @@ $$\iint_{S} F \dif{\overline{S}} = \iint_{D} F\left( \Phi\left( u, v \right) \ri
 
 \begin{obs}
 Del mismo modo que se hizo con las integrales de línea, aquí la idea intuitiva es que $F\left( \Phi\left( u, v \right) \right)$ es el vector que asigna el campo al punto $\Phi\left( u, v \right)$ de la superficie, pues dicho vector se proyecta sobre el vector normal a la superficie en ese punto que es $\Phi_u \times \Phi_v$ y sumamos todos esos vectores. Es decir, si recordamos el producto mixto de vectores, esto es, $a\cdot b\times c$ esta expresión nos daba el volumen del paralelepípedo formado por los 3 vectores, luego de alguna forma estamos sumando los volúmenes generados por un trozo diferencial de superficie.
-$$DIBUJO$$
-Por tanto, esta integral nos permite calcular el \textbf{flujo} del campo que atraviesa la superficie. Además, es necesario tener en cuenta las siguientes características:
+\begin{center}
+    \includegraphics[scale=0.8]{tripleProduct} 
+\end{center}Por tanto, esta integral nos permite calcular el \textbf{flujo} del campo que atraviesa la superficie. Además, es necesario tener en cuenta las siguientes características:
 \begin{itemize}
     \item El signo de la integral depende de la parametrización, luego habrá que determinar algún sistema para diferenciar la integral.
     \item Si $F$ es tangente a $S \Rightarrow \iint_{S} F \dif{\overline{S}} = 0$.
@@ -2514,7 +2547,6 @@ Se van a desarrollar dos conceptos fundamentales en el análisis vectorial que s
 \begin{defi}[Borde de una superficie]
 Sea $D$ el recinto interior a una curva $\gamma$ y $\Phi: D \rightarrow \mathbb{R}^3$ la parametrización de una superficie que se puede extender de forma inyectiva y $C^1$ a $\bar{D}$, es decir, a $\partial D$, definimos el \textbf{borde de $S$} como:
 $$\partial S = \Phi\left( \partial D \right)$$
-$$DIBUJO$$
 Esta definición permite trabajar siempre con conjuntos $D$ muy regulares donde $\partial D$ es una curva cerrada cuyo interior es $D$.
 \end{defi}
 \begin{obs}
