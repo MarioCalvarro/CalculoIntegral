@@ -124,6 +124,8 @@
     \tikz [x=0.25cm,y=0.60cm,line width=.2ex,-stealth,#1] \draw (0,0) arc (-150:150:1 and 1);%
 }
 
+\usetikzlibrary{shapes}
+
 \begin{document}
 \maketitle
 \setcounter{tocdepth}{3}% para que salgan las subsubsecciones en el indice
@@ -2605,13 +2607,13 @@ Vamos a hacer la demostración para el caso en el que suponemos que $\Omega = \l
 $$\begin{tikzpicture}[scale=1]
 \def\Anglei{-66}
 
-\draw[thin,->] (-2,0) -- (5,0);
-\draw[thin,->] (0,-2) -- (0,3);
+\draw[thin,->] (-2,0) -- (5,0)  node[above=3pt] {$y$};
+\draw[thin,->] (0,-2) -- (0,3)  node[above=3pt] {$z$};
 
 %Zylinder
 \begin{scope}[canvas is zx plane at y=0]
 \draw[fill=lime,opacity=0.5] (0,2.5) circle (1cm);
-\draw[->] (-2,0) -- (3,0);
+\draw[->] (-2,0) -- (3,0)  node[above=3pt] {$x$};
 \end{scope}
 
 \begin{scope}[canvas is zx plane at y=1.5]
@@ -2672,14 +2674,54 @@ $$\iint_{S_2} \left( 0, 0, F_3 \right) \dif{\overline{S}} = \iint_{D} F_3\left( 
 Por tanto, hemos probado que:
 $$\int_{\Omega} \frac{\partial F_3}{\partial z} \dif{x} \dif{y} \dif{z} = \iint_{\Omega} \left( 0, 0, F_3 \right) \dif{\overline{S}}$$
 
-(\textit{Dibujo, entre dos gráficas verticales})
+De modo completamente análogo y escribiéndolo todo para que sean funciones en el otro eje, es decir $(x,z) \mapsto y$, tenemos que: 
+$$\begin{tikzpicture}[scale=1]
+\def\Anglei{-66}
 
-De modo completamente análogo y escribiéndolo todo para que sean funciones en el otro eje, tenemos que: 
+\draw[thin,->] (-2,0) -- (5,0)  node[above=3pt] {$y$};
+\draw[thin,->] (0,-2) -- (0,3)  node[above=3pt] {$z$};
+
+%Zylinder
+\begin{scope}[canvas is zx plane at y=0]
+\draw[->] (-2,0) -- (3,0)  node[above=3pt] {$x$};
+\end{scope}
+\begin{scope}
+\node[cylinder, draw, shape aspect=.5, 
+      cylinder uses custom fill, cylinder end fill=green!50, 
+      minimum height=1cm,
+      cylinder body fill=green!25, opacity=0.5, 
+    scale=1.5, minimum size = 2cm] at (2, 0, 0){};
+\end{scope}
+
+\end{tikzpicture}$$
+
+
 $$\int_{\Omega} \frac{\partial F_2}{\partial y} \dif{x} \dif{y} \dif{z} = \int_{\partial \Omega} \left( 0, F_2, 0 \right) \dif{\overline{S}} $$
 
-(\textit{Dibujo, entre otras dos gráficas verticales}) 
 
-Y, de nuevo:
+Y, de nuevo si consideramos funciones del tipo $(y,z) \mapsto x$
+
+$$\begin{tikzpicture}[scale=1]
+\def\Anglei{-66}
+
+\draw[thin,->] (-2,0) -- (5,0)  node[above=3pt] {$y$};
+\draw[thin,->] (0,-2) -- (0,3)  node[above=3pt] {$z$};
+
+%Zylinder
+\begin{scope}[canvas is zx plane at y=0]
+\draw[->] (-5,0) -- (5,0)  node[above=3pt] {$x$};
+\end{scope}
+\begin{scope}
+\node[cylinder, draw, shape aspect=.5, 
+      cylinder uses custom fill, cylinder end fill=green!50, 
+      minimum height=1cm,
+      cylinder body fill=green!25, opacity=0.5, 
+    scale=1.5, minimum size = 2cm, rotate = -135] at (0, 0, 0){};
+\end{scope}
+
+\end{tikzpicture}$$
+
+
 $$\int_{\Omega} \frac{\partial F_1}{\partial x} \dif{x} \dif{y} \dif{z} = \int_{\partial \Omega} \left( F_1, 0, 0 \right) \dif{\overline{S}}$$
 Consecuentemente, sumando estas últimas ecuaciones obtenemos el resultado del enunciado.
 \end{demo}
