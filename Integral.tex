@@ -26,6 +26,7 @@
 \usepackage{subcaption}
 \usepackage{float}
 \usepackage{ulem}
+\usepackage{hyperref}
 
 \usepackage[explicit]{titlesec} %Formato de capitulos y secciones
     \titleformat{\chapter}[display]{\normalfont\huge\bfseries\color{capitulos}}{}{0pt}{\Huge #1}[\titlerule]
@@ -132,11 +133,8 @@
 \tableofcontents
 \chapter{CONCEPTO DE MEDIDA}%
 En general, la teoría de la integración está sustentada mayoritariamente por el concepto de medida que se tiene en el espacio sobre el que se integra. Pueden darse dos situaciones, que se defina una medida y a partir de ahí la integral correspondiente o puede ocurrir que se defina la integral y a partir de la misma se mida. Nosotros optaremos por definir todo lo relativo a la medida de forma previa, para que la teoría de integración que se desarrollará después esté sustentada en las propiedades métricas con las que dotemos a $\mathbb{R}^n$ y que caracterizarán la teoría posterior.
-\label{sec:medidas}
 \section{MEDIDA}%
 El concepto fundamental de esta sección es comprender qué entendemos por medida y que propiedades tiene, así como demostrar que la medida de Lebesque es un buen intrumento de medida para trabajar en $\mathbb{R}^n$.
-
-\label{sub:definicion_de_medida_exterior}
 
 \begin{defi}[Rectángulo]
 Definimos un rectángulo en $\mathbb{R}^n$ como el conjunto;
@@ -1139,8 +1137,7 @@ $$\int_a^b f \left(x\right) dx = \lim_{k \rightarrow \infty}\int_a^{b - \frac{1}
 \end{itemize}
 \end{demo}
 
-\section{FUNCIONES INTEGRABLES}%
-\label{cha:funciones_integrables}
+\section{FUNCIONES INTEGRABLES}
 Hasta ahora no hemos hecho más que definir la integral y las propiedades que tiene y todo ello mayoritariamente para funciones no negativas. En esta sección, el objetivo es ampliar las miras y dar una definición consistente con las propiedades ya vistas para funciones no negativas y así poder sacarle completamente partido al concepto de integral.
 
 \begin{defi}
