@@ -27,8 +27,15 @@
 \usepackage{graphicx}
 \graphicspath{{./fotos/}}
 
+%% Paquete para subfigures dentro del entorno figure
+\usepackage{subcaption}
+
 %% Inclusion de referencias cruzadas por defecto y específicas
-\usepackage{hyperref}
+\usepackage[colorlinks=true]{hyperref}
+\hypersetup{
+	urlcolor=red,
+	linkcolor=blue,
+}
 
 %% Paquete para definir y utilizar colores por el documento
 \usepackage[dvipsnames,usenames]{xcolor} %activar e incluir colores
@@ -43,8 +50,8 @@
 %% Paquete para la edición y el formateo de capítulos, secciones...
 \usepackage[explicit]{titlesec}
 	%% Definición del estilo de los capítulos, secciones, etc...
-    \titleformat{\chapter}[display]{\normalfont\huge\bfseries\color{capitulos}}{}{0pt}{\Huge #1}[\titlerule]
-    \titleformat{\section}{\normalfont\Large\bfseries\color{secciones}}{}{0pt}{#1}
+    \titleformat{\chapter}[display]{\normalfont\huge\bfseries\color{capitulos}}{}{0pt}{\Huge \uppercase{#1}}[\titlerule]
+    \titleformat{\section}{\normalfont\Large\bfseries\color{secciones}}{}{0pt}{\uppercase{#1}}
     \titleformat{\subsection}{\normalfont\large\bfseries\color{subsecciones}}{}{0pt}{\uline{#1}}
     \titleformat{\subsubsection}{\normalfont\normalsize\bfseries\color{subsubsecciones}}{}{0pt}{#1}
 
@@ -82,7 +89,7 @@
     	\newtheorem*{demo}{\underline{Demostración}:}
 
 	\theoremheaderfont{\normalfont}
-	\theorembodyfont{\normalfont}
+	\theorembodyfont{\sffamily}
     	\newtheorem*{obs}{\underline{Observación}:}
     	\newtheorem*{ej}{\underline{Ejemplo}:}
 
@@ -93,10 +100,23 @@
 \DeclareMathOperator{\divg}{div}
 \newcommand{\dif}[1]{\ d#1}
 
+%% Paquete para la tachar cosas
+\usepackage{centernot}
+
+%% Paquete para tener un apéndice
+\usepackage{appendix}
+
+%% Paquete para comentar bloques de código de LaTeX
+\usepackage{verbatim}
+
 %% Paquete e instrucciones para la generacion de los dibujos
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.17}
 \usepackage{tkz-fct}
+\usepackage{pstricks}
+\usepackage{pstcol} 
+\usepackage{pst-node}
+\usepackage{pst-plot}
 \usepgfplotslibrary{fillbetween}
 \usepackage{tikz,tikz-3dplot}
 \tdplotsetmaincoords{80}{45}
@@ -128,19 +148,38 @@
 
 \begin{document}
 \maketitle
-\setcounter{tocdepth}{3}% para que salgan las subsubsecciones en el indice
-\tableofcontents
-
 \frontmatter
-\section*{AGRADECIMIENTOS}
-Queremos dar gracias al Profesor Juan Ferrera. Por ser los apuntes generados durante un curso suyo y por sus notas y trabajo, que han permitido generar este documento y contrastar la calidad de los apuntes con el temario que se imparte durante el curso.
+\section*{Quiénes somos}
+Somos un grupo de estudiantes de la Universidad Complutense de Madrid, concretamente del Doble Grado de Informática y Matemáticas que queremos compartir unos apuntes de calidad y, como mínimo, ordenados para que os sea más fácil llevar la asignatura al día (sobre todo a estudiantes de Doble Grado).
+
+Estos apuntes son posibles gracias a la colaboración de más alumnos como tú que deciden aportar un granito de arena al proyecto. Puedes contribuir de la siguiente manera:
+\begin{itemize}
+\item Notificando erratas
+\item Modificando erratas
+\item Proponiendo mejoras
+\item Aportando ejemplos nuevos
+\item Aportando nuevas versiones
+\end{itemize}
+Para contribuir no tienes más que ponerte en contacto con \href{mailto:juandbar@ucm.es}{juandbar@ucm.es} o dejarnos un \textit{Pull Request} en \url{https://github.com/JuanDiegoBarrado/CalculoDiferencial}. Los detalles para que la contribución de todos sea lo más homogénea posible estarán en el fichero \textit{Contribute.md} de dicho repositorio o, en caso de no aparecer correctamente, podéis poneros en contacto con el correo anteriormente mencionado.
+
+Muchas gracias, esperamos que este documento te sea útil.
+
+\section*{Agradecimientos}
+Queremos dar gracias al Profesor Juan Ferrera. Por ser el profesor que impartió la asignatura de \textit{Cálculo Integral} y por sus notas y trabajo, que han permitido generar este documento y contrastar la calidad de los apuntes con el temario que se imparte durante el curso.
 \vfill
 Apuntes Cálculo Integral © 2022 by Juan Diego Barrado Daganzo, Mario Calvarro Marines and Iker Muñoz Martínez is licensed under Attribution-NonCommercial-ShareAlike 4.0 International. To view a copy of this license, visit \url{http://creativecommons.org/licenses/by-nc-sa/4.0/}
 
 \mainmatter
-\chapter{CONCEPTO DE MEDIDA}%
+\hypersetup{linkcolor=black} %% Conseguimos que el índice salga en negro
+\setcounter{tocdepth}{3}% para que salgan las subsubsecciones en el indice
+\setcounter{secnumdepth}{4}% para que salgan los números de las subsubsecciones en el indice
+\tableofcontents
+\hypersetup{linkcolor=blue} % retornamos el color de las referencias a azul, para que quede resaltado
+
+\chapter{Concepto de Medida}%
 En general, la teoría de la integración está sustentada mayoritariamente por el concepto de medida que se tiene en el espacio sobre el que se integra. Pueden darse dos situaciones, que se defina una medida y a partir de ahí la integral correspondiente o puede ocurrir que se defina la integral y a partir de la misma se mida. Nosotros optaremos por definir todo lo relativo a la medida de forma previa, para que la teoría de integración que se desarrollará después esté sustentada en las propiedades métricas con las que dotemos a $\mathbb{R}^n$ y que caracterizarán la teoría posterior.
-\section{MEDIDA}%
+
+\section{Medida}
 El concepto fundamental de esta sección es comprender qué entendemos por medida y que propiedades tiene, así como demostrar que la medida de Lebesque es un buen intrumento de medida para trabajar en $\mathbb{R}^n$.
 
 \begin{defi}[Rectángulo]
@@ -491,7 +530,8 @@ Y la demostración es análoga a la implicación $2 \Rightarrow 3$.
 De nuevo y por similitud con $3\Rightarrow 1$, $A = C \cup N$ es medible por ser unión de medibles.
 \end{itemize}
 \end{demo}
-\section{FUNCIONES MEDIBLES}%
+
+\section{Funciones Medibles}
 Comprobadas las propiedades que tiene la medida sobre conjuntos medibles, nos interesa saber qué funciones nos permiten conservar propiedades de medida interesantes. Es aquí donde juegan un papel fundamental las funciones medibles, que permiten asegurar que las preimágenes de abiertos son medibles y, por ello, al trabajar sobre abiertos no debemos preocuparnos sobre las propiedades de medibilidad ya que se conservan también en el conjunto de partida.
  
 \begin{defi}
@@ -860,10 +900,10 @@ Si una función $f$ es integrable Riemann, entonces dicha función también es m
 Por el teorema de antes, $\mu(D) = 0$ lo que implica que $f$ es continua en c.t.p. y, por tanto, es medible.
 \end{demo}
 
-\chapter{INTEGRAL DE LEBESQUE}
+\chapter{Integral de Lebesque}
 Una vez definida la medida en $\mathbb{R}^n$, tenemos todos los ingredientes necesarios para desarrollar una teoría de la integrabilidad sólida. Durante este capítulo se va a desarrollar la Integral de Lebesque, relacionar dicha integral con la integral de Riemann y estudiar las propiedades de las que goza dicho objeto matemático.
 
-\section{DEFINICIÓN DE INTEGRAL}
+\section{Definición de Integral}
 La definición de la integral de Lebesque posibilita extender el la Integral de Riemann y establecer un cimiento sólido para todas aquellas áreas matemáticas que se nutren de la integración y que poseen situaciones peculiares que hacen las integrales de Riemann inservibles.
 
 \begin{obs}
@@ -1144,7 +1184,7 @@ $$\int_a^b f \left(x\right) dx = \lim_{k \rightarrow \infty}\int_a^{b - \frac{1}
 \end{itemize}
 \end{demo}
 
-\section{FUNCIONES INTEGRABLES}
+\section{Funciones Integrables}
 Hasta ahora no hemos hecho más que definir la integral y las propiedades que tiene y todo ello mayoritariamente para funciones no negativas. En esta sección, el objetivo es ampliar las miras y dar una definición consistente con las propiedades ya vistas para funciones no negativas y así poder sacarle completamente partido al concepto de integral.
 
 \begin{defi}
@@ -1674,7 +1714,7 @@ Dado $t \in \left(-1, \infty\right)$ sean $-1 < a < t_0 < b <\infty$. Vamos a de
 \end{enumerate}
 \end{ej}
  
-\section{TEOREMA DEL CAMBIO DE VARIABLE}
+\section{Teorema del Cambio de Variable}
 Del mismo modo que para poder integrar en $\mathbb{R}$ podíamos hacer cambios de variable que simplificasen las expresiones que se debía integrar, es posible definir un teorema equivalente para dimensiones superiores que nos permiten cambiar el sistema de coordenadas sobre el que describir los objetos matemáticos y seguir integrando cómodamente.
 
 \begin{theo}
@@ -1926,10 +1966,10 @@ $$= 2 \int_{\theta = 0}^{\theta = \pi} \int_{r = 0}^{r = a\sen \theta } r \sqrt{
 $$= \frac{2}{3} \int_{\theta = 0}^{\theta = \pi} a^3 - a^3 \lvert \cos \theta  \rvert^3 \dif{\theta } = \frac{4}{3} \int_{\theta = 0}^{\theta = \frac{\pi}{2}} a^3 - a^3 \cos^3 \theta \dif{\theta } = \ldots = \boxed{\frac{4}{3}a^3 \left(\frac{\pi}{2} - \frac{2}{3}\right)} $$
 \end{ej}
 
-\chapter{CÁLCULO VECTORIAL}
+\chapter{Cálculo Vectorial}
 Hasta ahora hemos trabajado siempre con funciones cuyo espacio de llegada era $\mathbb{R}$ y se ha hecho todo un trabajo de cimentación de la teoría de la integración para la nueva definición de Lebesque de la integral. A partir de aquí, se van a dar unas nociones de Cálculo Vectorial, esto es, propiedades de dicha definición de integral para funciones cuyo espacio de llegada es $\mathbb{R}^n$.
 
-\section{INTEGRAL DE LÍNEA}
+\section{Integral de línea}
 En esta sección, vamos a estudiar como concepto central la integral de línea. Por un lado, para funciones cuyo espacio de llegada es $\mathbb{R} $ puede surgir la pregunta de ¿qué pasa si yo quiero integrar la función en una línea (no necesariamente recta) del plano? Esto calcularía el área bajo la función y sobre dicha línea. Por otro lado, también es razonable pensar qué significa dicha integral si el espacio de llegada es $\mathbb{R}^n$.
 
 \subsection{Definición de curva}
@@ -2380,7 +2420,7 @@ Si escogemos $Q\left( x, y \right) = x$ y $P\left( x, y \right) = -y$, por el Te
 $$\int_{\partial D^+} x \dif{y} - y \dif{x} = 2\iint_{D} \dif{x} \dif{y} = 2 A\left(D\right)$$
 \end{demo}
 
-\section{INTEGRAL DE SUPERFICIE}
+\section{Integral de Superficie}
 De nuevo, hemos calculado integrales de funciones cuyo espacio de llegada era $\mathbb{R}$ en conjuntos definidos en $\mathbb{R}^2$. Sin embargo, ¿qué ocurre si el conjunto de integración no es plano sobre $\mathbb{R}^2$ si no que puede ser considerado una superficie en $\mathbb{R}^3$? Además, ¿qué estamos haciendo y cómo si el espacio de llegada es $\mathbb{R}^n$?
 
 \subsection{Concepto de Integral de Superficie}
