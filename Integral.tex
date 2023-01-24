@@ -114,11 +114,12 @@
 \pgfplotsset{compat=1.17}
 \usepackage{tkz-fct}
 \usepackage{pstricks}
-\usepackage{pstcol} 
+\usepackage{pstricks} 
 \usepackage{pst-node}
 \usepackage{pst-plot}
 \usepgfplotslibrary{fillbetween}
 \usepackage{tikz,tikz-3dplot}
+\usetikzlibrary{babel}
 \tdplotsetmaincoords{80}{45}
 \tdplotsetrotatedcoords{-90}{180}{-90}
 \usetikzlibrary{arrows}
@@ -375,7 +376,8 @@ $$S \cap Q^c \subset \bigcup_{j=1}^\infty Q_j\cap Q^c = \bigcup_{j=1}^\infty \le
 
 $$ R_1 \cup \cdots \cup R_m \cup \left( Q_j \cap Q \right) = Q_j \Rightarrow v\left( Q_j \right) = v\left( R_1 \right) +\ldots + v\left( R_m \right) + v\left( Q_j\cap Q \right) $$
 En consecuencia, tenemos que:
-$$\mu^*\left( S\cap Q \right) + \mu^*\left( S \cap Q^c \right) \le \sum_{j=1}^{\infty} v\left( Q_j \cap Q \right) + \sum_{j=1}^{\infty} \left( v\left( Q_j\cap Q \right) + v\left( R_1^j \right) +\ldots + v\left( R_m^j \right) \right) = \sum_{j=1}^{\infty} v\left( Q_j \right)$$
+$$\mu^*\left( S\cap Q \right) + \mu^*\left( S \cap Q^c \right) \le \sum_{j=1}^{\infty} v\left( Q_j \cap Q \right) + $$
+$$+ \sum_{j=1}^{\infty} \left( v\left( Q_j\cap Q \right) + v\left( R_1^j \right) +\ldots + v\left( R_m^j \right) \right) = \sum_{j=1}^{\infty} v\left( Q_j \right)$$
 \end{demo}
 
 \begin{prop}
@@ -414,7 +416,8 @@ B_2 = A_2\setminus A_1 \\
 B_k = A_k \setminus A_{k-1}
 \end{cases} \Rightarrow \bigcup_{k=1}^\infty B_k = \bigcup_{k=1}^\infty A_k \Rightarrow \mu\left(\bigcup_{k=1}^\infty B_k\right) = \mu\left(\bigcup_{k=1}^\infty A_k\right)$$
 Sin embargo, como $\{B_k\}_{k=1}^\infty$ son disjuntos dos a dos, tenemos que:
-$$\mu\left(\bigcup_{k=1}^\infty B_k\right) = \sum_{k=1}^\infty \mu(B_k) =\sum_{k=1}^\infty \mu(A_k\setminus A_{k-1}) = \sum_{k=1}^\infty \mu(A_k)- \mu(A_{k-1}) = \lim_{k\rightarrow \infty} \mu(A_k) - \mu(\emptyset) = \lim_{k\rightarrow \infty}\mu(A_k)$$
+$$\mu\left(\bigcup_{k=1}^\infty B_k\right) = \sum_{k=1}^\infty \mu(B_k) =\sum_{k=1}^\infty \mu(A_k\setminus A_{k-1}) =$$
+$$\sum_{k=1}^\infty \mu(A_k)- \mu(A_{k-1}) = \lim_{k\rightarrow \infty} \mu(A_k) - \mu(\emptyset) = \lim_{k\rightarrow \infty}\mu(A_k)$$
 \end{demo}
 
 \begin{defi}[Sucesión decreciente de conjuntos]
@@ -609,7 +612,7 @@ que es medible.
 
 \item Completamente análogo a antes, se trata de ver la siguiente igualdad $\vert \vert f \vert \vert = \left<f, f\right>^{\frac{1}{2}}$ y demostrar que es la composición con:
 \begin{align*}
-\sqrt{•}: \mathbb{R}^+ &\rightarrow \mathbb{R}^+ \\
+\sqrt{\text{•}}: \mathbb{R}^+ &\rightarrow \mathbb{R}^+ \\
 u &\mapsto \sqrt{u}
 \end{align*}
 que es continua.
@@ -1004,12 +1007,13 @@ Si $f:\mathbb{R}^n\rightarrow \mathbb{R}$ es una función medible, entonces el c
 \end{prop}
 
 \begin{lema}
-Sea $\varphi$ función simple no negativa y $\{A_k\}_{k=1}^{\infty}\uparrow A$ una sucesión creciente $\left(A_k \subset A_{k+1} : \bigcup_{k \in \mathbb{N}} A_k = A\right)$ de conjuntos medibles convergentes a $A$, entonces:
+Sea $\varphi$ función simple no negativa y $\{A_k\}_{k=1}^{\infty}\uparrow A$ suc. creciente $\left(A_k \subset A_{k+1} : \bigcup_{k \in \mathbb{N}} A_k = A\right)$ de conjuntos medibles convergentes a $A$, entonces:
 $$\int_A \varphi \ d \mu = \lim_{k\rightarrow\infty} \int_{A_k} \varphi \ d \mu.$$
 \end{lema}
 \begin{demo}
 Tenemos que $\varphi = \sum_{j=1}^{m} \alpha_j \cdot \chi_{E_j}$, entonces:
-$$\lim_{k\rightarrow\infty} \int_{A_k} \varphi \ d \mu = \lim_{k\rightarrow\infty} \int_{\mathbb{R}^n}\varphi \cdot \chi_{A_k} \ d \mu = \lim_{k\rightarrow\infty} \int_{\mathbb{R}^n} \left(\sum_{j=1}^{m} \alpha_j \cdot \chi_{E_j}\cdot \chi_{A_k}\right) \ d \mu= \lim_{k\rightarrow\infty} \int_{\mathbb{R}^n} \left(\sum_{j=1}^{m} \alpha_j \cdot \chi_{E_j \cap A_k}\right) d \mu = $$
+$$\lim_{k\rightarrow\infty} \int_{A_k} \varphi \ d \mu = \lim_{k\rightarrow\infty} \int_{\mathbb{R}^n}\varphi \cdot \chi_{A_k} \ d \mu =$$
+$$= \lim_{k\rightarrow\infty} \int_{\mathbb{R}^n} \left(\sum_{j=1}^{m} \alpha_j \cdot \chi_{E_j}\cdot \chi_{A_k}\right) \ d \mu= \lim_{k\rightarrow\infty} \int_{\mathbb{R}^n} \left(\sum_{j=1}^{m} \alpha_j \cdot \chi_{E_j \cap A_k}\right) d \mu = $$
 $$= \lim_{k\rightarrow\infty} \sum_{j=1}^{m} \left( \alpha_j \int_{\mathbb{R}^n} \chi_{E_j \cap A_k} d \mu \right) = \lim_{k\rightarrow\infty} \sum_{j=1}^{m} \alpha_j \cdot \mu\left(E_j \cap A_k\right) = \sum_{j=1}^{m} \alpha_j \cdot \lim_{k\rightarrow\infty} \mu\left(E_j \cap A_k\right) = $$
 $$= \sum_{j=1}^{m} \alpha_j \cdot \mu\left(E_j \cap A\right) = \sum_{j=1}^{m} \left(\alpha_j \int_{\mathbb{R}^n} \chi_{E_j \cap A} \ d \mu\right) = \int_{\mathbb{R}^n}\sum_{j=1}^{m} \alpha_j \chi_{E_j} \chi_{A} \ d \mu= \int_{\mathbb{R}^n} \varphi \cdot \chi_A \ d \mu = \int_A \varphi \ d \mu$$
 \end{demo}
@@ -1061,7 +1065,8 @@ Por ser acotada, $\exists M > 0: f \le M\chi_{\left[a, b\right]}$, lo que implic
 
 Además, por ser integrable Riemann, tenemos que:
 $$\int_a^b f\left(x\right)dx = \sup_{P \in \wp} L\left(f, P\right) \Rightarrow \exists \{P_k\}_{k=1}^{\infty} : P_k \leq P_{k+1} : \int_a^b f\left(x\right) \ dx = \lim_{k\rightarrow \infty} L\left(f, P_k\right) = $$
-$$= \lim_{k\rightarrow\infty} \sum_{S \in P_k} \inf \{f\left(x\right) : x \in S\}\mu\left(S\right) = \lim_{k\rightarrow\infty} \int_{\left[a, b\right]}\left(\underbrace{\sum m_S \left(f\right) \cdot \chi_S}_{\text{funcion simple}}\right) \ d \mu = \int_{\left[a, b\right]}\lim_{k\rightarrow\infty} f_k \ d \mu = \int_{\left[a, b\right]}f \ d \mu$$
+$$= \lim_{k\rightarrow\infty} \sum_{S \in P_k} \inf \{f\left(x\right) : x \in S\}\mu\left(S\right) = \lim_{k\rightarrow\infty} \int_{\left[a, b\right]}\left(\underbrace{\sum m_S \left(f\right) \cdot \chi_S}_{\text{funcion simple}}\right) \ d \mu = $$
+$$= \int_{\left[a, b\right]}\lim_{k\rightarrow\infty} f_k \ d \mu = \int_{\left[a, b\right]}f \ d \mu$$
 Donde $f_k = \sum m_S\left(f\right) \chi_S$ y vemos que por ser crecientes las particiones que hemos tomado, dicha sucesión también lo es y por ello podemos aplicar el teorema.
 \end{demo}
 
@@ -1183,7 +1188,8 @@ Las integrales impropias se soportan por la integral de Lebesque:
 $$\int_a^{\infty} f \left(x\right) dx = \lim_{M \rightarrow \infty} \int_a^M f \left(x\right) dx = \lim_{m \rightarrow \infty} \int_a^{\infty} f \left(x\right) \chi_{\left[a, M\right]}dx = \lim_{m \rightarrow \infty} \int_{\left[a, +\infty\right]} f \chi_{\left[a, M\right]} d \mu =$$
 $$= \int_{\left[a, +\infty\right]} f \chi_{\left[a, +\infty\right]} d \mu = \int_{\left[a, +\infty\right]} f d \mu. $$
 \item Segunda
-$$\int_a^b f \left(x\right) dx = \lim_{k \rightarrow \infty}\int_a^{b - \frac{1}{k}} f \left(x\right) dx = \lim_{k \rightarrow \infty} \int_{\left[a, b - \frac{1}{k}\right]} f d \mu = \lim_{k \rightarrow \infty} \int_{\mathbb{R}} f \chi_{\left[a, b - \frac{1}{k}\right]} d \mu = \int_{\mathbb{R}} f \chi_{\left[a, b\right]} d \mu = \int_{\left[a, b\right]} f d \mu.$$
+$$\int_a^b f \left(x\right) dx = \lim_{k \rightarrow \infty}\int_a^{b - \frac{1}{k}} f \left(x\right) dx = \lim_{k \rightarrow \infty} \int_{\left[a, b - \frac{1}{k}\right]} f d \mu =$$
+$$= \lim_{k \rightarrow \infty} \int_{\mathbb{R}} f \chi_{\left[a, b - \frac{1}{k}\right]} d \mu = \int_{\mathbb{R}} f \chi_{\left[a, b\right]} d \mu = \int_{\left[a, b\right]} f d \mu.$$
 \end{itemize}
 \end{demo}
 
@@ -1356,12 +1362,12 @@ $$ \stackrel{Fatou}{\le} \liminf_{k \rightarrow \infty}\int_{\mathbb{R}^n} \left
 Luego ya tenemos la desigualdad
 $$\int_{\mathbb{R}^n} f \dif{\mu} \le \liminf_{k \rightarrow \infty}\left( \int_{\mathbb{R}^n} f_k \dif{\mu}\right)$$
 De forma análoga, tomamos la sucesión $\{-f_k + g\}_{k=1}^{\infty}$ y entonces:
-$$\int_{\mathbb{R}^n} \left(-f\right) \dif{\mu} \le \liminf_{k \rightarrow \infty} \int_{\mathbb{R}^n} \left(-f_k\right) \dif{\mu} \Rightarrow - \int_{\mathbb{R}^n} f \dif{\mu} \le \liminf_{k \rightarrow \infty} \left(-\int_{\mathbb{R}^n} f_k \dif{\mu} \right) = -\limsup_{k \rightarrow \infty} \left(\int_{\mathbb{R}^n} f_k \dif{\mu} \right) \Rightarrow$$
-$$\limsup_{k \rightarrow \infty} \int_{\mathbb{R}^n} f_k \dif{\mu} \le \int_{\mathbb{R}^n} f \dif{\mu} $$
+$$\int_{\mathbb{R}^n} \left(-f\right) \dif{\mu} \le \liminf_{k \rightarrow \infty} \int_{\mathbb{R}^n} \left(-f_k\right) \dif{\mu} \Rightarrow - \int_{\mathbb{R}^n} f \dif{\mu} \le \liminf_{k \rightarrow \infty} \left(-\int_{\mathbb{R}^n} f_k \dif{\mu} \right) =$$
+$$= -\limsup_{k \rightarrow \infty} \left(\int_{\mathbb{R}^n} f_k \dif{\mu} \right) \Rightarrow \Rightarrow \limsup_{k \rightarrow \infty} \int_{\mathbb{R}^n} f_k \dif{\mu} \le \int_{\mathbb{R}^n} f \dif{\mu} $$
 Como por la convergencia, se tiene que el límite superior e inferior coinciden con el límite global, se tiene la igualdad.
 \end{demo}
 
-\subsection{Cálculo de integrales en $\mathbb{R}^n$}
+\subsection{Cálculo de integrales en \texorpdfstring{$\mathbb{R}^n$}{Rn}}
 A pesar de que hemos definido todos los conceptos relativos al cálculo de integrales en $\mathbb{R}^n$, hasta ahora no hemos visto ningún método efectivo en términos prácticos para calcular integrales superiores a una dimensión. Aquí se desarrolla el Teorema fundamental que nos permite simplificar el cálculo de integrales en $\mathbb{R}^n$ al cálculo de varias integrales en $\mathbb{R}$.
 
 \begin{defi}[Secciones de funciones]
@@ -1425,9 +1431,11 @@ Para demostrar este teorema para funciones no negativas se irá demostrando para
 \item Primeramente consideramos $f = \chi_{Q}$ donde $Q \subset \mathbb{R}^{n+m}$ es un cubo semiabierto, es decir, $Q = \prod_{i=1}^{n+m} \left[a_i, b_i\right)$. Este cubo se puede expresar en términos de otros dos, esto es, $Q = A \times B$ con $A \subset \mathbb{R}^n$ y $B \in \mathbb{R}^m$ cubos semiabiertos. Veamos entonces que:
 \begin{enumerate}
     \item
-    $$\left(\chi_Q\right)_x = \chi_{Q_x} = \begin{cases} \chi_B &  x \in A\\ 0 &  x \not\in A \end{cases} \Rightarrow \left(\chi_Q\right)_x \text{ ya que }Q_x = \begin{cases} B & x\in A \\ \emptyset & x\notin A \end{cases}\Rightarrow \chi_{Q_x} \text{ medible }\forall x \in \mathbb{R}^n$$
+    $$\left(\chi_Q\right)_x = \chi_{Q_x} = \begin{cases} \chi_B &  x \in A\\ 0 &  x \not\in A \end{cases} \Rightarrow \left(\chi_Q\right)_x$$
+    $$\text{ ya que }Q_x = \begin{cases} B & x\in A \\ \emptyset & x\notin A \end{cases}\Rightarrow \chi_{Q_x} \text{ medible }\forall x \in \mathbb{R}^n$$
     \item
-    $$F \left(x\right) = \int_{\mathbb{R}^m} \chi_{Q_x} \dif{\mu_m} = \begin{cases} \int_{\mathbb{R}^m} \chi_b \dif{\mu_m} = \mu_m \left(B\right) & x \in A \\ 0 & x \not\in A\end{cases} \text{ medible} \Rightarrow F \left(x\right) = \mu_m \left(B\right)\cdot \chi_A \left(x\right)$$
+    $$F \left(x\right) = \int_{\mathbb{R}^m} \chi_{Q_x} \dif{\mu_m} = \begin{cases} \int_{\mathbb{R}^m} \chi_b \dif{\mu_m} = \mu_m \left(B\right) & x \in A \\ 0 & x \not\in A\end{cases} \text{ medible} \Rightarrow$$
+    $$F \left(x\right) = \mu_m \left(B\right)\cdot \chi_A \left(x\right)$$
     \item
     $$\int_{\mathbb{R}^n} F \left(x\right) \dif{\mu_n} = \mu_m \left(B\right) \cdot \mu_n \left(A\right) = \mu_{n+m} \left(Q\right) = \int_{\mathbb{R}^n \times \mathbb{R}^m} \chi_Q \dif{\mu_{m+n}} $$
     Siendo la 2 igualdad cierta por tratarse de un cubo.
@@ -1534,7 +1542,7 @@ xticklabels={},yticklabels={}
 \begin{obs}
 Si $N \subset \mathbb{R}^{n+m}$ satisface que $\mu_{n+m} \left(N \right) = 0$ hemos visto que para casi todo $x \in \mathbb{R}$ la sección $N_x$ es medible porque tiene medida nula. Sin embargo, puede ocurrir que para algún $x \in \mathbb{R}^n$ la sección $N_x$ no sea medible en $\mathbb{R}^m$
 
-Por ejemplo, sea $E \subset \mathbb{R}$ no medible y sea $N = \{0\} \times E \subset \mathbb{R}^2$. Como $N$ está contenido en la recta $\{0\} \times \mathbb{R}$ está claro que $\mu_2 \left(N\right) = 0$, pero la sección $N_0 = E$ no es medible.\\
+Por ejemplo, sea $E \subset \mathbb{R}$ no medible y sea $N = \{0\} \times E \subset \mathbb{R}^2$. Como $N$ está contenido en la recta $\{0\} \times \mathbb{R}$ está claro que $\mu_2 \left(N\right) = 0$, pero la sección $N_0 = E$ no es medible.
 \end{obs}
 
 \begin{coro}
@@ -1665,12 +1673,15 @@ $$F' \left(t\right) = \int_{\mathbb{R}^n} \frac{\partial f \left(x, t\right)}{\p
 \begin{demo}
 Vamos a aplicar el Teorema de Fubini y de Tonelli a $\frac{\partial f\left(x, t\right)}{\partial t} $
 \begin{itemize}
-    \item En primer lugar, como podemos expresar dicha función como $\frac{\partial f}{\partial t} \left(x, t\right) = \lim_{s \rightarrow 0^+} \frac{f \left(x, t + s\right) - f \left(x, t\right)}{s} = \lim_{k \rightarrow \infty} \frac{f \left(x, t + \frac{1}{k}\right) - f \left(x, t\right)}{\frac{1}{k}}$ es medible por ser límite puntual de funciones medibles.
+    \item En primer lugar, como podemos expresar dicha función como: 
+    $$\frac{\partial f}{\partial t} \left(x, t\right) = \lim_{s \rightarrow 0^+} \frac{f \left(x, t + s\right) - f \left(x, t\right)}{s} = \lim_{k \rightarrow \infty} \frac{f \left(x, t + \frac{1}{k}\right) - f \left(x, t\right)}{\frac{1}{k}}$$
+    es medible por ser límite puntual de funciones medibles.
     \item En segundo lugar, como podemos acotarla por una función integrable, es integrable en $\mathbb{R}^n \times \left[a, b\right]$:
     $$\int_{\mathbb{R}^n} \left\vert \frac{\partial f}{\partial t} \left(x, t\right)\right\vert  \dif{x} \dif{y} \le \int_{\mathbb{R}^n \times \left[a, b\right]} g \left(x\right) \dif{x} \dif{t} = \int_{\mathbb{R}^n} \left(\int_a^b g \left(x\right) \dif{t}  \right) \dif{x}  = $$
     $$ = \int_{\mathbb{R}^n} \left(b - a\right) g \left(x\right) \dif{x} = \left(b - a\right) \int_{\mathbb{R}^n} g(x) \dif{x}< +\infty$$
     \item Aplicamos el teorema de Fubini, es decir, $\forall s \in \left[a, b\right]$: 
-    $$\int_a^s \left(\int_{\mathbb{R}^n} \frac{\partial f}{\partial t} \left(x, t\right) \dif{x} \right) \dif{t} = \int_{\mathbb{R}^n} \left(\int_a^s \frac{\partial f}{\partial t} \left(x, t\right) \dif{t} \right) \dif{x} = \int_{\mathbb{R}^n} \left( f \left(x, s\right) - f \left(x, a\right)\right) \dif{x} = F \left(s\right) - F \left(a\right).$$
+    $$\int_a^s \left(\int_{\mathbb{R}^n} \frac{\partial f}{\partial t} \left(x, t\right) \dif{x} \right) \dif{t} = \int_{\mathbb{R}^n} \left(\int_a^s \frac{\partial f}{\partial t} \left(x, t\right) \dif{t} \right) \dif{x} = $$
+    $$= \int_{\mathbb{R}^n} \left( f \left(x, s\right) - f \left(x, a\right)\right) \dif{x} = F \left(s\right) - F \left(a\right).$$
     Denotamos: 
     $$H \left(t\right) := \int_{\mathbb{R}^n} \frac{\partial f\left(x, t\right)}{\partial t}  \dif{x}$$
     Como $\frac{\partial f\left(x, t\right)}{\partial t}  = f_x' \left(t\right)$ es continua en $t$ y $\vert \frac{\partial f}{\partial t} \vert \le g$, por el Teorema anterior obtenemos que $H$ es continua en $t \in \left[a, b\right]$. En consecuencia, vemos que: 
@@ -1951,7 +1962,8 @@ Sea $\varphi: \mathbb{R}^3\rightarrow  \mathbb{R}^3$ de forma que $\varphi(r, \t
 \begin{ej}
 Vamos a calcular el volumen de una esfera sólida, dada por $B_R = \{\left(x, y, z\right) : x^2 + y^2 + z^2 \le R^2\}$:
 $$vol \left(B_R\right) = \mu_3 \left(B_r\right) = \int_{B_R} 1 \dif{x} \dif{y} \dif{z}=$$
-$$= \int_{\theta = 0}^{\theta = 2\pi }\int_{\varphi = 0}^{\varphi = \pi} \int_{r = 0}^{r = R} 1 \cdot r^2 \sen \varphi \dif{r} \dif{\varphi } \dif{\theta} = \left(\underbrace{\int_{\theta = 0}^{2\pi }1 \dif{\theta }}_{= 2\pi} \right) \cdot \left(\underbrace{\int_{\varphi = 0}^{\varphi = \pi} \sen \varphi \dif{\varphi }}_{= 2}\right) \cdot \left(\underbrace{\int_{r = 0}^{r = R} r^2 \dif{r}}_{= \left[\frac{r^3}{3}\right]_0^R = \frac{R^3}{3}}\right) = \frac{4}{3} \pi R^3$$
+$$= \int_{\theta = 0}^{\theta = 2\pi }\int_{\varphi = 0}^{\varphi = \pi} \int_{r = 0}^{r = R} 1 \cdot r^2 \sen \varphi \dif{r} \dif{\varphi } \dif{\theta} = $$
+$$= \left(\underbrace{\int_{\theta = 0}^{2\pi }1 \dif{\theta }}_{= 2\pi} \right) \cdot \left(\underbrace{\int_{\varphi = 0}^{\varphi = \pi} \sen \varphi \dif{\varphi }}_{= 2}\right) \cdot \left(\underbrace{\int_{r = 0}^{r = R} r^2 \dif{r}}_{= \left[\frac{r^3}{3}\right]_0^R = \frac{R^3}{3}}\right) = \frac{4}{3} \pi R^3$$
 \end{ej}
 
 \begin{ej}
@@ -2515,7 +2527,8 @@ $$\Phi \left( u, v \right) = \left( u, f\left( u \right)\cos v, f\left( u \right
 Con esta parametrización, solo renunciamos al borde de puntos de $a$ a $b$ y los puntos del plano horizontal, pero como tienen medida nula no influyen en el resultado, ahora: 
 $$\begin{cases}
 \Phi_u = \left( 1, f'\left( u \right) \cos v, f'\left( u \right) \sin v \right) \\ \Phi_v = \left( 0, -f\left( u \right) \sin v, f\left( u \right) \cos v \right)
-\end{cases}\Rightarrow \Phi_u \times \Phi_v = \left( f\left( u \right) f'\left( v \right) \left[ \cos^2 v + \sin^2 v \right], -f\left( u \right) \cos v, -f\left( u \right) \sin v \right)$$
+\end{cases}\Rightarrow$$
+$$\Phi_u \times \Phi_v = \left( f\left( u \right) f'\left( v \right) \left[ \cos^2 v + \sin^2 v \right], -f\left( u \right) \cos v, -f\left( u \right) \sin v \right)$$
 $$\lVert \Phi_u \times \Phi_v \rVert = \sqrt{f\left( u \right)^2 \left[ f'\left( u \right) \right]^2 + f\left( u \right)^2} = f\left( u \right) \sqrt{1 + f'\left( u \right)^2} \Rightarrow$$
 $$A\left( S \right) = \int_{a}^{b} \left( \int_{0}^{2\pi} f\left( u \right) \sqrt{1 + f'\left( u \right)^2} \dif{v} \right) \dif{u} = 2\pi \int_{a}^{b} f\left( u \right) \sqrt{1 + f'\left( u \right)^2} \dif{u} $$
 Vemos finalmente que la expresión final es, en cierta manera, como integrar las áreas de cada anillo desde $a$ hasta $b$.
@@ -2563,7 +2576,8 @@ Del mismo modo que se hizo con las integrales de línea, aquí la idea intuitiva
     \item Si $F$ es tangente a $S \Rightarrow \iint_{S} F \dif{\overline{S}} = 0$.
 
 Para hacer más patente el significado de la integral de superficie vemos que:
-$$\iint_{S} F \dif{\overline{S}} = \iint_{D} F\left( \Phi\left( u, v \right) \right) \cdot \left( \Phi_u \times \Phi_v \right) = \iint_{D} F\left( \Phi\left( u, v \right) \right) \cdot \underbrace{\frac{\Phi_u \times \Phi_v}{\lVert \Phi_u \times \Phi_v \rVert}}_{\vec{n}} \cdot \lVert \Phi_u \times \Phi_v \rVert = \iint_{S} F_{\vec{n}} \dif{S}$$
+$$\iint_{S} F \dif{\overline{S}} = \iint_{D} F\left( \Phi\left( u, v \right) \right) \cdot \left( \Phi_u \times \Phi_v \right) =$$
+$$= \iint_{D} F\left( \Phi\left( u, v \right) \right) \cdot \underbrace{\frac{\Phi_u \times \Phi_v}{\lVert \Phi_u \times \Phi_v \rVert}}_{\vec{n}} \cdot \lVert \Phi_u \times \Phi_v \rVert = \iint_{S} F_{\vec{n}} \dif{S}$$
 Es decir, estamos haciendo una integral sobre una superficie de la función que proyecta el campo sobre el vector normal.
 \end{itemize}
 \end{obs}
@@ -2642,7 +2656,8 @@ $$= \iint_{D} \left( \left( \frac{\partial F_3}{\partial y} - \frac{\partial F_2
 Por el otro lado: 
 $$\int_{\partial S} F \dif{\overline{s}} = \int_{a}^{b} \left( F_1, F_2, F_3 \right) \cdot \left( x'\left( t \right), y'\left( t \right), \frac{\partial f}{\partial x} x'\left( t \right) + \frac{\partial f}{\partial y} y'\left( t \right) \right) = $$
 $$= \int_{a}^{b} \left( F_1x'\left( t \right) - F_2y'\left( t \right) + F_3\left( \frac{\partial f}{\partial x} x'\left( t \right) + \frac{\partial f}{\partial y} y'\left( t \right) \right) \right) \dif{t} = $$
-$$= \int_{\partial D} \left( F_1 + F_3 \frac{\partial f}{\partial x} \right) \dif{x} + \left( F_2 + F_3 \frac{\partial f}{\partial y} \right) \dif{y} \stackrel{\text{F. Green}}{=}\iint_{D} \frac{\partial}{\partial x} \left( F_2 + F_3 \frac{\partial f}{\partial y} \right) - \frac{\partial}{\partial y} \left( F_1 + F_3 \frac{\partial f}{\partial x} \right) \dif{x} \dif{y}$$
+$$= \int_{\partial D} \left( F_1 + F_3 \frac{\partial f}{\partial x} \right) \dif{x} + \left( F_2 + F_3 \frac{\partial f}{\partial y} \right) \dif{y} \stackrel{\text{F. Green}}{=}$$
+$$= \iint_{D} \frac{\partial}{\partial x} \left( F_2 + F_3 \frac{\partial f}{\partial y} \right) - \frac{\partial}{\partial y} \left( F_1 + F_3 \frac{\partial f}{\partial x} \right) \dif{x} \dif{y}$$
 Y desarrollando se ve que las dos cosas son iguales.
 \end{demo}
 \begin{obs}
@@ -2749,7 +2764,7 @@ Sea $\Omega \subset \mathbb{R}^3$ dominio\footnote{Esto quiere decir que $\mathr
 $$\iint_{\partial \Omega} F \dif{\overline{S}} = \iiint_{\Omega} \divg F$$
 \end{theo}
 \begin{demo}
-Vamos a hacer la demostración para el caso en el que suponemos que $\Omega = \left\{ \left( x, y, z \right) : f\left( x, y \right) \le z \le g\left( x, y \right) \right\}$ con $f, g : D \rightarrow \mathbb{R}$ de $C^1$, $D \subset \mathbb{R}^2$ y $f \le g$.
+Demostremos para el caso en el que suponemos $\Omega = \left\{ \left( x, y, z \right) : f\left( x, y \right) \le z \le g\left( x, y \right) \right\}$ con\\ $f, g : D \rightarrow \mathbb{R}$ de $C^1$, $D \subset \mathbb{R}^2$ y $f \le g$.
 $$\begin{tikzpicture}[scale=1]
 \def\Anglei{-66}
 
