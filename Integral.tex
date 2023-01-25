@@ -184,7 +184,7 @@ Apuntes Cálculo Integral © 2022 by Juan Diego Barrado Daganzo, Mario Calvarro 
 En general, la teoría de la integración está sustentada mayoritariamente por el concepto de medida que se tiene en el espacio sobre el que se integra. Pueden darse dos situaciones, que se defina una medida y a partir de ahí la integral correspondiente o puede ocurrir que se defina la integral y a partir de la misma se mida. Nosotros optaremos por definir todo lo relativo a la medida de forma previa, para que la teoría de integración que se desarrollará después esté sustentada en las propiedades métricas con las que dotemos a $\mathbb{R}^n$ y que caracterizarán la teoría posterior.
 
 \section{Medida}
-El concepto fundamental de esta sección es comprender qué entendemos por medida y que propiedades tiene, así como demostrar que la medida de Lebesque es un buen intrumento de medida para trabajar en $\mathbb{R}^n$.
+El concepto fundamental de esta sección es comprender qué entendemos por medida y que propiedades tiene, así como demostrar que la medida de Lebesgue es un buen intrumento de medida para trabajar en $\mathbb{R}^n$.
 
 \begin{defi}[Rectángulo]
 Definimos un rectángulo en $\mathbb{R}^n$ como el conjunto;
@@ -193,7 +193,7 @@ Además, definimos como \textbf{volumen} de $Q$ a
 $$v\left( Q \right) = \left( b_n - a_n \right) \cdots \left( b_1 - a_1 \right)$$
 \end{defi}
 
-\begin{defi}[Medida exterior de Lebesque]
+\begin{defi}[Medida exterior de Lebesgue]
 Sea $A \subset \mathbb{R}^{n}$, definimos como \textbf{medida exterior} de $A$ a:
 $$
 \mu^{*}(A) = \inf \sum_{k=1}^{\infty} v\left( Q_k \right); \text{ donde } \{Q_k\}_{k=1}^{\infty} \text{ y } A \subset \bigcup_{k = 1}^{\infty} Q_k
@@ -217,7 +217,7 @@ $$\mu^{*}\left( A \right) = 0 \Leftrightarrow \forall \varepsilon > 0 \ \exists 
 \end{ej}
     
 \begin{prop}
-La medida exterior de Lebesque cumple las siguientes propiedades:
+La medida exterior de Lebesgue cumple las siguientes propiedades:
 \begin{itemize}
 \item \textbf{Invariante por traslaciones}:
 $$A \subset \mathbb{R}^{n}, \ c \in \mathbb{R}^{n} \Rightarrow \mu^{*}\left( c + A \right) = \mu^{*}\left( A \right) $$ 
@@ -340,16 +340,33 @@ Sea $A \subset \mathbb{R}^n$, se dice que es \textbf{medible} si y sólo si
 $$\forall S \subset \mathbb{R}^n : \mu^*\left( S \right) = \mu^*\left( S\cap A \right) + \mu^*\left( S \cap A^c \right)$$
 \end{defi}
 
+\begin{defi}[\texorpdfstring{$\sigma$}{sigma}-álgebra]
+Sea $X$ un conjunto y $M$ una familia de subconjuntos de $X$, $M$ será una $\sigma$-álgebra sii:
+\begin{itemize}
+    \item $\emptyset \in M$
+    \item Si $A \in M \Rightarrow X\setminus A \in M$
+    \item Si $A_j \in M \Rightarrow \bigcup_{j = 1}^{\infty} A_j \in M$
+\end{itemize}
+\end{defi}
+
+\begin{defi}[Medida]
+Sea una $\sigma$-álgebra $\left( X, M \right)$, una \textbf{medida positiva} será $\mu: M \rightarrow \overline{\mathbb{R}^+} \cup \{0\}$ tal que:
+\begin{itemize}
+    \item $\mu\left( \emptyset \right) = 0$
+    \item $\mu\left( \bigcup_{j = 1}^{\infty} A_j \right) = \sum_{i=1}^{\infty} \mu \left( A_j \right)\quad A_j \cap A_i = \emptyset,\ \forall i \neq j$. (\textbf{$\sigma$ aditividad})
+\end{itemize}
+\end{defi}
+
 \begin{theo}[De Caratheodory]
-Los conjuntos medibles forman una $\sigma$-algebra y la medida exterior de Lebesgue, es decir:
+Los conjuntos medibles forman una $\sigma$-álgebra y la medida exterior de Lebesgue, es decir:
 \begin{itemize}
 \item $\emptyset \in F_\sigma$
 \item $A\in F_ \sigma \Rightarrow A^c \in F_\sigma$
 \item $\forall k \in \mathbb{N}: A_k \in F_\sigma \Rightarrow \bigcup_{k=1}^\infty A_k \in F_\sigma$
 \end{itemize}
-Además, la medida exterior de Lebesque es $ \sigma$-aditiva cuando la restringimos a los conjuntos medibles, es decir:
+Además, la medida exterior de Lebesgue es $ \sigma$-aditiva cuando la restringimos a los conjuntos medibles, es decir:
 $$\mu^*\left(\bigsqcup_{n\in \mathbb{N}}A_n\right) = \sum_{n=1}^\infty \mu^*(A_n)$$
-Una vez restringida a la $\sigma-$álgebra, la medida exterior de Lebesque cumple la definición de medida y se denota simplemente por $\mu$.
+Una vez restringida a la $\sigma-$álgebra, la medida exterior de Lebesgue cumple la definición de medida y se denota simplemente por $\mu$.
 \end{theo}
 
 \begin{prop}
@@ -906,11 +923,11 @@ Si una función $f$ es integrable Riemann, entonces dicha función también es m
 Por el teorema de antes, $\mu(D) = 0$ lo que implica que $f$ es continua en c.t.p. y, por tanto, es medible.
 \end{demo}
 
-\chapter{Integral de Lebesque}
-Una vez definida la medida en $\mathbb{R}^n$, tenemos todos los ingredientes necesarios para desarrollar una teoría de la integrabilidad sólida. Durante este capítulo se va a desarrollar la Integral de Lebesque, relacionar dicha integral con la integral de Riemann y estudiar las propiedades de las que goza dicho objeto matemático.
+\chapter{Integral de Lebesgue}
+Una vez definida la medida en $\mathbb{R}^n$, tenemos todos los ingredientes necesarios para desarrollar una teoría de la integrabilidad sólida. Durante este capítulo se va a desarrollar la Integral de Lebesgue, relacionar dicha integral con la integral de Riemann y estudiar las propiedades de las que goza dicho objeto matemático.
 
 \section{Definición de Integral}
-La definición de la integral de Lebesque posibilita extender el la Integral de Riemann y establecer un cimiento sólido para todas aquellas áreas matemáticas que se nutren de la integración y que poseen situaciones peculiares que hacen las integrales de Riemann inservibles.
+La definición de la integral de Lebesgue posibilita extender el la Integral de Riemann y establecer un cimiento sólido para todas aquellas áreas matemáticas que se nutren de la integración y que poseen situaciones peculiares que hacen las integrales de Riemann inservibles.
 
 \begin{obs}
 Recordemos que llamamos función simple a una función con la estructura:
@@ -961,14 +978,14 @@ La demostración se deja como ejercicio de las hojas, se trata de utilizar que e
 Los conjuntos no tienen porque ser intervalos, si fuese este el caso sería, en el fondo, integrabilidad Rienmann.
 \end{obs}
 
-\begin{defi}[Integral de Lebesque]
+\begin{defi}[Integral de Lebesgue]
 Sea $f: \mathbb{R}^n \rightarrow \left[0, +\infty\right]$ una función medible, definimos la \textbf{integral de Lebesgue de $f$} de la siguiente\footnote{La definición no cambia si las funciones $\varphi \leq f$ en c.t.p.} forma:
 $$\int_{\mathbb{R}^n}f \ d\mu = \sup_{\varphi \leq f} I\left(\varphi\right) \in \left[0, +\infty\right]$$
 Donde las funciones $\varphi$ son simples no negativas.
 \end{defi}
 
 \begin{prop}
-Sea $\varphi$ simple no negativa, la integral de Lebesque coincide con la integral definida para este tipo de funciones:
+Sea $\varphi$ simple no negativa, la integral de Lebesgue coincide con la integral definida para este tipo de funciones:
 $$\int_{\mathbb{R}^n}\varphi \ d \mu = I\left(\varphi\right)$$
 \end{prop}
 \begin{demo}
@@ -1061,7 +1078,7 @@ Sea $f: \left[a, b\right] \rightarrow \mathbb{R}^+$ una función acotada e integ
 $$\int_{\left[a, b\right]}f \ d \mu = \int_a^b f\left(x\right)\ dx$$
 \end{theo}
 \begin{demo}
-Por ser acotada, $\exists M > 0: f \le M\chi_{\left[a, b\right]}$, lo que implica que $\int f \ d \mu \leq \int M \cdot \chi_{[a,b]}$, es decir, que es integrable Lebesque.
+Por ser acotada, $\exists M > 0: f \le M\chi_{\left[a, b\right]}$, lo que implica que $\int f \ d \mu \leq \int M \cdot \chi_{[a,b]}$, es decir, que es integrable Lebesgue.
 
 Además, por ser integrable Riemann, tenemos que:
 $$\int_a^b f\left(x\right)dx = \sup_{P \in \wp} L\left(f, P\right) \Rightarrow \exists \{P_k\}_{k=1}^{\infty} : P_k \leq P_{k+1} : \int_a^b f\left(x\right) \ dx = \lim_{k\rightarrow \infty} L\left(f, P_k\right) = $$
@@ -1177,7 +1194,7 @@ $$\int_{\mathbb{R}^n} \left(\liminf_{k \rightarrow \infty}f_k \right) \dif{\mu} 
 \end{demo}
 
 \begin{prop}
-Las integrales impropias se soportan por la integral de Lebesque:
+Las integrales impropias se soportan por la integral de Lebesgue:
 \begin{align*}
 \int_a^\infty f(x) \dif{x} = \int_{[a, \infty)}f(x)\dif{\mu} & &\int_a^b f(x)\dif{x} = \int_{[a,b]} f(x) \dif{\mu}
 \end{align*}
@@ -1202,7 +1219,7 @@ $$\int_{\mathbb{R}^n} \vert f \vert \dif{\mu} < +\infty$$
 \end{defi}
 
 \begin{obs}
-Cabe destacar que dicha definición de integrabilidad para funciones no negativas tiene como consecuencia que puede haber funciones cuya integral en el sentido de Riemann converja (puesto que haya partes negativas que anulen partes positivas), pero que no sea integrable desde el punto de vista de Lebesque.
+Cabe destacar que dicha definición de integrabilidad para funciones no negativas tiene como consecuencia que puede haber funciones cuya integral en el sentido de Riemann converja (puesto que haya partes negativas que anulen partes positivas), pero que no sea integrable desde el punto de vista de Lebesgue.
 \end{obs}
 
 \begin{defi}
@@ -1982,7 +1999,7 @@ $$= \frac{2}{3} \int_{\theta = 0}^{\theta = \pi} a^3 - a^3 \lvert \cos \theta  \
 \end{ej}
 
 \chapter{Cálculo Vectorial}
-Hasta ahora hemos trabajado siempre con funciones cuyo espacio de llegada era $\mathbb{R}$ y se ha hecho todo un trabajo de cimentación de la teoría de la integración para la nueva definición de Lebesque de la integral. A partir de aquí, se van a dar unas nociones de Cálculo Vectorial, esto es, propiedades de dicha definición de integral para funciones cuyo espacio de llegada es $\mathbb{R}^n$.
+Hasta ahora hemos trabajado siempre con funciones cuyo espacio de llegada era $\mathbb{R}$ y se ha hecho todo un trabajo de cimentación de la teoría de la integración para la nueva definición de Lebesgue de la integral. A partir de aquí, se van a dar unas nociones de Cálculo Vectorial, esto es, propiedades de dicha definición de integral para funciones cuyo espacio de llegada es $\mathbb{R}^n$.
 
 \section{Integral de línea}
 En esta sección, vamos a estudiar como concepto central la integral de línea. Por un lado, para funciones cuyo espacio de llegada es $\mathbb{R} $ puede surgir la pregunta de ¿qué pasa si yo quiero integrar la función en una línea (no necesariamente recta) del plano? Esto calcularía el área bajo la función y sobre dicha línea. Por otro lado, también es razonable pensar qué significa dicha integral si el espacio de llegada es $\mathbb{R}^n$.
