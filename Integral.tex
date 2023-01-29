@@ -2,8 +2,8 @@
 
 %% Formateo del título del documento
 \title{\Huge CÁLCULO INTEGRAL}
-\author{Juan Diego Barrado Daganzo, Mario Calvarro Marines \\ e Iker Muñoz Martínez}
-\date{\today\footnote{Última versión de los apuntes en \url{https://github.com/JuanDiegoBarrado/CalculoIntegral}}}
+\author{Leonardo Macías Sánchez\\ Mario Calvarro Marines\footnote{Basado en los apuntes de Juan Diego Barrado Daganzo, Mario Calvarro Marines e Iker Muñoz Martínez.}}
+\date{\today\footnote{Versión original en \url{https://github.com/JuanDiegoBarrado/CalculoIntegral}}}
 
 %% Formateo del estilo de escritura y de la pagina
 \pagestyle{plain}
@@ -148,6 +148,7 @@
 
 
 \begin{document}
+
 \maketitle
 \frontmatter
 \section*{Quiénes somos}
@@ -166,9 +167,9 @@ Para contribuir no tienes más que ponerte en contacto con \href{mailto:juandbar
 Muchas gracias, esperamos que este documento te sea útil.
 
 \section*{Agradecimientos}
-Queremos dar gracias al Profesor Juan Ferrera. Por ser el profesor que impartió la asignatura de \textit{Cálculo Integral} y por sus notas y trabajo, que han permitido generar este documento y contrastar la calidad de los apuntes con el temario que se imparte durante el curso.
+Queremos dar gracias a nuestros profesores Juan Ferrera, Javier Gómez Gil y Sheldy Ombrossi. Por ser los profesores que impartieron la asignatura de \textit{Cálculo Integral} y por sus notas y trabajo, que han permitido generar este documento y contrastar la calidad de los apuntes con el temario que se imparte durante el curso.
 \vfill
-Apuntes Cálculo Integral © 2022 by Juan Diego Barrado Daganzo, Mario Calvarro Marines and Iker Muñoz Martínez is licensed under Attribution-NonCommercial-ShareAlike 4.0 International. To view a copy of this license, visit
+Apuntes Cálculo Integral © 2023 by Juan Diego Barrado Daganzo, Mario Calvarro Marines, Iker Muñoz Martínez and Leonardo Macías Sánchez is licensed under Attribution-NonCommercial-ShareAlike 4.0 International. To view a copy of this license, visit
 \begin{center}
 \url{http://creativecommons.org/licenses/by-nc-sa/4.0/}
 \end{center}
@@ -186,19 +187,501 @@ En general, la teoría de la integración está sustentada mayoritariamente por 
 \section{Medida}
 El concepto fundamental de esta sección es comprender qué entendemos por medida y que propiedades tiene, así como demostrar que la medida de Lebesgue es un buen intrumento de medida para trabajar en $\mathbb{R}^n$.
 
-\begin{defi}[Rectángulo]
-Definimos un rectángulo en $\mathbb{R}^n$ como el conjunto;
-$$Q = \left[ a_1, b_1 \right] \times \ldots \times \left[ a_n, b_n \right] \subset \mathbb{R}^{n}$$
-Además, definimos como \textbf{volumen} de $Q$ a 
-$$v\left( Q \right) = \left( b_n - a_n \right) \cdots \left( b_1 - a_1 \right)$$
+\begin{defi}[\texorpdfstring{$\sigma$}{sigma}-álgebra]
+Sea $X$ un conjunto y $M$ una familia de subconjuntos de $X$, $M$ será una $\sigma$-álgebra sii:
+\begin{itemize}
+    \item $\emptyset \in M$
+    \item Si $A \in M \Rightarrow X\setminus A \in M$
+    \item Si $A_j \in M \Rightarrow \bigcup_{j = 1}^{\infty} A_j \in M$
+\end{itemize}
 \end{defi}
 
-\begin{defi}[Medida exterior de Lebesgue]
-Sea $A \subset \mathbb{R}^{n}$, definimos como \textbf{medida exterior} de $A$ a:
-$$
-\mu^{*}(A) = \inf \sum_{k=1}^{\infty} v\left( Q_k \right); \text{ donde } \{Q_k\}_{k=1}^{\infty} \text{ y } A \subset \bigcup_{k = 1}^{\infty} Q_k
-$$ 
+\begin{defi}[Medida]
+Sea una $\sigma$-álgebra $\left( X, M \right)$, una \textbf{medida positiva} será $\mu: M \rightarrow \overline{\mathbb{R}^+} \cup \{0\}$ tal que:
+\begin{itemize}
+    \item $\mu\left( \emptyset \right) = 0$
+    \item $\mu\left( \bigcup_{j = 1}^{\infty} A_j \right) = \sum_{i=1}^{\infty} \mu \left( A_j \right)\quad A_j \cap A_i = \emptyset,\ \forall i \neq j$. (\textbf{$\sigma$ aditividad})
+\end{itemize}
+
+A la tupla $(X, M, \mu)$ se le denomina \textbf{espacio de medida}.
 \end{defi}
+
+\begin{prop}
+Sea $(X, M, \mu)$ un espacio de medida, entonces:
+\begin{enumerate}
+\item (Monotonía) Si $B \subset A \Rightarrow \mu(B) \leq \mu(A)$
+\item (Subaditividad numerable) $\mu\left(\bigcup_{j=1}^{\infty} A_j\right) \leq \sum_{j=1}^{\infty} \mu\left( A_j\right)$
+\end{enumerate}
+\end{prop}
+
+\begin{demo}
+\begin{enumerate}
+\item  Escribimos $A$ como unión disjunta de conjuntos de la forma $A=B\cup (A\setminus B)$, esto implica que $\mu(A) = \mu(B) + \mu(A\setminus B) \geq \mu(B)$.
+
+\item En primer lugar, vamos a construir la siguiente sucesión de conjuntos:
+$$\begin{cases}
+B_1 = A_1 \\
+B_2 = A_2\setminus A_1 \\
+\vdots \\ 
+B_k = A_k \setminus \bigcup_{j=1}^{k-1} A_{j}
+\end{cases} \Rightarrow B_i \cap B_j = \emptyset \ \forall i, j \ \text{ y } \bigcup_{j=1}^{\infty} B_j = \bigcup_{j=1}^{\infty} A_j$$
+
+Por tanto,  $\mu\left(\bigcup_{j=1}^{\infty} A_j\right) = \mu\left(\bigcup_{j=1}^{\infty} B_j\right) \overset{\sigma\text{ adit.}}{=} \sum_{j=1}^{\infty} \mu\left( B_j\right) \overset{\text{monotonía}}{\leq} \sum_{j=1}^{\infty} \mu\left( A_j\right)$
+
+\end{enumerate}
+\end{demo}
+
+\begin{prop}
+Si $A\subset B$, ambos son conjuntos medibles y $\mu(A) < \infty$, entonces:
+$$\mu(B\setminus A) = \mu(B) - \mu(A)$$
+\end{prop}
+\begin{demo}
+Escribimos $B$ como unión disjunta de conjuntos de la forma $B=A\cup (B\setminus A)$, esto implica que $\mu(B) = \mu(A) + \mu(B\setminus A) \Rightarrow \mu(B\setminus A) =  \mu(B) - \mu(A)$.
+\end{demo}
+
+\begin{defi}[Sucesión creciente de conjuntos]
+Decimos que una sucesión de conjuntos $\{A_k\}$ es creciente y lo denotamos por $\{A_k\}\uparrow$ si y sólo si $A_k \subset A_{k+1} : \forall k  \in \mathbb{N}$.
+\end{defi}
+
+\begin{prop}
+Si tenemos una familia de conjuntos crecientes $\{A_k\}\uparrow$ medibles, entonces se tiene que:
+$$\mu\left(\bigcup_{k=1}^\infty A_k\right) = \lim_{k\rightarrow \infty} \mu(A_k)$$
+\end{prop}
+
+%TODO: Corregir B_k
+\begin{demo}
+Si alguno tiene medida infinita se tiene trivialmente, luego podemos suponer que $\forall k .\in \mathbb{N}: \mu(A_k) < \infty$.
+
+En primer lugar, vamos a construir la siguiente sucesión de conjuntos:
+$$\begin{cases}
+B_1 = A_1 \\
+B_2 = A_2\setminus A_1 \\
+\vdots \\ 
+B_k = A_k \setminus A_{k-1}
+\end{cases} \Rightarrow \bigcup_{k=1}^\infty B_k = \bigcup_{k=1}^\infty A_k \Rightarrow \mu\left(\bigcup_{k=1}^\infty B_k\right) = \mu\left(\bigcup_{k=1}^\infty A_k\right)$$
+Sin embargo, como $\{B_k\}_{k=1}^\infty$ son disjuntos dos a dos, tenemos que:
+$$\mu\left(\bigcup_{k=1}^\infty B_k\right) = \sum_{k=1}^\infty \mu(B_k) =\sum_{k=1}^\infty \mu(A_k\setminus A_{k-1}) =$$
+$$\sum_{k=1}^\infty \mu(A_k)- \mu(A_{k-1}) = \lim_{k\rightarrow \infty} \mu(A_k) - \mu(\emptyset) = \lim_{k\rightarrow \infty}\mu(A_k)$$
+\end{demo}
+
+\begin{defi}[Sucesión decreciente de conjuntos]
+Decimos que una sucesión de conjuntos $\{A_k\}$ es decreciente y lo denotamos por $\{A_k\}\downarrow$ si y sólo si $A_{k+1} \subset A_{k} : \forall k  \in \mathbb{N}$.
+\end{defi}
+
+\begin{prop}
+Si tenemos una familia de conjuntos decrecientes $\{A_k\}\downarrow$ medibles y $\exists k \in \mathbb N : \mu(A_k) < \infty$, entonces se tiene que:
+$$\mu\left(\bigcap_{k=1}^\infty A_k\right) = \lim_{k\rightarrow \infty} \mu(A_k)$$
+\end{prop}
+\begin{demo}
+Completamente análoga a su homóloga anterior.
+\end{demo}
+
+\begin{defi}[Medida exterior]
+Diremos que $\mu^{*}$ es una \textbf{medida exterior} en un espacio $X$ si es una función $\mu^{*} : \mathcal{P}(X) \rightarrow [0, +\infty]$ tal que:
+\begin{itemize}
+\item $\mu^{*}(\emptyset) = 0$
+\item (Monotonía) Si $B \subset A \Longrightarrow \mu^{*}(B) \leq \mu^{*}(A)$
+\item (Subaditividad numerable) $\mu\left(\bigcup_{j=1}^{\infty} A_j\right) \leq \sum_{j=1}^{\infty} \mu\left( A_j\right)$
+\end{itemize}
+\end{defi}
+
+\begin{defi}[Rectángulo]
+Definimos un \textbf{rectángulo} en $\mathbb{R}^n$ como el conjunto:
+$$Q = \left[ a_1, b_1 \right] \times \ldots \times \left[ a_n, b_n \right] \subset \mathbb{R}^{n}$$
+
+Además, definimos como \textbf{volumen} de $Q$ a 
+$$v\left( Q \right) = l\left(\left[ a_1, b_1 \right]\right) \cdots l\left(\left[ a_n, b_n \right]\right)= \left( b_1 - a_1 \right) \cdots \left( b_n - a_n \right)$$
+donde $l\left(\left[ a_i, b_i \right]\right)$, $1\leq i \leq n$, es la \textbf{longitud} de dicho intervalo. Si la longitud de algún lado es 0, diremos que es un \textbf{rectángulo degenerado}.
+\end{defi}
+
+\begin{ej}
+Un rectángulo en $\mathbb{R}^2$ será de la forma $Q =[a_1,b_1]\times[a_2,b_2]$:
+\begin{center}
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,119); %set diagram left start at 0, and has height of 119
+
+%Shape: Rectangle [id:dp9595160361022319] 
+\draw   (270,20) -- (390,20) -- (390,89.94) -- (270,89.94) -- cycle ;
+%Shape: Circle [id:dp2600988271313074] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (267.82,89.94) .. controls (267.82,88.73) and (268.8,87.76) .. (270,87.76) .. controls (271.2,87.76) and (272.18,88.73) .. (272.18,89.94) .. controls (272.18,91.14) and (271.2,92.12) .. (270,92.12) .. controls (268.8,92.12) and (267.82,91.14) .. (267.82,89.94) -- cycle ;
+%Shape: Circle [id:dp28236785006560794] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (387.82,20) .. controls (387.82,18.8) and (388.8,17.82) .. (390,17.82) .. controls (391.2,17.82) and (392.18,18.8) .. (392.18,20) .. controls (392.18,21.2) and (391.2,22.18) .. (390,22.18) .. controls (388.8,22.18) and (387.82,21.2) .. (387.82,20) -- cycle ;
+
+% Text Node
+\draw (210,82.6) node [anchor=north west][inner sep=0.75pt]    {$( a_{1} ,\ a_{2})$};
+% Text Node
+\draw (395,8) node [anchor=north west][inner sep=0.75pt]    {$( b_{1} ,\ b_{2})$};
+
+
+\end{tikzpicture}
+
+\end{center}
+\end{ej}
+
+\begin{prop}
+Sea $Q$ un rectángulo de $\mathbb{R}^n$, entonces:
+\begin{itemize}
+\item El volumen del rectángulo se conserva por traslaciones, es decir, $v(Q) = v(Q + x)$ $x\in{\mathbb{R}^n}$
+
+\item $v(\lambda Q) = \lambda^n v(Q)$ $\lambda\in{\mathbb{R}}$
+\end{itemize}
+\end{prop}
+
+\begin{demo}
+Sea $Q = [a_1,b_1]\times\ldots\times[a_n,b_n]$ un rectángulo de $\mathbb{R}^n$.
+\begin{itemize}
+\item $v(Q) = (b_1-a_1)\cdot\ldots\cdot(b_n-a_n) = ((b_1 + x_1) - (a_1 + x_1))\cdot\ldots\cdot((b_n + x_n) - (a_n + x_n)) = v(Q+x)$
+\item $v(\lambda Q) = (\lambda b_1-\lambda a_1)\cdot\ldots\cdot(\lambda b_n- \lambda a_n) = \lambda(b_1-a_1)\cdot\ldots\cdot\lambda(b_n-a_n) = \lambda^n[(b_1-a_1)\cdot\ldots\cdot(b_n-a_n)] = \lambda^n v(Q)$
+\end{itemize}
+\end{demo}
+
+\begin{defi}
+Dado un intervalo cerrado $J=[a,b]\subset\mathbb{R}$, denominamos \textbf{partición de $J$} a $\mathcal{P}_J$ una sucesión de puntos $t_0,...,t_n$ tal que $a=t_0 < t_1 < ... < t_{n-1} < t_n = b$.
+
+\begin{center}
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,134); %set diagram left start at 0, and has height of 134
+
+%Straight Lines [id:da9028582463455643] 
+\draw    (139.58,50.67) -- (419.87,50.38) ;
+%Flowchart: Connector [id:dp819923808651241] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (137.45,50.67) .. controls (137.45,49.51) and (138.4,48.58) .. (139.58,48.58) .. controls (140.76,48.58) and (141.71,49.51) .. (141.71,50.67) .. controls (141.71,51.82) and (140.76,52.76) .. (139.58,52.76) .. controls (138.4,52.76) and (137.45,51.82) .. (137.45,50.67) -- cycle ;
+%Flowchart: Connector [id:dp1988464388639073] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (198.02,50.67) .. controls (198.02,49.51) and (198.97,48.58) .. (200.15,48.58) .. controls (201.33,48.58) and (202.29,49.51) .. (202.29,50.67) .. controls (202.29,51.82) and (201.33,52.76) .. (200.15,52.76) .. controls (198.97,52.76) and (198.02,51.82) .. (198.02,50.67) -- cycle ;
+%Flowchart: Connector [id:dp7740888127520655] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (237.73,50.67) .. controls (237.73,49.51) and (238.69,48.58) .. (239.87,48.58) .. controls (241.04,48.58) and (242,49.51) .. (242,50.67) .. controls (242,51.82) and (241.04,52.76) .. (239.87,52.76) .. controls (238.69,52.76) and (237.73,51.82) .. (237.73,50.67) -- cycle ;
+%Flowchart: Connector [id:dp6024728918326936] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (368.02,50.38) .. controls (368.02,49.23) and (368.97,48.29) .. (370.15,48.29) .. controls (371.33,48.29) and (372.29,49.23) .. (372.29,50.38) .. controls (372.29,51.54) and (371.33,52.47) .. (370.15,52.47) .. controls (368.97,52.47) and (368.02,51.54) .. (368.02,50.38) -- cycle ;
+%Flowchart: Connector [id:dp5340363801047949] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (417.73,50.38) .. controls (417.73,49.23) and (418.69,48.29) .. (419.87,48.29) .. controls (421.04,48.29) and (422,49.23) .. (422,50.38) .. controls (422,51.54) and (421.04,52.47) .. (419.87,52.47) .. controls (418.69,52.47) and (417.73,51.54) .. (417.73,50.38) -- cycle ;
+
+% Text Node
+\draw (114,34.27) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize]  {$a=t_{0}$};
+% Text Node
+\draw (195.33,33.93) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize]  {$t_{1}$};
+% Text Node
+\draw (234.67,34.27) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize]  {$t_{2}$};
+% Text Node
+\draw (365,33.93) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize]  {$t_{3}$};
+% Text Node
+\draw (417,33.6) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize]  {$t_{4} =b$};
+
+
+\end{tikzpicture}
+\end{center}
+
+Toda partición da lugar a una familia de intervalos $F(\mathcal{P}_J) = \lbrace [t_0, t_1], ..., [t_{n-1},t_n]\rbrace$. 
+\end{defi}
+
+\begin{obs}
+Nótese que dada una familia $F(\mathcal{P}_J)$, sus intervalos cumplen que son disjuntos dos a dos, su unión es todo $J$ y la suma de sus longitudes es $l(J)$.
+\end{obs}
+
+\begin{defi}
+Es natural preguntarse si la definición de partición puede extenderse a rectángulos de $\mathbb{R}^n$. Así, diremos que un rectángulo no degenerado $Q = I_1\times\ldots\times I_n$ es la \textbf{unión de una familia de rectángulos en retícula} si para cada $I_k$ existe una partición $\mathcal{P}_{I_k}$ tal que
+$$Q=\bigcup_{\substack{J_k\in{F(\mathcal{P}_{I_k})} \\ k=1,\ldots,n}} J_1\times\ldots\times J_n
+$$
+\end{defi}
+\begin{ej}
+A continuación se ilustra un rectángulo $Q$ en $\mathbb{R}^2$ que es la unión de una familia de rectángulos en retícula:
+\begin{center}
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Shape: Rectangle [id:dp6476424496297724] 
+\draw  [line width=1.5]  (240.06,41.14) -- (470.2,41.14) -- (470.2,190.15) -- (240.06,190.15) -- cycle ;
+%Straight Lines [id:da402698756778362] 
+\draw    (240.4,90.25) -- (470.17,90.57) ;
+%Straight Lines [id:da5160783990521318] 
+\draw    (300.91,189.74) -- (300.86,41.14) ;
+%Straight Lines [id:da38463078394695405] 
+\draw    (335.31,190.14) -- (335.26,41.54) ;
+%Straight Lines [id:da4727163688455558] 
+\draw    (420.91,190.14) -- (420.86,41.54) ;
+%Straight Lines [id:da917188782290348] 
+\draw    (180.17,190.06) -- (180.17,40.06) ;
+%Straight Lines [id:da3558204162821901] 
+\draw  [dash pattern={on 0.84pt off 2.51pt}]  (180.51,90.09) -- (240.4,90.25) ;
+%Straight Lines [id:da7328024534021238] 
+\draw  [dash pattern={on 0.84pt off 2.51pt}]  (180.17,40.98) -- (240.06,41.14) ;
+%Straight Lines [id:da6989618077581712] 
+\draw  [dash pattern={on 0.84pt off 2.51pt}]  (180.17,190.06) -- (240.06,190.22) ;
+%Straight Lines [id:da7562399691788124] 
+\draw    (239.63,250.22) -- (470.63,250.22) ;
+%Straight Lines [id:da6426566902944699] 
+\draw  [dash pattern={on 0.84pt off 2.51pt}]  (240.06,190.22) -- (240.06,250.54) ;
+%Straight Lines [id:da42583744414551994] 
+\draw  [dash pattern={on 0.84pt off 2.51pt}]  (470.2,190.15) -- (470.2,250.46) ;
+%Straight Lines [id:da22833041856194103] 
+\draw  [dash pattern={on 0.84pt off 2.51pt}]  (300.91,189.74) -- (300.97,250.46) ;
+%Straight Lines [id:da6945898963218045] 
+\draw  [dash pattern={on 0.84pt off 2.51pt}]  (335.31,190.14) -- (335.37,250.86) ;
+%Straight Lines [id:da8288905568664198] 
+\draw  [dash pattern={on 0.84pt off 2.51pt}]  (420.91,190.14) -- (420.97,250.86) ;
+
+% Text Node
+\draw (353.07,256.73) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize]  {$I_{1}$};
+% Text Node
+\draw (165.73,104.4) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize]  {$I_{2}$};
+% Text Node
+\draw (182.07,62.4) node [anchor=north west][inner sep=0.75pt]  [font=\tiny]  {$J_{2,2}$};
+% Text Node
+\draw (182.4,136.4) node [anchor=north west][inner sep=0.75pt]  [font=\tiny]  {$J_{2,1}$};
+% Text Node
+\draw (261,240.07) node [anchor=north west][inner sep=0.75pt]  [font=\tiny]  {$J_{1,1}$};
+% Text Node
+\draw (308,240.47) node [anchor=north west][inner sep=0.75pt]  [font=\tiny]  {$J_{1,2}$};
+% Text Node
+\draw (368,240.47) node [anchor=north west][inner sep=0.75pt]  [font=\tiny]  {$J_{1,3}$};
+% Text Node
+\draw (436,240.13) node [anchor=north west][inner sep=0.75pt]  [font=\tiny]  {$J_{1,4}$};
+% Text Node
+\draw (474.4,27.9) node [anchor=north west][inner sep=0.75pt]    {$Q$};
+% Text Node
+\draw (263.73,60.9) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize]  {$R_{1}$};
+% Text Node
+\draw (311.73,61.4) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize]  {$R_{2}$};
+% Text Node
+\draw (370.23,60.9) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize]  {$R_{3}$};
+% Text Node
+\draw (439.23,61.4) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize]  {$R_{4}$};
+% Text Node
+\draw (263.23,130.9) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize]  {$R_{5}$};
+% Text Node
+\draw (311.23,129.9) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize]  {$R_{6}$};
+% Text Node
+\draw (370.23,130.4) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize]  {$R_{7}$};
+% Text Node
+\draw (438.23,130.4) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize]  {$R_{8}$};
+
+
+\end{tikzpicture}
+
+\end{center}
+\end{ej}
+
+\begin{obs}
+Si $Q=I_1\times\ldots\times I_n$ es la unión de una familia de rectángulos en retícula, entonces:
+$$v(Q) = l(I_1)\cdot\ldots\cdot l(I_n) = \sum_{J_1\in{\mathcal{P}_{I_1}}} l(J_1) \cdot\ldots\cdot \sum_{J_n\in{\mathcal{P}_{I_n}}} l(J_n) = \sum_{J_1\in{\mathcal{P}_{I_1}}} \cdots \sum_{J_n\in{\mathcal{P}_{I_n}}} l(J_1) \cdot \ldots \cdot l(J_n)=$$
+
+$$= \sum_{\substack{J_k\in{F(\mathcal{P}_{I_k})} \\ k=1,\ldots,n}} v(J_1\times\ldots\times J_n)$$
+
+En otras palabras, el volumen de $Q$ es la suma de los volúmenes de los rectángulos que forman la retícula.
+\end{obs}
+
+\begin{prop}
+Sea $\lbrace R_i \rbrace_{i\in\lbrace{1\ldots n\rbrace}}$ una familia de rectángulos de $\mathbb{R}^k$, disjuntos dos a dos, tal que $Q = \bigcup_{i=1}^n R_i$ es un rectángulo, entonces:
+$$v(Q) = \sum_{i=1}^n v(R_i)$$
+\end{prop}
+
+\begin{demo}
+Asumimos que el rectángulo es no degenerado, pues en dicho caso el resultado se sigue trivialmente.
+
+Si proyectamos los extremos de los lados de los rectángulos $R_1,\ldots, R_n$ sobre los lados de Q, se obtiene una partición de cada uno de ellos. Estas particiones inducen una familia de rectángulos en retícula $W_1,\ldots, W_m$.
+
+\begin{center}
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Shape: Rectangle [id:dp17806601423284718] 
+\draw  [line width=1.5]  (100.32,50.08) -- (250.32,50.08) -- (250.32,230.88) -- (100.32,230.88) -- cycle ;
+%Shape: Rectangle [id:dp08268815830917986] 
+\draw  [line width=1.5]  (100.32,50.08) -- (170.32,50.08) -- (170.32,90.08) -- (100.32,90.08) -- cycle ;
+%Shape: Rectangle [id:dp7629619977363455] 
+\draw  [line width=1.5]  (100.32,90.08) -- (130.32,90.08) -- (130.32,230.88) -- (100.32,230.88) -- cycle ;
+%Shape: Rectangle [id:dp2832034159635324] 
+\draw  [line width=1.5]  (130.32,90.08) -- (200.32,90.08) -- (200.32,130.08) -- (130.32,130.08) -- cycle ;
+%Shape: Rectangle [id:dp9467879292165049] 
+\draw  [line width=1.5]  (130.32,130.08) -- (200.32,130.08) -- (200.32,170.08) -- (130.32,170.08) -- cycle ;
+%Shape: Rectangle [id:dp22521357639183837] 
+\draw  [line width=1.5]  (170.32,50.08) -- (250.32,50.08) -- (250.32,89.84) -- (170.32,89.84) -- cycle ;
+%Shape: Rectangle [id:dp05230789386853707] 
+\draw  [line width=1.5]  (130.32,170.08) -- (250.32,170.08) -- (250.32,230.88) -- (130.32,230.88) -- cycle ;
+%Shape: Rectangle [id:dp5487849481352054] 
+\draw  [line width=1.5]  (279.65,50.41) -- (429.65,50.41) -- (429.65,231.21) -- (279.65,231.21) -- cycle ;
+%Shape: Rectangle [id:dp09588667942113371] 
+\draw  [line width=1.5]  (279.65,50.41) -- (349.65,50.41) -- (349.65,90.41) -- (279.65,90.41) -- cycle ;
+%Shape: Rectangle [id:dp023546168097661857] 
+\draw  [line width=1.5]  (279.65,90.41) -- (309.65,90.41) -- (309.65,231.21) -- (279.65,231.21) -- cycle ;
+%Shape: Rectangle [id:dp9571701192800093] 
+\draw  [line width=1.5]  (309.65,90.41) -- (379.65,90.41) -- (379.65,130.41) -- (309.65,130.41) -- cycle ;
+%Shape: Rectangle [id:dp3758807867848646] 
+\draw  [line width=1.5]  (309.65,130.41) -- (379.65,130.41) -- (379.65,170.41) -- (309.65,170.41) -- cycle ;
+%Shape: Rectangle [id:dp21027429443417978] 
+\draw  [line width=1.5]  (349.65,50.41) -- (429.65,50.41) -- (429.65,90.17) -- (349.65,90.17) -- cycle ;
+%Shape: Rectangle [id:dp668633102800551] 
+\draw  [line width=1.5]  (309.65,170.41) -- (429.65,170.41) -- (429.65,231.21) -- (309.65,231.21) -- cycle ;
+%Straight Lines [id:da3656430059312499] 
+\draw [line width=0.75]    (279.87,170.23) -- (309.65,170.41) ;
+%Straight Lines [id:da8603408868655404] 
+\draw [line width=0.75]    (279.87,130.23) -- (309.65,130.41) ;
+%Straight Lines [id:da21782604604394695] 
+\draw [line width=0.75]    (379.65,130.41) -- (429.53,130.57) ;
+%Straight Lines [id:da324572597567208] 
+\draw [line width=0.75]    (349.65,90.41) -- (350.2,230.57) ;
+%Straight Lines [id:da28314370349225615] 
+\draw [line width=0.75]    (379.65,170.41) -- (379.53,231.23) ;
+
+% Text Node
+\draw (178,196.4) node [anchor=north west][inner sep=0.75pt]    {$R_{1}$};
+% Text Node
+\draw (320,196.7) node [anchor=north west][inner sep=0.75pt]    {$W_{3}$};
+% Text Node
+\draw (355,196.7) node [anchor=north west][inner sep=0.75pt]    {$W_{2}$};
+% Text Node
+\draw (393.5,196.2) node [anchor=north west][inner sep=0.75pt]    {$W_{1}$};
+% Text Node
+\draw (98,29.4) node [anchor=north west][inner sep=0.75pt]    {$Q$};
+% Text Node
+\draw (277.33,29.07) node [anchor=north west][inner sep=0.75pt]    {$Q$};
+
+\end{tikzpicture}
+\end{center}
+
+Cada rectángulo $R_i$ puede expresarse como la unión de varios rectángulos $W_{i_1},\cdots, W_{i_k}$ de manera que $$R_i = \bigcup_{\substack{W_j\subset R_i \\ j=1,...,m}} W_j$$ es una unión de rectángulos en retícula. Así, por la observación anterior, $$v(R_i) = \sum_{\substack{W_j\subset R_i \\ j=1,...,m}} W_j$$
+
+Dado que Q es la unión de los rectángulos en retícula $W_1,\ldots, W_m$ y que los $\lbrace R_i \rbrace_{i}$ son disjuntos, de nuevo, por la observación se tiene que $$v(Q)= \sum_{j=1}^m W_j = \sum_{i=1}^n  \sum_{\substack{W_j\subset R_i \\ j=1,...,m}} W_j = \sum_{i=1}^n v(R_i)$$
+
+\end{demo}
+
+\begin{coro}
+Sea $\lbrace R_i \rbrace_{i\in\lbrace{1\ldots n\rbrace}}$ una familia de rectángulos de $\mathbb{R}^k$, tal que $Q = \bigcup_{i=1}^n R_i$ es un rectángulo, entonces:
+$$v(Q) \leq \sum_{i=1}^n v(R_i)$$
+\end{coro}
+
+\begin{demo}
+Basta repetir la demostración anterior hasta llegar a la última cadena de igualdades, donde ahora aparece una desigualdad.
+$$v(Q)= \sum_{j=1}^m W_j \leq \sum_{i=1}^n  \sum_{\substack{W_j\subset R_i \\ j=1,...,m}} W_j = \sum_{i=1}^n v(R_i)$$
+
+Esto se debe a que, al no ser los rectángulos iniciales $\lbrace R_i \rbrace_i$ disjuntos, puede que haya que un mismo $W_j$ pertenezca a varios rectángulos distintos y, por tanto, lo estemos sumando varias veces.
+
+\end{demo}
+
+\begin{prop}
+Si $R_1,...,R_k$ y $W_1,...,W_m$ son rectángulos de $\mathbb{R}^n$, siendo los primeros disjuntos dos a dos, y tales que $\bigcup_{i=1}^k R_i \subset \bigcup_{j=1}^m W_j$ son ambos rectángulos, entonces
+$$\sum_{i=1}^k v(R_i) \leq \sum_{j=1}^m v(W_j)$$
+\end{prop}
+
+\begin{demo}
+Denotemos $R = \bigcup_{i=1}^k R_i$ y $W = \bigcup_{j=1}^m W_j$. Por la proposición anterior, $v(R) = \sum_{i=1}^n v(R_i)$ y, por su corolario, $v(W) \leq \sum_{j=1}^m v(W_j)$.
+
+Veamos que necesariamente $v(R) \leq v(W)$. Supongamos que $v(R) > v(W)$, como $R \subset W$, entonces deben existir $R_{i_1}, ..., R_{i_l}$ tal que $R_{i_1} \cap ... \cap R_{i_l} \neq \emptyset$, lo cual es una contradicción.
+
+Así, juntándolo todo se tiene que
+$$\sum_{i=1}^n v(R_i) = v(R) \leq v(W) \leq \sum_{j=1}^m v(W_j)$$
+\end{demo}
+
+\begin{defi}
+Un número racional se dice que es \textbf{diádico} si es de la forma $\frac{k}{2^j}$ para $k\in{\mathbb{Z}}$ y $j\in{\mathbb{N}\cup\lbrace 0 \rbrace}$. Denominamos \textbf{rectángulo diádico} a un rectángulo $Q = \left[ a_1, b_1 \right] \times \ldots \times \left[ a_n, b_n \right]$ donde $a_i, b_i$ son números diádicos para todo $1\leq i \leq n$.
+\end{defi}
+
+\begin{obs}
+Los números diádicos son densos en $\mathbb{R}$ y, en consecuencia, para todo rectángulo $Q$ existe otro rectángulo diádico $Q'$ arbitrariamente parecido a $Q$ de manera que $Q\subset Q'$. El resultado análogo para $Q'\subset Q$ también es cierto.
+\end{obs}
+
+\begin{prop}
+Sea $Q$ un rectángulo diádico tal que los intervalos que lo forman son cerrados por la izquierda y abiertos por la derecha, entonces $v(Q) = |\lbrace z\in{\mathbb{Z}^n} : z\in{Q}\rbrace|$
+\end{prop}
+
+\begin{obs}
+En general, resulta más sencillo aplicar la proposición anterior a un rectángulo diádico $Q = \left[ a_1, b_1 \right) \times \ldots \times \left[ a_n, b_n \right)$ donde $a_i, b_i \in{\mathbb{Z}}$. Esto siempre se puede conseguir, pues si $R$ es un rectángulo diádico de $\mathbb{R}^n$ y $2^l$ es la potencia máxima de los denominadores, $2^l R$ cumple la propiedad que buscamos y $v(2^lR) = 2^{nl}v(R)\Rightarrow v(R) = 2^{-nl}\cdot v(2^lR)$.
+\end{obs}
+
+\begin{ej}
+Sea $Q=\left[0,5\right)\times\left[0,3\right)$. Por definición, su volumen es $v(Q) = (5-0)\cdot(3-0)=15$ y, si aplicamos la proposición anterior, vemos que hay 15 puntos de $\mathbb{Z}^2$ contenidos en $Q$.
+\begin{center}
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Straight Lines [id:da8817273159655601] 
+\draw    (211.9,194.89) -- (446.2,195.28) ;
+\draw [shift={(449.2,195.28)}, rotate = 180.1] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+%Straight Lines [id:da12294205751902276] 
+\draw    (241.61,34.15) -- (241.7,229.15) ;
+\draw [shift={(241.6,31.15)}, rotate = 89.97] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+%Straight Lines [id:da2800267035438515] 
+\draw    (330.94,188.85) -- (330.86,204.44) ;
+%Straight Lines [id:da10870111344406497] 
+\draw    (271.47,188.16) -- (271.39,203.75) ;
+%Straight Lines [id:da8182489698937461] 
+\draw    (301.21,188.76) -- (301.13,204.35) ;
+%Straight Lines [id:da6369713692167756] 
+\draw    (360.81,188.85) -- (360.73,204.44) ;
+%Straight Lines [id:da3144090333618459] 
+\draw    (390.95,188.55) -- (390.87,204.14) ;
+%Straight Lines [id:da9614352810156073] 
+\draw    (234.14,162.37) -- (248.84,162.61) ;
+%Straight Lines [id:da055742048288531354] 
+\draw    (234.14,129.21) -- (248.84,129.45) ;
+%Straight Lines [id:da8310790518473947] 
+\draw    (234.14,96.06) -- (248.84,96.3) ;
+%Straight Lines [id:da6785863926039222] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=1.5]  [dash pattern={on 1.69pt off 2.76pt}]  (243.05,96.38) -- (392.75,96.38) ;
+%Straight Lines [id:da9322061370123238] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=1.5]  [dash pattern={on 1.69pt off 2.76pt}]  (391.25,96.38) -- (391.04,194.43) ;
+%Straight Lines [id:da15884601704388523] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=1.5]    (241.58,96.09) -- (241.78,195.52) ;
+%Straight Lines [id:da4291011158181821] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=1.5]    (240.85,194.68) -- (391.6,195.27) ;
+%Shape: Ellipse [id:dp4376514651546901] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (239.11,128.93) .. controls (239.11,127.5) and (240.16,126.33) .. (241.45,126.33) .. controls (242.75,126.33) and (243.8,127.5) .. (243.8,128.93) .. controls (243.8,130.37) and (242.75,131.53) .. (241.45,131.53) .. controls (240.16,131.53) and (239.11,130.37) .. (239.11,128.93) -- cycle ;
+%Shape: Ellipse [id:dp9054505460115196] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (239.31,162.76) .. controls (239.31,161.32) and (240.36,160.16) .. (241.65,160.16) .. controls (242.95,160.16) and (244,161.32) .. (244,162.76) .. controls (244,164.19) and (242.95,165.36) .. (241.65,165.36) .. controls (240.36,165.36) and (239.31,164.19) .. (239.31,162.76) -- cycle ;
+%Shape: Ellipse [id:dp6802880669173492] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (268.98,195.06) .. controls (268.98,193.63) and (270.03,192.47) .. (271.32,192.47) .. controls (272.62,192.47) and (273.67,193.63) .. (273.67,195.06) .. controls (273.67,196.5) and (272.62,197.66) .. (271.32,197.66) .. controls (270.03,197.66) and (268.98,196.5) .. (268.98,195.06) -- cycle ;
+%Shape: Ellipse [id:dp005672444957454559] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (298.8,194.84) .. controls (298.8,193.41) and (299.85,192.24) .. (301.14,192.24) .. controls (302.44,192.24) and (303.49,193.41) .. (303.49,194.84) .. controls (303.49,196.28) and (302.44,197.44) .. (301.14,197.44) .. controls (299.85,197.44) and (298.8,196.28) .. (298.8,194.84) -- cycle ;
+%Shape: Ellipse [id:dp6913437355602616] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (328.78,194.73) .. controls (328.78,193.29) and (329.83,192.13) .. (331.12,192.13) .. controls (332.42,192.13) and (333.46,193.29) .. (333.46,194.73) .. controls (333.46,196.16) and (332.42,197.33) .. (331.12,197.33) .. controls (329.83,197.33) and (328.78,196.16) .. (328.78,194.73) -- cycle ;
+%Shape: Ellipse [id:dp5497320710964124] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (358.53,195.17) .. controls (358.53,193.73) and (359.57,192.57) .. (360.87,192.57) .. controls (362.16,192.57) and (363.21,193.73) .. (363.21,195.17) .. controls (363.21,196.61) and (362.16,197.77) .. (360.87,197.77) .. controls (359.57,197.77) and (358.53,196.61) .. (358.53,195.17) -- cycle ;
+%Shape: Ellipse [id:dp4144055553134327] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (269.04,162.53) .. controls (269.04,161.1) and (270.09,159.93) .. (271.38,159.93) .. controls (272.68,159.93) and (273.72,161.1) .. (273.72,162.53) .. controls (273.72,163.97) and (272.68,165.13) .. (271.38,165.13) .. controls (270.09,165.13) and (269.04,163.97) .. (269.04,162.53) -- cycle ;
+%Shape: Ellipse [id:dp04448530556469121] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (298.91,162.14) .. controls (298.91,160.71) and (299.96,159.54) .. (301.25,159.54) .. controls (302.55,159.54) and (303.59,160.71) .. (303.59,162.14) .. controls (303.59,163.58) and (302.55,164.74) .. (301.25,164.74) .. controls (299.96,164.74) and (298.91,163.58) .. (298.91,162.14) -- cycle ;
+%Shape: Ellipse [id:dp024773021600113188] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (328.78,162.53) .. controls (328.78,161.1) and (329.83,159.93) .. (331.12,159.93) .. controls (332.42,159.93) and (333.46,161.1) .. (333.46,162.53) .. controls (333.46,163.97) and (332.42,165.13) .. (331.12,165.13) .. controls (329.83,165.13) and (328.78,163.97) .. (328.78,162.53) -- cycle ;
+%Shape: Ellipse [id:dp3527884027858381] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (358.65,162.53) .. controls (358.65,161.1) and (359.7,159.93) .. (360.99,159.93) .. controls (362.29,159.93) and (363.33,161.1) .. (363.33,162.53) .. controls (363.33,163.97) and (362.29,165.13) .. (360.99,165.13) .. controls (359.7,165.13) and (358.65,163.97) .. (358.65,162.53) -- cycle ;
+%Shape: Ellipse [id:dp08711145423380473] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (268.87,129.38) .. controls (268.87,127.94) and (269.91,126.78) .. (271.21,126.78) .. controls (272.5,126.78) and (273.55,127.94) .. (273.55,129.38) .. controls (273.55,130.81) and (272.5,131.98) .. (271.21,131.98) .. controls (269.91,131.98) and (268.87,130.81) .. (268.87,129.38) -- cycle ;
+%Shape: Ellipse [id:dp4430072400732372] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (298.73,129.57) .. controls (298.73,128.13) and (299.78,126.97) .. (301.08,126.97) .. controls (302.37,126.97) and (303.42,128.13) .. (303.42,129.57) .. controls (303.42,131.01) and (302.37,132.17) .. (301.08,132.17) .. controls (299.78,132.17) and (298.73,131.01) .. (298.73,129.57) -- cycle ;
+%Shape: Ellipse [id:dp4491031447082856] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (328.43,129.18) .. controls (328.43,127.74) and (329.48,126.58) .. (330.77,126.58) .. controls (332.06,126.58) and (333.11,127.74) .. (333.11,129.18) .. controls (333.11,130.62) and (332.06,131.78) .. (330.77,131.78) .. controls (329.48,131.78) and (328.43,130.62) .. (328.43,129.18) -- cycle ;
+%Shape: Ellipse [id:dp27052888571578326] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (358.65,129.38) .. controls (358.65,127.94) and (359.7,126.78) .. (360.99,126.78) .. controls (362.29,126.78) and (363.33,127.94) .. (363.33,129.38) .. controls (363.33,130.81) and (362.29,131.98) .. (360.99,131.98) .. controls (359.7,131.98) and (358.65,130.81) .. (358.65,129.38) -- cycle ;
+%Shape: Ellipse [id:dp8252091180930448] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (239.31,195.91) .. controls (239.31,194.48) and (240.36,193.31) .. (241.65,193.31) .. controls (242.95,193.31) and (244,194.48) .. (244,195.91) .. controls (244,197.35) and (242.95,198.51) .. (241.65,198.51) .. controls (240.36,198.51) and (239.31,197.35) .. (239.31,195.91) -- cycle ;
+
+% Text Node
+\draw (227.4,196.73) node [anchor=north west][inner sep=0.75pt]    {$0$};
+% Text Node
+\draw (393.04,197.83) node [anchor=north west][inner sep=0.75pt]    {$5$};
+% Text Node
+\draw (229.04,79.16) node [anchor=north west][inner sep=0.75pt]    {$3$};
+% Text Node
+\draw (374.67,75.73) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,opacity=1 ]  {$Q$};
+
+
+\end{tikzpicture}
+
+\end{center}
+\end{ej}
+
+\newpage
+
+ADAPTADO A SHELDY HASTA AQUÍ
+
+\newpage
+
+
+
+
+
+
+
+
 
 \begin{obs}
 Podemos restringir las familias $\{Q_k\}$ a aquellas que tengan $\mathrm{diam}\ Q_k < \delta$ para un cierto delta y la definición no cambia. Esto es así porque, en el fondo, el conjunto de sumatorios de volúmenes que estamos escogiendo es el mismo, ya que para familias con algún $Q_k$ de diámetro mayor, éste se puede dividir en varios rectángulos más pequeños cuyo volumen suman el de $Q_k$ pero cuyo diámetro es menor que dicho delta.
@@ -340,22 +823,7 @@ Sea $A \subset \mathbb{R}^n$, se dice que es \textbf{medible} si y sólo si
 $$\forall S \subset \mathbb{R}^n : \mu^*\left( S \right) = \mu^*\left( S\cap A \right) + \mu^*\left( S \cap A^c \right)$$
 \end{defi}
 
-\begin{defi}[\texorpdfstring{$\sigma$}{sigma}-álgebra]
-Sea $X$ un conjunto y $M$ una familia de subconjuntos de $X$, $M$ será una $\sigma$-álgebra sii:
-\begin{itemize}
-    \item $\emptyset \in M$
-    \item Si $A \in M \Rightarrow X\setminus A \in M$
-    \item Si $A_j \in M \Rightarrow \bigcup_{j = 1}^{\infty} A_j \in M$
-\end{itemize}
-\end{defi}
 
-\begin{defi}[Medida]
-Sea una $\sigma$-álgebra $\left( X, M \right)$, una \textbf{medida positiva} será $\mu: M \rightarrow \overline{\mathbb{R}^+} \cup \{0\}$ tal que:
-\begin{itemize}
-    \item $\mu\left( \emptyset \right) = 0$
-    \item $\mu\left( \bigcup_{j = 1}^{\infty} A_j \right) = \sum_{i=1}^{\infty} \mu \left( A_j \right)\quad A_j \cap A_i = \emptyset,\ \forall i \neq j$. (\textbf{$\sigma$ aditividad})
-\end{itemize}
-\end{defi}
 
 \begin{theo}[De Caratheodory]
 Los conjuntos medibles forman una $\sigma$-álgebra y la medida exterior de Lebesgue, es decir:
@@ -406,49 +874,9 @@ $$+ \sum_{j=1}^{\infty} \left( v\left( Q_j\cap Q \right) + v\left( R_1^j \right)
 \end{itemize}
 \end{prop}
 
-\begin{prop}
-Si $A\subset B$, ambos son conjuntos medibles y $\mu(A) < \infty$, entonces:
-$$\mu(B\setminus A) = \mu(B) - \mu(A)$$
-\end{prop}
-\begin{demo}
-Escribimos $B$ como unión disjunta de conjuntos de la forma $B=A\cup (B\setminus A)$, esto implica que $\mu(B) = \mu(A) + \mu(B\setminus A) \Rightarrow \mu(B\setminus A) =  \mu(B) - \mu(A)$.
-\end{demo}
 
-\begin{defi}[Sucesión creciente de conjuntos]
-Decimos que una sucesión de conjuntos $\{A_k\}$ es creciente y lo denotamos por $\{A_k\}\uparrow$ si y sólo si $A_k \subset A_{k+1} : \forall k  \in \mathbb{N}$.
-\end{defi}
 
-\begin{prop}
-Si tenemos una familia de conjuntos crecientes $\{A_k\}\uparrow$ medibles, entonces se tiene que:
-$$\mu\left(\bigcup_{k=1}^\infty A_k\right) = \lim_{k\rightarrow \infty} \mu(A_k)$$
-\end{prop}
-%TODO: Corregir B_k
-\begin{demo}
-Si alguno tiene medida infinita se tiene trivialmente, luego podemos suponer que $\forall k .\in \mathbb{N}: \mu(A_k) < \infty$.
 
-En primer lugar, vamos a construir la siguiente sucesión de conjuntos:
-$$\begin{cases}
-B_1 = A_1 \\
-B_2 = A_2\setminus A_1 \\
-\vdots \\ 
-B_k = A_k \setminus A_{k-1}
-\end{cases} \Rightarrow \bigcup_{k=1}^\infty B_k = \bigcup_{k=1}^\infty A_k \Rightarrow \mu\left(\bigcup_{k=1}^\infty B_k\right) = \mu\left(\bigcup_{k=1}^\infty A_k\right)$$
-Sin embargo, como $\{B_k\}_{k=1}^\infty$ son disjuntos dos a dos, tenemos que:
-$$\mu\left(\bigcup_{k=1}^\infty B_k\right) = \sum_{k=1}^\infty \mu(B_k) =\sum_{k=1}^\infty \mu(A_k\setminus A_{k-1}) =$$
-$$\sum_{k=1}^\infty \mu(A_k)- \mu(A_{k-1}) = \lim_{k\rightarrow \infty} \mu(A_k) - \mu(\emptyset) = \lim_{k\rightarrow \infty}\mu(A_k)$$
-\end{demo}
-
-\begin{defi}[Sucesión decreciente de conjuntos]
-Decimos que una sucesión de conjuntos $\{A_k\}$ es decreciente y lo denotamos por $\{A_k\}\downarrow$ si y sólo si $A_{k+1} \subset A_{k} : \forall k  \in \mathbb{N}$.
-\end{defi}
-
-\begin{prop}
-Si tenemos una familia de conjuntos decrecientes $\{A_k\}\downarrow$ medibles y $\exists k \in \mathbb N : \mu(A_k) < \infty$, entonces se tiene que:
-$$\mu\left(\bigcap_{k=1}^\infty A_k\right) = \lim_{k\rightarrow \infty} \mu(A_k)$$
-\end{prop}
-\begin{demo}
-Completamente análoga a su homóloga anterior.
-\end{demo}
 
 \begin{theo}
 Sea $A \subset \mathbb{R}^n$. Son equivalentes:  
