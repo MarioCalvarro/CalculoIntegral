@@ -11,7 +11,7 @@ Estos apuntes son posibles gracias a la colaboración de más alumnos como tú q
 · Aportando ejemplos nuevos
 · Aportando nuevas versiones
 
-Para contribuir no tienes más que ponerte en contacto con [juandbar@ucm.es]{mailto:juandbar@ucm.es} o dejarnos un _Pull Request_ en {https://github.com/JuanDiegoBarrado/CalculoIntegral}. Los detalles para que la contribución de todos sea lo más homogénea posible estarán en el fichero _Contribute.md_ de dicho repositorio o, en caso de no aparecer correctamente, podéis poneros en contacto con el correo anteriormente mencionado.
+Para contribuir no tienes más que ponerte en contacto con [juandbar@ucm.es](mailto:juandbar@ucm.es) o dejarnos un _Pull Request_ en https://github.com/JuanDiegoBarrado/CalculoIntegral. Los detalles para que la contribución de todos sea lo más homogénea posible estarán en el fichero _Contribute.md_ de dicho repositorio o, en caso de no aparecer correctamente, podéis poneros en contacto con el correo anteriormente mencionado.
 
 Muchas gracias, esperamos que este documento te sea útil.
 
@@ -20,4 +20,4 @@ Queremos dar gracias al Profesor Juan Ferrera. Por ser el profesor que impartió
 
 Apuntes Cálculo Integral © 2022 by Juan Diego Barrado Daganzo, Mario Calvarro Marines and Iker Muñoz Martínez is licensed under Attribution-NonCommercial-ShareAlike 4.0 International. To view a copy of this license, visit
 
-{\url{http://creativecommons.org/licenses/by-nc-sa/4.0/}
+http://creativecommons.org/licenses/by-nc-sa/4.0/
