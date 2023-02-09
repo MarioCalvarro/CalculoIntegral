@@ -1,0 +1,363 @@
+\section{Medida}
+El concepto fundamental de esta sección es comprender qué entendemos por medida y que propiedades tiene, así como demostrar que la medida de Lebesgue es un buen instrumento de medida para trabajar en $\mathbb{R}^n$.
+
+\begin{defi}[Medida]
+Sea una $\sigma$-álgebra $\left( X, M \right)$, una \textbf{medida positiva} será $\mu: M \rightarrow \overline{\mathbb{R}^+} \cup \{0\}$ tal que:
+\begin{itemize}
+    \item $\mu\left( \emptyset \right) = 0$
+    \item $\mu\left( \bigcup_{j = 1}^{\infty} A_j \right) = \sum_{i=1}^{\infty} \mu \left( A_j \right)\quad A_j \cap A_i = \emptyset,\ \forall i \neq j$. (\textbf{$\sigma$ aditividad})
+\end{itemize}
+\end{defi}
+
+\begin{defi}[Rectángulo]
+Definimos un rectángulo en $\mathbb{R}^n$ como el conjunto;
+$$Q = \left[ a_1, b_1 \right] \times \ldots \times \left[ a_n, b_n \right] \subset \mathbb{R}^{n}$$
+Además, definimos como \textbf{volumen} de $Q$ a 
+$$v\left( Q \right) = \left( b_n - a_n \right) \cdots \left( b_1 - a_1 \right)$$
+\end{defi}
+
+\begin{defi}[Medida exterior de Lebesgue]
+Sea $A \subset \mathbb{R}^{n}$, definimos como \textbf{medida exterior} de $A$ a:
+$$
+\mu^{*}(A) = \inf \sum_{k=1}^{\infty} v\left( Q_k \right); \text{ donde } \{Q_k\}_{k=1}^{\infty} \text{ y } A \subset \bigcup_{k = 1}^{\infty} Q_k
+$$ 
+\end{defi}
+
+\begin{obs}
+Podemos restringir las familias $\{Q_k\}$ a aquellas que tengan $\mathrm{diam}\ Q_k < \delta$ para un cierto delta y la definición no cambia. Esto es así porque, en el fondo, el conjunto de sumatorios de volúmenes que estamos escogiendo es el mismo, ya que para familias con algún $Q_k$ de diámetro mayor, éste se puede dividir en varios rectángulos más pequeños cuyo volumen suman el de $Q_k$ pero cuyo diámetro es menor que dicho delta.
+\end{obs}
+
+\begin{defi}[Medida nula]
+Decimos que $A$ tiene medida nula si podemos encontrar recubrimientos de $A$ con sumatorio de volúmenes tan pequeños como queramos, es decir:
+$$\mu^{*}\left( A \right) = 0 \Leftrightarrow \forall \varepsilon > 0 \ \exists \{Q_k\} \text{ rec. de } A: \sum_{k=1}^{\infty} v\left( Q_k \right) < \varepsilon $$  
+\end{defi}
+
+\begin{ej}
+	\begin{enumerate}
+       \item Si $x_0 \in \mathbb{R}^{n}$, entonces $\forall \varepsilon > 0, \exists k \in \mathbb N: \ v\left( Q\left( x_0 \right)  \right) < \frac{\varepsilon}{2^{k}}$, luego es de medida nula.
+       \item Si $N$ numerable, entonces podemos escribir $N = \{x_k\}$, para cada $x_k$ podemos encontrar $Q_k\left( x_k \right): v\left( Q_k\left( x_k \right)  \right) < \frac{\varepsilon}{2^{k}}$ que lo contenga, luego se tiene que es de medida nula.
+    \end{enumerate}
+\end{ej}
+    
+\begin{prop}
+La medida exterior de Lebesgue cumple las siguientes propiedades:
+\begin{itemize}
+\item \textbf{Invariante por traslaciones}:
+$$A \subset \mathbb{R}^{n}, \ c \in \mathbb{R}^{n} \Rightarrow \mu^{*}\left( c + A \right) = \mu^{*}\left( A \right) $$ 
+\item \textbf{Covariante con respecto a la inclusión}:
+$$A \subset B \subset \mathbb{R}^{n} \Rightarrow \mu^{*}\left( A \right) \le \mu^{*}\left( B \right) $$
+\item \textbf{Semiaditiva}:
+$$A,\ B \in \mathbb{R}^{n} \Rightarrow \mu^{*}\left( A \cup B \right) \le \mu^{*}\left( A \right) + \mu^{*}\left( B \right)$$
+\end{itemize}
+\end{prop}
+\begin{demo}
+\begin{itemize}
+\item Trivial
+
+\item Si $\mu^{*}\left( B \right) = +\infty$ es trivial, luego suponemos que no.
+
+Sea $\{Q_k\}$ un recubrimiento de $B$, como $A \subset B \Rightarrow \{Q_k\}$ es un recubrimiento de A, luego\footnote{Puesto que si eres menor que todos los elementos de un conjunto eres menor o igual que su ínfimo.}
+$$\forall \{Q_k\}: \mu^{*}\left( A \right) < \sum_{k=1}^{\infty} v\left( Q_k \right) \Rightarrow \mu^{*}\left( A \right) \le \mu^{*}\left( B \right) $$
+
+\item Si $\mu^{*}\left( A \right) = +\infty$ o $\mu^{*}\left( B \right) = +\infty$ es trivial. 
+ 
+Suponiendo ambos finitos, entonces para $\varepsilon > 0$ se tiene que:
+$$\begin{cases}
+\exists \{Q_k\} \text{ rec. de A: } \sum_{k=1}^{\infty} v\left( Q_k \right) < \mu^{*}\left( A \right) + \frac{\varepsilon}{2}  \\
+\exists \{R_k\} \text{ rec. de B: } \sum_{k=1}^{\infty} v\left( R_k \right) < \mu^{*}\left( A \right) + \frac{\varepsilon}{2} 
+\end{cases}
+$$
+Consideremos $ \{Q_k, R_k\} = \{S_j\}$ donde $S_j = \begin{cases}
+Q_{\frac{j}{2}},\ j \text{ par} \\
+R_{\frac{j+1}{2}},\ j \text{ impar} 
+\end{cases}$. Tenemos trivialmente que $\{S_j\}$ es rec. de $A\cup B$, luego:
+$$\mu^{*}\left( A\cup B \right) \le \sum_{j=1}^{\infty} v\left( S_j \right) = \sum_{k=1}^{\infty} v\left( Q_k \right) + \sum_{k=1}^{\infty} v\left( R_k \right) < \mu^{*}\left( A \right) + \mu^{*}\left( B \right) + \varepsilon$$
+Y como dicha desigualdad es para cualquier $\varepsilon > 0$ se tiene la desigualdad del enunciado.
+\end{itemize}
+\end{demo}
+
+\begin{prop}
+En cualquier rectángulo, la medida exterior y su volumen coinciden, esto es:
+$$\forall Q \subset \mathbb{R}^n : v\left( Q \right) = \mu^{*}\left( Q \right)$$
+\end{prop}
+\begin{demo}
+    \begin{itemize}
+        \item $ \mu^*\left( Q \right) \le v\left( Q \right) $:
+        
+        Tomamos $\varepsilon > 0$ y consideramos la familia $ \{Q_k\}$ recubrimiento de $Q$ donde $Q_1 = Q$ y $\forall k \geq 2 : v(Q_k) < \varepsilon/2^{k}$. De este modo, $\{Q_k\} $ es rec. de $Q$ y además
+$$\sum_{k=1}^{\infty} v\left( Q_k \right) = v\left( Q \right) + \sum_{k=2}^{\infty} v\left( Q_k \right) < v\left( Q \right) + \sum_{k=2}^{\infty} \frac{\varepsilon}{2^{k}} < v\left( Q \right) + \varepsilon$$
+		Por tanto, por ser ínfimo y ser para todo epsilon, se tiene:
+		$$\mu^*\left( Q \right) \le v\left( Q \right) + \varepsilon \Rightarrow \mu^*\left( Q \right) \le v\left( Q \right)$$
+        \item $v\left( Q \right) \le \mu^*\left( Q \right)$:
+        
+        Observamos que $ \overline{Q}$ es la unión de las caras de $Q$ que denotaremos por $C_i$, por tanto:
+        \begin{align*}
+        v\left( Q \right) = v\left( \overline{Q} \right)  && \mu^{*}\left( Q \right) \le \mu^{*}\left( \overline{Q} \right)
+        \end{align*}
+        $$\mu^{*}\left( \overline{Q} \right) = \mu^{*}\left( Q \cup \left( C_1, \ldots, C_m \right)  \right) \le \mu^{*}\left( Q \right) + \mu^{*}\left( C_1 \right) + \ldots + \mu^{*}\left( C_m \right) = \mu^{*}\left( Q \right)$$
+        Luego, concluimos que un cubo cualquiera tiene la misma medida que el mismo cubo, pero cerrado. Por tanto, podemos suponer que $Q$ es cerrado y por ser acotado en $\mathbb{R}^n$ es compacto. 
+        
+Si el volumen es menor que todos los posibles sumatorios, entonces tendrá que ser menor que el ínfimo, luego basta probar que $v\left( Q \right) \le \sum_{k=1}^{\infty} v\left( Q_k \right), \ \forall \{Q_k\} \ Q \subset \bigcup_{k \in \mathbb{N}} Q_k $.
+
+Como $Q$ lo podíamos considerar compacto, se tiene que dado un recubrimiento $\{Q_k\}_{k=1}^{\infty}$:
+$$Q \subset Q_1 \cup \ldots \cup Q_N \Rightarrow v\left( Q \right) \le v\left( Q_1 \right) +\ldots+v\left( Q_N \right) \le \sum_{k=1}^{\infty} v\left( Q_k \right)$$
+\end{itemize}
+\end{demo}
+
+\begin{defi}
+Definimos el \textbf{diámetro de un conjunto} como:
+$$\mathrm{diam}\ A = \sup \{\vert \vert x - y \vert  \vert: \ x,y \in A\}$$
+Y definimos la \textbf{distancia entre dos conjuntos} como:
+$$d(A,B) = \inf \{||x-y||: x\in A, \ y \in B\}$$
+\end{defi}
+
+\begin{prop}
+Para conjuntos a distancia positiva, la medida exterior tiene la propiedad aditiva:
+$$\mathrm{d}\left( A, B \right) > 0 \Rightarrow \mu^*\left( A \cup B \right) = \mu^*\left( A \right) + \mu^*\left( B \right)$$
+\end{prop}
+\begin{demo}
+Si $ \mu^*\left( A\cup B \right) = +\infty$ entonces es trivial, por tanto, podemos suponer que es finito.
+
+Como conocemos una desigualdad, basta solo probar la otra. Tomamos $\delta > 0: \ \delta < \frac{\mathrm{d}\left( A, B \right)}{2}$ y $\forall \varepsilon > 0: \ \exists \{Q_k\} \text{ rectángulos }: \ \mathrm{diam}\ Q_k < \delta$ de forma que $A\cup B \subset \bigcup_{k \in \mathbb{N}} Q_k$, es decir, recubren y además $\sum_{k=1}^{\infty} v\left( Q_k \right) < \mu^*\left( A\cup B \right) + \varepsilon $.
+
+Estos $Q_k$ tienen la propiedad de que, o bien $Q_k \cap A = \emptyset$, o bien $Q_k \cap B = \emptyset$, ya que si no fuese así existirían $a,b\in \mathbb{R}^n: d(a,b) < \mathrm{diam} \ Q_k < \delta < d(A,B)$ lo cual es absurdo. 
+
+Podemos dividir el recubrimiento entonces en dos conjuntos:
+$$ \begin{cases}
+C:= \{Q_k : Q_k \cap A \neq \emptyset\} \text{ recubrimiento de } A \\
+D:= \{Q_k : Q_k \cap B \neq \emptyset\} \text{ recubrimiento de } B
+\end{cases}$$
+Y no incluimos los que no cortan a ninguno puesto que esos sobran, en consecuencia:
+$$\mu^*(A\cup B) +\varepsilon \geq \sum_{k=1}^{\infty} v\left( Q_k \right) \geq \sum_{C}^{\infty} v\left( Q_k \right) + \sum_{D}^{\infty} v\left( Q_k \right) \geq \mu^*\left( A \right) + \mu^*\left( B \right)$$
+Y como es para todo epsilon, se tiene la desigualdad que nos faltaba.
+\end{demo}
+
+\begin{theo}[Medida exterior]
+    La medida exterior de Lebesgue cumple las siguientes propiedades: 
+    \begin{enumerate}
+        \item $ \mu^*\left( \emptyset \right) = 0 $ 
+        \item $A \subset B \Rightarrow \mu^*\left( A \right) \le \mu^*\left( B \right)$
+        \item $ \mu^*\left( \bigcup_{k\in \mathbb{N}} A_k \right) \le \sum_{k=1}^{\infty} \mu^*\left( A_k \right)$
+    \end{enumerate}
+\end{theo}
+ \begin{demo}
+La propiedad 2 ya la tenemos demostrada, y la propiedad uno viene de aplicar la 2 a un conjunto numerable, puesto que el vacío pertenece a él y este es de medida nula. 
+
+Para demostrar la 3, si $\exists k: \mu^*\left( A_k \right) = +\infty$ es trivial, luego suponemos que $ \mu^*\left( A_k \right) < +\infty$ y tomamos $ \varepsilon>0$, entonces para cada $A_k$ hay un recubrimiento que verifica:
+$$ \forall k \in \mathbb N, \ \exists \{Q_j^k\}_{j=1}^\infty : A_k \subset \bigcup_{j \in \mathbb{N}} Q_j^{k} : \sum_{j=1}^{\infty} v\left( Q_j^k \right) < \mu^*\left( A_k \right) + \frac{\varepsilon}{2^k}
+$$
+De este modo, como cada $A_k$ está contenido en la unión sobre $j$ de un conjunto $\{Q_j^k\}$ para $k$ concreto, la unión de todos los $A_k$ está contenida en la unión sobre $k$ de dichos recubrimientos, es decir: 
+$$\bigcup_{k \in \mathbb{N}} A_k \subset \bigcup_{k \in \mathbb{N}} \left(\bigcup_{j \in \mathbb{N}} Q_j^k  \right) = \bigcup_{j, k = 1} ^{\infty} Q_j^k$$
+Como $\{Q_j^k\}$ es numerable, lo anterior es una unión numerable de conjuntos numerables,  entonces:
+$$\mu^*\left( \bigcup_{k\in \mathbb{N}} A_k \right) \le \sum_{j, k} v\left( Q_j^k \right) = \sum_{k=1}^{\infty} \sum_{j=1}^{\infty} v\left( Q_j^k \right) < \sum_{k=1}^{\infty} \left( \mu^*\left( A_k \right) + \frac{\varepsilon}{2^k} \right) = \left( \sum_{k=1}^{\infty} \mu^*\left( A_k \right) \right) + \varepsilon $$
+Y como es para todo $\varepsilon$ se tiene la desigualdad.
+\end{demo}
+
+\begin{obs}
+La condición de $d(A,B) > 0$ para que la medida exterior de la unión sea la suma de las medidas exteriores no se puede relajar, es decir, existen conjuntos disjuntos en $\mathbb{R}^n $ con $d(A,B)>0$ para los cuales la medida de la suma no es la suma de las medidas.
+$$\exists A, B: A\cap B = \emptyset\; \land \;\mu^*\left( A\cup B \right) < \mu^*\left( A \right) + \mu^*\left( B \right)$$
+\end{obs}
+
+\begin{defi}[Conjunto Medible]
+Sea $A \subset \mathbb{R}^n$, se dice que es \textbf{medible} si y sólo si
+$$\forall S \subset \mathbb{R}^n : \mu^*\left( S \right) = \mu^*\left( S\cap A \right) + \mu^*\left( S \cap A^c \right)$$
+\end{defi}
+
+
+\begin{theo}[De Caratheodory]
+Los conjuntos medibles forman una $\sigma$-álgebra y la medida exterior de Lebesgue, es decir:
+\begin{itemize}
+\item $\emptyset \in F_\sigma$
+\item $A\in F_ \sigma \Rightarrow A^c \in F_\sigma$
+\item $\forall k \in \mathbb{N}: A_k \in F_\sigma \Rightarrow \bigcup_{k=1}^\infty A_k \in F_\sigma$
+\end{itemize}
+Además, la medida exterior de Lebesgue es $ \sigma$-aditiva cuando la restringimos a los conjuntos medibles, es decir:
+$$\mu^*\left(\bigsqcup_{n\in \mathbb{N}}A_n\right) = \sum_{n=1}^\infty \mu^*(A_n)$$
+Una vez restringida a la $\sigma-$álgebra, la medida exterior de Lebesgue cumple la definición de medida y se denota simplemente por $\mu$.
+\end{theo}
+
+\begin{prop}
+Todo conjunto $A$ de medida nula es medible.
+\end{prop}
+\begin{demo}
+La desigualdad $\mu^*\left( S \right) \le \mu^*\left( S\cap A \right) + \mu^*\left( S\cap A^c \right)$ siempre es cierta, luego hay que demostrar la otra, es decir:
+$$ \mu^*\left( S\cap A \right) + \mu^*\left( S\cap A^c \right) \le \mu^*\left( S \right) $$
+Pero esta es trivial, puesto que el primer sumando vale cero ya que es subconjuntos de $A$ y el segundo es subconjunto de $S$.
+\end{demo}
+
+\begin{prop}
+Los rectángulos $Q$ son conjuntos medibles. 
+\end{prop}
+\begin{demo}
+Siempre se cumple que $ \mu^*\left( S \right) \le \mu^*\left( S\cap Q \right) + \mu^*\left( S\cap Q^c \right)$, luego solo es necesario ver la otra ¿$ \mu^*\left( S\cap Q \right) + \mu^*\left( S\cap Q^c \right) \le \mu^*\left( S \right)$?
+
+Tomemos un recubrimiento cualquiera de $S$, es decir:
+$$\{Q_j\}: S \subset \bigcup_{j \in \mathbb{N}} Q_j$$
+Observamos que $ \{Q_j \cap Q\} $ siempre son rectángulos que recubren a $S\cap Q$, luego:
+$$\mu^*\left( S\cap Q \right) \le \sum_{j=1}^{\infty} v\left( Q_j \cap Q \right)$$
+A su vez, $ \{Q_j \cap Q^c\}$ recubren a $S\cap Q^c$, pero no tienen porqué ser rectángulos. Sin embargo, sí son una unión finita de estos, es decir, para cada $Q_j \cap Q^c$ podemos escribir esta como $Q_j \cap Q^c = R_1 \cup \cdots \cup R_m$, por tanto, podemos recubrir mediante rectángulos como:
+$$S \cap Q^c \subset \bigcup_{j=1}^\infty Q_j\cap Q^c = \bigcup_{j=1}^\infty \left(\bigcup_{i=1}^\infty  R_i^j \right)\Rightarrow \mu^*\left( S\cap Q^c \right) \le \sum_{i=1}^{\infty} v\left( R^j_i \right) $$
+
+$$ R_1 \cup \cdots \cup R_m \cup \left( Q_j \cap Q \right) = Q_j \Rightarrow v\left( Q_j \right) = v\left( R_1 \right) +\ldots + v\left( R_m \right) + v\left( Q_j\cap Q \right) $$
+En consecuencia, tenemos que:
+$$\mu^*\left( S\cap Q \right) + \mu^*\left( S \cap Q^c \right) \le \sum_{j=1}^{\infty} v\left( Q_j \cap Q \right) + $$
+$$+ \sum_{j=1}^{\infty} \left( v\left( Q_j\cap Q \right) + v\left( R_1^j \right) +\ldots + v\left( R_m^j \right) \right) = \sum_{j=1}^{\infty} v\left( Q_j \right)$$
+\end{demo}
+
+\begin{prop}
+\begin{itemize}
+\item Todo conjunto abierto es medible
+\item Todo cerrado es medible
+\item Las uniones numerables de cerrados (conjuntos $F_\sigma$) son medibles
+\item Las intersecciones numerables de abiertos  (conjuntos $G_\delta$) son medibles
+\end{itemize}
+\end{prop}
+
+\begin{prop}
+Si $A\subset B$, ambos son conjuntos medibles y $\mu(A) < \infty$, entonces:
+$$\mu(B\setminus A) = \mu(B) - \mu(A)$$
+\end{prop}
+\begin{demo}
+Escribimos $B$ como unión disjunta de conjuntos de la forma $B=A\cup (B\setminus A)$, esto implica que $\mu(B) = \mu(A) + \mu(B\setminus A) \Rightarrow \mu(B\setminus A) =  \mu(B) - \mu(A)$.
+\end{demo}
+
+\begin{defi}[Sucesión creciente de conjuntos]
+Decimos que una sucesión de conjuntos $\{A_k\}$ es creciente y lo denotamos por $\{A_k\}\uparrow$ si y sólo si $A_k \subset A_{k+1} : \forall k  \in \mathbb{N}$.
+\end{defi}
+
+\begin{prop}
+Si tenemos una familia de conjuntos crecientes $\{A_k\}\uparrow$ medibles, entonces se tiene que:
+$$\mu\left(\bigcup_{k=1}^\infty A_k\right) = \lim_{k\rightarrow \infty} \mu(A_k)$$
+\end{prop}
+%TODO: Corregir B_k
+\begin{demo}
+Si alguno tiene medida infinita se tiene trivialmente, luego podemos suponer que $\forall k .\in \mathbb{N}: \mu(A_k) < \infty$.
+
+En primer lugar, vamos a construir la siguiente sucesión de conjuntos:
+$$\begin{cases}
+B_1 = A_1 \\
+B_2 = A_2\setminus A_1 \\
+\vdots \\ 
+B_k = A_k \setminus A_{k-1}
+\end{cases} \Rightarrow \bigcup_{k=1}^\infty B_k = \bigcup_{k=1}^\infty A_k \Rightarrow \mu\left(\bigcup_{k=1}^\infty B_k\right) = \mu\left(\bigcup_{k=1}^\infty A_k\right)$$
+Sin embargo, como $\{B_k\}_{k=1}^\infty$ son disjuntos dos a dos, tenemos que:
+$$\mu\left(\bigcup_{k=1}^\infty B_k\right) = \sum_{k=1}^\infty \mu(B_k) =\sum_{k=1}^\infty \mu(A_k\setminus A_{k-1}) =$$
+$$\sum_{k=1}^\infty \mu(A_k)- \mu(A_{k-1}) = \lim_{k\rightarrow \infty} \mu(A_k) - \mu(\emptyset) = \lim_{k\rightarrow \infty}\mu(A_k)$$
+\end{demo}
+
+\begin{defi}[Sucesión decreciente de conjuntos]
+Decimos que una sucesión de conjuntos $\{A_k\}$ es decreciente y lo denotamos por $\{A_k\}\downarrow$ si y sólo si $A_{k+1} \subset A_{k} : \forall k  \in \mathbb{N}$.
+\end{defi}
+
+\begin{prop}
+Si tenemos una familia de conjuntos decrecientes $\{A_k\}\downarrow$ medibles y $\exists k \in \mathbb N : \mu(A_k) < \infty$, entonces se tiene que:
+$$\mu\left(\bigcap_{k=1}^\infty A_k\right) = \lim_{k\rightarrow \infty} \mu(A_k)$$
+\end{prop}
+\begin{demo}
+Completamente análoga a su homóloga anterior.
+\end{demo}
+
+\begin{theo}
+Sea $A \subset \mathbb{R}^n$. Son equivalentes:  
+\begin{enumerate}
+\item $A$ es medible.
+\item $\forall \varepsilon > 0,\ \exists G \supset A$ abierto $: \mu\left( G\setminus A  \right) < \varepsilon$  
+\item $A = D \setminus N: D$ es $G_{\delta},\ \mu\left( N \right) = 0$  
+\item $A = C \cup N: C$ es $F_{\sigma},\ \mu\left( N \right) = 0$  
+\item $\forall \varepsilon > 0,\ \exists F \subset A$ cerrado $: \mu\left( A \setminus F \right) < \varepsilon$  
+\end{enumerate}
+\end{theo}
+\begin{demo}
+\begin{itemize}
+\item $1 \Rightarrow 2$:
+
+Supongamos primero que $A$ es acotado. Dado $\varepsilon > 0$, como $\mu\left( A \right) < +\infty$ por ser acotado, entonces $\exists \{Q_k\}_{k=1}^{\infty} : A \subset \displaystyle \bigcup_{k=1}^\infty Q_k$ de forma que $\sum_{k=1}^{\infty} v\left( Q_k \right) < \mu\left( A \right) + \varepsilon$. 
+
+Como el volumen no depende de que los rectángulos sean abiertos o cerrados, consideramos los $Q_k$ rectángulos abiertos de modo que:
+$$G = \bigcup_{k=1}^{\infty} Q_k \mbox{ abierto} : A\subset G$$
+Como $\mu (A) < + \infty$, entonces podemos ver que:
+$$\mu\left( G \setminus A \right) = \mu\left( G \right) - \mu\left( A \right) \le \sum_{k=1}^{\infty} \mu\left( Q_k \right) - \mu\left( A \right) < \varepsilon $$ 
+En general, si $A$ no es acotado, definimos: 
+$$A_k := \{x \in A: k - 1 \le \vert \vert x \vert  \vert < k \}$$
+
+$$\begin{tikzpicture}
+\begin{axis}[
+axis line style={draw=none},
+tick style={draw=none},
+axis y line=middle,
+axis x line=middle,
+%xlabel=$x$,
+%grid = both, %major/minor
+xticklabels={},yticklabels={}
+];
+
+\addplot [domain=-1:1, samples=100, name path=f, thick, color=red!50]
+        {sqrt(1 - x^2)};
+        \addplot [domain=-1:1, samples=100, name path=f1, thick, color=red!50]
+        {-sqrt(1 - x^2)};
+
+\addplot [domain=-2:2, samples=100, name path=f, thick, color=red!50]
+        {sqrt(4 - x^2)};
+        \addplot [domain=-2:2, samples=100, name path=f1, thick, color=red!50]
+        {-sqrt(4 - x^2)};
+        
+\addplot [domain=-3:3, samples=100, name path=f, thick, color=red!50]
+        {sqrt(9 - x^2)};
+        \addplot [domain=-3:3, samples=100, name path=f1, thick, color=red!50]
+        {-sqrt(9 - x^2)};
+
+\addplot [domain=-4:1.5, samples=100, name path=g, thick, color=black, very thick]
+        {e^x};
+
+\addplot[red!10, opacity=0.4] fill between [of=f and g, soft clip={domain=-4:1.03}];
+
+\node[color=red,right] at (axis cs: -0.5,0.5) {$A_1$};
+\node[color=red,right] at (axis cs: -0.5,1.5) {$A_2$};
+\node[color=red,right] at (axis cs: -0.5,2.5) {$A_3$};
+
+\node[color=black,right] at (axis cs: 1.03,3) {$A$};\\
+
+
+\end{axis}
+
+\end{tikzpicture}
+$$
+Los conjuntos $A_k$ son la intersección de $A$ con coronas disjuntas 2 a 2 concéntricas que descomponen $A$ como:
+$$ A = \bigsqcup_{k=1}^{\infty}A_k$$ 
+Si fijamos $\varepsilon > 0$ y como $\mu\left( A \right) < +\infty$, podemos aplicar el razonamiento anterior para acotados en cada $A_k$, luego:
+$$\exists G_k \supset A_k \text{ abierto} : \mu\left( G_k \setminus A_k \right) < \frac{\varepsilon}{2^k}$$
+Por tanto, si consideramos $G$ como la unión de los $G_k$, tenemos:
+$$G = \bigcup_{k=1}^{\infty}G_k \text{ es un abierto : } G \supset A$$ 
+Y se cumple que:
+$$\mu\left( G \setminus A \right) = \mu\left( \left( \bigcup_{k \in \mathbb{N}}G_k  \right) \setminus A   \right) \le \mu\left(  \bigcup_{k \in \mathbb{N}} \left(G_k \setminus A_k  \right)  \right) \le \sum_{k=1}^{\infty} \mu\left( G_k - A_k \right) < \sum_{k=1}^{\infty} \frac{\varepsilon}{2^k} = \varepsilon $$ 
+
+\item $2 \Rightarrow 3$:
+
+$\forall k \in \mathbb{N}$, consideramos $G_k \subset A$ abierto tal que $\mu\left( G_k \setminus A \right) < \frac{1}{k}$, después definimos el conjunto:
+$$D := \bigcap_{k=1}^{\infty}G_k \text{ que es } G_{\delta}:D \supset A$$ 
+Como $A = D \setminus (D \setminus A)$, definimos entonces $N = D \setminus A$ y ocurre que:
+$$\forall k \in \mathbb{N}: \mu\left( D \setminus A \right) \le \mu\left( G_k \setminus A \right) < \frac{1}{k} \Rightarrow \mu\left( N \right) = 0$$
+
+\item $3 \Rightarrow 1$:
+
+Tenemos $A = D \setminus N$, o lo que es lo mismo, que $A = D \cap N^c$. $D$ es medible por hipótesis, y $N^c$ es el complementario de un medible, que es medible\footnote{Por el teorema de Caratheodory}. Como las intersecciones de medibles son medibles, $A$ es medible.
+
+\item $1 \Rightarrow 5$:
+
+Sea $\varepsilon > 0$, como $A$ es medible, entonces $A^c$ también lo es y, por el apartado 2, tenemos que:
+$$\exists G \supset A^c \text{ abierto : } \mu\left( G \setminus A^c \right) < \varepsilon$$ 
+Sea $F := G^c \text{ cerrado}$, como  $A^c \subset G \Rightarrow F = G^c \subset \left( A^c \right)^c = A$, por tanto:
+$$A \setminus F = \left( A^c \right)^c \setminus F  =\left( A^c \right)^c \cap F^c = G \cap \left( A^c \right)^c = G \setminus A^c$$
+Luego, se tiene que:
+$$\mu\left( A \setminus F \right) = \mu\left( G \setminus A^c \right) < \varepsilon$$
+
+\item $5 \Rightarrow 4$: (Similar a $2 \Rightarrow 3$)\\
+$\forall k \in \mathbb{N}$, consideramos $F_k \subset A : \mu\left( A \setminus F_k \right) < \frac{1}{k}$, después definimos el conjunto:
+$$C := \bigcup_{k = 1}^{\infty}F_k  \text{ es } F_{\sigma} : \ C \subset A$$ 
+Y la demostración es análoga a la implicación $2 \Rightarrow 3$.
+
+\item $4 \Rightarrow 1$
+
+De nuevo y por similitud con $3\Rightarrow 1$, $A = C \cup N$ es medible por ser unión de medibles.
+\end{itemize}
+\end{demo}

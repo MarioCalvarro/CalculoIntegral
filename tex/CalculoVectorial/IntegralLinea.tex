@@ -1,0 +1,450 @@
+\section{Integral de línea}
+En esta sección, vamos a estudiar como concepto central la integral de línea. Por un lado, para funciones cuyo espacio de llegada es $\mathbb{R} $ puede surgir la pregunta de ¿qué pasa si yo quiero integrar la función en una línea (no necesariamente recta) del plano? Esto calcularía el área bajo la función y sobre dicha línea. Por otro lado, también es razonable pensar qué significa dicha integral si el espacio de llegada es $\mathbb{R}^n$.
+
+\subsection{Definición de curva}
+Para poder desarrollar la pregunta hecha al principio de la sección, es necesario primero definir cómo y qué propiedades tiene esa línea o curva sobre la que vamos a integrar.
+
+\begin{defi}
+Definimos como \textbf{curva en $\mathbb{R}^n$} a una función $\gamma: \left[ a, b \right] \rightarrow \mathbb{R}^n$ continua y $C^{1)}$ a trozos. En definitiva estamos expresando que:
+$$\begin{tikzpicture}
+
+\begin{axis}[
+tick style={draw=none},
+axis y line=middle,
+axis x line=middle,
+%xlabel=$x$,
+%grid = both, %major/minor
+xticklabels={},yticklabels={}
+];
+
+\addplot [domain=1.45:2.58, samples=100, name path=f, thick, color=teal!50, very thick]
+        {e^x};
+\fill (1.5,e^1.5)  circle[radius=2pt];
+\fill (2.5,e^2.5) circle[radius=2pt];
+
+
+\node (n2) at (2,8) {$\gamma(t)$};
+
+
+\node (n1) [above] at (1.5,e^1.5) {$\gamma(a)$};
+
+\node (n3) [above] at (2.5,e^2.5) {$\gamma(b)$};
+
+
+
+\end{axis}
+\end{tikzpicture}$$
+\end{defi}
+
+\begin{ej}
+\begin{enumerate}
+    \item Sea $x, y \in \mathbb{R}^n$, podemos definir su envoltura convexa como: 
+    $$\left[ x, y \right] = \{ty + \left( 1 - t \right) x: t \in \left[ 0, 1 \right]\} = C_0 \{x, y\}$$
+    Esta curva se puede parametrizar de forma que:
+    $$\gamma: \left[ 0, 1 \right] \rightarrow\mathbb{R}^n$$
+    $$\gamma \left( t \right) = ty + \left( 1 - t \right) x$$
+    \item Sea $\gamma: \left[ 0, 2\pi \right] \rightarrow \mathbb{R}^2$, tal que: $\gamma\left( t \right) = \left( \cos t, \sen t \right) $
+    $$\begin{tikzpicture}[paths/.style={->, thick, >=stealth'}]
+
+
+ \node (species_2) at (0,0) 
+     {$\gamma(\frac{\pi}{2})$};
+
+ \node (species_3) at (2,-2) 
+     {$\gamma(0)=\gamma(2\pi)$};
+
+ \node (species_4) at (0,-4) 
+     {$\gamma(\frac{3\pi}{2})$};
+
+ \node (species_5) at (-2,-2) 
+     {$\gamma(\pi)$};
+
+
+
+ \draw [paths] (species_3) to [bend right=40] node {} (species_2);
+ \draw [paths] (species_4) to [bend right=40] node {} (species_3);
+ \draw [paths] (species_5) to [bend right=40] node {} (species_4);
+ \draw [paths] (species_2) to [bend right=40] node {} (species_5);
+
+
+ \end{tikzpicture}$$
+    \item Sea $\gamma: \left[ 0, \pi \right] \rightarrow \mathbb{R}^2$, tal que $\gamma\left( t \right) = \left( \cos 2t, \sen 2t \right)$
+        $$\begin{tikzpicture}[paths/.style={->, thick, >=stealth'}]
+
+
+ \node (species_2) at (0,0) 
+     {$\gamma(\frac{\pi}{4})$};
+
+ \node (species_3) at (2,-2) 
+     {$\gamma(0)=\gamma(\pi)$};
+
+ \node (species_4) at (0,-4) 
+     {$\gamma(\frac{3\pi}{4})$};
+
+ \node (species_5) at (-2,-2) 
+     {$\gamma(\frac{\pi}{4})$};
+
+
+
+ \draw [paths] (species_3) to [bend right=40] node {} (species_2);
+ \draw [paths] (species_4) to [bend right=40] node {} (species_3);
+ \draw [paths] (species_5) to [bend right=40] node {} (species_4);
+ \draw [paths] (species_2) to [bend right=40] node {} (species_5);
+
+
+ \end{tikzpicture}$$
+ Misma curva que 2 pero tardo la mitad en recorrerla.
+    \item Sea $\gamma \left[ 0, 2\pi \right] \rightarrow \mathbb{R}^2$, tal que $\gamma \left( t \right) = \left( \cos 2t, \sen 2t \right)$
+        $$\begin{tikzpicture}[paths/.style={->, thick, >=stealth'}]
+
+
+ \node (species_2) at (0,0) 
+     {$\gamma(\frac{\pi}{4})$};
+
+ \node (species_3) at (2,-2) 
+     {$\gamma(0)=\gamma(\pi)=\gamma(2\pi)$};
+
+ \node (species_4) at (0,-4) 
+     {$\gamma(\frac{3\pi}{4})$};
+
+ \node (species_5) at (-2,-2) 
+     {$\gamma(\frac{\pi}{4})$};
+
+
+
+ \draw [paths] (species_3) to [bend right=40] node {} (species_2);
+ \draw [paths] (species_4) to [bend right=40] node {} (species_3);
+ \draw [paths] (species_5) to [bend right=40] node {} (species_4);
+ \draw [paths] (species_2) to [bend right=40] node {} (species_5);
+
+
+ \end{tikzpicture}$$
+ Misma curva que 3 pero la recorro 2 veces.
+    \item Sea $\gamma \left[ 0, 2\pi \right] \rightarrow \mathbb{R}^2$, tal que $\gamma \left( t \right) = \left( \cos t, -\sen t \right) $
+        $$\begin{tikzpicture}[paths/.style={->, thick, >=stealth'}]
+
+
+ \node (species_2) at (0,0) 
+     {$\gamma(\frac{3\pi}{2})$};
+
+ \node (species_3) at (2,-2) 
+     {$\gamma(0)=\gamma(2\pi)$};
+
+ \node (species_4) at (0,-4) 
+     {$\gamma(\frac{\pi}{2})$};
+
+ \node (species_5) at (-2,-2) 
+     {$\gamma(\pi)$};
+
+
+
+ \draw [paths] (species_2) to [bend left=40] node {} (species_3);
+ \draw [paths] (species_3) to [bend left=40] node {} (species_4);
+ \draw [paths] (species_4) to [bend left=40] node {} (species_5);
+ \draw [paths] (species_5) to [bend left=40] node {} (species_2);
+
+
+ \end{tikzpicture}$$
+ Misma curva que 2 pero la recorro en sentido contrario.
+\end{enumerate}
+A pesar de que los cuatro últimos ejemplos tuviesen la misma apariencia, como curva son elementos distintos puesto que importa el sentido de recorrido de la curva, la velocidad a la que se recorre y el número de veces que se recorre.
+\end{ej}
+
+\begin{obs}
+Geometricamente, $\gamma'\left( t \right) \in \mathbb{R}^n$ es el vector tangente de la curva en un determinado punto que apunta en la dirección del movimiento.
+\end{obs}
+
+\begin{defi}[Velocidad de una Curva]
+Sea $\gamma:[a,b]\rightarrow \mathbb{R}^n$ una curva, definimos la \textbf{velocidad} de la misma como: 
+$$v = \lvert \lvert \gamma'\left( t \right) \rvert \rvert$$
+Que de forma intuitiva, representa el módulo del vector tangente a la curva en ese punto.
+\end{defi}
+
+\begin{obs}
+La condición de $C^{1)}$ a trozos permite que las curvas puedan poseer ``picos'', es decir, que haya puntos donde la derivada no sea continua o donde no sea derivable, por ejemplo: 
+$$\gamma: \left[ -1, 1 \right] \rightarrow \mathbb{R}^2$$
+$$\gamma \left( t \right) = \left( t^2, t^3 \right) $$
+Su derivada será $\gamma'\left( t \right) = \left( 2t, 3t^2 \right)$ y un pico en $0$.
+\end{obs}
+
+\begin{defi}[Longitud de una Curva]
+Dada una curva $\gamma:[a,b]\rightarrow \mathbb{R}^n$, definimos su \textbf{longitud} como:
+$$\ell\left( \gamma \right) = \int_{a}^{b} \lvert \lvert \gamma'\left( t \right) \rvert \rvert \dif{t}$$
+Este concepto coincide con la longitud real de la gráfica de la curva, sin embargo no se demuestra por falta de tiempo.
+\end{defi}
+
+\begin{ej}
+Sea $\gamma\left( t \right) = \left( \cos t, \sen t, \cos 2t, \sen 2t \right) \in \mathbb{R}^4$, donde $t \in \left[ 0, \pi \right]$ vamos a ver que su longitud es:
+$$\gamma'\left( t \right) = \left( -\sen t, \cos t, -2\sen 2t, 2\cos 2t\right) \Rightarrow \lvert \lvert \gamma'\left( t \right) \rvert \rvert^2 = \sen^2 t + \cos^2 t + 4\sen^2 2t + 4 \cos^2 2t = 5$$
+$$\ell \left( t \right) = \int_{0}^{\pi} \sqrt{5} \dif{t} = \pi\sqrt{5} $$
+\end{ej}
+\begin{ej}
+Sea $\gamma: \left[ 0, \pi \right] \rightarrow \mathbb{R}^3$ tal que $\gamma \left( t \right) = \left( t, t\sen t, t \cos t \right) $, entonces podemos calcular su longitud como:
+$$\gamma'\left( t \right) = \left( 1, \sen t + t\cos t, \cos t - t \sen t\right) $$
+$$\lvert \lvert \gamma'\left( t \right) \rvert \rvert^2 = 1 + \sen^2 t + t^2 \cos^2 t + 2t \sen t \cos t + \cos^2 t + t^2 \sen^2 t - 2t \sen t \cos t = 2 + t^2$$
+$$\ell \left( \gamma \right) = \int_{0}^{\pi} \sqrt{t^2 + 2} \dif{t}$$
+\end{ej}
+
+\begin{defi}[Curva opuesta]
+Dada una curva $\gamma:[a,b]\rightarrow \mathbb{R}^n$, definimos su \textbf{curva opuesta}, que denotamos por $(-\gamma):[-b,-a]\rightarrow \mathbb{R}^n$, como: 
+$$\left( -\gamma \right) \left( t \right) = \gamma \left( -t \right) $$
+Es decir, fundamentalmente son la misma curva, pero cambia el sentido de recorrido.
+\end{defi}
+
+\begin{prop}
+Sea $\gamma:[a,b]\rightarrow \mathbb{R}^n$ una curva y $-\gamma:[-b,-a]\rightarrow \mathbb{R}^n$ su opuesta, entonces: 
+$$\ell \left( -\gamma \right) = \ell \left( \gamma \right) $$
+\end{prop}
+
+\begin{defi}[Unión de curvas]
+Sea dos curvas $\gamma : \left[ a, b \right] \rightarrow \mathbb{R}^n$ y $\sigma : \left[ b, c \right] \rightarrow \mathbb{R}^m$ tal que $\gamma\left( b \right) = \sigma \left( b \right)$, definimos como la \textbf{curva unión} de ambas a la curva $\gamma \lor \sigma: \left[ a, c \right] \rightarrow \mathbb{R}^n$ definida como:
+$$\left( \gamma \lor \sigma \right) \left( t \right) = \begin{cases}
+    \gamma\left( t \right) \text{, si } t \in \left[ a, b \right]\\
+    \sigma\left( t \right) \text{, si } t \in \left[ b, c \right] 
+\end{cases}$$
+\end{defi}
+\begin{prop}
+Sea dos curvas $\gamma : \left[ a, b \right] \rightarrow \mathbb{R}^n$ y $\sigma : \left[ b, c \right] \rightarrow \mathbb{R}^m$ tal que $\gamma\left( b \right) = \sigma \left( b \right)$, entonces:
+$$\ell \left( \gamma \lor \sigma \right) = \ell \left( \gamma \right) + \ell\left( \sigma \right) $$
+\end{prop}
+
+\begin{defi}[Reparametrización]
+Sea $\gamma: \left[ a, b \right] \rightarrow \mathbb{R}^n$ una curva y $h: \left[ a', b' \right] \rightarrow \left[ a, b \right]$ una función creciente, biyectiva y $C^1$ a trozos, entonces llamamos \textbf{reparametrización} de $\gamma$ a:
+$$\gamma \circ h: \left[ a', b' \right] \rightarrow \mathbb{R}^n.$$
+\end{defi}
+
+\begin{prop}
+Sea $\gamma: \left[ a, b \right] \rightarrow \mathbb{R}^n$ una curva y $h: \left[ a', b' \right] \rightarrow \left[ a, b \right]$ que verifican las condiciones de reparametrización de $\gamma$, entonces se conserva la longitud de la curva: 
+$$\ell \left( \gamma \circ h \right) = \ell \left( \gamma \right) $$
+Intuitivamente una forma alternativa de describir la curva no puede cambiar la longitud de la misma.
+\end{prop}
+\begin{demo}
+$$\ell \left( \gamma \circ h\right) = \int_{a'}^{b'} \lvert \lvert \left( \gamma \circ h \right)'\left( t \right) \rvert \rvert \dif{t} =  \int_{a'}^{b'} \lvert \lvert \gamma'\left( h\left( t \right) \right) h'\left( t \right) \rvert \rvert \dif{t} = \int_{a'}^{b'} h'\left( t \right) \lvert \lvert \gamma'\left( h\left( t \right) \right) \rvert \rvert \dif{t} = $$
+$$= \int_{a}^{b} \lvert \lvert \gamma'\left( s \right) \rvert \rvert \dif{s} = \ell \left( \gamma \right) $$    
+\end{demo}
+
+\begin{obs}
+La reparametrización de una curva conserva la forma, el sentido y la longitud de la curva, pero NO la velocidad de la misma ni aunque los segmentos $[a,b]$ y $[a',b']$ midan lo mismo pues en este caso el tiempo total en completar el recorrido sería el mismo, pero la velocidad puntual en cada punto no.
+\end{obs}
+
+\subsection{Concepto de Integral de Línea}
+Una vez restringido el significado de lo que es una curva y analizadas sus propiedades con respecto a integral, desarrollamos el concepto de integral de línea.
+
+\begin{defi}[Integral sobre la curva]
+Sea $\gamma: \left[ a, b \right] \rightarrow \mathbb{R}^n$ una curva donde $\img \gamma \subset \Omega$ abierto y $f: \Omega \rightarrow \mathbb{R}$ una función continua, entonces la integral sobre la curva es:
+\[
+\int_{\gamma} f \dif{s} = \int_{a}^{b} \left( f \circ \gamma \right) \left( t \right) \lvert \lvert \gamma'\left( t \right) \rvert \rvert \dif{t} 
+\]
+\end{defi}
+
+\begin{obs}
+Sea $\gamma$ una curva y $f$ una función continua, entonces es sencillo ver que: 
+\begin{itemize}
+    \item $\ell \left( \gamma \right) = \int_{\gamma} 1 \cdot \dif{s}$
+    \item $\int_{\gamma} f \dif{s} = \int_{-\gamma} f \dif{s}$
+    \item $\int_{\gamma \lor \sigma} f \dif{s} = \int_{\gamma} f \dif{s} + \int_{\sigma} f \dif{s}$
+\end{itemize}
+\end{obs}
+
+\begin{defi}[Integral de Línea]
+Sea $\gamma: \left[ a, b \right] \rightarrow G \subset \mathbb{R}^n$ una curva, $F: G \rightarrow \mathbb{R}^n$ un campo vectorial\footnote{Este término simplemente indica que es una función entre espacios de la misma dimensión} continuo y el conjunto $G$ abierto, entonces llamamos \textbf{integral de línea} de $F$ sobre $\gamma$ a:
+$$\int_{\gamma} F \cdot \dif{\overline{s}} = \int_{a}^{b} F\left( \gamma\left( t \right) \right) \cdot \gamma'\left( t \right) \dif{t}$$
+\end{defi}
+
+\begin{prop}
+\begin{enumerate}
+   	\item Tenemos que si $\sigma$ es una reparametrización de $\gamma$, entonces: 
+    $$\int_{\sigma} F \cdot \dif{\overline{s}} = \int_{\gamma} F\cdot \dif{\overline{s}}$$
+
+    \item Del mismo modo, si $-\gamma$ es la curva opuesta a $\gamma$, entonces: 
+    $$\int_{-\left( \gamma \right)} F \cdot \dif{\overline{s}} = -\int_{\gamma} F \cdot \dif{\overline{s}}$$
+\end{enumerate}
+\end{prop}
+
+\begin{obs}
+La interpretación geométrica de lo que estamos haciendo es la siguiente:
+$$\begin{tikzpicture}[declare function={f(\x,\y)=\x*\x+\y*\y-1;},scale=2.5]
+\def\xmax{1} \def\xmin{-1.2}
+\def\ymax{1} \def\ymin{-1.2}
+\def\nx{15}  \def\ny{15}
+
+\pgfmathsetmacro{\hx}{(\xmax-\xmin)/\nx}
+\pgfmathsetmacro{\hy}{(\ymax-\ymin)/\ny}
+\foreach \i in {0,...,\nx}
+\foreach \j in {0,...,\ny}{
+\draw[teal,-stealth] 
+({\xmin+\i*\hx},{\ymin+\j*\hy}) -- ++ ({atan2(f({\xmin+\i*\hx},{\ymin+\j*\hy}),1)}:0.1);
+}
+\pgfmathsetmacro{\stepx}{0.01}
+\pgfmathsetmacro{\nextx}{\xmin+\stepx}
+\pgfmathsetmacro{\nextnextx}{\xmin+2*\stepx}
+\pgfmathsetmacro{\xfin}{\xmax+0.1}
+\xdef\lstX{(\xmin,0.5)}
+\pgfmathsetmacro{\myy}{0.5}
+\foreach \x in {\nextx,\nextnextx,...,\xfin}
+{\pgfmathsetmacro{\myy}{\myy+f(\x,\myy)*\stepx}
+\xdef\myy{\myy}
+\xdef\lstX{\lstX (\x,\myy)}
+}
+\draw[blue,thick] plot[smooth] coordinates {\lstX};
+\draw (\xmin,\ymin) rectangle ($(\xmax,\ymax)+(1mm,1mm)$);
+\end{tikzpicture}$$
+Realmente en la integral de línea lo que haces es calcular las proyecciones sobre la curva de los vectores del campo en cada punto. De esta forma, sumamos los módulos de dichos vectores a lo largo de toda la curva:
+$$\int_{\gamma} F\cdot \dif{\overline{s}} = \int_{a}^{b} \underbrace{F\left( \gamma\left( t \right) \right) \cdot \frac{\gamma'\left( t \right)}{\lvert \lvert \gamma'\left( t \right) \rvert \rvert} \lvert \lvert}_{\text{proy. sobre la tangente}} \gamma'\left( t \right) \rvert \rvert \dif{t} = \int_{a}^{b} F_T \left( \gamma\left( t \right) \right) \cdot \lvert \lvert \gamma'\left( t \right) \rvert \rvert \dif{t} = \int_{\gamma} F_T \dif{s}$$
+Es sencillo ver que $F(\gamma(t))$ es el vector del campo en el punto $\gamma(t)$ y al multiplicarlo por el cociente siguiente, estamos proyectándolo sobre el vector unitario de la dirección tangente.
+\end{obs}
+
+\begin{defi}[Campo conservativo y potencial]
+Decimos que un campo $F:G\subset \mathbb{R}^n\rightarrow \mathbb{R}^n$ \textbf{deriva de un potencial} si: 
+$$\exists f: G \rightarrow \mathbb{R} \text{ de modo que } F = \nabla f$$
+Del mismo modo, decimos que un campo es \textbf{conservativo} si: 
+$$\forall \gamma \text{ cerrada }:\int_{\gamma} F\cdot \dif{\overline{s}} = 0$$
+\end{defi}
+
+\begin{prop}
+Sea $G \subset \mathbb{R}^n$ abierto y $F: G \rightarrow \mathbb{R}^n$ campo vectorial continuo, entonces $F$ deriva de un potencia si y sólo si es conservativo.
+\end{prop}
+\begin{demo}
+\begin{itemize}
+\item $\Rightarrow$
+$$\int_{\gamma} F\cdot \dif{\overline{s}} = \int_{a}^{b} \nabla f\left( \gamma\left( t \right) \right) \cdot \gamma'\left( t \right) \dif{t} = \int_{a}^{b} \left( f \circ \gamma \right)'\left( t \right) \dif{t} = \left( f \circ \gamma \right)\left( b \right) - \left( f \circ \gamma \right) \left( a \right)$$
+Si la curva es cerrada, entonces $\gamma(a) = \gamma(b)$, luego $\left( f \circ \gamma \right)\left( b \right) - \left( f \circ \gamma \right) \left( a \right) = 0$.
+
+\item $\Leftarrow$
+
+Para entender el argumento de la demostración utilizamos como guía el siguiente dibujo:
+$$\begin{tikzpicture}
+
+\begin{axis}[
+tick style={draw=none},
+axis y line=middle,
+axis x line=middle,
+ymin = -1.2,
+xmin = -1.2, xmax = 1.2,
+%xlabel=$x$,
+%grid = both, %major/minor
+xticklabels={},yticklabels={}
+];
+
+\addplot [middlearrow={latex reversed},domain=-1:1, samples=100, name path=f, thick, color=blue!50]
+        {x^2 - 1};
+
+\addplot [middlearrow={latex reversed},domain=-1:1, samples=100, name path=g, thick, color=red!50]
+        {abs(x*(x-1)*(x+1))};
+
+
+\fill (1,0)  circle[radius=2pt];
+\fill (-1,0) circle[radius=2pt];
+
+
+\node (n4) [above,red] at (-0.1,0.2) {$\gamma_1$};
+\node (n3) [blue] at (0.1, -0.9) {$\gamma_2$};
+\node (n2)  at (-.5,-.5) {$\gamma$};
+
+
+
+
+\end{axis}
+\end{tikzpicture}$$
+Es decir, cualquier curva cerrada $\gamma$ la podemos dividir como $\gamma_1 \vee -\gamma_2$ y además vemos que:
+$$0 = \int_{\gamma_1 \lor \left( -\gamma_2 \right)} F \dif{\overline{s}} = \int_{\gamma_1} F \cdot \dif{\overline{s}} - \int_{\gamma_2} F \cdot \dif{\overline{s}} \Rightarrow \int_{\gamma_1} F \cdot \dif{\overline{s}} = \int_{\gamma_2} F \cdot \dif{\overline{s}}$$
+Por razones topológicas, podemos suponer que $G$ es conexo (puesto que cualquier abierto es suma de conexos) y como además $G$ es abierto, entonces es conexo por caminos, es decir, $\forall x \in G: \exists \gamma_x$ que une $x_0$ con $x$.
+
+Definimos la función $f: G \rightarrow \mathbb{R}$ de forma que $f\left( x \right) = \int_{\gamma_x} F \cdot \dif{\overline{s}}$ y para terminar la demostración bastaría con probar que $\nabla f = F$.
+Por ser el campo continuo, sabemos que:
+$$\forall \varepsilon > 0,\ \exists \delta > 0: \lvert \lvert F\left( x + h \right) - F\left( x \right) \rvert \rvert < \varepsilon \text{ si } \lvert \lvert h \rvert \rvert < \delta$$
+Y sabiendo esto escogemos el $\delta$ de forma que $B\left( x, \delta \right) \subset G$ de modo que $x+h \in B(x,\delta)$ y como la bola es convexa, entonces el segmento que denotaremos por $\sigma_n \sim \left[ x, x + h \right]$ pertenece a la bola. Por tanto:
+$$\int_{\gamma_x} F\cdot \dif{\overline{s}} + \int_{\sigma_n} F \cdot \dif{\overline{s}} = \int_{\gamma_x \lor \sigma_n} F \dif{\overline{s}} = \int_{\gamma_{x + h}} F \cdot \dif{\overline{s}}$$
+Por otro lado, tenemos que:
+$$f\left( x + h \right) - f\left( x \right) = \int_{\sigma_n} F \cdot \dif{\overline{s}} = \int_{0}^{1} \left( F\left( x + th \right) \cdot h \right) \dif{t}$$
+Luego, entonces:
+$$\left\lvert f\left( x + h \right) - f\left( x \right) - F\left( x \right) \cdot h \right\rvert = \left\lvert \int_{0}^{1} F\left( x + th \right) \cdot h \dif{t} - \int_{0}^{1} \left( F\left( x \right) \cdot h\right) \dif{t} \right\rvert$$
+$$\left\lvert \int_{0}^{1} \left( F\left( x + th \right) - F\left( x \right) \right) \cdot h \dif{t} \right\rvert \underbrace{\le}_{\text{D.C-S}} \int_{0}^{1} \lvert \lvert F\left( x + th \right) - F\left( x \right) \rvert \rvert \cdot \lVert h \rVert \dif{t} < \varepsilon \lvert \lvert h \rvert \rvert$$
+Por tanto, 
+$$\left\lvert \frac{f\left( x + h \right) - f\left( x \right) - F\left( x \right) \cdot h}{\lvert \lvert h \rvert \rvert} \right\rvert < \varepsilon$$
+Es decir, 
+$$\lim_{h \rightarrow 0} \frac{f\left( x + h \right) - f\left( x \right) - \left( F\left( x \right) \cdot h \right)}{\lvert \lvert h \rvert \rvert} = 0 \Rightarrow F\left( x \right) = \nabla f\left( x \right) $$
+\end{itemize}
+\end{demo}
+
+\begin{theo}[Fórmula de Green]
+Sea $G \subset \mathbb{R}^2$ un abierto, $P, Q: G \rightarrow \mathbb{R}$ dos funciones $C^1$ y $D$ un abierto tal que $\overline{D} \subset G$ y donde $\partial D^+ \subset G$ es una curva cerrada, entonces:
+$$\int_{\partial D^+} (P, Q) \dif{\bar{s}} = \iint_{D} \left( \frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y} \right) \dif{x} \dif{y}$$
+\end{theo}
+\begin{demo}
+La demostración se va a hacer para conjuntos definidos entre funciones puesto que se puede aproximar cualquier conjunto por una poligonal suficientemente semejante al mismo, cualquier poligonal se puede poner como unión de triángulos y los triángulos son conjuntos de este tipo.
+
+Sea $D = \{\left( x, y \right) : x \in \left[ a, b \right] \; \land \; f\left( x \right) \le y \le g\left( x \right) \}$ con $f, g: \left[ a, b \right] \rightarrow \mathbb{R}$ en $C^1$ a trozos (continuas).
+$$\begin{tikzpicture}
+
+\begin{axis}[
+tick style={draw=none},
+axis y line=middle,
+axis x line=middle,
+%xlabel=$x$,
+%grid = both, %major/minor
+xticklabels={},yticklabels={}
+];
+
+\addplot [middlearrow={latex reversed},domain=0.98:3, samples=100, name path=f, thick, color=blue!50]
+        {sqrt(-x+4) + 1};
+
+\addplot [middlearrow={latex},domain=1:3.02, samples=100, name path=g, thick, color=blue!50]
+        {0.7*sqrt(-x+4) + 1};
+   
+   \addplot [domain=0.98:3, samples=100, name path=f, thick, color=blue!50]
+        {sqrt(-x+4) + 1};
+
+\addplot [domain=1:3.02, samples=100, name path=g, thick, color=blue!50]
+        {0.7*sqrt(-x+4) + 1};
+
+\addplot[blue!10, opacity=0.4] fill between [of=f and g, soft clip={domain=1:3}];
+
+\draw [middlearrow={latex}, thick, red] (1,2.73) -- (1,2.21);\\
+\draw [middlearrow={latex reversed}, thick, red] (3,2) -- (3,1.7);
+
+
+\draw [dashed] (1,0) -- (1,2.21);
+\draw [dashed] (3,0) -- (3,1.7);
+\node (n4) [blue] at (2,1.9) {$\sigma_1$};
+\node (n3) [blue] at (2,2.35) {$\sigma_2$};
+\node (n2) [red] at (2.9,1.9) {$\gamma_1$};
+\node (n1) [red] at (1.1,2.5) {$\gamma_2$};
+
+\node (n5) at (1.09,1.72) {$a$};
+\node (n6)  at (2.85,1.72) {$b$};
+
+
+\end{axis}
+\end{tikzpicture}$$
+Calculamos, las distintas integrales sobre cada curva:
+\begin{itemize}
+\item  
+$$\int_{\substack{\gamma_i\\ i = 1, 2}} P \dif{x} = \int_{\gamma_i} \left( P, 0 \right) \dif{\overline{s}} = 0$$
+\item $\sigma_1 \left( t \right) = \left( t, f\left( x \right) \right)$: 
+$$\int_{\sigma_1} P \dif{x} = \int_{\sigma_1} \left( P, 0 \right) \dif{s} = \int_{a}^{b} \left( P \left( t, f\left( t \right) \right) \right) \cdot \left( 1, f'\left( t \right) \right) \dif{t} = \int_{a}^{b} P\left( t, f\left( t \right) \right) \dif{t}$$
+\item
+$$\int_{\sigma_2} P \dif{x} = - \int_{-\sigma_2} P \dif{x} = - \int_{a}^{b} P\left( t, g\left( t \right) \right) \dif{t}$$
+\end{itemize}
+Por tanto, sobre la integral del enunciado tenemos: 
+$$\int_{\partial D^+} P \dif{x} = - \left( \int_{a}^{b} P\left( t, g\left( t \right) \right) \dif{t} - \int_{a}^{b} P\left( t, f\left( t \right) \right) \dif{t} \right) = $$
+$$= - \int_{a}^{b} \left( \int_{f\left( x \right)}^{g\left( x \right)} \frac{\partial P\left( x, y \right)}{\partial y} \dif{y} \right) \dif{x} \underbrace{=}_{\text{T. Fubini}} - \iint_{D} \frac{\partial P}{\partial y} \left( x, y \right) \dif{x} \dif{y}$$
+Suponiendo ahora las funciones sobre $y$ que definen al conjunto, es decir, $D = \left( x, y \right) : y \in \left[ c, d \right] \; \land \; f\left( y \right) \le x \le g\left( y \right)$ donde $f, g: \left[ c, d \right] \rightarrow \mathbb{R}$ son $C^1$ a trozos. La demostración es completamente análoga: 
+$$\int_{\partial D^+} Q \dif{y} \overbrace{=}^{\text{ejercicio}} \iint_{D} \frac{\partial D}{\partial x} \dif{x} \dif{y}$$
+Por último, si sumamos las dos fórmulas: 
+$$\iint_{\partial D^+} P \dif{x} + Q \dif{y} = \iint_{D} \left( \frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y} \right) \dif{x} \dif{y}$$
+\end{demo}
+
+\begin{obs}
+En ciertos contextos y suponiendo que tenemos las funciones $P, Q: G \rightarrow \mathbb{R}$, es habitual encontrar el siguiente cambio de notación:
+$$\int_{\partial D^+} P \dif{x} + Q \dif{y} = \int_{\partial D^+} (P, Q) \dif{\bar{s}}$$
+\end{obs}
+
+\begin{prop}[Fórmula del área]
+Sea $D$ un conjunto en las condiciones de la Fórmula de Green, entonces podemos calcular su área como:
+$$A\left(D\right)=\iint_{D} \dif{x} \dif{y} = \frac{1}{2}\int_{\partial D^+} x \dif{y} - y \dif{x}$$
+\end{prop}
+\begin{demo}
+Si escogemos $Q\left( x, y \right) = x$ y $P\left( x, y \right) = -y$, por el Teorema anterior tendremos que:
+$$\int_{\partial D^+} x \dif{y} - y \dif{x} = 2\iint_{D} \dif{x} \dif{y} = 2 A\left(D\right)$$
+\end{demo}
