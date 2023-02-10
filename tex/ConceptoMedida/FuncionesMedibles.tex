@@ -174,7 +174,7 @@ $$y \in \bigcap_{m \in \mathbb{N}}\bigcup_{k \in \mathbb{N}}\{x : f_k \left(x\ri
 $$\Leftrightarrow \forall m \in \mathbb{N}:\exists k_m\in \mathbb{N}: f_{k_m}\left(y\right) > m \Leftrightarrow \sup_{k\in \mathbb{N}} f_k\left(y\right) = +\infty \Leftrightarrow y \in f^{-1}\left(+\infty\right)$$
 Como se trata de la intersección numerable de una unión numerable de conjuntos medibles, $f^{-1}\left(+\infty\right)$ es medible. 
 
-\item Por último, para ver que la función $f$ es medible, hay que ver que para cualquier $\alpha$ el conjunto $f^{-1}(-\infty, \alpha]$ es medible. Para ello, expresamos dicho conjunto como:   
+\item Por último, para ver que la función $f$ es medible, hay que ver que para cualquier $\alpha$ el conjunto $f^{-1}(-\infty, \alpha]$ es medible. Para ello, expresamos dicho conjunto como\footnote{Porque si el supremo es inferior a $a$, entonces el resto, que son inferiores, también lo son.}:   
 $$\{x \in \mathrm{dom}f: f\left(x\right) \le \alpha\} = \bigcap_{k \in \mathbb{N}}\{x \in \mathrm{dom} f_k: f_k\left(x\right) \le \alpha\} = \bigcap_{k\in \mathbb{N}}f_k^{-1}(-\infty, \alpha]$$ Como las $f_k$ son medibles, se trata de una intersección numerable de conjuntos medibles, que es medible. Veamos que dicha igualdad es cierta:
 $$\{x \in \mathrm{dom}f: f\left(x\right) \le \alpha\} \Leftrightarrow f\left(x\right) \in \mathbb{R} \wedge f\left(x\right) \le \alpha \Leftrightarrow \mathbb{R} \ni \sup f_k\left(x\right) \le \alpha \Leftrightarrow f_k\left(x\right) \le \alpha : \forall k \in \mathbb{N}$$
 \end{itemize}
@@ -222,7 +222,7 @@ Es decir, solo NO se verifica en un conjunto de medida nula.
 \end{defi}
 
 \begin{prop}
-Si $f$ y $g$ son dos funciones tales que son iguales c.t.p. y una de las dos es medible, entonces la otra lo es.
+Si $f$ y $g: A \rightarrow \overline{\mathbb{R}^{}}$ son dos funciones tales que son iguales c.t.p. y una de las dos es medible, entonces la otra lo es.
 \end{prop}
 \begin{demo}
 Sea $G$ abierto hay que ver que $g^{-1}\left(G\right)$ es abierto:
@@ -231,7 +231,7 @@ Donde $N_1, N_2$ de medida $0$ ($N_1, N_2 \subset N$)
 \end{demo}
 
 \begin{prop}
-Si $f$ es el límites de una sucesión de funciones medibles $\{f_k(x)\}_{k=1}^\infty$ en casi todo punto, entonces $f$ es medible.
+Si $f$ es el límites de una sucesión de funciones medibles $\{f_k(x)\}_{k=1}^\infty$ en casi todo punto, entonces $f$ es medible:
 $$\forall k \in \mathbb{N}: f_k \mbox{ medible y }\lim_{k\rightarrow\infty}f_k(x) = f \mbox{ (c.t.p.)}\Rightarrow f \mbox{ medible}$$
 \end{prop}
 \begin{demo}
@@ -246,8 +246,11 @@ $$\chi_E: \mathbb{R}^{n} \rightarrow \mathbb{R}\mbox{ definida como } \chi_E \le
     1 \text{ si } x \in E\\
     0 \text{ si } x \not\in E
 \end{cases}$$
-Trivialmente, tenemos que $\chi_E$ es medible $\Leftrightarrow E$ es medible.
 \end{defi}
+
+\begin{obs}    
+Trivialmente, tenemos que $\chi_E$ es medible $\Leftrightarrow E$ es medible.
+\end{obs}
 
 \begin{defi}[Función Simple]
 Sea $\chi_{E_k}$ la función característica del conjunto $E_k$ y $\alpha_k\in \mathbb{R}^n$ un número cualquiera, definimos una \textbf{función simple} como:
