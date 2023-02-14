@@ -1,9 +1,9 @@
 \section{Definición de Integral}
-La definición de la integral de Lebesgue posibilita extender el la Integral de Riemann y establecer un cimiento sólido para todas aquellas áreas matemáticas que se nutren de la integración y que poseen situaciones peculiares que hacen las integrales de Riemann inservibles.
+La definición de la integral de Lebesgue posibilita extender la Integral de Riemann y establecer un cimiento sólido para todas aquellas áreas matemáticas que se nutren de la integración y que poseen situaciones peculiares que hacen las integrales de Riemann inservibles.
 
 \begin{obs}
 Recordemos que llamamos función simple a una función con la estructura:
-$$\varphi = \sum_{k=1}^{m} \alpha_k\chi{E_k}$$
+$$\varphi = \sum_{k=1}^{m} \alpha_k \chi_{E_k}$$
 Dicha función cumple que:
 \begin{itemize}
     \item Es una función medible.
@@ -17,7 +17,7 @@ E_j = \varphi^{-1}\left(\{\beta_j\}\right) \text{, medible} & & \varphi = \sum_{
 
 \begin{defi}[Integral]
 Sea $\varphi$ función simple no negativa:
-$$\varphi = \sum_{k=1}^{m} \alpha_k \cdot \chi{E_k} \mbox{ donde } \left(\alpha_k > 0\right)$$
+$$\varphi = \sum_{k=1}^{m} \alpha_k \cdot \chi_{E_k} \mbox{ donde } \left(\alpha_k > 0\right)$$
 Definimos la \textbf{integral} de dicha función como:
 $$I\left(\varphi\right) = \sum_{k=1}^{m} \alpha_k \mu\left(E_k\right)$$
 \end{defi}
@@ -49,6 +49,13 @@ La demostración se deja como ejercicio de las hojas, se trata de utilizar que e
 \begin{obs}
 Los conjuntos no tienen porque ser intervalos, si fuese este el caso sería, en el fondo, integrabilidad Rienmann.
 \end{obs}
+
+\begin{prop}
+Si $\varphi$ es una función simple no negativa y $A_1 \cap A_2 = \emptyset$:
+\[
+I \left( \varphi \left( x \right) \right) = I \left( \varphi \left( x \right) A_1 \right) + I \left( \varphi \left( x \right) \cdot A_2 \right)
+\]
+\end{prop}
 
 \begin{defi}[Integral de Lebesgue]
 Sea $f: \mathbb{R}^n \rightarrow \left[0, +\infty\right]$ una función medible, definimos la \textbf{integral de Lebesgue de $f$} de la siguiente\footnote{La definición no cambia si las funciones $\varphi \leq f$ en c.t.p.} forma:
