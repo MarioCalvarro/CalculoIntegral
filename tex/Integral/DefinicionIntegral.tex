@@ -35,7 +35,41 @@ $$I(\varphi) = \sum_{i=1}^{m} \alpha_i \mu\left(E_i\right) = \sum_{i=1}^{p} \bet
 luego la integral tiene una definición consistente.
 \end{prop}
 \begin{demo}
-La demostración se deja como ejercicio de las hojas, se trata de utilizar que entre dos cualesquiera puedo pasar por la forma canónica y esta integral es la de la definición.
+Supongamos que $\sum_{i=1}^{m} \alpha_i \chi_{E_i}$ es la forma canónica de $\varphi$, que definimos por aquella en la que las $\alpha_i$ son todas distintas y las $E_i$ son disjuntas. Veamos que es posible llegar a esta expresión desde cualquier otra manteniendo las medidas.
+
+Partiendo de $\sum_{i=1}^{p} \beta_i \chi_{D_i}$ no canónica, sabemos que es posible que:
+\begin{itemize}
+    \item $\beta_i$ sean distintos.
+    \item $E_i$ sean disjuntos.
+\end{itemize}
+Empecemos ``separando'' los $E_i$. Para ello observamos que si no son disjuntos es porque existen elementos que pertenecen a la intersección de algunos. Estos elementos tendrán como imagen la suma de los $\beta_i$ asociadas a los conjuntos que forman esta intersección. 
+
+Con esto, podemos definir el conjunto disjunto formado por los $E_i$ eliminándoles los $x$ que pertenecen a varios, pero añadiéndolos a través de las intersecciones con el $\beta_i'$ asociado formado por la suma anterior. Esto mantiene la medida porque, si $B \subset A \Rightarrow$ 
+\[
+\mu \left( A \setminus B \right) = \mu \left( A \right) - \mu \left( B \right) \Rightarrow \boxed{\mu \left( A \right) = \mu \left( A \setminus B \right) + \mu \left( B \right)}
+\]
+Es decir, si inicialmente tenemos $\left\{ E_i \right\}_1^m$ y definimos:
+\[
+    \begin{cases}
+        E_i' = E_i \setminus \left( \bigcup_{j \neq i} E_i \cap E_j \right),\ 1 \le i \le m\\ 
+        E_k' = E_i \cap E_j,\ i \neq j
+    \end{cases}
+\]
+Los $E_k'$ serán finitos al serlo los $E_i$. Así, los $E_i'$ serán disjuntos y si aplicamos recursivamente el mismo procedimiento a los $E_k'$ nos quedarán también disjuntos en un número finito de pasos.
+
+Separemos ahora las $\beta_i$, es decir, busquemos una nueva familia que proceda de la que acabamos de formar de tal forma que se mantenga la medida y los coeficientes sean todos distintos. De esta forma, ya tendremos una forma canónica con la misma integral.
+
+Por tanto, si tomamos todas las $\beta_i$ con el mismo valor y los nuevos conjuntos asociados, podemos definir un nuevo conjunto $A_i = \bigcup_{i = 1}^t E_i$ que mantendrá la medida porque: 
+\[
+\mu \left( \bigsqcup_{i = 1}^t E_i \right) = \sum_{i=1}^{t} \mu \left( E_i \right) 
+\]
+y los $\gamma_k = \sum_{i=1}^{t} \alpha_i$ serán todos distintos, es decir, 
+\[
+\sum_{i=1}^{r} \gamma_i A_i 
+\]
+será la forma canónica que tendrá la misma medida que la forma inicial. 
+
+Para comparar dos formas no canónicas, simplemente las pasamos a la canónica y vemos que son iguales.
 \end{demo}
 
 \begin{prop}
@@ -81,7 +115,10 @@ Sean $f, g: \mathbb{R}^n \rightarrow \left[0, +\infty\right]$ dos funciones medi
 $$\int_{\mathbb{R}^n}f \ d \mu \le \int_{\mathbb{R}^n}g \ d \mu.$$
 \end{prop}
 \begin{demo}
-Se deja como ejercicio.
+Buscamos ver si $\sup I \left( \varphi \right) \le \sup I \left( \psi \right)$ donde $\varphi \le f$ y $\psi \le g$. Como $\varphi \le f \le g$ y $\psi \le g \Rightarrow$ los $\varphi$ son un subconjunto de los $\psi$ de tal modo que:
+\[
+\exists \psi' \le g \text{ tal que } \forall \varphi \le f, \varphi \le \psi \Rightarrow I \left( \varphi \right) \le I \left( \psi' \right) \Rightarrow \sup I \left( \varphi \right) \le \sup I \left( \psi \right) 
+\]
 \end{demo}
 
 \begin{coro}
