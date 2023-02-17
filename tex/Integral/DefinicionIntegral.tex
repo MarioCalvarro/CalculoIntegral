@@ -279,7 +279,7 @@ Si $f, g: \mathbb{R}^n \rightarrow \mathbb{R}$ son funciones medibles no negativ
 $$\int_{\mathbb{R}^n} \left(f + g\right) \dif{\mu} = \int_{\mathbb{R}^n} f \dif{\mu} + \int_{\mathbb{R}^n} g \dif{\mu}$$
 \end{prop}
 \begin{demo}
-Por la proposición anterior, existen dos sucesiones $\{\varphi_k\}_{k=1}^\infty$ y $\{\psi_k\}_{k=1}^\infty$ convergentes a $f$ y a $g$ respectivamente. De este modo, es trivial comprobar que $\{\varphi_k + \psi_k\}_{k=1}^\infty$ converge a $f+g$ y por el Teorema de Convergencia Monótona, tenemos que
+Por la proposición anterior, existen dos sucesiones $\{\varphi_k\}_{k=1}^\infty$ y $\{\psi_k\}_{k=1}^\infty$ convergentes a $f$ y a $g$ respectivamente. De este modo, es trivial comprobar que $\{\varphi_k + \psi_k\}_{k=1}^\infty$ converge a $f+g$ y por el Teorema de Convergencia Monótona, tenemos que:
 $$\int_{\mathbb{R}^n}(f+g) \dif{\mu} = \lim_{k\rightarrow\infty} \int_{\mathbb{R}^n}(\varphi_k + \psi_k) \dif{\mu} = \lim_{k \rightarrow \infty} \left( \int_{\mathbb{R}^n} \varphi_k \dif{\mu} + \int_{\mathbb{R}^n} \psi \dif{\mu} \right) = \int_{\mathbb{R}^n} f \dif{\mu} + \int_{\mathbb{R}^n} g \dif{\mu}$$
 \end{demo}
 
@@ -296,7 +296,11 @@ Sea $\{f_k\}_{n=1}^{\infty}$ una sucesión de funciones medibles no negativas, e
 $$\int_{\mathbb{R}^n} \left(\sum_{k=1}^{\infty} f_k \right) \dif{\mu} = \sum_{k=1}^{\infty}\left( \int_{\mathbb{R}^n} f_k \dif{\mu}\right)$$
 \end{theo}
 \begin{demo}
-La demostración es prácticamente consecuencia de los enunciados anteriores:
+Recordemos que: 
+\[
+\sum_{i=1}^{N} f\left( x \right) \le \sum_{i=1}^{N+1} f\left( x \right) \text{ y } \lim_{n \rightarrow \infty} f \left( x \right) = f \left( x \right) 
+\]
+Por tanto, la demostración es prácticamente consecuencia inmediata de los enunciados anteriores y del teorema de convergencia monótona:
 $$\int_{\mathbb{R}^n} \left(\sum_{k=1}^{\infty} f_k\right) \dif{\mu} = \int_{\mathbb{R}^n} \lim_{m \rightarrow \infty} \left(\sum_{k=1}^{m} f_k \right)\dif{\mu} = \lim_{m \rightarrow \infty}\int_{\mathbb{R}^n} \left(\sum_{k=1}^{m} f_k\right) \dif{\mu} = $$
 $$=\lim_{m \rightarrow \infty} \sum_{k=1}^{m} \left(\int_{\mathbb{R}^n} f_k \dif{\mu}\right) = \sum_{k=1}^{\infty} \left(\int_{\mathbb{R}^n} f_k \dif{\mu}\right) $$
 \end{demo}
@@ -308,7 +312,17 @@ $$\int_{\mathbb{R}^n} \left( \liminf_{k \rightarrow \infty}f_k \right) \dif{\mu}
 \begin{demo}
 Definimos las funciones $g_k = \inf_{m \ge k} f_m \ge 0$ medibles de modo que estas forman una sucesión creciente $\{g_k\}_{k=1}^\infty\uparrow$. En consecuencia, basta ver que:
 $$\int_{\mathbb{R}^n} \left(\liminf_{k \rightarrow \infty}f_k \right) \dif{\mu} = \int_{\mathbb{R}^n} \left(\lim_{k \rightarrow \infty}g_k \right)\dif{\mu} =  \lim_{k \rightarrow \infty} \int_{\mathbb{R}^n} g_k \dif{\mu} = \liminf_{k \rightarrow \infty}\int_{\mathbb{R}^n} g_k \dif{\mu} \le \liminf_{k \rightarrow \infty} \int_{\mathbb{R}^n} f_k \dif{\mu}$$
+Esta última desigualdad porque al ser $g_k\left( x \right) = \inf_{m \ge k} f_m\left( x \right) \Rightarrow$
+\[
+g_k\left( x \right) \le f_k\left( x \right)\Rightarrow \int_{\mathbb{R}^n} g_k\left( x \right) \mathrm{d}\mu \le \int_{\mathbb{R}^n} f_k\left( x \right) \mathrm{d}\mu
+\]
 \end{demo}
+
+\underline{Ejercicio}: Ver que el lema de Fatou implica el teorema de convergencia monótona.
+
+\begin{ej}
+Sea $f_k \left( x \right) = k \chi_{\left[ 0, \frac{1}{k} \right]},\ k \ge 1$. Ver como la desigualdad es estricta.
+\end{ej}
 
 \begin{prop}
 Las integrales impropias se soportan por la integral de Lebesgue:
