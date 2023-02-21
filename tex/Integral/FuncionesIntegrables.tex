@@ -90,6 +90,15 @@ $$\int_{\mathbb{R}^n} f \dif{\mu} = \int_{\mathbb{R}^n} f^+ \dif{\mu} - \int_{\m
 \begin{obs}
 Podríamos dar la misma definición de integrabilidad que se dió para funciones arbitrarias, pero ahora para funciones que toman valores en la recta ampliada. Sin embargo, cabe observar que $A=\{x\in \mathbb{R}: |f(x)|< \infty\}$ tiene que tener medida en caso de que dicha función sea integrable, puesto que:
 $$\mu(A) > 0 \Rightarrow \forall k \in \mathbb{N}: k\cdot \chi_A \leq |f| \Rightarrow \int_{\mathbb{R}^n} |f| \ d\mu \geq I(k\chi_A) = k \cdot \mu(A)$$
+Dicho de otra manera, siendo $B = \left\{ x : \lvert f\left( x \right) \rvert = + \infty \right\}$ tenemos que:
+\[
+m \left( B \right) = 0
+\]
+ya que tenemos que, $N \chi_A \left( x \right) \le \lvert f\left( x \right) \rvert \chi_A \left( x \right)$. Por tanto:
+\[
+\int N \chi_A \left( x \right) \mathrm{d}\mu \le \int \lvert f\left( x \right) \rvert \chi_A \left( x \right) \mathrm{d}\mu < \int \lvert f\left( x \right) \rvert \mathrm{d} \mu < +\infty
+\]
+que solo es posible si $\mu\left( A \right) = 0$.
 \end{obs}
 
 \begin{prop}
@@ -147,13 +156,13 @@ $$\int |f+g| \leq \int |f| + \int |g| < \infty $$
 De este modo, ya sabemos que al menos la suma es integrable, ahora veamos que la integral es justo la suma de las integrales. Para ello, expresamos la suma de la siguiente forma:
 $$f+ g = f^+ - f^- + g^+ - g^- = (f^+ + g^+) - (f^- + g^-)$$
 Como dichas funciones son  no negativas y son integrables, tenemos que
-$$\int (f+g) = \int (f^+ + g^+) - \int (f^- + g^- ) = \int f^+ + \int g^+ - \int f^- +\int g^-  = \int f + \int g$$
+$$\int (f+g) = \int (f^+ + g^+) - \int (f^- + g^- ) = \int f^+ + \int g^+ - \int f^- -\int g^-  = \int f + \int g$$
 Cabe observar que es necesario el lema para probar dicha demostración puesto que no se tiene en general la igualdad:
 $$f^+ + g^+ = (f+g)^+$$
 \end{demo}
 
 \begin{theo}[De convergencia dominada]
-Sea $\{f_k\}_{k=1}^{\infty}\rightarrow f$ una sucesión convergente c.t.p. a un a función $f$, donde las funciones $f_k: \mathbb{R}^n \rightarrow \mathbb{R}$ son medibles y $g: \mathbb{R}^n \rightarrow \left[0, +\infty\right]$ una función integrable que acota a $f$ c.t.p., es decir, $\vert f_k \vert \le g$ c.t.p., entonces:
+Sea $\{f_k\}_{k=1}^{\infty}\rightarrow f$ una sucesión convergente c.t.p. a una función $f$, donde las funciones $f_k: \mathbb{R}^n \rightarrow \mathbb{R}$ son medibles y $g: \mathbb{R}^n \rightarrow \left[0, +\infty\right]$ una función integrable que acota a $f$ c.t.p., es decir, $\vert f_k \vert \le g$ c.t.p., entonces:
 $$\int_{\mathbb{R}^n} f \dif{\mu} = \lim_{k \rightarrow \infty} \int_{\mathbb{R}^n} f_k \dif{\mu}$$
 \end{theo}
 \begin{demo}
