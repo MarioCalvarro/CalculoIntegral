@@ -172,12 +172,12 @@ Por lo que ya sabemos que al menos $f$ es integrable (y por la misma razón las 
 
 Como $\vert f_k \vert \le g \Rightarrow g + f_k \ge 0$, de este modo formamos la sucesión de funciones $\{g + f_k\}_{k=1}^{\infty}$ a la que podemos aplicar el lema de Fatou: 
 $$\int_{\mathbb{R}^n} f \dif{\mu} + \int_{\mathbb{R}^n} g \dif{\mu} = \int_{\mathbb{R}^n} \left(f + g\right) \dif{\mu} = \int_{\mathbb{R}^n} \lim_{k \rightarrow \infty} \left(f_k + g\right) \dif{\mu} =\int_{\mathbb{R}^n} \liminf_{k \rightarrow \infty} \left(f_k + g\right)  \dif{\mu} \leq$$
-$$ \stackrel{Fatou}{\le} \liminf_{k \rightarrow \infty}\int_{\mathbb{R}^n} \left(f_k + g\right) \dif{\mu} = \liminf_{k \rightarrow \infty} \left( \int_{\mathbb{R}^n} f_k \dif{\mu} + \int_{\mathbb{R}^n} g \dif{\mu} \right) = \left(\liminf_{k \rightarrow \infty} \int_{\mathbb{R}^n} f_k \dif{\mu}  \right) + \int_{\mathbb{R}^n} g \dif{\mu}$$
+$$ \stackrel{\text{Fatou}}{\le} \liminf_{k \rightarrow \infty}\int_{\mathbb{R}^n} \left(f_k + g\right) \dif{\mu} = \liminf_{k \rightarrow \infty} \left( \int_{\mathbb{R}^n} f_k \dif{\mu} + \int_{\mathbb{R}^n} g \dif{\mu} \right) = \left(\liminf_{k \rightarrow \infty} \int_{\mathbb{R}^n} f_k \dif{\mu}  \right) + \int_{\mathbb{R}^n} g \dif{\mu}$$
 Luego ya tenemos la desigualdad
-$$\int_{\mathbb{R}^n} f \dif{\mu} \le \liminf_{k \rightarrow \infty}\left( \int_{\mathbb{R}^n} f_k \dif{\mu}\right)$$
+$$\boxed{\int_{\mathbb{R}^n} f \dif{\mu} \le \liminf_{k \rightarrow \infty}\left( \int_{\mathbb{R}^n} f_k \dif{\mu}\right)}$$
 De forma análoga, tomamos la sucesión $\{-f_k + g\}_{k=1}^{\infty}$ y entonces:
 $$\int_{\mathbb{R}^n} \left(-f\right) \dif{\mu} \le \liminf_{k \rightarrow \infty} \int_{\mathbb{R}^n} \left(-f_k\right) \dif{\mu} \Rightarrow - \int_{\mathbb{R}^n} f \dif{\mu} \le \liminf_{k \rightarrow \infty} \left(-\int_{\mathbb{R}^n} f_k \dif{\mu} \right) =$$
-$$= -\limsup_{k \rightarrow \infty} \left(\int_{\mathbb{R}^n} f_k \dif{\mu} \right) \Rightarrow \Rightarrow \limsup_{k \rightarrow \infty} \int_{\mathbb{R}^n} f_k \dif{\mu} \le \int_{\mathbb{R}^n} f \dif{\mu} $$
+$$= -\limsup_{k \rightarrow \infty} \left(\int_{\mathbb{R}^n} f_k \dif{\mu} \right) \Rightarrow \boxed{\limsup_{k \rightarrow \infty} \int_{\mathbb{R}^n} f_k \dif{\mu} \le \int_{\mathbb{R}^n} f \dif{\mu}} $$
 Como por la convergencia, se tiene que el límite superior e inferior coinciden con el límite global, se tiene la igualdad.
 \end{demo}
 
@@ -185,7 +185,7 @@ Como por la convergencia, se tiene que el límite superior e inferior coinciden 
 A pesar de que hemos definido todos los conceptos relativos al cálculo de integrales en $\mathbb{R}^n$, hasta ahora no hemos visto ningún método efectivo en términos prácticos para calcular integrales superiores a una dimensión. Aquí se desarrolla el Teorema fundamental que nos permite simplificar el cálculo de integrales en $\mathbb{R}^n$ al cálculo de varias integrales en $\mathbb{R}$.
 
 \begin{defi}[Secciones de funciones]
-Sea $f: \mathbb{R}^{n} \times \mathbb{R}^n \rightarrow \mathbb{R}$ una función que expresaremos como $f \left(x, y\right)$ donde $x \in \mathbb{R}^n$ y $y \in \mathbb{R}^n$, llamamos \textbf{secciones} de $f$ a:
+Sea $f: \mathbb{R}^{n} \times \mathbb{R}^n \rightarrow \mathbb{R}$ una función que expresaremos como $f \left(x, y\right)$ donde $x \in \mathbb{R}^n$ e $y \in \mathbb{R}^n$, llamamos \textbf{secciones} de $f$ a:
 $$\forall x \in \mathbb{R}^n, \ f_x: \mathbb{R}^n \rightarrow \mathbb{R} \mbox{ donde } f_x \left(y\right) = f \left(x, y\right)$$
 \end{defi}
 
