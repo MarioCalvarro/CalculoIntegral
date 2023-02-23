@@ -208,7 +208,7 @@ Donde $f_k = \sum m_S\left(f\right) \chi_S$ y vemos que por ser crecientes las p
 Sea $f: \mathbb{R}^n \rightarrow \mathbb{R}^n$ medible no negativa, entonces $\exists \{\varphi_k\}_{k=1}^{\infty}$ sucesión de funciones simples tal que $\{\varphi_k\}_{k=1}^\infty \uparrow f $ es creciente y converge \textbf{puntualmente}\footnote{Si la función $f$ es acotada, entonces la convergencia es \textbf{uniforme}} a $f$.
 \end{prop}
 \begin{demo}
-Dividimos la imagen de la función en intervalos disjuntos $I_j = [(j-1) \cdot 2^{-k}, j \cdot 2^{-k}]$ donde $j = 1, \ldots, k \cdot 2^k$ y la unión de todos los intervalos resulta el intervalo $[0,k)$
+En primer lugar, sea $k \ge 1$. Dividimos la imagen de la función en intervalos disjuntos $I_j = [(j-1) \cdot 2^{-k}, j \cdot 2^{-k}]$ donde $j = 1, \ldots, k \cdot 2^k$ y la unión de todos los intervalos resulta el intervalo $[0,k)$
 $$\begin{tikzpicture}
 \begin{axis}[
 axis y line=middle,
@@ -262,16 +262,20 @@ domain=-3:-2,samples=50,
 \node[color=violet,right] at (0.4,2.7) {$\varphi_3$};
 \node[color=violet,right] at (6.1,2.7) {$\varphi_3$};
 \end{tikzpicture}$$
+%TODO: Corregir? añadiendo E_k = {f(x) > k}
 Fijado un entero $k> 0$, definimos los siguientes conjuntos:
 $$E_j^k := f^{-1}\left([(j-1)\cdot 2^{-k}, j\cdot 2^{-k} )\right)$$
 Con dicha definición, es sencillo ver que los conjuntos son medibles, disjuntos y su unión queda como
 $$\bigcup_{j=1}^{k\cdot 2^k}E_j^k = \{x\in  \mathbb{R}^n: f(x) < k\}$$
-Definimos la siguiente función simple:
+Definimos la siguiente función simple, finita por serlo los $E_k^j$:
 $$\varphi_k := \sum_{j=1}^{k\cdot 2^k} \frac{j-1}{2^k} \chi_{E_j^k}$$
 Esto genera una sucesión de funciones creciente que denotamos por $\{\varphi_k\}_{k=1}^\infty \uparrow$.
 
 Luego, por la definición que se ha dado de los $E_j^k$, dado $x \in \mathbb{R}^n,\ \exists k\in \mathbb{N} : \forall k \ge k_0: k > f\left(x\right) \Rightarrow x \in E_j^k$ para algún $j $ y, por tanto:
-$$0 < f\left(x \right) - \varphi_k \left(x\right) < \frac{1}{2^k},\ \lim_{k \rightarrow \infty} \varphi_k\left(x\right) = f\left(x\right) $$
+\begin{align*}
+\frac{j_{k, x} - 1}{2^k} \le f&\left( x \right) \le \frac{j_{k, x}}{2^k} \Rightarrow\\
+0 < f\left(x \right) - \varphi_k \left(x\right) < \frac{1}{2^k} &\Rightarrow \boxed{\lim_{k \rightarrow \infty} \varphi_k\left(x\right) = f\left(x\right)}
+\end{align*}
 \end{demo}
 
 \begin{prop}
