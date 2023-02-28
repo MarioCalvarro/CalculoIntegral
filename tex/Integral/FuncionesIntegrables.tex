@@ -185,6 +185,66 @@ Como por la convergencia, se tiene que el límite superior e inferior coinciden 
 \subsection{Cálculo de integrales en \texorpdfstring{$\mathbb{R}^n$}{Rn}}
 A pesar de que hemos definido todos los conceptos relativos al cálculo de integrales en $\mathbb{R}^n$, hasta ahora no hemos visto ningún método efectivo en términos prácticos para calcular integrales superiores a una dimensión. Aquí se desarrolla el Teorema fundamental que nos permite simplificar el cálculo de integrales en $\mathbb{R}^n$ al cálculo de varias integrales en $\mathbb{R}$.
 
+\begin{defi}[Secciones de conjuntos]
+Si tenemos un conjunto $A \subset \mathbb{R}^n \times \mathbb{R}^m$, podemos definir su \textbf{sección} como:
+$$A_x = \{y \in \mathbb{R}^m: \left(x, y\right) \in A\}$$
+\end{defi}
+\begin{prop}[Principio de Cavalieri]
+Sea $A \subset \mathbb{R}^n \times \mathbb{R}^m$ medible, entonces: 
+\begin{enumerate}
+    \item Los $A_x$ son medibles c.t.p $x\in \mathbb{R}^n$.
+    \item La función $F: \mathbb{R}^n \rightarrow \left[0, +\infty\right]$ es medible y se define como:
+    $$F \left(x\right) = \mu_m \left(A_x\right)$$
+    \item $\mu_{n+m} \left(A\right) = \int_{\mathbb{R}^n} \mu_m \left(A_x\right) \dif{\mu_n} $
+\end{enumerate}
+\end{prop}
+\begin{demo}
+Junto al teorema de Tonelli.
+\end{demo}
+
+$$\begin{tikzpicture}
+\begin{axis}[
+tick style={draw=none},
+axis y line=middle,
+axis x line=middle,
+xlabel=$\mathbb{R}^n$,
+ylabel=$\mathbb{R}^m$,
+xticklabels={},yticklabels={}
+%grid = both, %major/minor
+];
+\addplot [thick, domain=0:7,fill=red, opacity=0.6]  plot[smooth, tension=.7] coordinates {(2,2.5) (3,3) (4,2.8) (5.2,2.5) (5.5,1.5) (7,0) (6,-2)(4.5,-2.5) (2,-2) (3.5,0.5) (1,1) (2,2.5)};
+
+\draw [dashed] (3,3) -- (3,0.8);
+\draw [solid] (3,0.8) -- (3,-0.5);
+\draw [dashed] (3,-0.5) -- (3,-3);
+
+\draw [densely dotted, very thick, red] (0,3) -- (0,0.8);
+\draw [densely dotted, very thick, red] (0,-0.5) -- (0,-2.5);
+
+\addplot [domain=0:3, samples=100, thick, color=red, dashed]{3};
+\addplot [domain=0:3, samples=100, thick, color=red, dashed]{0.8};
+\addplot [domain=0:3, samples=100, thick, color=red, dashed]{-0.5};
+\addplot [domain=0:3, samples=100, thick, color=red, dashed]{-2.5};       
+   
+
+\end{axis}
+\filldraw [black] (2.95,2.6) circle (2pt);
+\node[color=black,right] at (-0.8,2.6) {$A_x$};
+\node[color=black,right] at (2.55,2.4)  {$x$};
+\node[color=black,right] at (3.5,3.5) {$A$};
+\end{tikzpicture}$$
+
+\begin{obs}
+Si $N \subset \mathbb{R}^{n+m}$ satisface que $\mu_{n+m} \left(N \right) = 0$ hemos visto que para casi todo $x \in \mathbb{R}$ la sección $N_x$ es medible porque tiene medida nula. Sin embargo, puede ocurrir que para algún $x \in \mathbb{R}^n$ la sección $N_x$ no sea medible en $\mathbb{R}^m$
+
+Por ejemplo, sea $E \subset \mathbb{R}$ no medible y sea $N = \{0\} \times E \subset \mathbb{R}^2$. Como $N$ está contenido en la recta $\{0\} \times \mathbb{R}$ está claro que $\mu_2 \left(N\right) = 0$, pero la sección $N_0 = E$ no es medible.
+\end{obs}
+
+\begin{coro}
+Si la medida del conjunto es nula, entonces la medida de casi todas las secciones también lo es.
+$$\mu_{n + m} \left(A\right) = 0 \Rightarrow \mu_m \left(A_x\right) = 0 \text{ c.t.p } x$$
+\end{coro}
+
 \begin{defi}[Secciones de funciones]
 Sea $f: \mathbb{R}^{n} \times \mathbb{R}^n \rightarrow \mathbb{R}$ una función que expresaremos como $f \left(x, y\right)$ donde $x \in \mathbb{R}^n$ e $y \in \mathbb{R}^n$, llamamos \textbf{secciones} de $f$ a:
 $$\forall x \in \mathbb{R}^n, \ f_x: \mathbb{R}^n \rightarrow \mathbb{R} \mbox{ donde } f_x \left(y\right) = f \left(x, y\right)$$
@@ -234,7 +294,7 @@ Este teorema se podría enunciar de forma análoga para $y$, siendo entonces las
 \item La función $G: \mathbb{R}^n \rightarrow \left[0, \infty\right]$ es medible, donde se define como:
 $$G \left(x\right) = \int_{\mathbb{R}^n} f_x \dif{\mu}$$
 \item Se puede dividir la integral en secciones, es decir:
-$$\int_{\mathbb{R}^n \times \mathbb{R}^m} f \dif{\mu} = \int_{\mathbb{R}^n} G \dif{\mu},$$
+$$\int_{\mathbb{R}^n \times \mathbb{R}^m} f \dif{\mu} = \int_{\mathbb{R}^m} G \dif{\mu},$$
 expresado de forma más intuitiva:
 $$\int_{\mathbb{R}^n \times \mathbb{R}^m} f \left(x, y\right) \dif{x}\dif{y} = \int_{\mathbb{R}^m} \left(\int_{\mathbb{R}^n} f \left(x, y\right) \dif{x} \right) \dif{y}.$$
 \end{enumerate}
@@ -308,63 +368,6 @@ Porque $D_x$ si verificaba ya el Teorema de Tonelli.
 \end{enumerate} 
 \end{demo}
 
-\begin{defi}[Secciones de conjuntos]
-Si tenemos un conjunto $A \subset \mathbb{R}^n \times \mathbb{R}^m$, podemos definir su \textbf{sección} como:
-$$A_x = \{y \in \mathbb{R}^m: \left(x, y\right) \in A\}$$
-\end{defi}
-\begin{prop}[Principio de Cavalieri]
-Sea $A \subset \mathbb{R}^n \times \mathbb{R}^m$ medible, entonces: 
-\begin{enumerate}
-    \item Los $A_x$ son medibles c.t.p $x\in \mathbb{R}^n$.
-    \item La función $F: \mathbb{R}^n \rightarrow \left[0, +\infty\right]$ es medible y se define como:
-    $$F \left(x\right) = \mu_m \left(A_x\right)$$
-    \item $\mu_{n+m} \left(A\right) = \int_{\mathbb{R}^n} \mu_m \left(A_x\right) \dif{\mu_n} $
-\end{enumerate}
-\end{prop}
-
-$$\begin{tikzpicture}
-\begin{axis}[
-tick style={draw=none},
-axis y line=middle,
-axis x line=middle,
-xlabel=$\mathbb{R}^n$,
-ylabel=$\mathbb{R}^m$,
-xticklabels={},yticklabels={}
-%grid = both, %major/minor
-];
-\addplot [thick, domain=0:7,fill=red, opacity=0.6]  plot[smooth, tension=.7] coordinates {(2,2.5) (3,3) (4,2.8) (5.2,2.5) (5.5,1.5) (7,0) (6,-2)(4.5,-2.5) (2,-2) (3.5,0.5) (1,1) (2,2.5)};
-
-\draw [dashed] (3,3) -- (3,0.8);
-\draw [solid] (3,0.8) -- (3,-0.5);
-\draw [dashed] (3,-0.5) -- (3,-3);
-
-\draw [densely dotted, very thick, red] (0,3) -- (0,0.8);
-\draw [densely dotted, very thick, red] (0,-0.5) -- (0,-2.5);
-
-\addplot [domain=0:3, samples=100, thick, color=red, dashed]{3};
-\addplot [domain=0:3, samples=100, thick, color=red, dashed]{0.8};
-\addplot [domain=0:3, samples=100, thick, color=red, dashed]{-0.5};
-\addplot [domain=0:3, samples=100, thick, color=red, dashed]{-2.5};       
-   
-
-\end{axis}
-\filldraw [black] (2.95,2.6) circle (2pt);
-\node[color=black,right] at (-0.8,2.6) {$A_x$};
-\node[color=black,right] at (2.55,2.4)  {$x$};
-\node[color=black,right] at (3.5,3.5) {$A$};
-\end{tikzpicture}$$
-
-\begin{obs}
-Si $N \subset \mathbb{R}^{n+m}$ satisface que $\mu_{n+m} \left(N \right) = 0$ hemos visto que para casi todo $x \in \mathbb{R}$ la sección $N_x$ es medible porque tiene medida nula. Sin embargo, puede ocurrir que para algún $x \in \mathbb{R}^n$ la sección $N_x$ no sea medible en $\mathbb{R}^m$
-
-Por ejemplo, sea $E \subset \mathbb{R}$ no medible y sea $N = \{0\} \times E \subset \mathbb{R}^2$. Como $N$ está contenido en la recta $\{0\} \times \mathbb{R}$ está claro que $\mu_2 \left(N\right) = 0$, pero la sección $N_0 = E$ no es medible.
-\end{obs}
-
-\begin{coro}
-Si la medida del conjunto es nula, entonces la medida de casi todas las secciones también lo es.
-$$\mu_{n + m} \left(A\right) = 0 \Rightarrow \mu_m \left(A_x\right) = 0 \text{ c.t.p } x$$
-\end{coro}
-
 \begin{ej} 
 Si $A \subset \mathbb{R}^n \times \mathbb{R}^m$:
 $$\int_A f \left(x, y\right) \dif{x} \dif{y} = \int_{\mathbb{R}^n \times \mathbb{R}^m} f \left(x, y\right) \chi_A \left(x, y\right) \dif{x}\dif{y} = $$
@@ -374,7 +377,7 @@ $$\int_{\mathbb{R}^n} \left(\int_{\mathbb{R}^m} f \left(x, y\right) \chi_A \left
 \begin{theo}[de Fubini]
 Sea $f: \mathbb{R}^n \times \mathbb{R}^m \rightarrow \mathbb{R}$ integrable. Entonces: 
 \begin{enumerate}
-\item Para c.t.p. $x \in \mathbb{R}^n$, $f_x$ es medible en $\mathbb{R}^n$ (y no negativa).
+\item Para c.t.p. $x \in \mathbb{R}^n$, $f_x$ es integrable en $\mathbb{R}^n$.
 \item La función $F: \mathbb{R}^n \rightarrow \left[0, \infty\right]$ es medible en $\mathbb{R}^n$, donde $F$ está definida en c.t.p. como:
 $$F \left(x\right) = \int_{\mathbb{R}^m} f_x \dif{\mu}_m$$
 
