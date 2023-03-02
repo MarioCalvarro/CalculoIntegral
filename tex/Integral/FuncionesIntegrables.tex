@@ -303,7 +303,7 @@ $$\int_{\mathbb{R}^n \times \mathbb{R}^m} f \left(x, y\right) \dif{x}\dif{y} = \
 Para demostrar este teorema para funciones no negativas se irá demostrando para funciones más sencillas e incrementaremos la complejidad de forma gradual hasta llegar a las de las hipótesis.
 
 \begin{enumerate}
-\item Primeramente consideramos $f = \chi_{Q}$ donde $Q \subset \mathbb{R}^{n+m}$ es un cubo semiabierto, es decir, $Q = \prod_{i=1}^{n+m} \left[a_i, b_i\right)$. Este cubo se puede expresar en términos de otros dos, esto es, $Q = A \times B$ con $A \subset \mathbb{R}^n$ y $B \in \mathbb{R}^m$ cubos semiabiertos. Veamos entonces que:
+\item Primeramente consideramos $f = \chi_{Q}$ donde $Q \subset \mathbb{R}^{n+m}$ es un cubo semiabierto, es decir, $Q = \prod_{i=1}^{n+m} \left[a_i, b_i\right)$. Este cubo se puede expresar en términos de otros dos, esto es, $Q = A \times B$ con $A \subset \mathbb{R}^n$ y $B \subset \mathbb{R}^m$ cubos semiabiertos. Veamos entonces que:
 \begin{enumerate}
     \item
     $$\left(\chi_Q\right)_x = \chi_{Q_x} = \begin{cases} \chi_B &  x \in A\\ 0 &  x \not\in A \end{cases} \Rightarrow \left(\chi_Q\right)_x$$
@@ -318,7 +318,7 @@ Para demostrar este teorema para funciones no negativas se irá demostrando para
 \item Consideramos ahora $f = \chi_G$ donde $G \subset \mathbb{R}^{n+m}$ es un abierto. Por serlo, podemos escribirlo como $G = \bigsqcup_{j=1}^{\infty} Q_j$ donde cada $Q_j$ es un cubo semiabierto y la unión es disjunta.
 
 Denotando $G_k = \bigsqcup_{j=1}^{k} Q_j$ tenemos que $\chi_{G_k} = \sum_{j=1}^{k} \chi_{Q_j}$. Por ser dicha función característica suma finita de funciones características de cubos (que ya sabemos que cumplen el Teorema), también cumple el Teorema por el primer lema y además vemos que $\{\chi_{Q_k}\}_{k=1}^{\infty} \uparrow \chi_G$ puntualmente, luego:
-$$\chi_G = \sum_{j=1}^{\infty} \chi_{G_j} = \lim_{k \rightarrow \infty}\chi_{G_k} $$
+$$\chi_G = \sum_{j=1}^{\infty} \chi_{Q_j} = \lim_{k \rightarrow \infty}\chi_{G_k}$$
 De este modo, basta con aplicar el segundo lema y cumple el Teorema.
 
 \item Supongamos que $f = \chi_D$ donde $D \subset \mathbb{R}^{n + m}$ es un conjunto $G_\delta$. En este caso, es suficiente considerar que $D$ es acotado puesto que $D$ se puede expresar como una unión creciente $$D = \bigcup_{k=1}^{\infty} D_k$$ donde cada $D_k$ es un $G_\delta$ y acotado (por ejemplo, $D_k = D \cap \left(-k, k\right)^{n+m}$). De este modo, $\{\chi_{D_k}\}_{k=1}^{\infty} \uparrow \chi_D$ y usando el segundo lema, ya lo tendríamos.
