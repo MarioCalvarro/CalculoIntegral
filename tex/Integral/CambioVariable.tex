@@ -7,7 +7,7 @@ $$\mu_n \left(T\left(A\right)\right) = \lvert det \left(T\right) \rvert \cdot \m
 \end{theo}
 
 \begin{obs}
-En el caso en el que $det \left(T\right) = 0$, entonces $T$ no es sobreyectiva y, por tanto, $T \left(\mathbb{R}^n\right)$ es una espacio vectorial propio de $\mathbb{R}^n$, los cuales tienen $\mu_n \left(T \left(\mathbb{R}^n\right)\right) = 0$.
+En el caso en el que $det \left(T\right) = 0$, entonces $T$ no es sobreyectiva y, por tanto, $T \left(\mathbb{R}^n\right)$ es un espacio vectorial propio de $\mathbb{R}^n$, los cuales tienen $\mu_n \left(T \left(\mathbb{R}^n\right)\right) = 0$.
 \end{obs}
 
 \begin{defi}[Difeomorfismo]
@@ -20,7 +20,7 @@ Sea $U, V \subset \mathbb{R}^n$ abiertos, se dice que $\varphi: U \rightarrow V$
 \end{defi}
 
 \begin{obs}
-Sea $U \subset \mathbb{R}^n$ abierto y $\varphi: U \rightarrow \mathbb{R}^n$ de clase $C'$ tal que $\varphi$ es inyectiva en $U$ y $det \left(J \varphi \left(u\right) \right) \neq 0,\ \forall u \in U \Rightarrow$ por el Teorema de la Función Inversa, sabemos que $V = \varphi \left(U\right)$ es abierto y su inversa $\varphi^{-1}: V \rightarrow U$ es $C^1$. Es decir, $\varphi U \rightarrow \varphi \left(U\right)$ es un difeomorfismo-$C^1$.
+Sea $U \subset \mathbb{R}^n$ abierto y $\varphi: U \rightarrow \mathbb{R}^n$ de clase $C'$ tal que $\varphi$ es inyectiva en $U$ y $det \left(J \varphi \left(u\right) \right) \neq 0,\ \forall u \in U \Rightarrow$ por el Teorema de la Función Inversa, sabemos que $V = \varphi \left(U\right)$ es abierto y su inversa $\varphi^{-1}: V \rightarrow U$ es $C^1$. Es decir, $\varphi: U \rightarrow \varphi \left(U\right)$ es un difeomorfismo-$C^1$.
 \end{obs}
 
 \begin{theo}
@@ -128,10 +128,10 @@ $$\begin{cases} x = r \cos \theta \\ y = r \sen \theta \end{cases} \mbox{ donde 
 \end{defi}
 
 \begin{prop}
-Sea $\varphi: \mathbb{R}^2\rightarrow  \mathbb{R}^2$ de forma que $\varphi(r, \theta) = (r\cos\theta, r\sen\theta)$, la restricción de $\varphi$ sobre el conjunto $\mathcal{U} = (0,\infty)\times (0, 2\pi)$ cumple que:
+Sea $\varphi: \mathbb{R}^2\rightarrow  \mathbb{R}^2$ de forma que $\varphi(r, \theta) = (r\cos\theta, r\sen\theta)$, la restricción de $\varphi$ sobre el conjunto $\mathcal{U} = (0,\infty)\times [0, 2\pi)$ cumple que:
 \begin{itemize}
 \item $\varphi(\mathcal{U}) = \mathbb{R}^2\setminus{S}$ donde $S = \{(x,0)\in \mathbb{R}^2: x\geq 0\}$
-\item $\varphi\mid_\mathcal{U}$ es un dimeomorfismo-$C^{1)}$
+\item $\varphi\mid_\mathcal{U}$ es un difeomorfismo-$C^{1)}$
 \item $J_\varphi = \begin{pmatrix}\cos \theta & -r\sen \theta \\ \sen \theta & r\cos \theta\end{pmatrix}$
 \end{itemize}
 \end{prop}
