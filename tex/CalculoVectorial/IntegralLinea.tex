@@ -314,7 +314,7 @@ $$\forall \gamma \text{ cerrada }:\int_{\gamma} F\cdot \dif{\overline{s}} = 0$$
 \end{defi}
 
 \begin{prop}
-Sea $G \subset \mathbb{R}^n$ abierto y $F: G \rightarrow \mathbb{R}^n$ campo vectorial continuo, entonces $F$ deriva de un potencia si y sólo si es conservativo.
+Sea $G \subset \mathbb{R}^n$ abierto y $F: G \rightarrow \mathbb{R}^n$ campo vectorial continuo, entonces $F$ deriva de un potencial si y sólo si es conservativo.
 \end{prop}
 \begin{demo}
 \begin{itemize}
@@ -378,6 +378,35 @@ Es decir,
 $$\lim_{h \rightarrow 0} \frac{f\left( x + h \right) - f\left( x \right) - \left( F\left( x \right) \cdot h \right)}{\lvert \lvert h \rvert \rvert} = 0 \Rightarrow F\left( x \right) = \nabla f\left( x \right) $$
 \end{itemize}
 \end{demo}
+
+\begin{prop}
+Sea $F: A \rightarrow \mathbb{R}^n$ un campo conservativo. Sea $C$ una curva regular con parametrización $\gamma\left( t \right): \left[ a, b \right] \rightarrow A$. Entonces:
+\[
+\int_{C} F \mathrm{d}s = f\left( \gamma\left( b \right) \right) - f\left( \gamma\left( a \right) \right)
+\]
+donde $\nabla f = F$
+\end{prop}
+\begin{demo}
+Sea $g: \left[ a, b \right] \rightarrow \mathbb{R}$ tal que $f\left( \gamma \left( t \right) \right) = g\left( t \right)$. 
+
+Tenemos que:
+\[
+\frac{df}{dt} = \nabla g \cdot \gamma'
+\]
+porque si tenemos que $\gamma\left( t \right) = \left( x\left( t \right), y\left( t \right) \right)$, $g\left( t \right) = f\left( x\left( t \right), y\left( t \right) \right)\Rightarrow$ 
+\[
+g'\left( t \right) = \frac{df}{dx} \frac{dx}{dt} + \frac{df}{dy} \frac{dy}{dt} = \nabla f \cdot \gamma'
+\]
+Por tanto,
+\[
+\int_{C} F \mathrm{d}s = \int_{\left[ a, b \right]} \frac{dg}{dt} \mathrm{d}t = g\left( b \right) - g\left( a \right)
+\]
+Como $g\left( b \right) - g\left( a \right) = f\left( \gamma\left( b \right) \right) - f \left( \gamma\left( a \right) \right)$, tenemos el resultado.
+\end{demo}
+
+\begin{obs}
+Si $a = b$ tenemos el caso de la definición que hemos visto de campo conservativo.
+\end{obs}
 
 \begin{theo}[Fórmula de Green]
 Sea $G \subset \mathbb{R}^2$ un abierto, $P, Q: G \rightarrow \mathbb{R}$ dos funciones $C^1$ y $D$ un abierto tal que $\overline{D} \subset G$ y donde $\partial D^+ \subset G$ es una curva cerrada, entonces:
