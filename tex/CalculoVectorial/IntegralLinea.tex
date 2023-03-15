@@ -318,51 +318,52 @@ Sea $G \subset \mathbb{R}^n$ abierto y $F: G \rightarrow \mathbb{R}^n$ campo vec
 \end{prop}
 \begin{demo}
 \begin{itemize}
-\item $\Rightarrow$
+\item[$\Rightarrow)$] Tenemos que:
 $$\int_{\gamma} F\cdot \dif{\overline{s}} = \int_{a}^{b} \nabla f\left( \gamma\left( t \right) \right) \cdot \gamma'\left( t \right) \dif{t} = \int_{a}^{b} \left( f \circ \gamma \right)'\left( t \right) \dif{t} = \left( f \circ \gamma \right)\left( b \right) - \left( f \circ \gamma \right) \left( a \right)$$
 Si la curva es cerrada, entonces $\gamma(a) = \gamma(b)$, luego $\left( f \circ \gamma \right)\left( b \right) - \left( f \circ \gamma \right) \left( a \right) = 0$.
 
-\item $\Leftarrow$
+Esto es equivalente a que la integral curvilínea de $F$ para cualquier curva regular a trozos sólo depende del punto inicial y final de la curva.
 
+\item[$\Leftarrow)$]
 Para entender el argumento de la demostración utilizamos como guía el siguiente dibujo:
-$$\begin{tikzpicture}
+%TODO: Creo que este dibujo no es correcto.
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
 
-\begin{axis}[
-tick style={draw=none},
-axis y line=middle,
-axis x line=middle,
-ymin = -1.2,
-xmin = -1.2, xmax = 1.2,
-%xlabel=$x$,
-%grid = both, %major/minor
-xticklabels={},yticklabels={}
-];
+    \begin{axis}[
+    tick style={draw=none},
+    axis y line=middle,
+    axis x line=middle,
+    ymin = -1.2, ymax = 0.5,
+    xmin = -1.2, xmax = 1.2,
+    %xlabel=$x$,
+    %grid = both, %major/minor
+    xticklabels={},yticklabels={}
+    ];
 
-\addplot [middlearrow={latex reversed},domain=-1:1, samples=100, name path=f, thick, color=blue!50]
-        {x^2 - 1};
+    \addplot [middlearrow={latex reversed},domain=-1:1, samples=100, name path=f, thick, color=blue!50]
+            {x^2 - 1};
 
-\addplot [middlearrow={latex reversed},domain=-1:1, samples=100, name path=g, thick, color=red!50]
-        {abs(x*(x-1)*(x+1))};
+    \addplot [middlearrow={latex reversed},domain=-1:1, samples=100, name path=g, thick, color=red!50]
+            {abs(x*(x-1)*(x+1))};
 
+    \fill (1,0)  circle[radius=2pt];
+    \fill (-1,0) circle[radius=2pt];
 
-\fill (1,0)  circle[radius=2pt];
-\fill (-1,0) circle[radius=2pt];
+    \node (n4) [above,red] at (-0.1,0.2) {$\gamma_1$};
+    \node (n3) [blue] at (0.1, -0.9) {$\gamma_2$};
+    \node (n2)  at (-.5,-.5) {$\gamma$};
+    \end{axis}
+    \end{tikzpicture}
+    \caption{\textit{$\gamma$ la podemos dividir en su parte positiva y su parte negativa.}}
+\end{figure}
 
-
-\node (n4) [above,red] at (-0.1,0.2) {$\gamma_1$};
-\node (n3) [blue] at (0.1, -0.9) {$\gamma_2$};
-\node (n2)  at (-.5,-.5) {$\gamma$};
-
-
-
-
-\end{axis}
-\end{tikzpicture}$$
 Es decir, cualquier curva cerrada $\gamma$ la podemos dividir como $\gamma_1 \vee -\gamma_2$ y además vemos que:
 $$0 = \int_{\gamma_1 \lor \left( -\gamma_2 \right)} F \dif{\overline{s}} = \int_{\gamma_1} F \cdot \dif{\overline{s}} - \int_{\gamma_2} F \cdot \dif{\overline{s}} \Rightarrow \int_{\gamma_1} F \cdot \dif{\overline{s}} = \int_{\gamma_2} F \cdot \dif{\overline{s}}$$
 Por razones topológicas, podemos suponer que $G$ es conexo (puesto que cualquier abierto es suma de conexos) y como además $G$ es abierto, entonces es conexo por caminos, es decir, $\forall x \in G: \exists \gamma_x$ que une $x_0$ con $x$.
 
-Definimos la función $f: G \rightarrow \mathbb{R}$ de forma que $f\left( x \right) = \int_{\gamma_x} F \cdot \dif{\overline{s}}$ y para terminar la demostración bastaría con probar que $\nabla f = F$.
+Definimos la función $f: G \rightarrow \mathbb{R}$ de forma que $f\left( x \right) = \int_{\gamma_x} F \cdot \dif{\overline{s}}$, está bien definida al ser el campo conservativo (el valor no depende del camino), y para terminar la demostración bastaría con probar que $\nabla f = F$.
 Por ser el campo continuo, sabemos que:
 $$\forall \varepsilon > 0,\ \exists \delta > 0: \lvert \lvert F\left( x + h \right) - F\left( x \right) \rvert \rvert < \varepsilon \text{ si } \lvert \lvert h \rvert \rvert < \delta$$
 Y sabiendo esto escogemos el $\delta$ de forma que $B\left( x, \delta \right) \subset G$ de modo que $x+h \in B(x,\delta)$ y como la bola es convexa, entonces el segmento que denotaremos por $\sigma_n \sim \left[ x, x + h \right]$ pertenece a la bola. Por tanto:
@@ -378,35 +379,6 @@ Es decir,
 $$\lim_{h \rightarrow 0} \frac{f\left( x + h \right) - f\left( x \right) - \left( F\left( x \right) \cdot h \right)}{\lvert \lvert h \rvert \rvert} = 0 \Rightarrow F\left( x \right) = \nabla f\left( x \right) $$
 \end{itemize}
 \end{demo}
-
-\begin{prop}
-Sea $F: A \rightarrow \mathbb{R}^n$ un campo conservativo. Sea $C$ una curva regular con parametrización $\gamma\left( t \right): \left[ a, b \right] \rightarrow A$. Entonces:
-\[
-\int_{C} F \mathrm{d}s = f\left( \gamma\left( b \right) \right) - f\left( \gamma\left( a \right) \right)
-\]
-donde $\nabla f = F$
-\end{prop}
-\begin{demo}
-Sea $g: \left[ a, b \right] \rightarrow \mathbb{R}$ tal que $f\left( \gamma \left( t \right) \right) = g\left( t \right)$. 
-
-Tenemos que:
-\[
-\frac{df}{dt} = \nabla g \cdot \gamma'
-\]
-porque si tenemos que $\gamma\left( t \right) = \left( x\left( t \right), y\left( t \right) \right)$, $g\left( t \right) = f\left( x\left( t \right), y\left( t \right) \right)\Rightarrow$ 
-\[
-g'\left( t \right) = \frac{df}{dx} \frac{dx}{dt} + \frac{df}{dy} \frac{dy}{dt} = \nabla f \cdot \gamma'
-\]
-Por tanto,
-\[
-\int_{C} F \mathrm{d}s = \int_{\left[ a, b \right]} \frac{dg}{dt} \mathrm{d}t = g\left( b \right) - g\left( a \right)
-\]
-Como $g\left( b \right) - g\left( a \right) = f\left( \gamma\left( b \right) \right) - f \left( \gamma\left( a \right) \right)$, tenemos el resultado.
-\end{demo}
-
-\begin{obs}
-Si $a = b$ tenemos el caso de la definición que hemos visto de campo conservativo.
-\end{obs}
 
 \begin{theo}[Fórmula de Green]
 Sea $G \subset \mathbb{R}^2$ un abierto, $P, Q: G \rightarrow \mathbb{R}$ dos funciones $C^1$ y $D$ un abierto tal que $\overline{D} \subset G$ y donde $\partial D^+ \subset G$ es una curva cerrada, entonces:
