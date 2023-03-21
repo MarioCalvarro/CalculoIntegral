@@ -380,6 +380,14 @@ $$\lim_{h \rightarrow 0} \frac{f\left( x + h \right) - f\left( x \right) - \left
 \end{itemize}
 \end{demo}
 
+%TODO: Arreglar
+\begin{defi}
+Llamamos \textbf{dominio proyectable} si existen funciones continuas $y = \alpha\left( x \right)$, $y = \beta\left( x \right),\ \alpha\left( x \right) \le \beta\left( x \right)$ definimos en un intervalo $\left[ a, b \right]$ tal que $\alpha\left( x \right) < \beta\left( x \right),\ x \in \left( a, b \right)$ a:
+\[
+D = \left\{ \left( x, y \right): x \in \left[ a, b \right] \text{ e } \alpha\left( x \right) \le y \le \beta\left( x \right) \right\}
+\]
+\end{defi}
+
 \begin{theo}[Fórmula de Green]
 Sea $G \subset \mathbb{R}^2$ un abierto, $P, Q: G \rightarrow \mathbb{R}$ dos funciones $C^1$ y $D$ un abierto tal que $\overline{D} \subset G$ y donde $\partial D^+ \subset G$ es una curva cerrada, entonces:
 $$\int_{\partial D^+} (P, Q) \dif{\bar{s}} = \iint_{D} \left( \frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y} \right) \dif{x} \dif{y}$$
