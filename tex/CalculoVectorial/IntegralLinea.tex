@@ -392,6 +392,12 @@ D = \left\{ \left( x, y \right): x \in \left[ a, b \right] \text{ e } \alpha\lef
 Sea $G \subset \mathbb{R}^2$ un abierto, $P, Q: G \rightarrow \mathbb{R}$ dos funciones $C^1$ y $D$ un abierto tal que $\overline{D} \subset G$ y donde $\partial D^+ \subset G$ es una curva cerrada, entonces:
 $$\int_{\partial D^+} (P, Q) \dif{\bar{s}} = \iint_{D} \left( \frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y} \right) \dif{x} \dif{y}$$
 \end{theo}
+\begin{obs}
+Podemos escribir $\int_{\partial D^+} \left( P, Q \right) \mathrm{d}\overline{s}$ como:
+\[
+\oint_{\partial D^+} P\left( x, y \right) \dif{x} + Q\left( x, y \right) \dif{y}
+\]
+\end{obs}
 \begin{demo}
 La demostración se va a hacer para conjuntos definidos entre funciones puesto que se puede aproximar cualquier conjunto por una poligonal suficientemente semejante al mismo, cualquier poligonal se puede poner como unión de triángulos y los triángulos son conjuntos de este tipo.
 
@@ -450,8 +456,10 @@ $$\int_{\sigma_2} P \dif{x} = - \int_{-\sigma_2} P \dif{x} = - \int_{a}^{b} P\le
 Por tanto, sobre la integral del enunciado tenemos: 
 $$\int_{\partial D^+} P \dif{x} = - \left( \int_{a}^{b} P\left( t, g\left( t \right) \right) \dif{t} - \int_{a}^{b} P\left( t, f\left( t \right) \right) \dif{t} \right) = $$
 $$= - \int_{a}^{b} \left( \int_{f\left( x \right)}^{g\left( x \right)} \frac{\partial P\left( x, y \right)}{\partial y} \dif{y} \right) \dif{x} \underbrace{=}_{\text{T. Fubini}} - \iint_{D} \frac{\partial P}{\partial y} \left( x, y \right) \dif{x} \dif{y}$$
-Suponiendo ahora las funciones sobre $y$ que definen al conjunto, es decir, $D = \left( x, y \right) : y \in \left[ c, d \right] \; \land \; f\left( y \right) \le x \le g\left( y \right)$ donde $f, g: \left[ c, d \right] \rightarrow \mathbb{R}$ son $C^1$ a trozos. La demostración es completamente análoga: 
-$$\int_{\partial D^+} Q \dif{y} \overbrace{=}^{\text{ejercicio}} \iint_{D} \frac{\partial D}{\partial x} \dif{x} \dif{y}$$
+Suponiendo ahora las funciones sobre $y$ que definen al conjunto, es decir, 
+$$D = \left\{ \left( x, y \right) : y \in \left[ c, d \right] \; \land \; f\left( y \right) \le x \le g\left( y \right) \right\}$$
+donde $f, g: \left[ c, d \right] \rightarrow \mathbb{R}$ son $C^1$ a trozos. La demostración es completamente análoga: 
+$$\int_{\partial D^+} Q \dif{y} \overbrace{=}^{\text{ejercicio}} \iint_{D} \frac{\partial Q}{\partial x} \dif{x} \dif{y}$$
 Por último, si sumamos las dos fórmulas: 
 $$\iint_{\partial D^+} P \dif{x} + Q \dif{y} = \iint_{D} \left( \frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y} \right) \dif{x} \dif{y}$$
 \end{demo}
