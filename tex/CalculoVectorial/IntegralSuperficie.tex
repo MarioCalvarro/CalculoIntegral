@@ -176,7 +176,7 @@ Esta definición permite trabajar siempre con conjuntos $D$ muy regulares donde 
 \begin{obs}
 Por la definición que se ha dado, tenemos que: 
 $$\left[ a, b \right] \xrightarrow{\gamma} \mathbb{R}^2 \xrightarrow{\Phi} \mathbb{R}^3$$
-Luego $\Phi \circ \gamma$ parametriza a la curva $\partial S$, por tanto, es razonable pensar qué orientación inducir a dicha curva para que todo se mantenga uniforme (ya hemos visto que la integral depende de la oritentación). Tomemos las siguientes orientaciones: 
+Luego $\Phi \circ \gamma$ parametriza a la curva $\partial S$, por tanto, es razonable pensar qué orientación inducir a dicha curva para que todo se mantenga uniforme (ya hemos visto que la integral depende de la orientación). Tomemos las siguientes orientaciones: 
     \begin{itemize}
         \item Sabemos la orientación de $S$ a través de $\Phi$. 
         \item Sabemos la orientación de $\gamma$ a través de $D$
@@ -289,6 +289,7 @@ $$\int_{\gamma} F \dif{\overline{s}} = \int_{0}^{2\pi} \left( -\sin t, \cos t, 0
 Este ejemplo hace evidente la necesidad de que el dominio sea $\mathbb{R}^3$ ya que no podemos construir una superficie con la curva formada por la circunferencia unidad que no corte al eje Z.
 \end{ej} 
 
+%TODO: Ver teorema de la divergencia en R2
 \begin{defi}[Divergencia]
 Sea $F: G \rightarrow \mathbb{R}^3$ un campo de $C^1$ y $G \subset \mathbb{R}^3$ un abierto, llamamos \textbf{divergencia} de $F$ a: 
 $$\divg F = \frac{\partial F_1}{\partial x} + \frac{\partial F_2}{\partial y} + \frac{\partial F_3}{\partial z} = \nabla \cdot F$$
@@ -302,8 +303,8 @@ La idea intuitiva detrás del concepto de la divergencia es la cantidad de flujo
 Sea $H$ un campo $C^2$, entonces $\divg \left( \rot H \right) = 0$. Luego que la divergencia de un campo sea 0 será condición necesaria para ser el rotacional de algún otro.
 \end{prop}
 \begin{demo}
-De nuevo, por el Teorema de Schwarz para las parciales segundas cruzadas:
-$$\left( \underbrace{\frac{\partial H_3}{\partial y} - \frac{\partial H_2}{\partial z}}_{\frac{\partial }{\partial x}}, \underbrace{\frac{\partial H_1}{\partial z} - \frac{\partial H_3}{\partial x}}_{\frac{\partial }{\partial y}}, \underbrace{\frac{\partial H_2}{\partial x} - \frac{\partial H_1}{\partial y}}_{\frac{\partial }{\partial z}} \right) = 0$$
+De nuevo, por el Teorema de Schwarz para las segundas derivadas parciales cruzadas:
+$$\divg \left( \underbrace{\frac{\partial H_3}{\partial y} - \frac{\partial H_2}{\partial z}}_{\frac{\partial }{\partial x}}, \underbrace{\frac{\partial H_1}{\partial z} - \frac{\partial H_3}{\partial x}}_{\frac{\partial }{\partial y}}, \underbrace{\frac{\partial H_2}{\partial x} - \frac{\partial H_1}{\partial y}}_{\frac{\partial }{\partial z}} \right) = 0$$
 \end{demo}
 
 \begin{theo}
